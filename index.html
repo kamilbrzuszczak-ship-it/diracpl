@@ -10,6 +10,8 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{background:var(--black);color:var(--white);font-family:'Josefin Sans',sans-serif;font-weight:220;overflow-x:hidden;cursor:none;}
+.cursor{position:fixed;width:6px;height:6px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s ease;}
+.cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(212,168,67,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.18s ease;}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:28px 56px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,rgba(8,8,8,0.95) 0%,transparent 100%);}
 .nav-logo{font-family:'Josefin Sans',sans-serif;font-size:15px;font-weight:300;letter-spacing:0.35em;color:var(--white);text-decoration:none;text-transform:uppercase;display:flex;align-items:center;gap:14px;}
 .nav-logo span{color:var(--gold);}
