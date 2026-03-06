@@ -272,14 +272,6 @@ footer{padding:48px 56px;border-top:1px solid var(--line);display:flex;justify-c
 
 <div class="toast" id="toast">&#10003; &nbsp;Wiadomo&#347;&#263; wys&#322;ana. Odezwiemy si&#281; wkr&oacute;tce.</div>
 
-<script>
-var c=document.getElementById('cursor'),r=document.getElementById('cursorRing');
-document.addEventListener('mousemove',function(e){c.style.left=e.clientX+'px';c.style.top=e.clientY+'px';setTimeout(function(){r.style.left=e.clientX+'px';r.style.top=e.clientY+'px';},60);});
-document.querySelectorAll('a,button,.feature,.price-card').forEach(function(el){el.addEventListener('mouseenter',function(){r.style.transform='translate(-50%,-50%) scale(1.8)';r.style.borderColor='rgba(212,168,67,0.8)';});el.addEventListener('mouseleave',function(){r.style.transform='translate(-50%,-50%) scale(1)';r.style.borderColor='rgba(212,168,67,0.4)';});});
-var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}});},{threshold:0.12});
-document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
-function handleSubmit(){var n=document.getElementById('f-name').value,e=document.getElementById('f-email').value;if(!n||!e){alert('Prosz\u0119 poda\u0107 imi\u0119 i adres e-mail.');return;}var t=document.getElementById('toast');t.classList.add('show');setTimeout(function(){t.classList.remove('show');},4000);['f-name','f-email','f-msg','f-type'].forEach(function(id){document.getElementById(id).value='';});}
-(function(){var cv=document.getElementById('heroCanvas');if(!cv)return;var ctx=cv.getContext('2d');function rz(){cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;}rz();window.addEventListener('resize',rz);var W=[{f:0.0022,a:0.13,s:1.8,p:0.0,o:0.50,w:1.4},{f:0.0018,a:0.10,s:2.2,p:1.1,o:0.40,w:1.0},{f:0.0030,a:0.08,s:2.8,p:2.3,o:0.35,w:0.9},{f:0.0040,a:0.06,s:3.5,p:0.5,o:0.28,w:0.7},{f:0.0014,a:0.15,s:1.4,p:3.1,o:0.22,w:1.6},{f:0.0052,a:0.04,s:4.2,p:1.8,o:0.20,w:0.6},{f:0.0065,a:0.03,s:5.5,p:0.9,o:0.16,w:0.5},{f:0.0078,a:0.025,s:6.0,p:2.7,o:0.13,w:0.4},{f:0.0048,a:0.05,s:4.8,p:4.2,o:0.18,w:0.6},{f:0.0008,a:0.22,s:0.9,p:1.5,o:0.10,w:2.0},{f:0.0011,a:0.18,s:1.1,p:3.6,o:0.08,w:1.8},{f:0.0035,a:0.055,s:3.2,p:5.1,o:0.15,w:0.7}];var t=0;function draw(){var W2=cv.width,H=cv.height;ctx.clearRect(0,0,W2,H);W.forEach(function(w){ctx.beginPath();var cy=H*0.5;for(var x=0;x<=W2;x+=1.5){var y=cy+Math.sin(x*w.f+t*w.s+w.p)*H*w.a+Math.sin(x*w.f*2.1+t*w.s*0.6+w.p*0.7)*H*w.a*0.35+Math.sin(x*w.f*3.7+t*w.s*1.3+w.p*1.2)*H*w.a*0.12;if(x===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);}ctx.strokeStyle='rgba(212,168,67,'+w.o+')';ctx.lineWidth=w.w;ctx.stroke();});t+=0.032;requestAnimationFrame(draw);}draw();})();
-</script>
+
 </body>
 </html>
