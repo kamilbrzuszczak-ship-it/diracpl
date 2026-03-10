@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dirac Live Polska - Autoryzowany Reseller</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMDgwODA4Ii8+PHRleHQgeD0iNCIgeT0iMjQiIGZpbGw9IiNkNGE4NDMiIGZvbnQtZmFtaWx5PSJIZWx2ZXRpY2EgTmV1ZSxIZWx2ZXRpY2EsQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjgwMCI+RDwvdGV4dD48L3N2Zz4=">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root{--black:#080808;--deep:#0e0e10;--surface:#141416;--line:rgba(255,255,255,0.07);--line2:rgba(255,255,255,0.12);--white:#f0ede8;--off:#f4efda;--gold:#d4a843;--gold-light:#e8c46a;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'Josefin Sans',sans-serif;font-weight:250;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:28px 56px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,rgba(8,8,8,0.95) 0%,transparent 100%);}
+.nav-logo{font-family:'Josefin Sans',sans-serif;font-size:18px;font-weight:330;letter-spacing:0.35em;color:var(--white);text-decoration:none;text-transform:uppercase;display:flex;align-items:center;gap:14px;}
+.nav-logo span{color:var(--gold);}
+.nav-left{display:flex;align-items:center;gap:24px;}
+.nav-sep{width:1px;height:28px;background:rgba(255,255,255,0.12);}
+.nav-audioplaza{display:flex;align-items:center;text-decoration:none;opacity:0.55;transition:opacity 0.3s;}
+.nav-audioplaza:hover{opacity:1;}
+.nav-links{display:flex;gap:40px;list-style:none;}
+.nav-links a{font-size:14px;letter-spacing:0.25em;text-transform:uppercase;color:var(--off);text-decoration:none;transition:color 0.3s;}
+.nav-links a:hover{color:var(--white);}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 56px 80px;position:relative;overflow:hidden;}
+.hero::after{content:'';position:absolute;right:-10%;top:20%;width:600px;height:600px;background:radial-gradient(circle,rgba(212,168,67,0.06) 0%,transparent 70%);pointer-events:none;}
+.hero-logo-right{position:absolute;right:7%;top:50%;transform:translateY(-50%);pointer-events:none;z-index:2;opacity:0;animation:fadeUp 1.2s ease 1.2s forwards;}
+.hero-logo-right::before{content:'';position:absolute;inset:-80px;background:radial-gradient(ellipse at center,rgba(212,168,67,0.12) 0%,transparent 65%);}
+.hero-logo-right svg{filter:drop-shadow(0 0 40px rgba(212,168,67,0.5));opacity:0.28;}
+.hero-eyebrow{position:relative;z-index:3;font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:36px;opacity:0;animation:fadeUp 1s ease 0.3s forwards;}
+.hero-title{position:relative;z-index:3;font-family:'Cormorant Garamond',serif;font-size:clamp(52px,8vw,110px);font-weight:300;line-height:0.95;letter-spacing:-0.02em;max-width:800px;opacity:0;animation:fadeUp 1s ease 0.5s forwards;}
+.hero-title em{font-style:italic;color:var(--gold-light);}
+.hero-sub{position:relative;z-index:3;font-size:15px;letter-spacing:0.2em;color:var(--white);margin-top:40px;max-width:420px;line-height:2;text-transform:uppercase;opacity:0;animation:fadeUp 1s ease 0.8s forwards;}
+.hero-cta{position:relative;z-index:3;margin-top:60px;display:flex;gap:24px;align-items:center;opacity:0;animation:fadeUp 1s ease 1s forwards;}
+.btn-primary{font-family:'Josefin Sans',sans-serif;font-size:12px;font-weight:300;letter-spacing:0.35em;text-transform:uppercase;color:var(--black);background:var(--gold);border:none;padding:18px 44px;text-decoration:none;display:inline-block;transition:background 0.3s,transform 0.3s;}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-1px);}
+.btn-ghost{font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:var(--off);text-decoration:none;border-bottom:1px solid var(--line2);padding-bottom:2px;transition:color 0.3s,border-color 0.3s;}
+.btn-ghost:hover{color:var(--white);border-color:var(--gold);}
+.hero-scroll{position:absolute;bottom:40px;left:56px;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--off);display:flex;align-items:center;gap:16px;z-index:3;opacity:0;animation:fadeUp 1s ease 1.4s forwards;}
+.scroll-line{width:40px;height:1px;background:var(--gold);animation:scrollPulse 2s ease-in-out infinite;}
+section{padding:120px 56px;border-top:1px solid var(--line);position:relative;}
+.section-label{font-size:30px;letter-spacing:0.5em;text-transform:uppercase;color:var(--gold);margin-bottom:64px;display:flex;align-items:center;gap:20px;}
+.section-label::after{content:'';flex:1;max-width:60px;height:1px;background:var(--gold);opacity:0.4;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.about-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,54px);font-weight:300;line-height:1.1;letter-spacing:-0.01em;margin-top:32px;}
+.about-title em{font-style:italic;color:var(--gold-light);}
+.about-img{position:relative;overflow:hidden;}
+.about-img img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;filter:brightness(0.65) saturate(0.7);transition:filter 0.6s ease;}
+.about-img:hover img{filter:brightness(0.75) saturate(0.85);}
+.about-img::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(8,8,8,0.45) 0%,transparent 55%),linear-gradient(to top,rgba(8,8,8,0.55) 0%,transparent 45%);pointer-events:none;}
+.about-text{font-size:19px;line-height:2.2;color:#9e9b95;font-weight:200;margin-bottom:24px;}
+.about-text strong{color:var(--white);font-weight:300;}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);}
+.feature{background:var(--black);padding:52px 40px;transition:background 0.4s;position:relative;overflow:hidden;}
+.feature::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.5s ease;}
+.feature:hover{background:var(--deep);}
+.feature:hover::before{transform:scaleX(1);}
+.feature-num{font-size:10px;letter-spacing:0.4em;color:var(--gold);margin-bottom:28px;}
+.feature-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;line-height:1.2;margin-bottom:20px;}
+.feature-desc{font-size:19px;line-height:2;color:var(--off);font-weight:200;}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;}
+.step{position:relative;}
+.step::after{content:'';position:absolute;top:16px;right:-20px;width:40px;height:1px;background:var(--line2);}
+.step:last-child::after{display:none;}
+.step-num{font-family:'Cormorant Garamond',serif;font-size:60px;font-weight:450;color:rgba(212,168,67,0.12);line-height:1;margin-bottom:20px;}
+.step-title{font-size:18px;letter-spacing:0.2em;text-transform:uppercase;color:var(--white);margin-bottom:12px;font-weight:450;}
+.step-text{font-size:18px;line-height:1.9;color:var(--off);font-weight:350;}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);}
+.price-card{background:var(--black);padding:52px 40px;transition:background 0.3s;position:relative;overflow:hidden;}
+.price-card.featured{background:var(--deep);}
+.price-card.featured::before{content:'POPULARNE';position:absolute;top:24px;right:24px;font-size:15px;letter-spacing:0.3em;color:var(--gold);border:1px solid rgba(212,168,67,0.35);padding:4px 10px;}
+.price-card:hover{background:var(--surface);}
+.price-tier{font-size:11px;letter-spacing:0.45em;text-transform:uppercase;color:var(--off);margin-bottom:24px;}
+.price-amount{font-family:'Cormorant Garamond',serif;font-size:54px;font-weight:300;line-height:1;color:var(--white);margin-bottom:6px;}
+.price-amount span{font-size:18px;color:var(--off);margin-left:4px;}
+.price-period{font-size:13px;letter-spacing:0.2em;color:var(--off);margin-bottom:36px;}
+.price-divider{width:40px;height:1px;background:var(--gold);opacity:0.4;margin-bottom:32px;}
+.price-features{list-style:none;margin-bottom:40px;}
+.price-features li{font-size:15px;color:#9e9b95;padding:10px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;font-weight:200;line-height:1.4;}
+.price-features li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0;opacity:0.4;}
+.price-features li.included::before{opacity:1;}
+.btn-price{display:block;text-align:center;font-family:'Josefin Sans',sans-serif;font-size:12px;font-weight:300;letter-spacing:0.35em;text-transform:uppercase;text-decoration:none;padding:16px 24px;transition:all 0.3s;}
+.btn-price-outline{border:1px solid var(--line2);color:var(--off);}
+.btn-price-outline:hover{border-color:var(--gold);color:var(--gold);}
+.btn-price-filled{background:var(--gold);color:var(--black);border:1px solid var(--gold);}
+.btn-price-filled:hover{background:var(--gold-light);}
+.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:120px;align-items:start;}
+.contact-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,64px);font-weight:300;line-height:1.0;letter-spacing:-0.02em;margin-bottom:32px;}
+.contact-title em{font-style:italic;color:var(--gold-light);}
+.contact-info{font-size:21px;color:var(--off);line-height:2.4;font-weight:200;}
+.contact-info a{color:var(--white);text-decoration:none;border-bottom:1px solid var(--line2);transition:border-color 0.3s,color 0.3s;}
+.contact-info a:hover{border-color:var(--gold);color:var(--gold);}
+.contact-form{display:flex;flex-direction:column;gap:0;}
+.form-field{border-bottom:1px solid var(--line2);padding:20px 0;transition:border-color 0.3s;}
+.form-field:focus-within{border-color:var(--gold);}
+.form-field label{display:block;font-size:14px;letter-spacing:0.4em;text-transform:uppercase;color:var(--off);margin-bottom:8px;}
+.form-field input,.form-field textarea,.form-field select{width:100%;background:none;border:none;outline:none;color:var(--white);font-family:'Josefin Sans',sans-serif;font-size:16px;font-weight:200;letter-spacing:0.05em;resize:none;}
+.form-field textarea{min-height:80px;}
+.form-field select option{background:var(--deep);}
+.form-submit{margin-top:40px;text-align:right;}
+footer{padding:48px 56px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}
+.footer-logo{font-size:10px;letter-spacing:0.3em;color:var(--off);text-transform:uppercase;}
+.footer-logo span{color:var(--gold);}
+.footer-note{font-size:10px;color:#4a4845;letter-spacing:0.1em;text-align:center;line-height:1.8;}
+.footer-links{display:flex;gap:32px;}
+.footer-links a{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#4a4845;text-decoration:none;transition:color 0.3s;}
+.footer-links a:hover{color:var(--off);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes scrollPulse{0%,100%{opacity:0.4;transform:scaleX(1);}50%{opacity:1;transform:scaleX(1.3);}}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.9s ease,transform 0.9s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.toast{position:fixed;bottom:40px;right:40px;background:var(--deep);border:1px solid var(--gold);color:var(--white);font-size:14px;letter-spacing:0.1em;padding:16px 28px;z-index:200;opacity:0;transform:translateY(10px);transition:all 0.4s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateY(0);}
+@media(max-width:900px){nav{padding:24px 28px;}.nav-links{display:none;}.nav-audioplaza{display:none;}.nav-sep{display:none;}.hero{padding:100px 28px 60px;}.hero-logo-right{display:none;}section{padding:80px 28px;}.about-grid,.contact-inner{grid-template-columns:1fr;gap:48px;}.features-grid,.pricing-grid{grid-template-columns:1fr;}.steps{grid-template-columns:1fr 1fr;}.step::after{display:none;}footer{padding:36px 28px;flex-direction:column;align-items:flex-start;}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-left">
+    <a href="#" class="nav-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 28" style="height:20px;width:auto;display:block;"><text x="0" y="20" fill="white" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="20" font-weight="700" letter-spacing="3">DIRAC</text><text x="1" y="27" fill="white" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="7" font-weight="300" letter-spacing="9" opacity="0.8">LIVE</text></svg>
+      <span>AUTORYZOWANY RESELLER DIRAC</span>
+    </a>
+    <div class="nav-sep"></div>
+    <a href="https://audioplaza.pl" target="_blank" class="nav-audioplaza">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 175 28" style="height:19px;width:auto;display:block;">
+        <text x="0" y="19" fill="white" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="16" font-weight="200" letter-spacing="1">audio</text>
+        <text x="58" y="19" fill="#d4a843" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="16" font-weight="600" letter-spacing="1">plaza</text>
+        <text x="114" y="19" fill="white" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="16" font-weight="200">.pl</text>
+        <text x="1" y="27" fill="white" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="6.5" font-weight="200" letter-spacing="3.5" opacity="0.45">SKLEP AUDIO</text>
+      </svg>
+    </a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#technologia">Technologia</a></li>
+    <li><a href="#jak-dziala">Jak dzia&#322;a</a></li>
+    <li><a href="#oferta">Oferta</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+<section class="hero">
+  <canvas id="heroCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;"></canvas>
+  <div class="hero-logo-right">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 100" style="width:clamp(260px,26vw,420px);height:auto;display:block;">
+      <text x="0" y="68" fill="white" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="72" font-weight="800" letter-spacing="6">DIRAC</text>
+      <rect x="2" y="78" width="318" height="2" fill="white" opacity="0.4"/>
+      <text x="4" y="96" fill="white" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="22" font-weight="200" letter-spacing="28" opacity="0.85">LIVE</text>
+    </svg>
+  </div>
+  <div class="hero-eyebrow">Autoryzowany reseller &mdash; Polska</div>
+  <h1 class="hero-title">Brzmienie<br>bez <em>kompromis&oacute;w</em></h1>
+  <p class="hero-sub">Dirac Live &mdash; cyfrowa korekcja akustyczna<br>dla wymagaj&#261;cych audiofile&oacute;w</p>
+  <div class="hero-cta">
+    <a href="#oferta" class="btn-primary">Zobacz ofert&#281;</a>
+    <a href="#technologia" class="btn-ghost">Dowiedz si&#281; wi&#281;cej</a>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div>Przewi&#324; w d&oacute;&#322;</div>
+</section>
+<section id="technologia">
+  <div class="section-label">01 &mdash; Technologia</div>
+  <div class="about-grid reveal">
+    <div>
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=900&q=80&fit=crop&crop=center"
+             alt="Profesjonalny zestaw audio do pomiaru akustycznego">
+      </div>
+      <h2 class="about-title">Czym jest<br><em>Dirac Live?</em></h2>
+    </div>
+    <div>
+      <p class="about-text">Dirac Live to zaawansowany algorytm <strong>korekcji akustycznej opracowany przez szwedzkich naukowc&oacute;w</strong>, stosowany przez producent&oacute;w takich jak BMW, Volvo, Harman i setki marek hi-fi na ca&#322;ym &#347;wiecie.</p>
+      <p class="about-text">Technologia mierzy akustyk&#281; pomieszczenia i <strong>koryguje j&#261; cyfrowo w czasie rzeczywistym</strong> &mdash; eliminuj&#261;c niepo&#380;&#261;dane rezonanse, odbicia i nier&oacute;wno&#347;ci odpowiedzi cz&#281;stotliwo&#347;ciowej. Efekt: brzmienie precyzyjne i neutralne, niezale&#380;nie od warunk&oacute;w akustycznych.</p>
+      <p class="about-text">Jako <strong>autoryzowany reseller na rynek polski</strong>, oferujemy oryginalne licencje, pe&#322;ne wsparcie techniczne w j&#281;zyku polskim oraz pomoc przy konfiguracji systemu.</p>
+    </div>
+  </div>
+</section>
+<div class="features-grid">
+  <div class="feature reveal">
+    <div class="feature-num">&mdash; 01</div>
+    <h3 class="feature-title">Precyzja<br>pomiaru</h3>
+    <p class="feature-desc">Algorytm analizuje impulsow&#261; odpowied&#378; pomieszczenia w wielu punktach, tworz&#261;c dok&#322;adny obraz akustyki Twojego systemu.</p>
+  </div>
+  <div class="feature reveal" style="transition-delay:0.15s">
+    <div class="feature-num">&mdash; 02</div>
+    <h3 class="feature-title">Korekta<br>fazowa</h3>
+    <p class="feature-desc">Jedyna na rynku technologia koryguj&#261;ca zar&oacute;wno amplitud&#281;, jak i faz&#281; &mdash; co przek&#322;ada si&#281; na g&#322;&#281;bi&#281; sceny d&#378;wi&#281;kowej i precyzj&#281; obrazowania stereo.</p>
+  </div>
+  <div class="feature reveal" style="transition-delay:0.3s">
+    <div class="feature-num">&mdash; 03</div>
+    <h3 class="feature-title">Wsparcie<br>po polsku</h3>
+    <p class="feature-desc">Pe&#322;na pomoc techniczna, instrukcje i konfiguracja systemu w j&#281;zyku polskim. Bez bariery j&#281;zykowej, z pe&#322;nym zaanga&#380;owaniem.</p>
+  </div>
+</div>
+<section id="jak-dziala">
+  <div class="section-label">02 &mdash; Proces</div>
+  <div class="steps">
+    <div class="step reveal"><div class="step-num">01</div><div class="step-title">Zakup licencji</div><p class="step-text">Wybierasz licencj&#281; odpowiedni&#261; do swojego sprz&#281;tu. P&#322;atno&#347;&#263; online, natychmiastowa aktywacja.</p></div>
+    <div class="step reveal" style="transition-delay:0.1s"><div class="step-num">02</div><div class="step-title">Instalacja</div><p class="step-text">Pobierasz oprogramowanie Dirac Live i instalujesz na komputerze lub urz&#261;dzeniu zgodnym ze standardem.</p></div>
+    <div class="step reveal" style="transition-delay:0.2s"><div class="step-num">03</div><div class="step-title">Pomiar</div><p class="step-text">Za pomoc&#261; mikrofonu pomiarowego mierzysz akustyk&#281; pomieszczenia w kilku punktach. Asystujemy zdalnie.</p></div>
+    <div class="step reveal" style="transition-delay:0.3s"><div class="step-num">04</div><div class="step-title">Efekt</div><p class="step-text">Tw&oacute;j system gra na poziomie, kt&oacute;ry wcze&#347;niej wymaga&#322; fizycznej przebudowy akustyki pomieszczenia.</p></div>
+  </div>
+</section>
+<section id="oferta">
+  <div class="section-label">03 &mdash; Oferta</div>
+  <div class="pricing-grid reveal">
+    <div class="price-card">
+      <div class="price-tier">Starter</div>
+      <div class="price-amount">299 <span>PLN</span></div>
+      <div class="price-period">licencja do&#380;ywotnia</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li class="included">Dirac Live &mdash; 2 kana&#322;y stereo</li>
+        <li class="included">Korekta amplitudy</li>
+        <li class="included">Wsparcie e-mail PL</li>
+        <li>Korekta fazy (Bass Control)</li>
+        <li>Pomoc przy konfiguracji</li>
+      </ul>
+      <a href="#kontakt" class="btn-price btn-price-outline">Zapytaj o dost&#281;pno&#347;&#263;</a>
+    </div>
+    <div class="price-card featured">
+      <div class="price-tier">Full</div>
+      <div class="price-amount">549 <span>PLN</span></div>
+      <div class="price-period">licencja do&#380;ywotnia</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li class="included">Dirac Live Full &mdash; 2 kana&#322;y stereo</li>
+        <li class="included">Korekta amplitudy + fazy</li>
+        <li class="included">Bass Control</li>
+        <li class="included">Wsparcie e-mail + telefon PL</li>
+        <li class="included">Pomoc przy konfiguracji</li>
+      </ul>
+      <a href="#kontakt" class="btn-price btn-price-filled">Kup teraz</a>
+    </div>
+    <div class="price-card">
+      <div class="price-tier">Surround</div>
+      <div class="price-amount">899 <span>PLN</span></div>
+      <div class="price-period">licencja do&#380;ywotnia</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li class="included">Dirac Live do 9.x kana&#322;&oacute;w</li>
+        <li class="included">Korekta amplitudy + fazy</li>
+        <li class="included">Systemy kina domowego</li>
+        <li class="included">Zdalna sesja konfiguracji</li>
+        <li class="included">Priorytetowe wsparcie PL</li>
+      </ul>
+      <a href="#kontakt" class="btn-price btn-price-outline">Zapytaj o dost&#281;pno&#347;&#263;</a>
+    </div>
+  </div>
+  <p style="font-size:13px;color:var(--off);margin-top:24px;letter-spacing:0.05em;line-height:1.8">* Ceny orientacyjne. Ostateczna cena zale&#380;y od aktualnego cennika Dirac. Skontaktuj si&#281; z nami w celu uzyskania indywidualnej wyceny. Wszystkie licencje s&#261; oficjalne i aktywowane bezpo&#347;rednio przez Dirac.</p>
+</section>
+<section id="kontakt">
+  <div class="section-label">04 &mdash; Kontakt</div>
+  <div class="contact-inner">
+    <div class="reveal">
+      <h2 class="contact-title">Porozmawiajmy<br>o Twoim<br><em>systemie</em></h2>
+      <div class="contact-info">
+        <p>Masz pytania dotycz&#261;ce kompatybilno&#347;ci sprz&#281;tu, procesu konfiguracji lub chcesz po prostu dowiedzie&#263; si&#281; wi&#281;cej? Napisz do nas.</p>
+        <br>
+        <p>E-mail: <a href="mailto:kbrz77@proton.me">kbrz77@proton.me</a></p>
+        <p>Telefon: <a href="tel:+48796579480">+48 796 579 480</a></p>
+        <br>
+        <p style="font-size:13px;opacity:0.5">Odpowiadamy w ci&#261;gu 24 godzin<br>Pon&ndash;Pt, 9:00&ndash;18:00</p>
+        <br>
+        <p style="font-size:13px;opacity:0.45">Powered by: <a href="https://audioplaza.pl" target="_blank" style="color:var(--gold);border-bottom:1px solid rgba(212,168,67,0.35)">audioplaza.pl</a></p>
+      </div>
+    </div>
+    <div class="contact-form reveal" style="transition-delay:0.2s">
+      <div class="form-field"><label>Imi&#281; i nazwisko</label><input type="text" placeholder="Jan Kowalski" id="f-name"></div>
+      <div class="form-field"><label>Adres e-mail</label><input type="email" placeholder="jan@example.com" id="f-email"></div>
+      <div class="form-field">
+        <label>Typ systemu</label>
+        <select id="f-type"><option value="">Wybierz...</option><option>Stereo Hi-Fi</option><option>Kino domowe / Surround</option><option>System aktywny / DAC</option><option>Inne</option></select>
+      </div>
+      <div class="form-field"><label>Wiadomo&#347;&#263;</label><textarea id="f-msg" placeholder="Opisz sw&oacute;j sprz&#281;t i pytanie..."></textarea></div>
+      <div class="form-submit"><button class="btn-primary" id="submit-btn" onclick="handleSubmit()">Wy&#347;lij wiadomo&#347;&#263;</button></div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-logo">Dirac Live <span>Polska</span></div>
+  <div class="footer-note">Autoryzowany reseller Dirac Live &middot; Polska<br>Dirac Live&reg; jest zastrze&#380;onym znakiem towarowym Dirac Research AB, Szwecja</div>
+  <div class="footer-links">
+    <a href="#">Polityka prywatno&#347;ci</a>
+    <a href="#">Regulamin</a>
+    <a href="https://www.dirac.com" target="_blank">Dirac.com</a>
+  </div>
+</footer>
+<div class="toast" id="toast">&#10003; &nbsp;Wiadomo&#347;&#263; wys&#322;ana. Odezwiemy si&#281; wkr&oacute;tce.</div>
+<script>
+var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}});},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
+function handleSubmit(){
+  var name=document.getElementById('f-name').value.trim();
+  var email=document.getElementById('f-email').value.trim();
+  var type=document.getElementById('f-type').value;
+  var msg=document.getElementById('f-msg').value.trim();
+  if(!name||!email){alert('Prosz\u0119 poda\u0107 imi\u0119 i adres e-mail.');return;}
+  var btn=document.getElementById('submit-btn');
+  btn.textContent='Wysy\u0142am...';btn.style.opacity='0.6';btn.disabled=true;
+  fetch('https://formspree.io/f/mnjgqoej',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({name:name,email:email,system:type,message:msg})
+  }).then(function(res){
+    btn.textContent='Wy\u015blij wiadomo\u015b\u0107';btn.style.opacity='1';btn.disabled=false;
+    if(res.ok){
+      document.getElementById('toast').classList.add('show');
+      setTimeout(function(){document.getElementById('toast').classList.remove('show');},5000);
+      ['f-name','f-email','f-msg','f-type'].forEach(function(id){document.getElementById(id).value='';});
+    } else {
+      alert('Wyst\u0105pi\u0142 b\u0142\u0105d. Napisz bezpo\u015brednio na kbrz77@proton.me');
+    }
+  }).catch(function(){
+    btn.textContent='Wy\u015blij wiadomo\u015b\u0107';btn.style.opacity='1';btn.disabled=false;
+    alert('Brak po\u0142\u0105czenia. Napisz bezpo\u015brednio na kbrz77@proton.me');
+  });
+}
+(function(){
+  var cv=document.getElementById('heroCanvas');if(!cv)return;
+  var ctx=cv.getContext('2d');
+  function rz(){cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;}
+  rz();window.addEventListener('resize',rz);
+  var W=[
+    {f:0.0022,a:0.13,s:1.8,p:0.0,o:0.50,w:1.4},{f:0.0018,a:0.10,s:2.2,p:1.1,o:0.40,w:1.0},
+    {f:0.0030,a:0.08,s:2.8,p:2.3,o:0.35,w:0.9},{f:0.0040,a:0.06,s:3.5,p:0.5,o:0.28,w:0.7},
+    {f:0.0014,a:0.15,s:1.4,p:3.1,o:0.22,w:1.6},{f:0.0052,a:0.04,s:4.2,p:1.8,o:0.20,w:0.6},
+    {f:0.0065,a:0.03,s:5.5,p:0.9,o:0.16,w:0.5},{f:0.0078,a:0.025,s:6.0,p:2.7,o:0.13,w:0.4},
+    {f:0.0048,a:0.05,s:4.8,p:4.2,o:0.18,w:0.6},{f:0.0008,a:0.22,s:0.9,p:1.5,o:0.10,w:2.0},
+    {f:0.0011,a:0.18,s:1.1,p:3.6,o:0.08,w:1.8},{f:0.0035,a:0.055,s:3.2,p:5.1,o:0.15,w:0.7}
+  ];
+  var t=0;
+  function draw(){
+    var W2=cv.width,H=cv.height;ctx.clearRect(0,0,W2,H);
+    W.forEach(function(w){
+      ctx.beginPath();var cy=H*0.5;
+      for(var x=0;x<=W2;x+=1.5){
+        var y=cy+Math.sin(x*w.f+t*w.s+w.p)*H*w.a+Math.sin(x*w.f*2.1+t*w.s*0.6+w.p*0.7)*H*w.a*0.35+Math.sin(x*w.f*3.7+t*w.s*1.3+w.p*1.2)*H*w.a*0.12;
+        if(x===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+      }
+      ctx.strokeStyle='rgba(212,168,67,'+w.o+')';ctx.lineWidth=w.w;ctx.stroke();
+    });
+    t+=0.032;requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>
