@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analiza Portfela Inwestycyjnego 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:    #0a1628;
+  --blue:    #0969da;
+  --blue-lt: #1a7fd4;
+  --green:   #1a7f37;
+  --red:     #cf222e;
+  --yellow:  #9a6700;
+  --purple:  #6e40c9;
+  --text:    #1f2328;
+  --sub:     #57606a;
+  --border:  #d0d7de;
+  --bg:      #ffffff;
+  --bg-lt:   #f6f8fa;
+  --bg-blue: #ddf4ff;
+  --bg-green:#dafbe1;
+  --bg-red:  #ffebe9;
+  --bg-yell: #fff8c5;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── TOPBAR ─────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--navy);
+  display: flex; align-items: center;
+  padding: 0 2rem;
+  height: 52px;
+  border-left: 5px solid var(--blue);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+.topbar-title { color: #fff; font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+.topbar-right { margin-left: auto; color: #a8c7f0; font-size: 12px; }
+
+/* ── SIDEBAR NAV ────────────────────────────────────────────── */
+.layout { display: flex; min-height: 100vh; }
+
+.sidebar {
+  width: 240px; flex-shrink: 0;
+  background: var(--bg-lt);
+  border-right: 1px solid var(--border);
+  position: sticky; top: 52px;
+  height: calc(100vh - 52px);
+  overflow-y: auto;
+  padding: 1.5rem 0;
+}
+.sidebar-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--sub);
+  padding: .5rem 1.5rem .25rem;
+}
+.sidebar a {
+  display: block; padding: .45rem 1.5rem;
+  color: var(--text); text-decoration: none;
+  font-size: 13px; font-weight: 500;
+  border-left: 3px solid transparent;
+  transition: all .15s;
+}
+.sidebar a:hover, .sidebar a.active {
+  background: var(--bg-blue);
+  border-left-color: var(--blue);
+  color: var(--blue);
+}
+
+/* ── MAIN CONTENT ───────────────────────────────────────────── */
+.main { flex: 1; max-width: 960px; padding: 2.5rem 3rem; }
+
+section { margin-bottom: 3.5rem; }
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; color: var(--navy);
+  margin-bottom: .25rem;
+  padding-bottom: .5rem;
+  border-bottom: 3px solid var(--blue);
+}
+h2 {
+  font-size: 1.05rem; font-weight: 700;
+  color: var(--blue); margin: 1.8rem 0 .75rem;
+  letter-spacing: .01em;
+}
+h3 {
+  font-size: .95rem; font-weight: 700;
+  color: var(--text); margin: 1.2rem 0 .4rem;
+}
+p { margin-bottom: .75rem; color: var(--text); font-size: .95rem; }
+
+/* ── COVER ──────────────────────────────────────────────────── */
+.cover {
+  background: linear-gradient(135deg, var(--navy) 0%, #1a3a6e 100%);
+  color: white;
+  padding: 3rem; border-radius: 12px;
+  margin-bottom: 3rem;
+  position: relative; overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute; top: -60px; right: -60px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(9,105,218,.4) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cover-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: .15em;
+  text-transform: uppercase; color: #a8c7f0; margin-bottom: .75rem;
+}
+.cover h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem; color: white;
+  border: none; padding: 0; margin: 0 0 .25rem;
+  line-height: 1.15;
+}
+.cover-sub { font-size: 1.2rem; color: #a8c7f0; margin-bottom: 1.5rem; }
+.cover-desc { font-size: .9rem; color: rgba(255,255,255,.75); max-width: 580px; }
+.cover-accent-line {
+  width: 60px; height: 4px; background: var(--blue);
+  border-radius: 2px; margin-bottom: 1rem;
+}
+
+/* ── KPI GRID ───────────────────────────────────────────────── */
+.kpi-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 10px;
+  overflow: hidden; margin: 1.5rem 0;
+}
+.kpi {
+  background: var(--bg);
+  padding: 1.1rem 1.25rem;
+  display: flex; flex-direction: column; align-items: center;
+}
+.kpi-val {
+  font-size: 1.5rem; font-weight: 700;
+  line-height: 1.2; margin-bottom: .15rem;
+}
+.kpi-label { font-size: .72rem; color: var(--sub); text-align: center; line-height: 1.3; }
+.kpi-sub   { font-size: .72rem; font-weight: 700; margin-top: .15rem; }
+.kpi.blue  { background: var(--bg-blue); }  .kpi.blue .kpi-val { color: var(--blue); }
+.kpi.green { background: var(--bg-green); } .kpi.green .kpi-val, .kpi.green .kpi-sub { color: var(--green); }
+.kpi.yellow{ background: var(--bg-yell); } .kpi.yellow .kpi-val { color: var(--yellow); }
+.kpi.navy  { background: var(--bg-lt); }   .kpi.navy .kpi-val  { color: var(--navy); }
+
+/* ── TABLES ─────────────────────────────────────────────────── */
+.table-wrap { overflow-x: auto; margin: .75rem 0 1.25rem; border-radius: 8px; border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+thead tr { background: var(--navy); color: white; }
+thead th { padding: .65rem .85rem; text-align: left; font-weight: 600; font-size: .8rem; white-space: nowrap; }
+thead th:not(:first-child) { text-align: center; }
+tbody tr:nth-child(even) { background: var(--bg-lt); }
+tbody tr:hover { background: var(--bg-blue); }
+tbody td { padding: .6rem .85rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+tbody td:not(:first-child) { text-align: center; }
+tbody tr:last-child td { border-bottom: none; }
+.tfoot-row { background: var(--bg-blue) !important; font-weight: 700; border-top: 2px solid var(--blue); }
+.tfoot-row td { color: var(--navy); }
+
+.red   { color: var(--red);    font-weight: 600; }
+.green { color: var(--green);  font-weight: 600; }
+.yell  { color: var(--yellow); font-weight: 600; }
+.blue-t{ color: var(--blue);   font-weight: 600; }
+
+/* ── BADGES ─────────────────────────────────────────────────── */
+.badge {
+  display: inline-block; padding: .2rem .55rem;
+  border-radius: 20px; font-size: .72rem; font-weight: 700;
+  white-space: nowrap;
+}
+.badge-red    { background: var(--bg-red);  color: var(--red); }
+.badge-yell   { background: var(--bg-yell); color: var(--yellow); }
+.badge-green  { background: var(--bg-green);color: var(--green); }
+.badge-blue   { background: var(--bg-blue); color: var(--blue); }
+.badge-grey   { background: #eaeef2; color: var(--sub); }
+
+/* ── FUND. ANALYSIS CARDS ───────────────────────────────────── */
+.stock-card {
+  border: 1px solid var(--border); border-radius: 10px;
+  overflow: hidden; margin-bottom: 1rem;
+}
+.stock-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: .75rem 1.1rem;
+  border-bottom: 2px solid var(--border);
+}
+.stock-header.green { background: var(--bg-green); border-bottom-color: var(--green); }
+.stock-header.red   { background: var(--bg-red);   border-bottom-color: var(--red); }
+.stock-header.yell  { background: var(--bg-yell);  border-bottom-color: var(--yellow); }
+.stock-header.blue  { background: var(--bg-blue);  border-bottom-color: var(--blue); }
+.stock-header.grey  { background: var(--bg-lt);    border-bottom-color: var(--border); }
+.stock-name { font-weight: 700; font-size: .95rem; }
+.stock-udz  { font-size: .8rem; color: var(--sub); }
+.stock-rating { font-size: .82rem; font-weight: 700; padding: .45rem 1.1rem; }
+.stock-rating.green { color: var(--green); }
+.stock-rating.red   { color: var(--red); }
+.stock-rating.yell  { color: var(--yellow); }
+.stock-rating.blue  { color: var(--blue); }
+.stock-rating.grey  { color: var(--sub); }
+.stock-body { padding: .6rem 1.1rem .9rem; font-size: .88rem; line-height: 1.65; }
+.stock-body b { color: var(--navy); }
+
+/* ── RISK CARDS ─────────────────────────────────────────────── */
+.risk-card {
+  display: grid; grid-template-columns: 120px 1fr;
+  border: 1px solid var(--border); border-radius: 8px;
+  overflow: hidden; margin-bottom: .6rem;
+}
+.risk-badge {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: .75rem .5rem; text-align: center;
+  gap: .25rem;
+}
+.risk-badge-lvl { font-weight: 700; font-size: .8rem; line-height: 1.2; }
+.risk-badge-prawd { font-size: .7rem; opacity: .85; }
+.risk-badge.crit  { background: var(--bg-red);  color: var(--red); }
+.risk-badge.high  { background: var(--bg-yell); color: var(--yellow); }
+.risk-badge.med   { background: var(--bg-lt);   color: var(--sub); }
+.risk-content { padding: .75rem 1rem; background: white; }
+.risk-title { font-weight: 700; font-size: .9rem; margin-bottom: .2rem; }
+.risk-desc  { font-size: .85rem; color: var(--sub); line-height: 1.55; }
+
+/* ── STRESS TEST ────────────────────────────────────────────── */
+.stress-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: .75rem; margin: .75rem 0;
+}
+.stress-card {
+  border: 1px solid var(--border); border-radius: 8px;
+  overflow: hidden;
+}
+.stress-header {
+  padding: .5rem .85rem; font-weight: 700; font-size: .82rem;
+}
+.stress-header.bull { background: var(--bg-green); color: var(--green); }
+.stress-header.base { background: var(--bg-blue);  color: var(--blue); }
+.stress-header.bear { background: var(--bg-yell);  color: var(--yellow); }
+.stress-header.tail { background: var(--bg-red);   color: var(--red); }
+.stress-body {
+  padding: .6rem .85rem; font-size: .83rem; color: var(--sub); line-height: 1.5;
+  background: var(--bg-lt);
+}
+.stress-val { font-size: 1.15rem; font-weight: 700; margin-top: .35rem; }
+.stress-val.bull { color: var(--green); }
+.stress-val.base { color: var(--blue); }
+.stress-val.bear { color: var(--yellow); }
+.stress-val.tail { color: var(--red); }
+
+/* ── REKOMENDACJE ───────────────────────────────────────────── */
+.rec-section { margin-bottom: 1.5rem; }
+.rec-header {
+  padding: .55rem 1rem; border-radius: 6px 6px 0 0;
+  font-weight: 700; font-size: .88rem;
+  margin-bottom: 0;
+}
+.rec-header.urgent { background: var(--red);    color: white; }
+.rec-header.mid    { background: var(--yellow);  color: white; }
+.rec-header.long   { background: var(--blue);    color: white; }
+.rec-item {
+  border: 1px solid var(--border); border-top: none;
+  padding: .85rem 1rem;
+  background: var(--bg);
+}
+.rec-item:last-child { border-radius: 0 0 6px 6px; }
+.rec-item + .rec-item { border-top: 1px solid var(--border); }
+.rec-num  { display: inline-block; width: 22px; height: 22px; border-radius: 50%;
+            text-align: center; line-height: 22px; font-size: .75rem; font-weight: 700;
+            margin-right: .4rem; color: white; }
+.rec-num.urgent { background: var(--red); }
+.rec-num.mid    { background: var(--yellow); }
+.rec-num.long   { background: var(--blue); }
+.rec-title { font-weight: 700; font-size: .92rem; }
+.rec-desc  { font-size: .86rem; color: var(--sub); margin-top: .3rem; line-height: 1.55; }
+
+/* ── TARGET TABLE ───────────────────────────────────────────── */
+.sell-row td { background: var(--bg-red) !important; }
+.buy-row  td { background: var(--bg-green) !important; }
+.trim-row td { background: var(--bg-yell) !important; }
+
+/* ── VERDICT BOX ────────────────────────────────────────────── */
+.verdict {
+  background: var(--bg-blue);
+  border: 2px solid var(--blue);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  font-size: .95rem;
+  line-height: 1.7;
+}
+.verdict b { color: var(--navy); }
+
+/* ── PROS/CONS ──────────────────────────────────────────────── */
+.pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1rem 0; }
+.pros-cons-col h3 { margin-bottom: .6rem; }
+.check-item { display: flex; gap: .5rem; font-size: .88rem; margin-bottom: .45rem; line-height: 1.5; }
+.check-icon { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%;
+              display: flex; align-items: center; justify-content: center;
+              font-size: .7rem; font-weight: 900; margin-top: .1rem; }
+.check-icon.pro  { background: var(--bg-green); color: var(--green); }
+.check-icon.con  { background: var(--bg-red);   color: var(--red); }
+
+/* ── FOOTER ─────────────────────────────────────────────────── */
+.footer {
+  margin-top: 3rem; padding: 1.5rem;
+  background: var(--bg-lt); border-top: 1px solid var(--border);
+  font-size: .75rem; color: var(--sub); text-align: center; line-height: 1.6;
+  border-radius: 8px;
+}
+
+/* ── PRINT ──────────────────────────────────────────────────── */
+@media print {
+  .sidebar, .topbar { display: none; }
+  .main { padding: 1rem; max-width: 100%; }
+  .stress-grid { grid-template-columns: repeat(2,1fr); }
+}
+
+@media (max-width: 900px) {
+  .sidebar { display: none; }
+  .main { padding: 1.5rem; }
+  .kpi-grid { grid-template-columns: repeat(2,1fr); }
+  .pros-cons { grid-template-columns: 1fr; }
+  .stress-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="topbar-title">Analiza Portfela Inwestycyjnego</span>
+  <span class="topbar-right">Raport techniczny &nbsp;·&nbsp; Marzec 2026</span>
+</div>
+
+<div class="layout">
+<nav class="sidebar">
+  <div class="sidebar-label">Nawigacja</div>
+  <a href="#cover">Okładka</a>
+  <a href="#exec">1. Executive Summary</a>
+  <a href="#sklad">2. Skład portfela</a>
+  <a href="#fundamental">3. Analiza fundamentalna</a>
+  <a href="#sektory">4. Sektory i ekspozycja</a>
+  <a href="#ryzyko">5. Ryzyko i stress-test</a>
+  <a href="#porownanie">6. Porównanie portfeli</a>
+  <a href="#mapa">7. Mapa Ryzyko/Potencjał</a>
+  <a href="#rekomendacje">8. Rekomendacje</a>
+  <a href="#podsumowanie">9. Werdykt końcowy</a>
+</nav>
+
+<main class="main">
+
+<!-- ── OKŁADKA ─────────────────────────────────────────── -->
+<div class="cover" id="cover">
+  <div class="cover-eyebrow">Raport techniczny · Marzec 2026 · Poufny</div>
+  <div class="cover-accent-line"></div>
+  <h1>Analiza Portfela<br>Inwestycyjnego</h1>
+  <div class="cover-sub">Kompleksowy raport techniczny</div>
+  <p class="cover-desc">Pełna analiza fundamentalna 7 pozycji akcyjnych, ocena ekspozycji sektorowej, zarządzanie ryzykiem ze stress-testem oraz konkretne rekomendacje optymalizacyjne.</p>
+</div>
+
+<div class="kpi-grid">
+  <div class="kpi blue">
+    <div class="kpi-val">$18 108</div>
+    <div class="kpi-label">Wartość portfela (bieżąca)</div>
+  </div>
+  <div class="kpi green">
+    <div class="kpi-val">+166 zł</div>
+    <div class="kpi-label">Zysk na zamkniętych pozycjach</div>
+    <div class="kpi-sub">zrealizowany</div>
+  </div>
+  <div class="kpi navy">
+    <div class="kpi-val">8 spółek</div>
+    <div class="kpi-label">Aktywne pozycje</div>
+    <div class="kpi-sub green">KLA-Tencor dodane ✓</div>
+  </div>
+  <div class="kpi yellow">
+    <div class="kpi-val">USD / PLN</div>
+    <div class="kpi-label">Waluty ekspozycji</div>
+    <div class="kpi-sub">13.9% w PLN</div>
+  </div>
+</div>
+
+<!-- ── EXECUTIVE SUMMARY ──────────────────────────────── -->
+<section id="exec">
+  <h1>1. Executive Summary</h1>
+  <p>Analizowany portfel składa się z <strong>8 pozycji akcyjnych</strong> o łącznej wartości rynkowej <strong>$18 108</strong>. Portfel wykazuje bardzo silną koncentrację w sektorze <strong>półprzewodników</strong> (ASML, Photronics, KLA-Tencor, Micron — łącznie ok. 54% kapitału), co jest jednocześnie głównym motorem potencjalnego wzrostu oraz kluczowym ryzykiem sektorowym.</p>
+  <p>Poprzedni portfel jest zamkniętą historią — <strong>punktem odniesienia jest dziś</strong>. Zrealizowany zysk na zamkniętych pozycjach: <strong>+166 zł</strong>. Bieżący portfel traktujemy jako nowe otwarcie z bazą <strong>$18 108</strong>. Dodanie KLA-Tencor (KLAC) było <strong>trafną decyzją</strong> — lider metrologii semi, idealne uzupełnienie ASML.</p>
+  <p><strong>Główne priorytety:</strong> (1) zwiększenie Micron do 10–12% — najlepszy R/R w portfelu (+3.69%); (2) budowa bufora gotówkowego 5–8%; (3) monitorowanie CEG pod kątem kontraktów PPA z Big Tech; (4) rozważenie rotacji Lubawy na płynniejszy instrument obronny.</p>
+</section>
+
+<!-- ── SKŁAD PORTFELA ─────────────────────────────────── -->
+<section id="sklad">
+  <h1>2. Skład i alokacja portfela</h1>
+  <h2>2.1 Tabela pozycji — portfel bieżący</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Spółka</th><th>Ticker</th><th>Wolumen</th>
+          <th>Cena otw.</th><th>Cena akt.</th><th>Wartość</th>
+          <th>P&amp;L $</th><th>P&amp;L %</th><th>Udział</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>ASML Holding</strong></td><td>ASML</td><td>0.7000</td><td>$1 208.93</td><td>$1 176.60</td><td>$3 504</td><td class="red">-$22.6</td><td class="red">-2.67%</td><td>19.3%</td></tr>
+        <tr><td><strong>Fluor Corp.</strong></td><td>FLR</td><td>18.6398</td><td>$43.39</td><td>$42.96</td><td>$2 976</td><td class="red">-$8.0</td><td class="red">-0.99%</td><td>16.4%</td></tr>
+        <tr><td><strong>Photronics</strong></td><td>PLAB</td><td>20.5209</td><td>$33.20</td><td>$33.08</td><td>$2 523</td><td class="red">-$2.5</td><td class="red">-0.36%</td><td>13.9%</td></tr>
+        <tr><td><strong>KLA-Tencor</strong></td><td>KLAC</td><td>0.4493</td><td>$1 429.49</td><td>$1 423.90</td><td>$2 378</td><td class="red">-$2.5</td><td class="red">-0.39%</td><td>13.1%</td></tr>
+        <tr><td><strong>Lubawa SA</strong></td><td>LBW.WA</td><td>249</td><td>zł 9.415</td><td>zł 9.200</td><td>$2 291</td><td class="red">-$53.5</td><td class="red">-2.28%</td><td>12.7%</td></tr>
+        <tr><td><strong>Constellation En.</strong></td><td>CEG</td><td>2.0199</td><td>$320.10</td><td>$301.64</td><td>$2 264</td><td class="red">-$37.3</td><td class="red">-5.77%</td><td>12.5%</td></tr>
+        <tr><td><strong>Micron Tech.</strong></td><td>MU</td><td>0.8528</td><td>$406.26</td><td>$421.27</td><td>$1 335</td><td class="green">+$12.8</td><td class="green">+3.69%</td><td>7.4%</td></tr>
+        <tr><td><strong>Flowserve</strong></td><td>FLS</td><td>2.9999</td><td>$76.83</td><td>$75.05</td><td>$837</td><td class="red">-$5.3</td><td class="red">-2.32%</td><td>4.6%</td></tr>
+      </tbody>
+      <tfoot>
+        <tr class="tfoot-row"><td><strong>RAZEM</strong></td><td></td><td></td><td></td><td></td><td><strong>$18 108</strong></td><td class="red"><strong>-$119.0</strong></td><td class="red"><strong>-0.66%</strong></td><td><strong>100%</strong></td></tr>
+      </tfoot>
+    </table>
+  </div>
+  <p style="font-size:.8rem;color:var(--sub)"><em>P&amp;L liczony vs. cena otwarcia pozycji. Wartość Lubawy przeliczona z PLN po kursie ~4.10 PLN/USD.</em></p>
+
+  <h2>2.2 Alokacja kapitału</h2>
+  <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:4px;margin:.75rem 0 1rem">
+    <div style="background:#0969da;border-radius:6px;padding:.75rem .5rem;text-align:center;color:white">
+      <div style="font-size:.75rem;font-weight:700">ASML</div>
+      <div style="font-size:1rem;font-weight:900">19.3%</div>
+      <div style="font-size:.65rem;opacity:.8">$3 504</div>
+    </div>
+    <div style="background:#1a7f37;border-radius:6px;padding:.75rem .5rem;text-align:center;color:white">
+      <div style="font-size:.75rem;font-weight:700">Fluor</div>
+      <div style="font-size:1rem;font-weight:900">16.4%</div>
+      <div style="font-size:.65rem;opacity:.8">$2 976</div>
+    </div>
+    <div style="background:#1f6feb;border-radius:6px;padding:.75rem .5rem;text-align:center;color:white">
+      <div style="font-size:.75rem;font-weight:700">Photronics</div>
+      <div style="font-size:1rem;font-weight:900">13.9%</div>
+      <div style="font-size:.65rem;opacity:.8">$2 523</div>
+    </div>
+    <div style="background:#0550ae;border-radius:6px;padding:.75rem .5rem;text-align:center;color:white">
+      <div style="font-size:.75rem;font-weight:700">KLA-Tencor</div>
+      <div style="font-size:1rem;font-weight:900">13.1%</div>
+      <div style="font-size:.65rem;opacity:.8">$2 378</div>
+    </div>
+    <div style="background:#cf222e;border-radius:6px;padding:.75rem .5rem;text-align:center;color:white">
+      <div style="font-size:.75rem;font-weight:700">Lubawa</div>
+      <div style="font-size:1rem;font-weight:900">12.7%</div>
+      <div style="font-size:.65rem;opacity:.8">$2 291</div>
+    </div>
+    <div style="background:#8250df;border-radius:6px;padding:.75rem .5rem;text-align:center;color:white">
+      <div style="font-size:.75rem;font-weight:700">CEG</div>
+      <div style="font-size:1rem;font-weight:900">12.5%</div>
+      <div style="font-size:.65rem;opacity:.8">$2 264</div>
+    </div>
+    <div style="background:#9a6700;border-radius:6px;padding:.75rem .5rem;text-align:center;color:white">
+      <div style="font-size:.75rem;font-weight:700">Micron</div>
+      <div style="font-size:1rem;font-weight:900">7.4%</div>
+      <div style="font-size:.65rem;opacity:.8">$1 335</div>
+    </div>
+    <div style="background:#57606a;border-radius:6px;padding:.75rem .5rem;text-align:center;color:white">
+      <div style="font-size:.75rem;font-weight:700">Flowserve</div>
+      <div style="font-size:1rem;font-weight:900">4.6%</div>
+      <div style="font-size:.65rem;opacity:.8">$837</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ANALIZA FUNDAMENTALNA ──────────────────────────── -->
+<section id="fundamental">
+  <h1>3. Analiza fundamentalna spółek</h1>
+  <p>Ocena każdej pozycji z perspektywy siły modelu biznesowego, tezy inwestycyjnej, wyceny i ryzyk specyficznych.</p>
+
+  <div class="stock-card">
+    <div class="stock-header green">
+      <span class="stock-name">ASML Holding N.V. (ASML)</span>
+      <span class="stock-udz">19.3% portfela — pozycja wiodąca</span>
+    </div>
+    <div class="stock-rating green">★★★★★&nbsp; TRZYMAJ / DOKUPUJ NA KOREKTACH</div>
+    <div class="stock-body">ASML to <b>globalny monopolista</b> na maszyny litograficzne EUV. Żaden producent chipów poniżej 7nm — TSMC, Samsung, Intel — nie może obejść się bez tej technologii. Jeden z najsilniejszych "economic moat" w historii technologii. Marże operacyjne &gt;30%, backlog &gt;40 mld EUR, każdy dolar wydany na AI chips = popyt na ASML. Korekta -2.53% od ceny otwarcia to szum — teza długoterminowa nienaruszona. <b>Ryzyko:</b> restrykcje eksportowe do Chin (~15% przychodów), cykliczność, wycena P/E ~35x.</div>
+  </div>
+
+  <div class="stock-card">
+    <div class="stock-header green">
+      <span class="stock-name">Fluor Corporation (FLR)</span>
+      <span class="stock-udz">17.9% portfela</span>
+    </div>
+    <div class="stock-rating green">★★★★☆&nbsp; TRZYMAJ</div>
+    <div class="stock-body">Fluor to jeden z największych <b>generalnych wykonawców EPC</b> z backlogiem $28 mld+. Po trudnej restrukturyzacji (2019–2022) wraca na ścieżkę rentowności. Teza: mega-projekty reindustrializacji USA (CHIPS Act, IRA), gigafabryki chipów, terminale LNG. P/E ~15x to tania wycena vs. sektor. Jako jedyna pozycja w portfelu ma <b>pozytywny P&amp;L +$1.5</b> od otwarcia. <b>Ryzyko:</b> przekroczenia kosztów na kontraktach stałocenowych, opóźnienia projektów.</div>
+  </div>
+
+  <div class="stock-card">
+    <div class="stock-header green">
+      <span class="stock-name">Photronics Inc. (PLAB)</span>
+      <span class="stock-udz">15.0% portfela</span>
+    </div>
+    <div class="stock-rating green">★★★★☆&nbsp; TRZYMAJ</div>
+    <div class="stock-body">Photronics produkuje <b>fotomaski</b> — kluczowy element w litografii półprzewodnikowej. Klienci: TSMC, Samsung, Intel, GlobalFoundries. Nisza z wysokimi barierami wejścia, ograniczona konkurencja. P/E ~12x — atrakcyjna wycena. Generuje gotówkę, silny bilans. Teza synergiczna z ASML. <b>Ryzyko:</b> ekspozycja na Chiny ~30%, niska płynność, cykliczność.</div>
+  </div>
+
+  <div class="stock-card">
+    <div class="stock-header green">
+      <span class="stock-name">KLA Corporation (KLAC)</span>
+      <span class="stock-udz">13.1% portfela — nowa pozycja</span>
+    </div>
+    <div class="stock-rating green">★★★★★&nbsp; TRZYMAJ / DOKUPUJ</div>
+    <div class="stock-body">KLA to globalny lider w <b>metrologii i inspekcji półprzewodnikowej</b> — każda fabryka chipów na świecie (TSMC, Samsung, Intel) musi używać urządzeń KLA do weryfikacji procesu litograficznego. <b>Doskonała para z ASML</b> — ASML naświetla, KLA sprawdza. Marże operacyjne ~40%, solidny FCF, P/E ~28x. Teza AI: rosnąca złożoność procesów chipowych napędza popyt na precyzyjną metrологię. Pozycja -0.39% od otwarcia — to szum. <b>Ryzyko:</b> ekspozycja na Chiny ~25% przychodów, restrykcje eksportowe, cykliczność.</div>
+  </div>
+
+  <div class="stock-card">
+    <div class="stock-header yell">
+      <span class="stock-name">Lubawa SA (LBW.WA)</span>
+      <span class="stock-udz">13.9% portfela — jedyna pozycja PLN</span>
+    </div>
+    <div class="stock-rating yell">★★★☆☆&nbsp; TRZYMAJ / ROZWAŻ ROTACJĘ</div>
+    <div class="stock-body">Lubawa produkuje wyposażenie wojskowe i tekstylia techniczne. <b>Teza obronna jest słuszna</b> — Polska zwiększa wydatki na obronność do 4% PKB. Jednak Lubawa to mikrocap (~80 mln PLN kapitalizacji) z niską płynnością. Pozycja praktycznie bez ruchu — zysk bliski zeru. <b>Rekomendacja:</b> rozważyć rotację na Rheinmetall AG lub Leonardo SpA — ta sama teza, wyższa płynność. Stop-loss: 8.50 PLN.</div>
+  </div>
+
+  <div class="stock-card">
+    <div class="stock-header blue">
+      <span class="stock-name">Constellation Energy Corp. (CEG)</span>
+      <span class="stock-udz">13.5% portfela</span>
+    </div>
+    <div class="stock-rating blue">★★★★☆&nbsp; TRZYMAJ / DOKUPUJ</div>
+    <div class="stock-body">Constellation Energy to <b>największy operator elektrowni jądrowych w USA</b> (~22% bezemisyjnej energii w kraju). Teza inwestycyjna jest wyjątkowo mocna: ogromny wzrost zapotrzebowania na energię ze strony centrów danych AI (Microsoft, Google, Meta podpisały wieloletnie umowy PPA). Reaktory jądrowe dostarczają stabilną energię 24/7 — idealną dla datacenterów. Spółka korzysta z Nuclear Production Tax Credit (IRA). <b>Korekta -5.82% od otwarcia to krótkoterminowy szum</b> — fundamenty mocne. <b>Ryzyko:</b> regulacje NRC, ryzyko operacyjne reaktorów, wysokie CAPEX.</div>
+  </div>
+
+  <div class="stock-card">
+    <div class="stock-header blue">
+      <span class="stock-name">Micron Technology Inc. (MU)</span>
+      <span class="stock-udz">7.4% portfela — pozycja zbyt mała</span>
+    </div>
+    <div class="stock-rating blue">★★★★☆&nbsp; ZWIĘKSZ POZYCJĘ</div>
+    <div class="stock-body">Jeden z <b>trzech globalnych producentów pamięci DRAM i NAND</b>. Wchodzi w supercykl HBM (High Bandwidth Memory) — każdy chip Nvidia H100/H200 wymaga HBM od Microna. Rekordowe przychody, P/E forward ~13x. <b>Przy 7.4% udziale pozycja jest zbyt mała wobec potencjału.</b> Już generuje +3.69% — najlepszy wynik w portfelu. Rekomendacja: zwiększyć do 10–12% portfela. <b>Ryzyko:</b> nadpodaż NAND, ekspozycja na Chiny, historyczna cykliczność.</div>
+  </div>
+
+  <div class="stock-card">
+    <div class="stock-header grey">
+      <span class="stock-name">Flowserve Corporation (FLS)</span>
+      <span class="stock-udz">5.0% portfela — pozycja satelitarna</span>
+    </div>
+    <div class="stock-rating grey">★★★☆☆&nbsp; TRZYMAJ</div>
+    <div class="stock-body">Producent pomp, zaworów i uszczelnień dla przemysłu chemicznego i energetycznego. Stabilna spółka z powtarzalnymi przychodami serwisowymi (~50% revenue). P/E ~18x, dywidenda ~1.5%. Korzysta na reindustrializacji i rozbudowie infrastruktury energetycznej. Ograniczony potencjał wzrostu (~15–25% w 2–3 lata), ale stabilizuje portfel. Przy 5% — za mała by robić różnicę, ale nie przeszkadza.</div>
+  </div>
+</section>
+
+<!-- ── SEKTORY ─────────────────────────────────────────── -->
+<section id="sektory">
+  <h1>4. Analiza sektorowa i ekspozycja</h1>
+  <p>Portfel wykazuje wyraźną nadwagę sektora półprzewodników (~50%). Jest to świadoma aprecjacja megatrendu AI/chip, lecz generuje ryzyko koncentracji przekraczające bezpieczny próg ~35–40%.</p>
+
+  <h2>4.1 Ekspozycja sektorowa</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Sektor</th><th>Spółki</th><th>Wartość</th><th>% portfela</th><th>Ocena</th><th>Trend makro</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Półprzewodniki</strong></td><td>ASML, PLAB, KLAC, MU</td><td>$9 739</td><td><span class="red"><strong>53.8%</strong></span></td><td>★★★★☆</td><td class="green">↑↑ AI supercycle</td></tr>
+        <tr><td><strong>Budownictwo EPC</strong></td><td>Fluor</td><td>$2 976</td><td>16.4%</td><td>★★★★☆</td><td class="green">↑ CHIPS Act / IRA</td></tr>
+        <tr><td><strong>Obronność PL</strong></td><td>Lubawa</td><td>$2 291</td><td>12.7%</td><td>★★★☆☆</td><td class="green">↑ NATO spending</td></tr>
+        <tr><td><strong>Energetyka jądrowa</strong></td><td>Constellation Energy</td><td>$2 264</td><td>12.5%</td><td>★★★★☆</td><td class="green">↑↑ AI datacenter PPA</td></tr>
+        <tr><td><strong>Przemysł (pompy)</strong></td><td>Flowserve</td><td>$837</td><td>4.6%</td><td>★★★☆☆</td><td>→ Stabilny</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>4.2 Wskaźniki koncentracji</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Wskaźnik</th><th>Wartość</th><th>Status</th><th>Komentarz</th></tr></thead>
+      <tbody>
+        <tr><td>Top-1 pozycja (ASML)</td><td>19.3%</td><td><span class="badge badge-green">OK</span></td><td>Akceptowalne — spółka najwyższej jakości</td></tr>
+        <tr><td>Top-3 pozycje łącznie</td><td>59.9%</td><td><span class="badge badge-yell">UWAGA</span></td><td>ASML+FLR+PLAB = 59% portfela — wysoka koncentracja</td></tr>
+        <tr><td>Ekspozycja semiconductor</td><td><strong>53.8%</strong></td><td><span class="badge badge-red">KRYTYCZNA</span></td><td>ASML+PLAB+KLAC+MU — znacznie powyżej progu ~35–40%. Główne ryzyko portfela.</td></tr>
+        <tr><td>Liczba sektorów</td><td>5</td><td><span class="badge badge-green">OK</span></td><td>Pozornie zróżnicowane, faktycznie tech-heavy</td></tr>
+        <tr><td>Ekspozycja PLN</td><td>13.9%</td><td><span class="badge badge-green">OK</span></td><td>Ryzyko walutowe — Lubawa wyceniana w PLN</td></tr>
+        <tr><td>Ekspozycja USA</td><td>87.4%</td><td><span class="badge badge-red">WYSOKA</span></td><td>Brak dywersyfikacji geograficznej</td></tr>
+        <tr><td>Bufor gotówkowy</td><td>0%</td><td><span class="badge badge-red">BRAK</span></td><td>Portfel 100% akcyjny — ryzyko drawdown bez bufora</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ── RYZYKO ──────────────────────────────────────────── -->
+<section id="ryzyko">
+  <h1>5. Ocena ryzyka i stress-test</h1>
+  <h2>5.1 Mapa ryzyk portfela</h2>
+
+  <div class="risk-card">
+    <div class="risk-badge crit"><div class="risk-badge-lvl">KRYTYCZNE</div><div class="risk-badge-prawd">Prawd.: Wysoka</div></div>
+    <div class="risk-content"><div class="risk-title">Koncentracja semiconductor (~54%)</div><div class="risk-desc">ASML+PLAB+KLAC+MU = 53.8% portfela — korekta sektora o -20% oznacza stratę ~$2 000+. Docelowo zredukować ekspozycję do maks. 35–40%.</div></div>
+  </div>
+  <div class="risk-card">
+    <div class="risk-badge crit"><div class="risk-badge-lvl">KRYTYCZNE</div><div class="risk-badge-prawd">Prawd.: Średnia</div></div>
+    <div class="risk-content"><div class="risk-title">Restrykcje eksportowe (Chiny)</div><div class="risk-desc">ASML, MU, PLAB narażone na embargo USA/UE — do 30% ich przychodów może być zagrożone eskalacją konfliktu handlowego.</div></div>
+  </div>
+  <div class="risk-card">
+    <div class="risk-badge high"><div class="risk-badge-lvl">WYSOKIE</div><div class="risk-badge-prawd">Prawd.: Średnia</div></div>
+    <div class="risk-content"><div class="risk-title">Cykliczność DRAM/NAND</div><div class="risk-desc">Supercykl HBM może być krótszy niż oczekiwano. Micron historycznie traci -50–70% w dołku cyklu.</div></div>
+  </div>
+  <div class="risk-card">
+    <div class="risk-badge high"><div class="risk-badge-lvl">WYSOKIE</div><div class="risk-badge-prawd">Prawd.: Niska</div></div>
+    <div class="risk-content"><div class="risk-title">Ryzyko walutowe PLN/USD</div><div class="risk-desc">Lubawa wyceniana w PLN — deprecjacja PLN o 10% to dodatkowa strata ~$233 na tej pozycji.</div></div>
+  </div>
+  <div class="risk-card">
+    <div class="risk-badge high"><div class="risk-badge-lvl">WYSOKIE</div><div class="risk-badge-prawd">Prawd.: Wysoka</div></div>
+    <div class="risk-content"><div class="risk-title">Brak bufora gotówkowego</div><div class="risk-desc">Portfel 100% akcyjny. Crash -30% bez możliwości dokupienia na dnie. Zalecane 5–8% w T-Bills ETF (SGOV, BIL).</div></div>
+  </div>
+  <div class="risk-card">
+    <div class="risk-badge med"><div class="risk-badge-lvl">UMIARKOWANE</div><div class="risk-badge-prawd">Prawd.: Średnia</div></div>
+    <div class="risk-content"><div class="risk-title">Stopy procentowe (Fed)</div><div class="risk-desc">Polityka higher-for-longer uderza w wyceny spółek wzrostowych (CEG). Monitorować decyzje Fed.</div></div>
+  </div>
+  <div class="risk-card">
+    <div class="risk-badge med"><div class="risk-badge-lvl">UMIARKOWANE</div><div class="risk-badge-prawd">Prawd.: Niska</div></div>
+    <div class="risk-content"><div class="risk-title">Makro USA — recesja</div><div class="risk-desc">Spowolnienie uderza w Fluor i Flowserve. Bufor gotówkowy częściowo mityguje ryzyko.</div></div>
+  </div>
+
+  <h2>5.2 Scenariusze stress-test</h2>
+  <div class="stress-grid">
+    <div class="stress-card">
+      <div class="stress-header bull">🟢 BULL: AI supercycle, semis +30%</div>
+      <div class="stress-body">Prawdopodob.: 25% — ASML/MU/PLAB rosną o 30%, portfel zyskuje ~$2 500 na samych semis.<div class="stress-val bull">~$20 800</div></div>
+    </div>
+    <div class="stress-card">
+      <div class="stress-header base">🔵 BASE: Rynek +8%, umiarkowany wzrost</div>
+      <div class="stress-body">Prawdopodob.: 45% — Semi +10%, industrials bez zmian, portfel stabilny.<div class="stress-val base">~$19 600</div></div>
+    </div>
+    <div class="stress-card">
+      <div class="stress-header bear">🟡 BEAR: Semi -25%, ogólny rynek -15%</div>
+      <div class="stress-body">Prawdopodob.: 20% — korekta semi, portfel traci ~$4 500 na samych semis + pozostałe pozycje.<div class="stress-val bear">~$13 500</div></div>
+    </div>
+    <div class="stress-card">
+      <div class="stress-header tail">🔴 TAIL: Eskalacja Chiny / pełne embargo</div>
+      <div class="stress-body">Prawdopodob.: 10% — ASML objęty pełnym embargiem, MU ban w Chinach — strata &gt;$6 000.<div class="stress-val tail">~$11 900</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PORÓWNANIE ──────────────────────────────────────── -->
+<section id="porownanie">
+  <h1>6. Kontekst historyczny rotacji</h1>
+  <p>Poprzedni portfel (plik ODS) jest już zamknięty — służy wyłącznie jako kontekst historyczny rotacji aktywów, nie jako aktywny benchmark. Bieżący portfel traktujemy jako <strong>nowe otwarcie od wartości $18 108</strong>. Zrealizowany zysk na zamkniętych pozycjach: <strong>+166 zł</strong>.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Kryterium</th><th>Poprzedni portfel</th><th>Bieżący portfel</th><th>Ocena</th></tr></thead>
+      <tbody>
+        <tr><td>Wartość startowa</td><td>zamknięty</td><td><strong>$18 108 (baza)</strong></td><td>— Nowe otwarcie</td></tr>
+        <tr><td>Liczba pozycji</td><td>7 (hist.)</td><td>7</td><td>→ Identyczne</td></tr>
+        <tr><td>Zrealizowany zysk</td><td>+166 zł (zamkn.)</td><td>Nowe otwarcie: $18 108</td><td class="green">→ Reset bazy</td></tr>
+        <tr><td>Top pozycja</td><td>ASML 26%</td><td>ASML 19.3%</td><td>↓ Zredukowana pozycja</td></tr>
+        <tr><td>Semi ekspozycja</td><td>~40%</td><td>~50%</td><td class="red">↑ Wzrosła po rotacjach</td></tr>
+        <tr><td>Polska ekspozycja</td><td>Lubawa + inne</td><td>Lubawa 13.9%</td><td>↓ Zredukowana</td></tr>
+        <tr><td>Usuniete pozycje</td><td>—</td><td>Dino, Palantir, Budimax, Protektor, Roku (wszystkie zamknięte)</td><td>Rotacja z PL/spekulatywnych</td></tr>
+        <tr><td>Dodane pozycje</td><td>—</td><td>Fluor, PLAB, KLAC, MU, FLS, CEG</td><td>Shift na US industrials+semi</td></tr>
+        <tr><td>Dywersyfikacja</td><td>Wyższa (PL spółki)</td><td>Niższa (US-centric)</td><td class="red">↓ Wymaga korekty</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ── MAPA RYZYKA ────────────────────────────────────── -->
+<section id="mapa">
+  <h1>7. Mapa Ryzyko vs. Potencjał</h1>
+  <p>Każda pozycja umieszczona na osi ryzyka (1–10) i potencjału wzrostu (1–10). Rozmiar bąbla odpowiada wartości pozycji w portfelu.</p>
+
+  <div style="position:relative;width:100%;height:420px;background:var(--bg-lt);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:1rem 0">
+    <!-- Grid lines -->
+    <div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--border);opacity:.6"></div>
+    <div style="position:absolute;top:35%;left:0;right:0;height:1px;background:var(--border);opacity:.6"></div>
+    <!-- Quadrant labels -->
+    <div style="position:absolute;top:8px;left:12px;font-size:.68rem;font-weight:700;color:var(--green);opacity:.8">NISKIE RYZYKO / WYSOKI POTENCJAŁ</div>
+    <div style="position:absolute;top:8px;right:12px;font-size:.68rem;font-weight:700;color:var(--yellow);opacity:.8;text-align:right">WYSOKIE RYZYKO / WYSOKI POTENCJAŁ</div>
+    <div style="position:absolute;bottom:8px;left:12px;font-size:.68rem;font-weight:700;color:var(--sub);opacity:.7">NISKIE RYZYKO / NISKI POTENCJAŁ</div>
+    <div style="position:absolute;bottom:8px;right:12px;font-size:.68rem;font-weight:700;color:var(--red);opacity:.7;text-align:right">WYSOKIE RYZYKO / NISKI POTENCJAŁ</div>
+    <!-- Axis labels -->
+    <div style="position:absolute;bottom:40px;left:50%;transform:translateX(-50%);font-size:.72rem;color:var(--sub)">← Ryzyko →</div>
+    <!-- Bubbles: x = risk/10 * width, y = (1 - potential/10) * height -->
+    <!-- ASML: risk=3, pot=9 -->
+    <div style="position:absolute;left:calc(3/10*100% - 26px);top:calc((1-9/10)*82% + 4%);width:52px;height:52px;background:#0969da;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:.7rem;font-weight:700;text-align:center;opacity:.9;box-shadow:0 3px 12px rgba(9,105,218,.4)">ASML<br><span style="font-size:.65rem;opacity:.8">19%</span></div>
+    <!-- KLAC: risk=4, pot=8 -->
+    <div style="position:absolute;left:calc(4/10*100% - 24px);top:calc((1-8/10)*82% + 4%);width:52px;height:52px;background:#0550ae;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:.68rem;font-weight:700;text-align:center;opacity:.9;box-shadow:0 3px 10px rgba(5,80,174,.4)">KLAC<br><span style="font-size:.6rem;opacity:.8">13%</span></div>
+    <!-- CEG: risk=5, pot=9 -->
+    <div style="position:absolute;left:calc(5/10*100% - 28px);top:calc((1-9/10)*82% + 4%);width:56px;height:56px;background:#8250df;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:.7rem;font-weight:700;text-align:center;opacity:.9;box-shadow:0 3px 10px rgba(130,80,223,.4)">CEG<br><span style="font-size:.65rem;opacity:.8">14%</span></div>
+    <!-- Fluor: risk=5, pot=7 -->
+    <div style="position:absolute;left:calc(5/10*100% + 12px);top:calc((1-7/10)*82% + 4%);width:56px;height:56px;background:#1a7f37;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:.7rem;font-weight:700;text-align:center;opacity:.9;box-shadow:0 3px 10px rgba(26,127,55,.4)">Fluor<br><span style="font-size:.65rem;opacity:.8">18%</span></div>
+    <!-- Photronics: risk=6, pot=7 -->
+    <div style="position:absolute;left:calc(6/10*100% - 28px);top:calc((1-7/10)*82% + 10%);width:52px;height:52px;background:#1f6feb;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:.65rem;font-weight:700;text-align:center;opacity:.9">PLAB<br><span style="font-size:.6rem;opacity:.8">15%</span></div>
+    <!-- Micron: risk=7, pot=8 -->
+    <div style="position:absolute;left:calc(7/10*100% - 24px);top:calc((1-8/10)*82% + 4%);width:46px;height:46px;background:#9a6700;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:.65rem;font-weight:700;text-align:center;opacity:.9">MU<br><span style="font-size:.6rem;opacity:.8">8%</span></div>
+    <!-- Lubawa: risk=5, pot=5 -->
+    <div style="position:absolute;left:calc(5/10*100% - 52px);top:calc((1-5/10)*82% + 4%);width:50px;height:50px;background:#cf222e;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:.65rem;font-weight:700;text-align:center;opacity:.9">Luba-<br>wa</div>
+    <!-- Flowserve: risk=4, pot=6 -->
+    <div style="position:absolute;left:calc(4/10*100% - 18px);top:calc((1-6/10)*82% + 4%);width:36px;height:36px;background:#57606a;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:.6rem;font-weight:700;text-align:center;opacity:.9">FLS</div>
+  </div>
+</section>
+
+<!-- ── REKOMENDACJE ────────────────────────────────────── -->
+<section id="rekomendacje">
+  <h1>8. Rekomendacje i plan optymalizacji</h1>
+
+  <div class="rec-section">
+    <div class="rec-header urgent">🔴 PILNE — do rozważenia w ciągu 1–4 tygodni</div>
+    <div class="rec-item">
+      <span class="rec-num urgent">1</span>
+      <span class="rec-title">Zwiększ Micron (MU) do 10–12% portfela</span>
+      <div class="rec-desc">Najlepszy wynik w portfelu (+3.69%). Kluczowy dostawca HBM dla Nvidii — każdy chip H100/H200 wymaga pamięci Micron. P/E forward ~13x — tania wycena jak na spółkę w supercyklu. Dokupić za ok. $300–400 z dostępnej gotówki.</div>
+    </div>
+    <div class="rec-item">
+      <span class="rec-num urgent">2</span>
+      <span class="rec-title">Constellation Energy (CEG) — utrzymaj, obserwuj kontrakt AI</span>
+      <div class="rec-desc">CEG to największy operator jądrowy USA z rekordowym popytem AI datacenter (umowy PPA z Microsoft/Google). Korekta -5.82% to szum — fundamenty mocne. Monitoruj renegocjacje kontraktów PPA i decyzje NRC. Ustaw alert na $280.</div>
+    </div>
+  </div>
+
+  <div class="rec-section">
+    <div class="rec-header mid">🟡 ŚREDNIOTERMINOWE — w ciągu 1–3 miesięcy</div>
+    <div class="rec-item">
+      <span class="rec-num mid">3</span>
+      <span class="rec-title">Zwiększ Micron (MU) do 10–12% portfela</span>
+      <div class="rec-desc">Najlepszy risk/reward w portfelu. HBM demand od Nvidii, rekordowe przychody, P/E forward ~13x. Dokupić za ok. $300–400 (łącznie z obecną wartością ~$1 277 → cel ~$1 900).</div>
+    </div>
+    <div class="rec-item">
+      <span class="rec-num mid">4</span>
+      <span class="rec-title">Rozważ rotację Lubawy na płynniejszą spółkę obronną</span>
+      <div class="rec-desc">Teza obronna słuszna — realizacja przez mikrocap ryzykowna. Alternatywy: Rheinmetall AG (RHM.DE), Leonardo SpA. Stop-loss dla Lubawy: 8.50 PLN.</div>
+    </div>
+    <div class="rec-item">
+      <span class="rec-num mid">5</span>
+      <span class="rec-title">Zbuduj bufor gotówkowy / krótkie obligacje (5–8%)</span>
+      <div class="rec-desc">Portfel 100% akcyjny. Dodaj $840–$1 340 w US T-Bills ETF (SGOV lub BIL) jako "amunicję" na korekty rynkowe.</div>
+    </div>
+  </div>
+
+  <div class="rec-section">
+    <div class="rec-header long">🔵 DŁUGOTERMINOWE — w ciągu 3–12 miesięcy</div>
+    <div class="rec-item">
+      <span class="rec-num long">6</span>
+      <span class="rec-title">Dodaj ekspozycję na AI-infrastructure (poza semis)</span>
+      <div class="rec-desc">Portfel jest mocny w chipach, brakuje: data centers (Vertiv, Eaton), networking (Arista Networks), energy grid (Quanta Services). Jedna pozycja za 5–7% portfela.</div>
+    </div>
+    <div class="rec-item">
+      <span class="rec-num long">7</span>
+      <span class="rec-title">Dywersyfikacja geograficzna</span>
+      <div class="rec-desc">87% USA to za dużo. Rozważ: Siemens Energy AG, Schneider Electric lub ETF na rynki rozwinięte (EFA, VEA) jako 5–10% portfela.</div>
+    </div>
+    <div class="rec-item">
+      <span class="rec-num long">8</span>
+      <span class="rec-title">Ustaw reguły rebalansowania co kwartał</span>
+      <div class="rec-desc">Sticky rules: jeśli 1 pozycja &gt;30% — redukuj. Jeśli sektor &gt;50% — redukuj. Rebalansuj do poziomów docelowych raz na kwartał bez emocji.</div>
+    </div>
+  </div>
+
+  <h2>Docelowy skład portfela po optymalizacji</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Pozycja</th><th>Ticker</th><th>Obecny %</th><th>Docelowy %</th><th>Kierunek</th><th>Priorytet</th></tr></thead>
+      <tbody>
+        <tr><td><strong>ASML Holding</strong></td><td>ASML</td><td>19.3%</td><td>18–22%</td><td>→ Utrzymaj</td><td><span class="badge badge-grey">TRZYMAJ</span></td></tr>
+        <tr><td><strong>Fluor Corp.</strong></td><td>FLR</td><td>17.9%</td><td>13–15%</td><td>↓ Lekko redukuj</td><td><span class="badge badge-grey">TRZYMAJ</span></td></tr>
+        <tr><td><strong>Photronics</strong></td><td>PLAB</td><td>15.0%</td><td>12–14%</td><td>→ Utrzymaj</td><td><span class="badge badge-grey">TRZYMAJ</span></td></tr>
+        <tr><td><strong>KLA-Tencor</strong></td><td>KLAC</td><td>13.1%</td><td>12–15%</td><td>→ Utrzymaj</td><td><span class="badge badge-grey">TRZYMAJ</span></td></tr>
+        <tr class="trim-row"><td><strong>Lubawa SA</strong></td><td>LBW</td><td>13.9%</td><td>8–10%</td><td>↓ Redukuj / rotuj</td><td><span class="badge badge-yell">REDUKUJ</span></td></tr>
+        <tr><td><strong>Constellation Energy</strong></td><td>CEG</td><td>13.5%</td><td>12–15%</td><td>→ Utrzymaj/dokupuj</td><td><span class="badge badge-grey">TRZYMAJ</span></td></tr>
+        <tr class="buy-row"><td><strong>Micron Tech.</strong></td><td>MU</td><td>7.6%</td><td>10–12%</td><td>↑ Zwiększ</td><td><span class="badge badge-green">KUP</span></td></tr>
+        <tr><td><strong>Flowserve</strong></td><td>FLS</td><td>5.0%</td><td>5–7%</td><td>↑ Lekko zwiększ</td><td><span class="badge badge-grey">TRZYMAJ</span></td></tr>
+        <tr class="buy-row"><td><strong>AI-infra (nowa poz.)</strong></td><td>TBD</td><td>0%</td><td>5–8%</td><td>↑ Nowa pozycja</td><td><span class="badge badge-green">KUP</span></td></tr>
+        <tr class="buy-row"><td><strong>T-Bills ETF (bufor)</strong></td><td>SGOV</td><td>0%</td><td>5–8%</td><td>↑ Bufor bezpieczeństwa</td><td><span class="badge badge-green">KUP</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ── PODSUMOWANIE ────────────────────────────────────── -->
+<section id="podsumowanie">
+  <h1>9. Werdykt końcowy</h1>
+
+  <div class="kpi-grid">
+    <div class="kpi blue"><div class="kpi-val">7.2 / 10</div><div class="kpi-label">Ocena ogólna portfela</div></div>
+    <div class="kpi green"><div class="kpi-val">WYSOKI</div><div class="kpi-label">Potencjał wzrostu</div><div class="kpi-sub">+20–40% / 18 mies.</div></div>
+    <div class="kpi yellow"><div class="kpi-val">UMIARK.+</div><div class="kpi-label">Ryzyko portfela</div><div class="kpi-sub">Konc. semi ~50%</div></div>
+    <div class="kpi" style="background:var(--bg-red)"><div class="kpi-val" style="color:var(--red)">NISKA</div><div class="kpi-label">Dywersyfikacja</div><div class="kpi-sub" style="color:var(--red)">Wymaga korekty</div></div>
+  </div>
+
+  <div class="pros-cons">
+    <div class="pros-cons-col">
+      <h2>Mocne strony</h2>
+      <div class="check-item"><div class="check-icon pro">✓</div><div><strong>ASML</strong> — globalny monopol EUV. Jeden z najmocniejszych economic moat w historii technologii.</div></div>
+      <div class="check-item"><div class="check-icon pro">✓</div><div><strong>Spójna teza AI/semi</strong> — portfel dobrze pozycjonowany na supercykl chipów i HBM. KLA-Tencor uzupełnia idealnie ASML.</div></div>
+      <div class="check-item"><div class="check-icon pro">✓</div><div><strong>Przemyślana rotacja</strong> — świadome odejście z mikrocapów w US tech/industrials. rotacje przeprowadzone prawidłowo.</div></div>
+      <div class="check-item"><div class="check-icon pro">✓</div><div><strong>Fluor i Flowserve</strong> — ekspozycja na reindustrializację USA (CHIPS Act, IRA).</div></div>
+      <div class="check-item"><div class="check-icon pro">✓</div><div><strong>Photronics</strong> — ukryty klejnot: nisza, tania wycena P/E ~12x, synergiczna z ASML.</div></div>
+      <div class="check-item"><div class="check-icon pro">✓</div><div><strong>CEG</strong> — teza AI-energy/nuclear, umowy PPA z Big Tech. Świetne dopasowanie do narracji portfela.</div></div>
+    </div>
+    <div class="pros-cons-col">
+      <h2>Obszary do poprawy</h2>
+      <div class="check-item"><div class="check-icon con">✗</div><div><strong>Koncentracja semi (~54%)</strong> — ASML+PLAB+KLAC+MU znacznie przekracza próg ~35–40%.</div></div>
+      <div class="check-item"><div class="check-icon con">✗</div><div><strong>0% bufora gotówkowego</strong> — brak amunicji na korekty i możliwości dokupienia.</div></div>
+      <div class="check-item"><div class="check-icon con">✗</div><div><strong>Lubawa</strong> — teza słuszna, realizacja przez mikrocap ryzykowna (niska płynność).</div></div>
+      <div class="check-item"><div class="check-icon con">✗</div><div><strong>87% ekspozycji na USA</strong> — brak dywersyfikacji geograficznej.</div></div>
+      <div class="check-item"><div class="check-icon con">✗</div><div><strong>Micron zbyt mały</strong> — najlepszy R/R w portfelu (+3.69%), a tylko 7.4% udziału.</div></div>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <strong>WERDYKT KOŃCOWY:</strong> Portfel ma solidne fundamenty i logiczną narrację. Kluczowe działania priorytetowe: <strong>(1) zwiększenie Micron (MU)</strong> — do 10–12%, najlepszy R/R portfela; <strong>(2) zwiększenie Micron do 10–12%</strong> — najlepszy risk/reward; <strong>(3) bufor gotówkowy 5–8%</strong> (T-Bills ETF) jako zabezpieczenie drawdown; <strong>(4) rozważenie rotacji Lubawy</strong> na płynniejszy instrument obronny. Po tych zmianach portfel byłby w <strong>top 20%</strong> pod względem jakości kompozycji wśród portfeli detalicznych tej wielkości (baza: $18 108).
+  </div>
+
+  <div class="footer">
+    ZASTRZEŻENIE PRAWNE: Niniejszy raport ma charakter wyłącznie informacyjny i edukacyjny. Nie stanowi porady inwestycyjnej ani rekomendacji maklerskiej. Inwestowanie wiąże się z ryzykiem utraty kapitału. Skonsultuj się z licencjonowanym doradcą finansowym przed podjęciem decyzji.<br>
+    Wygenerowano przez Claude (Anthropic) · Marzec 2026
+  </div>
+</section>
+
+</main>
+</div>
+
+<script>
+// Highlight active nav link on scroll
+const sections = document.querySelectorAll('section[id], div[id="cover"]');
+const navLinks = document.querySelectorAll('.sidebar a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`.sidebar a[href="#${e.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-52px 0px -60% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
