@@ -1,0 +1,35 @@
+name: Aktualizacja portfela
+
+on:
+  schedule:
+    - cron: '0 17 * * 1-5'   # każdy dzień roboczy o 17:00 UTC (19:00 PL)
+  workflow_dispatch:           # możliwość ręcznego uruchomienia z GitHub UI
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write          # potrzebne do commita
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalacja zależności
+        run: pip install yfinance requests
+
+      - name: Aktualizacja cen i HTML
+        run: python update_prices.py
+
+      - name: Commit i push jeśli są zmiany
+        run: |
+          git config user.name  "portfolio-bot"
+          git config user.email "bot@portfolio"
+          git add Analiza_Portfela_2026.html
+          git diff --cached --quiet || git commit -m "auto: aktualizacja cen $(date +'%Y-%m-%d %H:%M')"
+          git push
