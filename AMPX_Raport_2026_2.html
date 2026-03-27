@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMPX — Raport Analityczny | 27.03.2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060a0f;
+    --surface: #0d1521;
+    --surface2: #111c2d;
+    --border: #1e3050;
+    --accent: #00d4ff;
+    --accent2: #00ff88;
+    --accent3: #ff6b35;
+    --warn: #ffd166;
+    --danger: #ff4757;
+    --text: #f0f8ff;
+    --muted: #94afc8;
+    --strong-buy: #00ff88;
+    --buy: #00d4ff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    zoom: 1.43;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  .header {
+    position: relative;
+    padding: 60px 48px 40px;
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header::after {
+    content: 'AMPX';
+    position: absolute;
+    right: -20px; top: -10px;
+    font-family: 'Syne', sans-serif;
+    font-size: 180px;
+    font-weight: 800;
+    color: rgba(0,212,255,0.04);
+    letter-spacing: -10px;
+    pointer-events: none;
+  }
+
+  .tag {
+    display: inline-block;
+    background: rgba(0,212,255,0.1);
+    border: 1px solid rgba(0,212,255,0.3);
+    color: var(--accent);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    margin-bottom: 20px;
+  }
+
+  .header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .header h1 span { color: var(--accent); }
+
+  .header-sub {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  .price-hero {
+    display: flex;
+    align-items: flex-end;
+    gap: 24px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+
+  .price-main {
+    font-family: 'Syne', sans-serif;
+    font-size: 64px;
+    font-weight: 800;
+    color: var(--warn);
+    line-height: 1;
+  }
+
+  .price-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 8px;
+  }
+  .price-meta .change-neg {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--danger);
+  }
+  .price-meta .date {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  .stat-pills {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+  .pill {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    font-size: 11px;
+  }
+  .pill span { color: var(--muted); }
+  .pill strong { color: var(--accent); margin-left: 6px; }
+
+  /* MAIN LAYOUT */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .price-main { font-size: 44px; }
+    .header { padding: 40px 24px 30px; }
+    .header h1 { font-size: 28px; }
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 40px 48px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .section h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--accent);
+  }
+  .card.green::before { background: var(--accent2); }
+  .card.orange::before { background: var(--accent3); }
+  .card.yellow::before { background: var(--warn); }
+  .card.red::before { background: var(--danger); }
+
+  .card-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .card-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+  }
+  .card-value.accent { color: var(--accent); }
+  .card-value.green { color: var(--accent2); }
+  .card-value.orange { color: var(--accent3); }
+  .card-value.yellow { color: var(--warn); }
+  .card-value.red { color: var(--danger); }
+
+  .card-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* FINANCIAL TABLE */
+  .fin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  .fin-table th {
+    text-align: left;
+    color: var(--muted);
+    font-weight: 400;
+    letter-spacing: 1px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+  .fin-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(30,48,80,0.5);
+    color: var(--text);
+  }
+  .fin-table tr:hover td { background: rgba(0,212,255,0.03); }
+  .fin-table .up { color: var(--accent2); }
+  .fin-table .down { color: var(--danger); }
+  .fin-table .neutral { color: var(--warn); }
+  .fin-table .label-col { color: var(--muted); font-size: 11px; }
+  .fin-table .right { text-align: right; }
+  .fin-table .mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* ANALYST TARGETS */
+  .analyst-row {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(30,48,80,0.5);
+    gap: 16px;
+  }
+  .analyst-row:last-child { border-bottom: none; }
+  .analyst-name {
+    min-width: 180px;
+    font-size: 12px;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .analyst-action {
+    flex: 1;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .analyst-target {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent2);
+    min-width: 80px;
+    text-align: right;
+  }
+  .analyst-rating {
+    background: rgba(0,255,136,0.1);
+    border: 1px solid rgba(0,255,136,0.3);
+    color: var(--accent2);
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    text-transform: uppercase;
+    min-width: 90px;
+    text-align: center;
+  }
+  .analyst-rating.buy { 
+    background: rgba(0,212,255,0.1);
+    border-color: rgba(0,212,255,0.3);
+    color: var(--accent);
+  }
+
+  /* SUPPORT/RESISTANCE */
+  .level-bar {
+    position: relative;
+    height: 48px;
+    margin: 4px 0;
+    display: flex;
+    align-items: center;
+  }
+  .level-label {
+    width: 100px;
+    font-size: 11px;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+  .level-track {
+    flex: 1;
+    height: 2px;
+    background: var(--border);
+    position: relative;
+  }
+  .level-marker {
+    position: absolute;
+    top: -10px;
+    width: 2px;
+    height: 22px;
+    transform: translateX(-50%);
+  }
+  .level-marker.price { background: var(--warn); }
+  .level-marker.support { background: var(--accent2); }
+  .level-marker.resistance { background: var(--danger); }
+  .level-price-tag {
+    position: absolute;
+    top: -26px;
+    transform: translateX(-50%);
+    font-size: 10px;
+    white-space: nowrap;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+  }
+
+  /* SCENARIOS */
+  .scenario {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    position: relative;
+  }
+  .scenario-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .scenario-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .scenario-prob {
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+  }
+  .scenario-target {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .scenario-return {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .scenario-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.7;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    margin-top: 8px;
+  }
+
+  /* MOMENTUM */
+  .momentum-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+  }
+  @media (max-width: 768px) { .momentum-grid { grid-template-columns: repeat(2,1fr); } }
+
+  .momentum-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 16px;
+    text-align: center;
+  }
+  .momentum-card .m-label {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .momentum-card .m-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .momentum-card .m-signal {
+    font-size: 10px;
+    margin-top: 4px;
+  }
+  .bull { color: var(--accent2); }
+  .bear { color: var(--danger); }
+  .neutral-c { color: var(--warn); }
+
+  /* RISK */
+  .risk-item {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(30,48,80,0.5);
+    align-items: flex-start;
+  }
+  .risk-item:last-child { border-bottom: none; }
+  .risk-icon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .risk-content { flex: 1; }
+  .risk-title { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .risk-desc { font-size: 11px; color: var(--muted); line-height: 1.6; }
+
+  /* ENTRY LEVELS */
+  .entry-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .entry-tier {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    min-width: 80px;
+  }
+  .entry-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    min-width: 100px;
+  }
+  .entry-rationale {
+    font-size: 11px;
+    color: var(--muted);
+    flex: 1;
+    line-height: 1.6;
+  }
+  .entry-upside {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    min-width: 60px;
+    text-align: right;
+    color: var(--accent2);
+  }
+
+  /* FOOTER */
+  .footer {
+    padding: 32px 48px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+  }
+  .disclaimer {
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 900px;
+  }
+  .footer-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .footer-date {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    padding: 0 0 20px 20px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0,212,255,0.5);
+  }
+  .timeline-item.past::before { background: var(--muted); box-shadow: none; }
+  .timeline-item.future::before { 
+    background: transparent;
+    border: 2px solid var(--accent2);
+    box-shadow: 0 0 8px rgba(0,255,136,0.4);
+  }
+  .tl-date { font-size: 10px; color: var(--muted); margin-bottom: 4px; }
+  .tl-event { font-size: 12px; color: var(--text); font-weight: 600; }
+  .tl-detail { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* BADGE */
+  .badge {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .badge.new { background: rgba(0,255,136,0.15); border: 1px solid rgba(0,255,136,0.4); color: var(--accent2); }
+  .badge.warn { background: rgba(255,209,102,0.15); border: 1px solid rgba(255,209,102,0.4); color: var(--warn); }
+  .badge.alert { background: rgba(255,71,87,0.15); border: 1px solid rgba(255,71,87,0.4); color: var(--danger); }
+
+  /* UPSIDE CALC */
+  .upside-bar {
+    height: 6px;
+    background: var(--border);
+    margin: 8px 0 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  .upside-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    transition: width 0.3s;
+  }
+
+  /* Inline highlight */
+  .hl { color: var(--accent); }
+  .hl-g { color: var(--accent2); }
+  .hl-o { color: var(--accent3); }
+  .hl-y { color: var(--warn); }
+  .hl-r { color: var(--danger); }
+
+  p { color: var(--muted); font-size: 12px; line-height: 1.8; }
+  p + p { margin-top: 10px; }
+  strong { color: var(--text); }
+  
+  .divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+  .note-box {
+    background: rgba(255,209,102,0.06);
+    border: 1px solid rgba(255,209,102,0.2);
+    border-left: 3px solid var(--warn);
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .note-box strong { color: var(--warn); }
+
+  .alert-box {
+    background: rgba(255,71,87,0.06);
+    border: 1px solid rgba(255,71,87,0.2);
+    border-left: 3px solid var(--danger);
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .alert-box strong { color: var(--danger); }
+
+  .verdict-box {
+    background: linear-gradient(135deg, rgba(0,255,136,0.05) 0%, rgba(0,212,255,0.05) 100%);
+    border: 1px solid rgba(0,212,255,0.2);
+    padding: 28px 32px;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .verdict-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+  }
+  .verdict-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .verdict-rating {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--accent2);
+    margin-bottom: 8px;
+  }
+  .verdict-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 700px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ HEADER ═══ -->
+<div class="header">
+  <div class="tag">Raport Analityczny</div>
+  <h1>Amprius Technologies<br><span>NYSE: AMPX</span></h1>
+  <div class="header-sub">Krzem. Gęstość. Przełom. &nbsp;|&nbsp; Silicon Anode Li-Ion Batteries &nbsp;|&nbsp; 27.03.2026</div>
+
+  <div class="price-hero">
+    <div class="price-main">$17.16</div>
+    <div class="price-meta">
+      <div class="change-neg">▼ −4.4%</div>
+      <div class="date">Zamknięcie 26.03.2026 · Insider sell pressure</div>
+    </div>
+  </div>
+
+  <div class="stat-pills">
+    <div class="pill"><span>52W High</span><strong>$19.76</strong></div>
+    <div class="pill"><span>52W Low</span><strong>$1.97</strong></div>
+    <div class="pill"><span>Market Cap</span><strong>~$2.3B</strong></div>
+    <div class="pill"><span>Revenue FY25</span><strong>$73.0M</strong></div>
+    <div class="pill"><span>Konsensus analityków</span><strong>STRONG BUY</strong></div>
+    <div class="pill"><span>Avg. PT</span><strong>$20.00</strong></div>
+    <div class="pill"><span>Następny raport</span><strong>07.05.2026</strong></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ MODEL DZIAŁANIA ═══ -->
+<div class="section">
+  <div class="section-label">01 &mdash; Model Działania i Technologia</div>
+  <h2>Kim jest Amprius?</h2>
+
+  <p>Amprius Technologies (założona 2008, Fremont CA) to producent baterii litowo-jonowych nowej generacji opartych o <strong>platformę krzemoiwą (Silicon Anode Platform)</strong>. Podczas gdy tradycyjne baterie używają anody grafitowej, Amprius zastosował nanodrutowe anody 100% krzemowe, osiągając gęstość energii nieporównywalną z rynkowymi alternatywami.</p>
+  <p>W 2024 roku spółka przestawiła się z kapitałochłonnego modelu własnej produkcji na <strong>asset-light foundry model</strong> — kontraktuje produkcję w Azji (głównie Chiny), zachowując własność IP i kontrolę nad technologią. Redukcja CapEx radykalnie przyspieszyła drogę do rentowności.</p>
+
+  <div class="divider"></div>
+
+  <div class="grid-2">
+    <div>
+      <div class="section-label" style="font-size:9px">Produkty Flagowe</div>
+      <div class="card" style="margin-bottom:12px">
+        <div class="card-label">SiMaxx™ — Flagowiec</div>
+        <div class="card-value accent" style="font-size:20px">500 Wh/kg · 1300 Wh/L</div>
+        <div class="card-sub">100% nanodrutowe anody krzemowe. Najwyższa gęstość energii na rynku. Cel: lotnictwo, HALE UAV, eVTOL premium. Produkt przyszłości — pre-produkcja.</div>
+      </div>
+      <div class="card green">
+        <div class="card-label">SiCore™ — Engine wzrostu 2026</div>
+        <div class="card-value green" style="font-size:20px">~400 Wh/kg · cylindryczne</div>
+        <div class="card-sub">Zastrzeżony materiał krzemowy kompatybilny ze standardowym sprzętem produkcyjnym. Produkt skalowalny masowo. Cel: lekkie pojazdy elektryczne, drony, mobilność. GŁÓWNY DRIVER PRZYCHODÓW 2026.</div>
+      </div>
+    </div>
+    <div>
+      <div class="section-label" style="font-size:9px">Rynki Docelowe</div>
+      <table class="fin-table">
+        <tr><th>Segment</th><th>Status</th><th>Potencjał</th></tr>
+        <tr><td>UAS / Drony obronne</td><td class="up">Komercyjny</td><td class="up">★★★★★</td></tr>
+        <tr><td>HALE / Lotnictwo</td><td class="up">Komercyjny</td><td class="up">★★★★★</td></tr>
+        <tr><td>eVTOL / Air Taxi</td><td class="neutral">Development</td><td class="up">★★★★☆</td></tr>
+        <tr><td>LEV (skutery, rowery)</td><td class="up">Komercyjny (Chiny)</td><td class="up">★★★★☆</td></tr>
+        <tr><td>Electric Vehicles</td><td class="neutral">Długoterminowy</td><td class="up">★★★☆☆</td></tr>
+        <tr><td>Obronność USA</td><td class="up">Aktywny</td><td class="up">★★★★★</td></tr>
+      </table>
+
+      <div class="note-box" style="margin-top:12px">
+        <strong>KEY MOAT:</strong> Amprius twierdzi, że żaden konkurent nie zbliżył się do 500 Wh/kg przy akceptowalnych parametrach bezpieczeństwa i cyklu życia. Przewaga technologiczna szacowana na 2–4 lata vs. best-in-class rywale.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ WYNIKI FINANSOWE ═══ -->
+<div class="section">
+  <div class="section-label">02 &mdash; Wyniki Finansowe</div>
+  <h2>Przyspieszenie przychodów</h2>
+
+  <div class="grid-3" style="margin-bottom:20px">
+    <div class="card green">
+      <div class="card-label">Revenue FY2025</div>
+      <div class="card-value green">$73.0M</div>
+      <div class="card-sub">▲ +202% YoY vs $24.2M w 2024</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Revenue Q4 2025</div>
+      <div class="card-value accent">$25.2M</div>
+      <div class="card-sub">▲ +137% YoY · ▲ +18% QoQ · rekord</div>
+    </div>
+    <div class="card green">
+      <div class="card-label">Gross Margin Q4 2025</div>
+      <div class="card-value green">24%</div>
+      <div class="card-sub">Drastyczny wzrost z ujemnego 18 mies. temu</div>
+    </div>
+    <div class="card yellow">
+      <div class="card-label">Net Loss FY2025</div>
+      <div class="card-value yellow">−$44.0M</div>
+      <div class="card-sub">W tym jednorazowe odpisy $22.5M. Adj. strata: ~$21.5M</div>
+    </div>
+    <div class="card green">
+      <div class="card-label">Adj. EBITDA Q4 2025</div>
+      <div class="card-value green">+$1.8M</div>
+      <div class="card-sub">Pierwsze pozytywne kwartalne EBITDA w historii spółki</div>
+    </div>
+    <div class="card">
+      <div class="card-label">EPS Q4 2025</div>
+      <div class="card-value accent">−$0.01</div>
+      <div class="card-sub">Beat o 75%! Konsensus: −$0.04/szt.</div>
+    </div>
+  </div>
+
+  <div class="section-label" style="font-size:9px">Historyczna trajektoria przychodów</div>
+  <table class="fin-table">
+    <tr>
+      <th>Okres</th>
+      <th class="right">Revenue</th>
+      <th class="right">YoY</th>
+      <th class="right">Gross Margin</th>
+      <th class="right">Net Loss</th>
+      <th class="right">EPS</th>
+    </tr>
+    <tr>
+      <td class="label-col">FY2023</td>
+      <td class="right mono">$8.1M</td>
+      <td class="right">—</td>
+      <td class="right down">ujemna</td>
+      <td class="right down">−$41.8M</td>
+      <td class="right down">−$0.51</td>
+    </tr>
+    <tr>
+      <td class="label-col">FY2024</td>
+      <td class="right mono">$24.2M</td>
+      <td class="right up">+199%</td>
+      <td class="right neutral">~5%</td>
+      <td class="right down">−$44.7M</td>
+      <td class="right down">−$0.45</td>
+    </tr>
+    <tr>
+      <td class="label-col">Q3 2025</td>
+      <td class="right mono">$21.4M</td>
+      <td class="right up">+173%</td>
+      <td class="right up">~18%</td>
+      <td class="right down">−$3.9M</td>
+      <td class="right neutral">−$0.03</td>
+    </tr>
+    <tr>
+      <td class="label-col"><strong>Q4 2025 (rekord)</strong></td>
+      <td class="right mono up"><strong>$25.2M</strong></td>
+      <td class="right up"><strong>+137%</strong></td>
+      <td class="right up"><strong>24%</strong></td>
+      <td class="right down">−$24.4M*</td>
+      <td class="right up"><strong>−$0.01</strong></td>
+    </tr>
+    <tr>
+      <td class="label-col"><strong>FY2025</strong></td>
+      <td class="right mono up"><strong>$73.0M</strong></td>
+      <td class="right up"><strong>+202%</strong></td>
+      <td class="right up">rosnąca</td>
+      <td class="right down">−$44.0M*</td>
+      <td class="right neutral">−$0.34</td>
+    </tr>
+  </table>
+  <div style="font-size:10px; color:var(--muted); margin-top:8px">* Zawiera jednorazowe odpisy majątkowe $22.5M niezwiązane z działalnością operacyjną</div>
+
+  <div class="divider"></div>
+
+  <div class="section-label" style="font-size:9px">Guidance 2026 — Oficjalny</div>
+  <div class="grid-2">
+    <div class="verdict-box">
+      <div class="verdict-title">2026 Financial Outlook (ogłoszony 04.03.2026)</div>
+      <div class="verdict-rating">$125M+</div>
+      <div style="font-size:13px; color:var(--muted); margin-bottom:12px">Przychody (min. +70% YoY)</div>
+      <table class="fin-table">
+        <tr><td class="label-col">Net Loss (cel)</td><td class="right up">&lt; $8.0M</td></tr>
+        <tr><td class="label-col">Net Loss/szt.</td><td class="right up">&lt; $0.06</td></tr>
+        <tr><td class="label-col">Adj. EBITDA</td><td class="right up">≥ $4.0M (pełny rok)</td></tr>
+        <tr><td class="label-col">CapEx</td><td class="right up">&lt; $10.0M</td></tr>
+        <tr><td class="label-col">Śred. akcje</td><td class="right">~132-134.5M</td></tr>
+        <tr><td class="label-col">Nowy CEO</td><td class="right">Tom Stepien (od Q1 2026)</td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="note-box">
+        <strong>Kluczowe zdarzenie:</strong> Spółka po raz pierwszy w historii przewiduje pozytywne EBITDA za cały rok. To fundamentalny przełom dla narracji inwestycyjnej — przejście z growth story do emerging profitability story.
+      </div>
+      <div class="note-box">
+        <strong>Q4 2025 EPS beat:</strong> Wynik −$0.01 vs konsensus −$0.04 to beat na poziomie 75%. Revenue $25.2M vs. estymata $22.97M = beat o 9.7%. Obydwa surprisy pozytywne — klasyczny katalizator rajdu.
+      </div>
+      <div class="note-box">
+        <strong>$21M SiCore order (Chiny):</strong> Nowy klient z Chin — premier electric mobility player. Zamówienie na ogniwa cylindryczne SiCore do skuterów, trójkołowców i motocykli. Dywersyfikacja poza lotnictwem/dronami.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ ANALITYCY ═══ -->
+<div class="section">
+  <div class="section-label">03 &mdash; Targety Analityków</div>
+  <h2>Wall Street Consensus: <span style="color:var(--accent2)">STRONG BUY</span></h2>
+
+  <p style="margin-bottom:20px">8 analityków, 0 Hold, 0 Sell. Wszystkie rating-zmiany po Q4 2025 — w górę. Podwyżki PT o 25–38% w ciągu jednego tygodnia po wynikach.</p>
+
+  <div class="analyst-row">
+    <div class="analyst-name">B. Riley Securities</div>
+    <div class="analyst-action">Raised PT $16 → $22 &nbsp;<span class="badge new">Raised</span></div>
+    <div class="analyst-rating">Strong Buy</div>
+    <div class="analyst-target">$22</div>
+  </div>
+  <div class="analyst-row">
+    <div class="analyst-name">Craig-Hallum</div>
+    <div class="analyst-action">Raised PT $17 → $21 &nbsp;<span class="badge new">Raised</span></div>
+    <div class="analyst-rating">Strong Buy</div>
+    <div class="analyst-target">$21</div>
+  </div>
+  <div class="analyst-row">
+    <div class="analyst-name">Roth Capital</div>
+    <div class="analyst-action">Raised PT $16 → $20 &nbsp;<span class="badge new">Raised</span></div>
+    <div class="analyst-rating">Buy</div>
+    <div class="analyst-target">$20</div>
+  </div>
+  <div class="analyst-row">
+    <div class="analyst-name">Cantor Fitzgerald</div>
+    <div class="analyst-action">Raised PT $16 → $20, reaffirms Buy &nbsp;<span class="badge new">Raised</span></div>
+    <div class="analyst-rating">Buy</div>
+    <div class="analyst-target">$20</div>
+  </div>
+  <div class="analyst-row">
+    <div class="analyst-name">H.C. Wainwright</div>
+    <div class="analyst-action">Buy — "Accelerating Revenue Growth, Expanding Margins, Capital-Light U.S. Expansion"</div>
+    <div class="analyst-rating">Buy</div>
+    <div class="analyst-target">$20</div>
+  </div>
+  <div class="analyst-row">
+    <div class="analyst-name">Northland Securities</div>
+    <div class="analyst-action">Reaffirms Buy Rating (05.03.2026)</div>
+    <div class="analyst-rating">Buy</div>
+    <div class="analyst-target">$18</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="grid-3">
+    <div class="card green">
+      <div class="card-label">Średni PT (8 analityków)</div>
+      <div class="card-value green">$20.00</div>
+      <div class="card-sub">Upside vs. zamknięcie: <strong class="hl-g">+16.6%</strong></div>
+      <div class="upside-bar"><div class="upside-fill" style="width:70%"></div></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Maksymalny PT</div>
+      <div class="card-value accent">$22.00</div>
+      <div class="card-sub">B. Riley — Upside: <strong class="hl">+28.2%</strong></div>
+      <div class="upside-bar"><div class="upside-fill" style="width:100%"></div></div>
+    </div>
+    <div class="card yellow">
+      <div class="card-label">Minimalny PT</div>
+      <div class="card-value yellow">$18.00</div>
+      <div class="card-sub">Northland — Upside: <strong class="hl-y">+4.9%</strong></div>
+      <div class="upside-bar"><div class="upside-fill" style="width:20%"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ MOMENTUM ═══ -->
+<div class="section">
+  <div class="section-label">04 &mdash; Analiza Momentum</div>
+  <h2>Silny trend wzrostowy z korektą insiderską</h2>
+
+  <p>Kurs AMPX wykazał wyjątkową siłę momentum w ciągu ostatnich 6 tygodni. Od dna ~$10.7 (luty 2026) do szczytu $19.76 (18.03.2026) to ruch +85% w 30 dni. Obecna korekta do $17.16 to realizacja zysku po serii sprzedaży insiderów.</p>
+
+  <div class="momentum-grid">
+    <div class="momentum-card">
+      <div class="m-label">Trend 1M</div>
+      <div class="m-val bull">+60%</div>
+      <div class="m-signal bull">● SILNY WZROST</div>
+    </div>
+    <div class="momentum-card">
+      <div class="m-label">Trend 3M</div>
+      <div class="m-val bull">+180%</div>
+      <div class="m-signal bull">● EXCEPTIONAL</div>
+    </div>
+    <div class="momentum-card">
+      <div class="m-label">vs S&P500 (1M)</div>
+      <div class="m-val bull">+58%</div>
+      <div class="m-signal bull">● MASSIVE OUTPERF</div>
+    </div>
+    <div class="momentum-card">
+      <div class="m-label">Momentum Score</div>
+      <div class="m-val bull">9.83/10</div>
+      <div class="m-signal bull">● #1 w sektorze</div>
+    </div>
+    <div class="momentum-card">
+      <div class="m-label">SMA20 vs SMA60</div>
+      <div class="m-val bull">ABOVE</div>
+      <div class="m-signal bull">● BULLISH</div>
+    </div>
+    <div class="momentum-card">
+      <div class="m-label">MACD (3M)</div>
+      <div class="m-val bull">BUY</div>
+      <div class="m-signal bull">● AKTYWNY</div>
+    </div>
+    <div class="momentum-card">
+      <div class="m-label">Short Interest</div>
+      <div class="m-val neutral-c">10.16%</div>
+      <div class="m-signal neutral-c">● Rosnący</div>
+    </div>
+    <div class="momentum-card">
+      <div class="m-label">Wolumen (5D avg)</div>
+      <div class="m-val bull">$307M</div>
+      <div class="m-signal bull">● Bardzo wysoki</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-label" style="font-size:9px">Kluczowe zdarzenia momentum — oś czasu</div>
+  <div class="timeline">
+    <div class="timeline-item past">
+      <div class="tl-date">01.2026 — 02.2026</div>
+      <div class="tl-event">Baza akumulacyjna ~$8–11</div>
+      <div class="tl-detail">Kurs konsoliduje po roku dołkowania. Smart money wchodzi przed wynikami.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">04.03.2026</div>
+      <div class="tl-event">Q4 2025 Earnings — Podwójny beat</div>
+      <div class="tl-detail">Revenue $25.2M (+9.7% vs est.), EPS −$0.01 (beat 75%). Guidance 2026: $125M+. Kurs +8% następnego dnia.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">05–06.03.2026</div>
+      <div class="tl-event">Fala podwyżek PT analityków</div>
+      <div class="tl-detail">B. Riley $22, Craig-Hallum $21, Roth Capital $20, Cantor Fitzgerald $20. Kurs +9.7% w jeden dzień.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">12.03.2026</div>
+      <div class="tl-event">Insider Selling — Steven Chu (Director) <span class="badge alert">Ryzyko</span></div>
+      <div class="tl-detail">Sprzedał 322,197 akcji łącznie (10–12 marca) po ~$18.21–18.50. Wartość ~$5.86M. Redukcja pozycji o 55%.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">18.03.2026</div>
+      <div class="tl-event">52-tygodniowy szczyt $19.76 <span class="badge new">Rekord</span></div>
+      <div class="tl-detail">Spółka uznana za Top GreenTech Company 2026 przez TIME Magazine. Momentum peak.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">23.03.2026</div>
+      <div class="tl-event">Insider Selling — Kang Sun (były CEO/Director) <span class="badge alert">Ryzyko</span></div>
+      <div class="tl-detail">Sprzedał 217,869 akcji po ~$18.80. Łącznie od stycznia sprzedał 1.56M akcji za ~$16.73M. Redukcja o 79.43%.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">26.03.2026 (wczoraj)</div>
+      <div class="tl-event">SiCore $21M China Order + Dalszy spadek <span class="badge warn">Dziś</span></div>
+      <div class="tl-detail">Kurs −4.4% mimo pozytywnych news. Zamknięcie $17.16. Rynek reaguje na insiderów, nie na fundamenty.</div>
+    </div>
+    <div class="timeline-item future">
+      <div class="tl-date">07.05.2026</div>
+      <div class="tl-event">Następny raport — Q1 2026 Earnings <span class="badge new">Katalizator</span></div>
+      <div class="tl-detail">Kluczowy test czy guidance $125M jest realizowany. Estymata ~$25.7M revenue. Potencjalny kolejny rally.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ TECHNICALS ═══ -->
+<div class="section">
+  <div class="section-label">05 &mdash; Analiza Techniczna & Poziomy</div>
+  <h2>Wsparcia, opory i strefy wejścia</h2>
+
+  <div class="grid-2">
+    <div>
+      <div class="section-label" style="font-size:9px">Kluczowe poziomy techniczne</div>
+      <table class="fin-table">
+        <tr><th>Poziom</th><th class="right">Cena</th><th>Typ</th><th>Znaczenie</th></tr>
+        <tr>
+          <td class="label-col">52W High</td>
+          <td class="right up mono">$19.76</td>
+          <td><span style="color:var(--danger)">Opór #1</span></td>
+          <td style="font-size:10px; color:var(--muted)">Szczyt 18.03. Do przebicia</td>
+        </tr>
+        <tr>
+          <td class="label-col">Opór techniczny</td>
+          <td class="right mono" style="color:var(--accent3)">$17.29</td>
+          <td><span style="color:var(--accent3)">Opór #2</span></td>
+          <td style="font-size:10px; color:var(--muted)">Prior resistance zone (Trefis)</td>
+        </tr>
+        <tr>
+          <td class="label-col"><strong>KURS WCZORAJ</strong></td>
+          <td class="right warn mono"><strong>$17.16</strong></td>
+          <td><span style="color:var(--warn)">● CENA</span></td>
+          <td style="font-size:10px; color:var(--muted)">Zamknięcie 26.03.2026</td>
+        </tr>
+        <tr>
+          <td class="label-col">Wsparcie #1</td>
+          <td class="right up mono">$16.33</td>
+          <td><span style="color:var(--accent2)">Wsparcie</span></td>
+          <td style="font-size:10px; color:var(--muted)">Volume accumulation zone</td>
+        </tr>
+        <tr>
+          <td class="label-col">Wsparcie #2</td>
+          <td class="right up mono">$14.89</td>
+          <td><span style="color:var(--accent2)">Wsparcie</span></td>
+          <td style="font-size:10px; color:var(--muted)">Druga strefa wolumenu</td>
+        </tr>
+        <tr>
+          <td class="label-col">Wsparcie #3 (silne)</td>
+          <td class="right up mono">$12.56</td>
+          <td><span style="color:var(--accent2)">Wsparcie</span></td>
+          <td style="font-size:10px; color:var(--muted)">Prior breakout zone (Trefis)</td>
+        </tr>
+        <tr>
+          <td class="label-col">Opór SMA-60</td>
+          <td class="right mono" style="color:var(--danger)">$20.29</td>
+          <td><span style="color:var(--danger)">Opór #3</span></td>
+          <td style="font-size:10px; color:var(--muted)">Break → strong buy signal</td>
+        </tr>
+        <tr>
+          <td class="label-col">Opór long-term</td>
+          <td class="right mono" style="color:var(--danger)">$22.82</td>
+          <td><span style="color:var(--danger)">Opór #4</span></td>
+          <td style="font-size:10px; color:var(--muted)">Range upper (TradingKey)</td>
+        </tr>
+        <tr>
+          <td class="label-col">Hard floor</td>
+          <td class="right up mono">$12.63</td>
+          <td><span style="color:var(--accent2)">Wsparcie</span></td>
+          <td style="font-size:10px; color:var(--muted)">Range lower (TradingKey)</td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <div class="section-label" style="font-size:9px">Sygnały techniczne (27.03.2026)</div>
+      <table class="fin-table">
+        <tr><th>Wskaźnik</th><th class="right">Sygnał</th></tr>
+        <tr><td>Moving Averages (overall)</td><td class="right up">STRONG BUY</td></tr>
+        <tr><td>SMA20 vs SMA60</td><td class="right up">Bullish (SMA20 &gt; SMA60)</td></tr>
+        <tr><td>MACD (3M)</td><td class="right up">BUY aktywny</td></tr>
+        <tr><td>Oscillators (overall)</td><td class="right up">BUY</td></tr>
+        <tr><td>TradingView Rating</td><td class="right up">STRONG BUY</td></tr>
+        <tr><td>Pivot top (17.03)</td><td class="right down">Sell signal (aktywny)</td></tr>
+        <tr><td>Short Interest</td><td class="right neutral">10.16% (rosnący)</td></tr>
+        <tr><td>Wolumen vs cena</td><td class="right warn">Dywergencja (ryzyko)</td></tr>
+        <tr><td>Trend krótkoterminowy</td><td class="right down">Korekta od 17.03</td></tr>
+        <tr><td>Trend średnioterminowy</td><td class="right up">Wzrostowy (od 02.03)</td></tr>
+        <tr><td>Momentum Score (TradingKey)</td><td class="right up">#1 w sektorze</td></tr>
+        <tr><td>Prawdop. pozytywna (marzec)</td><td class="right up">75% historycznie</td></tr>
+      </table>
+
+      <div class="alert-box" style="margin-top:12px">
+        <strong>⚠ UWAGA — Dywergencja:</strong> Spada wolumen przy spadających cenach po 18.03 — to może być sygnał wyczerpania podaży (insiderskiej) i potencjalnego odwrócenia. Kurs testuje strefę $16.33 jako wsparcie.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ WEJŚCIE ═══ -->
+<div class="section">
+  <div class="section-label">06 &mdash; Strategia Agresywnego Stock Pickingu</div>
+  <h2>Najlepsze poziomy wejścia</h2>
+
+  <p style="margin-bottom:20px">Przy strategii agresywnego stock pickingu priorytetem jest maksymalizacja asymetrii risk/reward. Obecna korekta insiderska przy nienaruszonych fundamentach to klasyczna okazja "buy the dip on catalyst". Zakładamy stop-loss poniżej wsparcia i target w okolicach średniego PT analityków ($20).</p>
+
+  <div class="entry-card">
+    <div class="entry-tier">TIER 1<br><span style="color:var(--accent2)">Optymalne</span></div>
+    <div class="entry-price" style="color:var(--accent2)">$16.30–$16.80</div>
+    <div class="entry-rationale">
+      <strong>Strefa wolumenowego wsparcia.</strong> Kurs kilkakrotnie odbijał od $16.33. To pozwala ustawić ciasny stop ($15.50). Wejście przed tą strefą przy kontynuacji insiderskiej wyprzedaży lub lekkiej panice rynkowej. Najlepszy risk/reward dla strategii agresywnej. Uzasadnienie: kurs pokonał już ten level od dołu podczas rajdu i teraz retestuje.
+    </div>
+    <div class="entry-upside">+22.5%<br><span style="font-size:10px; color:var(--muted)">do PT $20</span></div>
+  </div>
+
+  <div class="entry-card">
+    <div class="entry-tier">TIER 2<br><span style="color:var(--accent)">Bieżące</span></div>
+    <div class="entry-price" style="color:var(--warn)">$17.00–$17.30</div>
+    <div class="entry-rationale">
+      <strong>Bieżąca strefa (okolice wczorajszego zamknięcia).</strong> Kurs testuje poziom $17.29 (poprzedni opór, potencjalnie wsparcie). Wejście już teraz z stop-loss $15.80 jest uzasadnione przy założeniu, że fundamenty 2026 są niezmienione. Ryzyko: krótkoterminowa kontynuacja korekty do $16.30 jeszcze przed odwróceniem.
+    </div>
+    <div class="entry-upside">+16.6%<br><span style="font-size:10px; color:var(--muted)">do PT $20</span></div>
+  </div>
+
+  <div class="entry-card">
+    <div class="entry-tier">TIER 3<br><span style="color:var(--accent3)">Głęboka<br>korekta</span></div>
+    <div class="entry-price" style="color:var(--accent3)">$14.50–$15.00</div>
+    <div class="entry-rationale">
+      <strong>Scenariusz głębszej korekty.</strong> Jeśli insiderzy kontynuują sprzedaż lub rynek wchodzi w risk-off, możliwe dotarcie do $14.89 (wsparcie #2). Wejście tutaj daje najlepszy risk/reward dla cierpliwych. Stop-loss: $13.50. Upside do PT: +37%. Ten poziom odpowiada ok. 4-5x revenue EV/S 2026, bardzo atrakcyjny dla growth story.
+    </div>
+    <div class="entry-upside">+37%<br><span style="font-size:10px; color:var(--muted)">do PT $20</span></div>
+  </div>
+
+  <div class="note-box">
+    <strong>Stop-Loss dla strategii agresywnej:</strong> Bezwarunkowy stop poniżej $12.50 (hard floor / prior breakout zone). Przebicie tego poziomu oznaczałoby naruszenie struktury trendu i zakwestionowanie tezy inwestycyjnej.
+  </div>
+  <div class="note-box">
+    <strong>Strategia skalowania:</strong> Przy agresywnym pick'u rekomendowane wejście w 3 transzach — 40% na Tier 2, 40% na Tier 1, 20% na Tier 3 (jeśli osiągnięty). Pozwala na uśrednienie i zachowanie powder na głębszą korektę.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ SCENARIUSZE ═══ -->
+<div class="section">
+  <div class="section-label">07 &mdash; Analiza Scenariuszy Wzrostu (12M)</div>
+  <h2>3 scenariusze wyceny</h2>
+
+  <div class="grid-3">
+    <div class="scenario">
+      <div class="scenario-header">
+        <div class="scenario-name" style="color:var(--danger)">🐻 Niedźwiedzi</div>
+        <div class="scenario-prob">Prawdopodobieństwo: 20%</div>
+      </div>
+      <div class="scenario-target" style="color:var(--danger)">$11–$13</div>
+      <div class="scenario-return" style="color:var(--danger)">−24% do −36%</div>
+      <div class="scenario-desc">
+        • Guidance 2026 niezrealizowane (poniżej $100M)<br>
+        • Problemy z produkcją u kontraktowych partnerów w Chinach<br>
+        • Dalszy odpływ insiderów powoduje paniczny exit retailu<br>
+        • Makro: risk-off, wzrost stóp procentowych<br>
+        • Kurs wraca do strefy $12.56 lub niżej
+      </div>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-header">
+        <div class="scenario-name" style="color:var(--accent)">⚖ Bazowy</div>
+        <div class="scenario-prob">Prawdopodobieństwo: 55%</div>
+      </div>
+      <div class="scenario-target" style="color:var(--accent)">$19–$22</div>
+      <div class="scenario-return" style="color:var(--accent)">+11% do +28%</div>
+      <div class="scenario-desc">
+        • Revenue 2026 realizuje guidance $125M<br>
+        • Adj. EBITDA pozytywne za cały rok (pierwsze w historii)<br>
+        • Kolejne zamówienia SiCore w LEV i dronach<br>
+        • Analitycy utrzymują PT $20–$22<br>
+        • Kurs testuje i atakuje $20 do Q3 2026
+      </div>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-header">
+        <div class="scenario-name" style="color:var(--accent2)">🚀 Byk</div>
+        <div class="scenario-prob">Prawdopodobieństwo: 25%</div>
+      </div>
+      <div class="scenario-target" style="color:var(--accent2)">$28–$35</div>
+      <div class="scenario-return" style="color:var(--accent2)">+63% do +104%</div>
+      <div class="scenario-desc">
+        • Revenue 2026 przekracza $140–150M<br>
+        • Kontrakt obronny USA (Departament Obrony) — oficjalne ogłoszenie<br>
+        • Przełomowe partnerstowo z OEM lotniczym (eVTOL/SAF)<br>
+        • Podwyżki PT do $28–$30 przez sell-side<br>
+        • Kurs bije 52W High i szturmuuje nowe szczyty<br>
+        • Short squeeze (10% SI) turbodoładowuje ruch
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-label" style="font-size:9px">Potencjał długoterminowy (3–5 lat)</div>
+  <div class="grid-2">
+    <div>
+      <p>Modele analityczne (Fintel) prognozują revenue w 2032 na poziomie <strong class="hl">$1.65 miliarda</strong> — zakładając utrzymanie pozycji lidera w high-energy density batteries przy ekspansji rynku UAS, eVTOL i LEV. To implikuje CAGR ~65% od 2025.</p>
+      <p>Walletinvestor prognozuje cenę akcji na poziomie <strong class="hl-g">$72.45</strong> w perspektywie 5-letniej (2031), co oznacza +322% od obecnych poziomów przy założeniu realizacji mapy drogowej produktów.</p>
+    </div>
+    <div>
+      <table class="fin-table">
+        <tr><th>Rok</th><th class="right">Revenue (est.)</th><th class="right">Wzrost</th></tr>
+        <tr><td>2025A</td><td class="right mono up">$73M</td><td class="right up">+202%</td></tr>
+        <tr><td>2026E (guidance)</td><td class="right mono up">$125M+</td><td class="right up">+71%</td></tr>
+        <tr><td>2027E</td><td class="right mono">$200–230M</td><td class="right neutral">est.</td></tr>
+        <tr><td>2028E</td><td class="right mono">$300–350M</td><td class="right neutral">est.</td></tr>
+        <tr><td>2032E (model)</td><td class="right mono up">$1,649M</td><td class="right up">CAGR ~65%</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ RYZYKA ═══ -->
+<div class="section">
+  <div class="section-label">08 &mdash; Ryzyka Kluczowe</div>
+  <h2>Co może pójść nie tak?</h2>
+
+  <div class="grid-2">
+    <div>
+      <div class="risk-item">
+        <div class="risk-icon" style="color:var(--danger)">⚠</div>
+        <div class="risk-content">
+          <div class="risk-title">Intensywna sprzedaż insiderów <span class="badge alert">AKTYWNE</span></div>
+          <div class="risk-desc">Były CEO Kang Sun sprzedał ~1.76M akcji za ~$16.73M od stycznia 2026, redukcja o 79%. Director Steven Chu sprzedał ~322K akcji w marcu. Łączna wartość insiderskiej sprzedaży przekroczyła $24M. Może to sygnalizować ceiling wyceny lub zwykłą dywersyfikację po wieloletnim cashout.</div>
+        </div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-icon" style="color:var(--warn)">⚡</div>
+        <div class="risk-content">
+          <div class="risk-title">Koncentracja klientów i geograficzna</div>
+          <div class="risk-desc">Znaczna część przychodów pochodzi z Azji (kontraktowa produkcja + sprzedaż). Order $21M z Chin to dobra dywersyfikacja, ale też ryzyko geopolityczne i taryfowe. Zależność od partnerów kontraktowych stanowi ryzyko operacyjne.</div>
+        </div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-icon" style="color:var(--accent3)">🔋</div>
+        <div class="risk-content">
+          <div class="risk-title">Droga do rentowności GAAP</div>
+          <div class="risk-desc">Spółka nadal notuje straty GAAP (guidance 2026: −$8M). Mimo pozytywnego EBITDA, prawdziwy zysk netto jest odległy. Każde rozczarowanie wynikami może diametralnie zmienić sentyment rynkowy.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="risk-item">
+        <div class="risk-icon" style="color:var(--warn)">🏭</div>
+        <div class="risk-content">
+          <div class="risk-title">Ryzyko skalowania produkcji</div>
+          <div class="risk-desc">Przejście z R&D do masowej produkcji zawsze niesie ryzyko opóźnień, problemów z jakością i yield. Foundry model ogranicza CapEx, ale zmniejsza kontrolę. Wzrost z $73M do $125M wymaga sprawnego zarządzania łańcuchem dostaw.</div>
+        </div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-icon" style="color:var(--danger)">🌍</div>
+        <div class="risk-content">
+          <div class="risk-title">Konkurencja i presja cenowa</div>
+          <div class="risk-desc">QuantumScape, Solid Power, CATL i Samsung SDI intensywnie rozwijają własne technologie następnej generacji. Okno przewagi technologicznej może być krótsze niż zakładane 2–4 lata.</div>
+        </div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-icon" style="color:var(--accent)">📊</div>
+        <div class="risk-content">
+          <div class="risk-title">Wycena — Premium growth story</div>
+          <div class="risk-desc">Market cap $2.3B vs revenue $73M (TTM) = EV/S ~30x. Przy guidanced $125M = EV/S ~18x 2026. Rynek wycenia sukces. Każdy miss to ryzyko de-ratingu. Speculative premium jest wysoko wbudowany w cenę.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ WERDYKT ═══ -->
+<div class="section" style="border-bottom:none">
+  <div class="section-label">09 &mdash; Werdykt Końcowy</div>
+  <h2>Podsumowanie dla agresywnego inwestora</h2>
+
+  <div class="verdict-box">
+    <div class="verdict-title">Ocena — Agresywny Stock Picking</div>
+    <div class="verdict-rating">STRONG BUY z dyscypliną</div>
+    <div class="verdict-desc">
+      Amprius Technologies to jedna z najciekawszych technologicznych okazji inwestycyjnych w 2026 roku. Spółka właśnie przeszła kluczowy inflection point: od "pre-revenue story" do "skalującego się biznesu na ścieżce do zysku". Revenue +202% YoY, pierwsze pozytywne EBITDA, guidance $125M+ przy 100% Strong Buy od analityków.
+      <br><br>
+      <strong>Obecna korekta do $17.16 jest spowodowana insiderami, nie fundamentami.</strong> Kang Sun (były CEO) zbudował fortunę i po prostu dywersyfikuje swoje aktywa po przejściu na emeryturę. To normalny proces — nie czerwona flaga operacyjna.
+      <br><br>
+      <strong>Strategia na 12M:</strong> Akumuluj między $16.30–$17.30, stop-loss $12.50, docelowo $20–$22. Przy scenariuszu byczym (kontrakt DOD, przebicie $20.29) — ruch do $28–$35 realny. Short interest 10% zapewnia paliwo do squeeze przy dobrych wynikach Q1 2026 (07.05.2026).
+    </div>
+  </div>
+
+  <div class="grid-3" style="margin-top:16px">
+    <div class="card green">
+      <div class="card-label">Rekomendacja</div>
+      <div class="card-value green" style="font-size:20px">AKUMULUJ</div>
+      <div class="card-sub">$16.30–$17.30 w 2–3 transzach</div>
+    </div>
+    <div class="card yellow">
+      <div class="card-label">Stop-Loss Bezwarunkowy</div>
+      <div class="card-value yellow" style="font-size:20px">$12.50</div>
+      <div class="card-sub">Poniżej breakout zone / hard floor</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Target 12M (bazowy)</div>
+      <div class="card-value accent" style="font-size:20px">$20–$22</div>
+      <div class="card-sub">+16% do +28% | Katalizator: Q1 earnings 07.05</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ FOOTER ═══ -->
+<div class="footer">
+  <div class="footer-meta">
+    <div class="footer-logo">ANAL Report — AMPX</div>
+    <div class="footer-date">Wygenerowano: 27.03.2026 · Dane: MarketBeat, TipRanks, StockAnalysis, SEC EDGAR, CNN Markets</div>
+  </div>
+  <div class="disclaimer">
+    <strong style="color:var(--muted)">DISCLAIMER:</strong> Ten raport ma charakter wyłącznie informacyjny i edukacyjny. Nie stanowi rekomendacji inwestycyjnej ani porady finansowej w rozumieniu przepisów prawa. Inwestowanie w akcje wiąże się z ryzykiem utraty całości lub części kapitału. Wyniki historyczne nie gwarantują przyszłych zwrotów. Przed podjęciem decyzji inwestycyjnej skonsultuj się z licencjonowanym doradcą finansowym. Autor nie ponosi odpowiedzialności za decyzje podjęte na podstawie niniejszego materiału. Żaden poziom wejścia, stop-loss ani target nie jest gwarantowany.
+  </div>
+</div>
+
+</body>
+</html>
