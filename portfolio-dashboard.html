@@ -3,1080 +3,1109 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PORTFOLIO DASHBOARD — 02.04.2026</title>
+<title>Portfolio Dashboard — 02.04.2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:     #07070A;
-  --bg2:    #0C0C12;
-  --bg3:    #111118;
-  --bg4:    #17171F;
-  --border: #1A1A28;
-  --bd2:    #252538;
-  --green:  #00FF88;
-  --red:    #FF3355;
-  --amber:  #FFB800;
-  --blue:   #00AAFF;
-  --purple: #B44FFF;
-  --orange: #FF6B2B;
-  --cyan:   #00E5FF;
-  --gold:   #FFD700;
-  --text:   #E8E8F2;
-  --text2:  #8888A8;
-  --text3:  #50506A;
+  --bg:      #06060A;
+  --bg2:     #0B0B12;
+  --bg3:     #10101A;
+  --bg4:     #161622;
+  --border:  #1C1C2E;
+  --bd2:     #252540;
+  --green:   #00FF88;
+  --red:     #FF3355;
+  --amber:   #FFB800;
+  --blue:    #00AAFF;
+  --purple:  #C060FF;
+  --orange:  #FF6B2B;
+  --cyan:    #00E5FF;
+  --gold:    #FFD700;
+  --text:    #EEEEF8;
+  --text2:   #8888AA;
+  --text3:   #4A4A6A;
+  --mu:      #00E5FF;
+  --satl:    #C060FF;
+  --avgo:    #B44FFF;
+  --amkr:    #FF6B2B;
 }
-*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 14px; scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'JetBrains Mono', monospace;
-  line-height: 1.5;
-  min-height: 100vh;
-}
-body::before {
-  content: '';
-  position: fixed; inset: 0;
-  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.12) 2px, rgba(0,0,0,0.12) 4px);
-  pointer-events: none; z-index: 0;
-}
+body { background: var(--bg); color: var(--text); font-family: 'JetBrains Mono', monospace; line-height: 1.5; min-height: 100vh; overflow-x: hidden; }
 
-/* ═══ HEADER ═══ */
-.header {
-  background: var(--bg2);
-  border-bottom: 2px solid var(--bd2);
-  padding: 20px 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  position: relative; z-index: 1;
+/* scanlines */
+body::before { content: ''; position: fixed; inset: 0; background: repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.07) 3px,rgba(0,0,0,0.07) 6px); pointer-events: none; z-index: 500; }
+
+/* ─── STICKY ALERT BANNER ─── */
+.alert-banner {
+  position: sticky; top: 0; z-index: 400;
+  background: #1A0808;
+  border-bottom: 2px solid var(--red);
+  padding: 8px 24px;
+  display: flex; align-items: center; gap: 16px;
+  font-size: 0.78rem;
 }
+.alert-banner-pulse {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--red); flex-shrink: 0;
+  animation: pulse-red 1.4s ease-in-out infinite;
+}
+@keyframes pulse-red { 0%,100%{box-shadow:0 0 0 0 rgba(255,51,85,.7)} 50%{box-shadow:0 0 0 6px rgba(255,51,85,0)} }
+.alert-banner-text { color: var(--red); font-weight: 600; flex: 1; }
+.alert-banner-text strong { color: #FF7799; }
+.alert-banner-close { color: var(--text3); cursor: pointer; font-size: 1rem; padding: 2px 8px; }
+.alert-banner-close:hover { color: var(--text2); }
+
+/* ─── HEADER ─── */
+.header {
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 18px 28px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+.header-brand { display: flex; align-items: baseline; gap: 14px; }
 .header-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  background: linear-gradient(90deg, var(--purple), var(--cyan), var(--green));
+  font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800;
+  letter-spacing: 0.15em;
+  background: linear-gradient(90deg, var(--purple), var(--cyan));
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
-.header-meta { font-size: 0.8rem; color: var(--text3); letter-spacing: 0.08em; }
-.header-meta span { color: var(--text2); margin-left: 6px; }
-
-/* ═══ SUMMARY BAR ═══ */
-.summary-bar {
-  display: flex;
-  gap: 0;
-  background: var(--bg3);
-  border-bottom: 1px solid var(--border);
-  overflow-x: auto;
-  position: relative; z-index: 1;
+.header-sub { font-size: 0.72rem; color: var(--text3); letter-spacing: 0.08em; }
+.header-right { display: flex; align-items: center; gap: 20px; }
+.header-date { font-size: 0.72rem; color: var(--text3); }
+.header-positions {
+  display: flex; gap: 6px;
 }
-.summary-bar::-webkit-scrollbar { display: none; }
-.sum-item {
-  flex: 1; min-width: 130px;
-  padding: 14px 18px;
-  border-right: 1px solid var(--border);
-  text-align: center;
-}
-.sum-item:last-child { border-right: none; }
-.sum-val {
+.pos-chip {
   font-family: 'Syne', sans-serif;
-  font-size: 1.4rem; font-weight: 700;
-  line-height: 1.1; margin-bottom: 3px;
+  font-size: 0.72rem; font-weight: 700;
+  padding: 3px 10px; letter-spacing: 0.06em;
 }
-.sum-lbl { font-size: 0.68rem; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; }
-.c-green { color: var(--green); }
-.c-red   { color: var(--red); }
-.c-amber { color: var(--amber); }
-.c-cyan  { color: var(--cyan); }
-.c-purple{ color: var(--purple); }
-.c-orange{ color: var(--orange); }
-.c-gold  { color: var(--gold); }
-.c-blue  { color: var(--blue); }
-.c-dim   { color: var(--text3); }
-.c-text2 { color: var(--text2); }
 
-/* ═══ SECTIONS ═══ */
-.container { max-width: 1280px; margin: 0 auto; padding: 24px 20px 60px; position: relative; z-index: 1; }
-
-.section-head {
-  display: flex; align-items: center; gap: 12px;
-  margin: 28px 0 16px;
+/* ─── HERO STATS ─── */
+.hero-stats {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  background: var(--bg2); border-bottom: 1px solid var(--border);
 }
-.section-line { flex: 1; height: 1px; background: var(--bd2); }
-.section-title {
+.hero-stat {
+  padding: 18px 20px; border-right: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat-val {
+  font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; line-height: 1;
+  margin-bottom: 4px;
+}
+.hero-stat-lbl { font-size: 0.67rem; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; }
+.hero-stat-sub { font-size: 0.72rem; color: var(--text2); margin-top: 3px; }
+.hero-stat-glow {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+}
+
+/* ─── EARNINGS TIMELINE ─── */
+.timeline-section {
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 18px 28px;
+}
+.tl-head {
+  font-size: 0.67rem; color: var(--text3); letter-spacing: 0.14em; text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.timeline-track {
+  position: relative; padding: 0 0 28px;
+}
+.timeline-line {
+  position: absolute; left: 0; right: 0; top: 12px;
+  height: 1px; background: var(--border);
+}
+.timeline-events { display: flex; justify-content: space-between; position: relative; }
+.tl-event {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  flex: 1;
+}
+.tl-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  border: 2px solid; position: relative; z-index: 2;
+  flex-shrink: 0;
+}
+.tl-dot.portfolio { animation: pulse-dot 2s ease-in-out infinite; }
+@keyframes pulse-dot { 0%,100%{box-shadow:0 0 0 0 rgba(255,184,0,.6)} 50%{box-shadow:0 0 0 5px rgba(255,184,0,0)} }
+.tl-ticker {
+  font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.tl-date { font-size: 0.65rem; color: var(--text3); }
+.tl-days {
+  font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 2px;
+}
+
+/* ─── CONTAINER ─── */
+.container { max-width: 1360px; margin: 0 auto; padding: 24px 20px 80px; }
+
+/* ─── SECTION DIVIDER ─── */
+.sec-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 18px;
+}
+.sec-line { flex: 1; height: 1px; background: var(--border); }
+.sec-label {
   font-family: 'Syne', sans-serif;
-  font-size: 0.78rem; font-weight: 700;
-  letter-spacing: 0.2em; text-transform: uppercase;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--text3); white-space: nowrap;
 }
 
-/* ═══ PORTFOLIO CARDS ═══ */
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
+/* ─── PORTFOLIO GRID ─── */
+.portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
-.p-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  overflow: hidden;
+/* ─── POSITION CARD ─── */
+.pos-card {
+  background: var(--bg2); border: 1px solid var(--border);
   display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+}
+.pos-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+}
+.pos-card.mu::before    { background: linear-gradient(90deg, #004466, var(--cyan), #004466); background-size: 200%; animation: shimmer 3s linear infinite; }
+.pos-card.satl::before  { background: linear-gradient(90deg, #3A0066, var(--satl), #3A0066); background-size: 200%; animation: shimmer 3s linear infinite; }
+.pos-card.avgo::before  { background: linear-gradient(90deg, #3A0066, var(--purple), var(--cyan), #3A0066); background-size: 200%; animation: shimmer 4s linear infinite; }
+.pos-card.amkr::before  { background: linear-gradient(90deg, #4A1800, var(--orange), #4A1800); background-size: 200%; animation: shimmer 3s linear infinite; }
+@keyframes shimmer { 0%{background-position:200% center} 100%{background-position:-200% center} }
+
+/* Watermark ticker */
+.pos-card::after {
+  content: attr(data-ticker);
+  position: absolute; right: -10px; top: 8px;
+  font-family: 'Syne', sans-serif; font-size: 5rem; font-weight: 800;
+  opacity: 0.035; letter-spacing: -4px; pointer-events: none;
+  line-height: 1;
 }
 
-/* Accent bar */
-.p-accent { height: 3px; width: 100%; }
-.accent-mu     { background: linear-gradient(90deg, var(--cyan), #0088CC); }
-.accent-satl   { background: linear-gradient(90deg, var(--purple), #7722CC); }
-.accent-avgo   { background: linear-gradient(90deg, var(--purple), var(--cyan)); }
-.accent-amkr   { background: linear-gradient(90deg, var(--orange), #CC4400); }
-.accent-watch  { background: linear-gradient(90deg, var(--text3), var(--bd2)); }
-
-/* Card top */
-.p-top {
-  padding: 14px 16px 10px;
+/* Card header */
+.card-head {
+  padding: 16px 18px 12px;
   display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
 }
-.p-left {}
-.p-ticker {
-  font-family: 'Syne', sans-serif;
-  font-size: 2rem; font-weight: 800; line-height: 1;
-  margin-bottom: 2px;
+.card-left {}
+.card-ticker {
+  font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; line-height: 1;
 }
-.p-company { font-size: 0.78rem; color: var(--text2); }
-.p-role {
-  display: inline-block;
-  font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 2px 8px; margin-top: 5px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--bd2);
-  color: var(--text3);
+.card-company { font-size: 0.76rem; color: var(--text2); margin-top: 1px; }
+.card-role-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 3px 10px; margin-top: 6px;
+  border-width: 1px; border-style: solid;
 }
-.p-role.bankomatat { border-color: rgba(0,229,255,0.3); color: var(--cyan); background: rgba(0,229,255,0.06); }
-.p-role.skarbiec   { border-color: rgba(180,79,255,0.3); color: var(--purple); background: rgba(180,79,255,0.06); }
-.p-role.spekulacja { border-color: rgba(255,184,0,0.3); color: var(--amber); background: rgba(255,184,0,0.06); }
+.role-bankomatat { color: var(--cyan); border-color: rgba(0,229,255,.3); background: rgba(0,229,255,.07); }
+.role-skarbiec   { color: var(--purple); border-color: rgba(192,96,255,.3); background: rgba(192,96,255,.07); }
+.role-spekulacja { color: var(--amber); border-color: rgba(255,184,0,.3); background: rgba(255,184,0,.07); }
 
-.p-right { text-align: right; flex-shrink: 0; }
-.p-price-current {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.6rem; font-weight: 700; line-height: 1;
+.card-right { text-align: right; flex-shrink: 0; }
+.card-price-now {
+  font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; line-height: 1;
 }
-.p-price-date { font-size: 0.65rem; color: var(--text3); margin-bottom: 4px; }
-.p-pnl {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.1rem; font-weight: 700;
-  margin-top: 4px;
+.card-price-date { font-size: 0.62rem; color: var(--text3); margin-bottom: 2px; }
+.card-pnl {
+  font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-top: 4px;
 }
+.card-entry-note { font-size: 0.68rem; color: var(--text3); margin-top: 2px; }
 
-/* Entry info */
-.p-entry-row {
-  display: flex; gap: 0;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+/* Key metrics strip */
+.card-metrics {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
 }
-.p-entry-box {
-  flex: 1; padding: 8px 10px; text-align: center;
-  border-right: 1px solid var(--border);
-}
-.p-entry-box:last-child { border-right: none; }
-.p-entry-val { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; line-height: 1.2; }
-.p-entry-lbl { font-size: 0.6rem; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 1px; }
+.cm { padding: 9px 10px; text-align: center; border-right: 1px solid var(--border); }
+.cm:last-child { border-right: none; }
+.cm-val { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; line-height: 1.2; }
+.cm-lbl { font-size: 0.58rem; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
 
-/* SL/TP Bar */
-.sl-tp-section { padding: 12px 16px; }
-.sl-tp-title { font-size: 0.65rem; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
-
-.sl-tp-row {
+/* SL/TP section */
+.sl-tp-section { padding: 14px 18px 10px; }
+.sltp-row {
   display: flex; align-items: center; gap: 8px;
-  margin-bottom: 6px; font-size: 0.78rem;
+  margin-bottom: 7px; font-size: 0.8rem;
 }
-.sl-tp-tag {
-  font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 2px 7px; min-width: 42px; text-align: center;
-  font-weight: 700;
+.sltp-tag {
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 2px 8px; min-width: 38px; text-align: center; flex-shrink: 0;
 }
-.sl-tp-tag.sl { background: rgba(255,51,85,0.15); border: 1px solid rgba(255,51,85,0.3); color: var(--red); }
-.sl-tp-tag.tp1 { background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.25); color: var(--cyan); }
-.sl-tp-tag.tp2 { background: rgba(0,255,136,0.1); border: 1px solid rgba(0,255,136,0.25); color: var(--green); }
-.sl-tp-tag.skarbiec { background: rgba(180,79,255,0.1); border: 1px solid rgba(180,79,255,0.25); color: var(--purple); }
+.tag-sl  { background: rgba(255,51,85,.15); border: 1px solid rgba(255,51,85,.3); color: var(--red); }
+.tag-tp1 { background: rgba(0,229,255,.1); border: 1px solid rgba(0,229,255,.25); color: var(--cyan); }
+.tag-tp2 { background: rgba(0,255,136,.1); border: 1px solid rgba(0,255,136,.25); color: var(--green); }
+.tag-dca { background: rgba(192,96,255,.1); border: 1px solid rgba(192,96,255,.25); color: var(--purple); }
+.sltp-val { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; min-width: 68px; }
+.sltp-pct { font-size: 0.72rem; color: var(--text2); min-width: 54px; }
+.sltp-note { font-size: 0.68rem; color: var(--amber); margin-left: auto; text-align: right; }
+.sltp-note.danger { color: var(--red); font-weight: 600; animation: blink 1.8s step-end infinite; }
+@keyframes blink { 50%{opacity:.4} }
 
-.sl-tp-val { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; min-width: 72px; }
-.sl-tp-rr  { color: var(--text3); font-size: 0.72rem; }
-.sl-tp-note { color: var(--amber); font-size: 0.68rem; margin-left: auto; }
-
-/* Progress bar */
-.price-bar-wrap { margin: 6px 0 10px; }
-.price-bar-labels {
+/* Price position bar */
+.price-bar-outer { margin: 10px 0 4px; }
+.price-bar-meta {
   display: flex; justify-content: space-between;
-  font-size: 0.65rem; color: var(--text3); margin-bottom: 4px;
+  font-size: 0.62rem; color: var(--text3); margin-bottom: 5px;
 }
 .price-bar-track {
-  height: 6px; background: var(--bg4);
-  border-radius: 3px; position: relative; overflow: visible;
+  height: 8px; background: var(--bg4); border-radius: 4px;
+  position: relative; overflow: visible;
 }
-.price-bar-fill {
-  height: 100%; border-radius: 3px;
-  background: linear-gradient(90deg, var(--red), var(--amber), var(--green));
+.price-bar-fill { height: 100%; border-radius: 4px; }
+.price-cursor {
+  position: absolute; top: -5px; transform: translateX(-50%);
+  width: 4px; height: 18px; border-radius: 2px;
+  background: white; box-shadow: 0 0 8px rgba(255,255,255,.8);
+  z-index: 2;
 }
-.price-bar-cursor {
-  position: absolute; top: -4px;
-  width: 3px; height: 14px;
-  background: white;
-  border-radius: 2px;
-  transform: translateX(-50%);
-  box-shadow: 0 0 6px rgba(255,255,255,0.6);
+.price-entry-mark {
+  position: absolute; top: -3px; transform: translateX(-50%);
+  width: 2px; height: 14px; border-radius: 1px;
+  background: rgba(255,255,255,.35);
+  z-index: 1;
 }
+.price-tp1-mark {
+  position: absolute; top: -3px; transform: translateX(-50%);
+  width: 1px; height: 14px;
+  background: rgba(0,229,255,.5);
+  z-index: 1;
+}
+
+/* Alert inside card */
+.card-alert {
+  margin: 0 18px 10px;
+  padding: 9px 12px;
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 0.76rem; line-height: 1.5;
+}
+.card-alert.warn { background: rgba(255,184,0,.07); border: 1px solid rgba(255,184,0,.25); border-left: 3px solid var(--amber); }
+.card-alert.danger { background: rgba(255,51,85,.07); border: 1px solid rgba(255,51,85,.25); border-left: 3px solid var(--red); }
+.card-alert.info  { background: rgba(0,229,255,.05); border: 1px solid rgba(0,229,255,.2); border-left: 3px solid var(--cyan); }
+.card-alert-icon { font-size: 0.9rem; flex-shrink: 0; }
+.card-alert-text { color: var(--text2); }
+.card-alert-text strong { color: var(--text); }
 
 /* Signals */
-.p-signals {
+.card-signals {
   display: flex; flex-wrap: wrap; gap: 4px;
-  padding: 0 16px 10px;
+  padding: 4px 18px 12px;
 }
 .sig {
-  font-size: 0.68rem; padding: 2px 8px; border-radius: 2px;
-  white-space: nowrap; letter-spacing: 0.03em;
+  font-size: 0.65rem; padding: 2px 8px; letter-spacing: 0.03em;
+  border-width: 1px; border-style: solid;
 }
-.sig-green  { background: rgba(0,255,136,0.08); color: var(--green);  border: 1px solid rgba(0,255,136,0.18); }
-.sig-red    { background: rgba(255,51,85,0.08);  color: var(--red);    border: 1px solid rgba(255,51,85,0.18); }
-.sig-amber  { background: rgba(255,184,0,0.08);  color: var(--amber);  border: 1px solid rgba(255,184,0,0.18); }
-.sig-cyan   { background: rgba(0,229,255,0.08);  color: var(--cyan);   border: 1px solid rgba(0,229,255,0.18); }
-.sig-purple { background: rgba(180,79,255,0.08); color: var(--purple); border: 1px solid rgba(180,79,255,0.18); }
-.sig-dim    { background: rgba(255,255,255,0.03); color: var(--text3); border: 1px solid var(--border); }
+.sig-g { color: var(--green); background: rgba(0,255,136,.06); border-color: rgba(0,255,136,.18); }
+.sig-r { color: var(--red); background: rgba(255,51,85,.06); border-color: rgba(255,51,85,.18); }
+.sig-a { color: var(--amber); background: rgba(255,184,0,.06); border-color: rgba(255,184,0,.18); }
+.sig-c { color: var(--cyan); background: rgba(0,229,255,.06); border-color: rgba(0,229,255,.18); }
+.sig-p { color: var(--purple); background: rgba(192,96,255,.06); border-color: rgba(192,96,255,.18); }
+.sig-d { color: var(--text3); background: rgba(255,255,255,.02); border-color: var(--border); }
 
-/* Earnings countdown */
-.p-earnings {
+/* Earnings footer */
+.card-earnings {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 8px 16px;
-  background: var(--bg3);
-  border-top: 1px solid var(--border);
-  font-size: 0.75rem;
+  padding: 10px 18px;
+  background: var(--bg3); border-top: 1px solid var(--border);
+  margin-top: auto;
 }
-.earnings-label { color: var(--text3); letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.65rem; }
-.earnings-date  { color: var(--amber); font-weight: 600; }
-.earnings-days  {
-  font-family: 'Syne', sans-serif;
-  font-size: 0.9rem; font-weight: 700;
-  background: rgba(255,184,0,0.12);
-  border: 1px solid rgba(255,184,0,0.25);
-  color: var(--amber);
-  padding: 2px 10px;
+.earnings-info {}
+.earnings-lbl { font-size: 0.62rem; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; }
+.earnings-date { font-size: 0.82rem; color: var(--amber); font-weight: 600; margin-top: 1px; }
+.earnings-countdown {
+  font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800;
+  padding: 4px 14px; letter-spacing: 0.04em;
 }
 
-/* REPORT BUTTON */
+/* Report button */
 .report-btn {
-  display: block; width: 100%;
-  padding: 13px 16px;
-  background: #00E5FF;
-  border: none;
-  color: #07070A;
-  font-family: 'Syne', sans-serif;
-  font-size: 0.82rem; font-weight: 700;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  text-decoration: none; text-align: center;
-  cursor: pointer;
-  transition: background 0.15s, box-shadow 0.15s;
-  margin-top: auto;
-  box-shadow: 0 0 18px rgba(0,229,255,0.35);
+  display: block; width: 100%; padding: 14px 18px;
+  background: var(--cyan); color: #06060A;
+  font-family: 'Syne', sans-serif; font-size: 0.82rem; font-weight: 800;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  text-decoration: none; text-align: center; cursor: pointer;
+  transition: background .15s, box-shadow .15s;
+  box-shadow: 0 0 20px rgba(0,229,255,.3);
 }
-.report-btn:hover {
-  background: #00FFFF;
-  box-shadow: 0 0 28px rgba(0,229,255,0.6);
-}
+.report-btn:hover { background: #33EEFF; box-shadow: 0 0 32px rgba(0,229,255,.55); }
 .report-btn::before { content: '→  '; }
 
-/* ═══ WATCHLIST ═══ */
-.watch-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-}
-.w-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  overflow: hidden;
-}
-.w-top { padding: 12px 14px 8px; }
-.w-ticker {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.3rem; font-weight: 800; line-height: 1;
-}
-.w-company { font-size: 0.72rem; color: var(--text2); margin-bottom: 6px; }
-.w-price { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; }
-.w-upside { font-size: 0.72rem; margin-top: 2px; }
-.w-meta { display: flex; flex-direction: column; gap: 4px; padding: 8px 14px; border-top: 1px solid var(--border); font-size: 0.72rem; }
-.w-row { display: flex; justify-content: space-between; }
-.w-key { color: var(--text3); }
-.w-val { font-weight: 600; }
-.w-signals { display: flex; flex-wrap: wrap; gap: 3px; padding: 6px 14px; }
-.w-btn {
-  display: block; width: 100%;
-  padding: 9px 10px;
-  background: #00E5FF;
-  border: none;
-  color: #07070A; font-family: 'Syne', sans-serif;
-  font-size: 0.72rem; font-weight: 700;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  text-decoration: none; text-align: center; cursor: pointer;
-  transition: background 0.15s, box-shadow 0.15s;
-  box-shadow: 0 0 12px rgba(0,229,255,0.25);
-}
-.w-btn:hover { background: #00FFFF; box-shadow: 0 0 20px rgba(0,229,255,0.5); }
-.w-btn.no-report { cursor: default; background: var(--bg3); color: var(--text3); box-shadow: none; border-top: 1px solid var(--border); }
-.w-btn.no-report:hover { background: var(--bg3); color: var(--text3); box-shadow: none; }
-
-/* ═══ MASTER TABLE ═══ */
-.master-table-wrap {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  overflow-x: auto;
-}
-.master-table-head {
-  background: var(--bg3);
-  border-bottom: 1px solid var(--bd2);
-  padding: 12px 18px;
-  font-family: 'Syne', sans-serif;
-  font-size: 0.85rem; font-weight: 700;
-  letter-spacing: 0.08em; text-transform: uppercase;
-}
-table.mtable {
-  width: 100%; border-collapse: collapse; font-size: 0.82rem;
-}
-table.mtable th {
-  background: var(--bg4);
-  color: var(--text3); font-size: 0.66rem; letter-spacing: 0.1em;
-  text-transform: uppercase; font-weight: 400;
-  padding: 9px 12px; border-bottom: 1px solid var(--bd2);
-  white-space: nowrap;
-}
-table.mtable td {
-  padding: 9px 12px;
-  border-bottom: 1px solid var(--border);
-  vertical-align: middle;
-}
-table.mtable tr:last-child td { border-bottom: none; }
-table.mtable tr:hover td { background: rgba(255,255,255,0.015); }
-.td-r { text-align: right; }
-.td-c { text-align: center; }
-.rpt-link {
-  display: inline-block;
-  font-size: 0.72rem; font-weight: 700; padding: 4px 12px;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  background: #00E5FF; color: #07070A;
-  text-decoration: none; white-space: nowrap; cursor: pointer;
-  transition: background 0.1s, box-shadow 0.1s;
-  box-shadow: 0 0 8px rgba(0,229,255,0.25);
-  font-family: 'Syne', sans-serif;
-}
-.rpt-link:hover { background: #00FFFF; box-shadow: 0 0 16px rgba(0,229,255,0.5); }
-.no-rpt { font-size: 0.68rem; color: var(--text3); }
-
-/* ═══ ALERTS BOX ═══ */
-.alerts-section {
-  margin-top: 20px;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-}
-.alert-box {
+/* ─── CANDIDATES GRID ─── */
+.cand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.cand-card {
   background: var(--bg2); border: 1px solid var(--border);
-  padding: 14px 16px;
+  overflow: hidden; display: flex; flex-direction: column;
 }
-.alert-box.warn { border-left: 3px solid var(--amber); }
-.alert-box.danger { border-left: 3px solid var(--red); }
-.alert-box.info  { border-left: 3px solid var(--cyan); }
-.alert-box.ok    { border-left: 3px solid var(--green); }
-.alert-title { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
-.alert-title.warn { color: var(--amber); }
-.alert-title.danger { color: var(--red); }
-.alert-title.info   { color: var(--cyan); }
-.alert-title.ok     { color: var(--green); }
-.alert-body { font-size: 0.8rem; color: var(--text2); line-height: 1.6; }
-.alert-body strong { color: var(--text); }
+.cand-head { padding: 14px 16px 10px; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.cand-ticker { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; line-height: 1; }
+.cand-company { font-size: 0.72rem; color: var(--text2); margin-top: 1px; }
+.cand-status { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-width: 1px; border-style: solid; margin-top: 5px; display: inline-block; }
+.cand-right { text-align: right; }
+.cand-price { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700; }
+.cand-upside { font-size: 0.72rem; margin-top: 3px; }
+.cand-meta { padding: 8px 16px; border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; }
+.cand-row { display: flex; justify-content: space-between; font-size: 0.74rem; padding: 3px 0; border-bottom: 1px solid rgba(28,28,46,.7); }
+.cand-row:last-child { border-bottom: none; }
+.cand-key { color: var(--text3); }
+.cand-val { font-weight: 600; }
+.cand-sigs { display: flex; flex-wrap: wrap; gap: 3px; padding: 6px 16px 10px; }
+.cand-btn {
+  display: block; width: 100%; padding: 11px 16px;
+  background: var(--cyan); color: #06060A;
+  font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 800;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; text-align: center;
+  transition: background .15s, box-shadow .15s;
+  box-shadow: 0 0 14px rgba(0,229,255,.25); margin-top: auto;
+}
+.cand-btn:hover { background: #33EEFF; box-shadow: 0 0 24px rgba(0,229,255,.5); }
+.cand-btn::before { content: '→  '; }
 
-/* ═══ FOOTER ═══ */
-.footer {
-  text-align: center; padding: 20px;
-  font-size: 0.68rem; color: var(--text3);
-  border-top: 1px solid var(--border); margin-top: 28px; line-height: 1.8;
-  position: relative; z-index: 1;
-}
+/* ─── MASTER TABLE ─── */
+.mtable-wrap { background: var(--bg2); border: 1px solid var(--border); overflow-x: auto; }
+.mtable-head { background: var(--bg3); border-bottom: 1px solid var(--bd2); padding: 12px 18px; font-family: 'Syne', sans-serif; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+table.mt { width: 100%; border-collapse: collapse; }
+table.mt th { background: var(--bg4); color: var(--text3); font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 400; padding: 9px 13px; border-bottom: 1px solid var(--bd2); white-space: nowrap; }
+table.mt td { padding: 10px 13px; border-bottom: 1px solid var(--border); vertical-align: middle; font-size: 0.82rem; }
+table.mt tr:last-child td { border-bottom: none; }
+table.mt tr:hover td { background: rgba(255,255,255,.013); }
+table.mt .tr { text-align: right; }
+table.mt .tc { text-align: center; }
+.rpt-cell { display: inline-block; padding: 4px 12px; background: var(--cyan); color: #06060A; font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; text-decoration: none; transition: background .1s, box-shadow .1s; box-shadow: 0 0 8px rgba(0,229,255,.2); }
+.rpt-cell:hover { background: #33EEFF; box-shadow: 0 0 16px rgba(0,229,255,.45); }
+.no-rpt { color: var(--text3); font-size: 0.7rem; }
+.decisions-box { margin-top: 12px; padding: 12px 16px; background: rgba(255,184,0,.05); border: 1px solid rgba(255,184,0,.2); border-left: 3px solid var(--amber); }
+.decisions-title { font-size: 0.68rem; color: var(--amber); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
+.decisions-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.decisions-list li { font-size: 0.78rem; color: var(--text2); line-height: 1.5; }
+.decisions-list li::before { content: '▸ '; color: var(--amber); }
+.decisions-list li strong { color: var(--text); }
 
-/* ═══ RESPONSIVE ═══ */
-@media(max-width: 900px) {
-  .portfolio-grid { grid-template-columns: 1fr; }
-  .watch-grid { grid-template-columns: 1fr 1fr; }
-}
-@media(max-width: 560px) {
-  .watch-grid { grid-template-columns: 1fr; }
-  .summary-bar { display: grid; grid-template-columns: repeat(3,1fr); }
-  .sum-item { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .alerts-section { grid-template-columns: 1fr; }
-  .header { padding: 14px 16px; }
-  .header-title { font-size: 1.1rem; }
-  .container { padding: 16px 12px 40px; }
-}
+/* ─── RESPONSIVE ─── */
+@media(max-width: 960px) { .portfolio-grid, .cand-grid { grid-template-columns: 1fr; } .hero-stats { grid-template-columns: repeat(3,1fr); } }
+@media(max-width: 600px) { .hero-stats { grid-template-columns: repeat(2,1fr); } .card-metrics { grid-template-columns: repeat(2,1fr); } .timeline-section { display: none; } }
+
+/* utility */
+.c-green { color: var(--green); } .c-red { color: var(--red); } .c-amber { color: var(--amber); }
+.c-cyan { color: var(--cyan); } .c-purple { color: var(--purple); } .c-orange { color: var(--orange); }
+.c-gold { color: var(--gold); } .c-dim { color: var(--text3); } .c-text2 { color: var(--text2); }
 </style>
 </head>
 <body>
 
-<!-- ══ HEADER ══ -->
-<div class="header">
-  <div>
-    <div class="header-title">PORTFOLIO DASHBOARD</div>
-    <div class="header-meta">Portfel aktywny: MU · SATL · AVGO · AMKR &nbsp;|&nbsp;<span>02.04.2026</span></div>
+<!-- ═══ ALERT BANNER ═══ -->
+<div class="alert-banner" id="alertBanner">
+  <div class="alert-banner-pulse"></div>
+  <div class="alert-banner-text">
+    <strong>⚠ AMKR — DECYZJA PILNA:</strong> Cena ~$41.00 vs SL $40.30 = bufor tylko <strong>$0.70 (1.7%)</strong>. Raport ANAL sugeruje SL na $30–33. Podjąć decyzję przed earnings 04 Maj.
   </div>
-  <div style="font-size:0.72rem; color:var(--text3); text-align:right; line-height:1.8;">
-    Dane wejścia i SL/TP z raportów ANAL<br>
-    Ceny aktualne: 26–27.03.2026
+  <div class="alert-banner-close" onclick="document.getElementById('alertBanner').style.display='none'">✕</div>
+</div>
+
+<!-- ═══ HEADER ═══ -->
+<div class="header">
+  <div class="header-brand">
+    <div class="header-title">PORTFOLIO DASHBOARD</div>
+    <div class="header-sub">Dane z raportów ANAL · 02.04.2026</div>
+  </div>
+  <div class="header-right">
+    <div class="header-positions">
+      <div class="pos-chip" style="background:rgba(0,229,255,.12);color:var(--cyan);border:1px solid rgba(0,229,255,.3);">MU</div>
+      <div class="pos-chip" style="background:rgba(192,96,255,.12);color:var(--purple);border:1px solid rgba(192,96,255,.3);">SATL</div>
+      <div class="pos-chip" style="background:rgba(192,96,255,.12);color:var(--purple);border:1px solid rgba(192,96,255,.3);">AVGO</div>
+      <div class="pos-chip" style="background:rgba(255,107,43,.12);color:var(--orange);border:1px solid rgba(255,107,43,.3);">AMKR</div>
+    </div>
+    <div class="header-date">02.04.2026 · 4 pozycje</div>
   </div>
 </div>
 
-<!-- ══ SUMMARY BAR ══ -->
-<div class="summary-bar">
-  <div class="sum-item">
-    <div class="sum-val c-red">−5.2%</div>
-    <div class="sum-lbl">Avg P&amp;L portfela</div>
+<!-- ═══ HERO STATS ═══ -->
+<div class="hero-stats">
+  <div class="hero-stat">
+    <div class="hero-stat-val c-red">−4.7%</div>
+    <div class="hero-stat-lbl">Avg P&amp;L portfela</div>
+    <div class="hero-stat-sub">wszystkie pozycje pod wodą</div>
+    <div class="hero-stat-glow" style="background:linear-gradient(90deg,var(--red),transparent)"></div>
   </div>
-  <div class="sum-item">
-    <div class="sum-val c-amber">32 dni</div>
-    <div class="sum-lbl">Next earnings (AMKR)</div>
+  <div class="hero-stat">
+    <div class="hero-stat-val" style="color:var(--red)">32 dni ⚡</div>
+    <div class="hero-stat-lbl">Next earnings — AMKR</div>
+    <div class="hero-stat-sub">04 Maj 2026 · binary event</div>
+    <div class="hero-stat-glow" style="background:linear-gradient(90deg,var(--red),transparent)"></div>
   </div>
-  <div class="sum-item">
-    <div class="sum-val c-cyan">4</div>
-    <div class="sum-lbl">Pozycje aktywne</div>
+  <div class="hero-stat">
+    <div class="hero-stat-val c-cyan">$512</div>
+    <div class="hero-stat-lbl">MU consensus PT</div>
+    <div class="hero-stat-sub">37/37 analityków Strong Buy</div>
+    <div class="hero-stat-glow" style="background:linear-gradient(90deg,var(--cyan),transparent)"></div>
   </div>
-  <div class="sum-item">
-    <div class="sum-val c-amber">$40.30</div>
-    <div class="sum-lbl">AMKR SL — decyzja ⚠</div>
+  <div class="hero-stat">
+    <div class="hero-stat-val c-purple">$431–470</div>
+    <div class="hero-stat-lbl">AVGO consensus PT</div>
+    <div class="hero-stat-sub">52 analityków · 0 SELL</div>
+    <div class="hero-stat-glow" style="background:linear-gradient(90deg,var(--purple),transparent)"></div>
   </div>
-  <div class="sum-item">
-    <div class="sum-val c-green">$512</div>
-    <div class="sum-lbl">MU consensus PT</div>
+  <div class="hero-stat">
+    <div class="hero-stat-val c-amber">2 otwarte</div>
+    <div class="hero-stat-lbl">Decyzje do podjęcia</div>
+    <div class="hero-stat-sub">AMKR SL · MU TP skalowanie</div>
+    <div class="hero-stat-glow" style="background:linear-gradient(90deg,var(--amber),transparent)"></div>
   </div>
-  <div class="sum-item">
-    <div class="sum-val c-purple">AVGO</div>
-    <div class="sum-lbl">Skarbiec — no TP</div>
-  </div>
-  <div class="sum-item">
-    <div class="sum-val c-amber">$3.00</div>
-    <div class="sum-lbl">SATL hard floor</div>
-  </div>
-  <div class="sum-item">
-    <div class="sum-val c-gold">Paź'26</div>
-    <div class="sum-lbl">SATL Merlin launch</div>
+</div>
+
+<!-- ═══ EARNINGS TIMELINE ═══ -->
+<div class="timeline-section">
+  <div class="tl-head">📅 Earnings Calendar — Najbliższe 90 dni</div>
+  <div class="timeline-track">
+    <div class="timeline-line"></div>
+    <div class="timeline-events">
+
+      <div class="tl-event">
+        <div class="tl-dot" style="background:rgba(0,255,136,.2);border-color:var(--green);"></div>
+        <div class="tl-ticker c-green">APH</div>
+        <div class="tl-date">29 Kwi</div>
+        <div class="tl-days" style="background:rgba(0,255,136,.1);color:var(--green);border:1px solid rgba(0,255,136,.2);">27 dni</div>
+      </div>
+
+      <div class="tl-event">
+        <div class="tl-dot portfolio" style="background:rgba(255,107,43,.2);border-color:var(--orange);"></div>
+        <div class="tl-ticker c-orange" style="font-size:.85rem;">AMKR ⚡</div>
+        <div class="tl-date">04 Maj</div>
+        <div class="tl-days" style="background:rgba(255,51,85,.12);color:var(--red);border:1px solid rgba(255,51,85,.25);">32 dni</div>
+      </div>
+
+      <div class="tl-event">
+        <div class="tl-dot" style="background:rgba(255,215,0,.2);border-color:var(--gold);"></div>
+        <div class="tl-ticker c-gold">AMPX</div>
+        <div class="tl-date">07 Maj</div>
+        <div class="tl-days" style="background:rgba(255,215,0,.1);color:var(--gold);border:1px solid rgba(255,215,0,.2);">35 dni</div>
+      </div>
+
+      <div class="tl-event">
+        <div class="tl-dot portfolio" style="background:rgba(192,96,255,.2);border-color:var(--purple);"></div>
+        <div class="tl-ticker c-purple">SATL</div>
+        <div class="tl-date">~Maj</div>
+        <div class="tl-days" style="background:rgba(192,96,255,.1);color:var(--purple);border:1px solid rgba(192,96,255,.2);">~45 dni</div>
+      </div>
+
+      <div class="tl-event">
+        <div class="tl-dot portfolio" style="background:rgba(192,96,255,.2);border-color:var(--avgo);"></div>
+        <div class="tl-ticker c-purple">AVGO</div>
+        <div class="tl-date">04 Cze</div>
+        <div class="tl-days" style="background:rgba(192,96,255,.1);color:var(--purple);border:1px solid rgba(192,96,255,.2);">63 dni</div>
+      </div>
+
+      <div class="tl-event">
+        <div class="tl-dot portfolio" style="background:rgba(0,229,255,.2);border-color:var(--cyan);"></div>
+        <div class="tl-ticker c-cyan">MU</div>
+        <div class="tl-date">24 Cze</div>
+        <div class="tl-days" style="background:rgba(0,229,255,.1);color:var(--cyan);border:1px solid rgba(0,229,255,.2);">83 dni</div>
+      </div>
+
+    </div>
   </div>
 </div>
 
 <div class="container">
 
-<!-- ══ PORTFEL AKTYWNY ══ -->
-<div class="section-head">
-  <div class="section-line"></div>
-  <div class="section-title">💼 Portfel Aktywny</div>
-  <div class="section-line"></div>
+<!-- ═══ PORTFEL AKTYWNY ═══ -->
+<div class="sec-divider" style="margin-top:8px;">
+  <div class="sec-line"></div>
+  <div class="sec-label">💼 Portfel Aktywny</div>
+  <div class="sec-line"></div>
 </div>
 
 <div class="portfolio-grid">
 
-  <!-- ═══ MU ═══ -->
-  <div class="p-card">
-    <div class="p-accent accent-mu"></div>
-    <div class="p-top">
-      <div class="p-left">
-        <div class="p-ticker c-cyan">MU</div>
-        <div class="p-company">Micron Technology · NASDAQ</div>
-        <div class="p-role bankomatat">Bankomatat #1</div>
-      </div>
-      <div class="p-right">
-        <div class="p-price-date">Cena ~01.04.2026</div>
-        <div class="p-price-current c-amber">~$336</div>
-        <div class="p-pnl c-red">▼ −4.0% vs entry</div>
-      </div>
+<!-- ══ MU ══ -->
+<div class="pos-card mu" data-ticker="MU">
+  <div class="card-head">
+    <div class="card-left">
+      <div class="card-ticker c-cyan">MU</div>
+      <div class="card-company">Micron Technology · NASDAQ</div>
+      <div class="card-role-badge role-bankomatat">⚡ Bankomatat #1</div>
     </div>
-
-    <div class="p-entry-row">
-      <div class="p-entry-box">
-        <div class="p-entry-val c-text2">~$350</div>
-        <div class="p-entry-lbl">Avg Entry</div>
-      </div>
-      <div class="p-entry-box">
-        <div class="p-entry-val">~5.46</div>
-        <div class="p-entry-lbl">Akcji</div>
-      </div>
-      <div class="p-entry-box">
-        <div class="p-entry-val c-text2">$471.34</div>
-        <div class="p-entry-lbl">ATH</div>
-      </div>
-      <div class="p-entry-box">
-        <div class="p-entry-val c-text2">−28.7%</div>
-        <div class="p-entry-lbl">Od ATH</div>
-      </div>
+    <div class="card-right">
+      <div class="card-price-date">~01.04.2026</div>
+      <div class="card-price-now c-amber">~$336</div>
+      <div class="card-pnl c-red">▼ −4.0%</div>
+      <div class="card-entry-note c-dim">entry $350 · 5.46 szt.</div>
     </div>
-
-    <div class="sl-tp-section">
-      <div class="sl-tp-title">Stop-Loss / Take-Profit</div>
-
-      <div class="sl-tp-row">
-        <span class="sl-tp-tag sl">SL</span>
-        <span class="sl-tp-val c-red">$314.00</span>
-        <span class="sl-tp-rr">−10.3% od entry</span>
-        <span class="sl-tp-note">⚠ raport mówi $290</span>
-      </div>
-      <div class="sl-tp-row">
-        <span class="sl-tp-tag tp1">TP1</span>
-        <span class="sl-tp-val c-cyan">$422.00</span>
-        <span class="sl-tp-rr">+20.6% · zamknij 50%</span>
-        <span class="sl-tp-note">⚠ < consensus PT $512</span>
-      </div>
-      <div class="sl-tp-row">
-        <span class="sl-tp-tag tp2">TP2</span>
-        <span class="sl-tp-val c-green">$512+</span>
-        <span class="sl-tp-rr">+46% · reszta pozycji</span>
-      </div>
-
-      <!-- PRICE BAR -->
-      <div class="price-bar-wrap" style="margin-top:10px;">
-        <div class="price-bar-labels">
-          <span>SL $314</span>
-          <span>Entry $350</span>
-          <span>Teraz $336</span>
-          <span>TP1 $422</span>
-          <span>TP2 $512</span>
-        </div>
-        <div class="price-bar-track">
-          <div class="price-bar-fill" style="width:100%"></div>
-          <!-- cursor: ($336-$314)/($512-$314) = 22/198 = 11.1% -->
-          <div class="price-bar-cursor" style="left:11.1%"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="p-signals">
-      <span class="sig sig-green">37/37 analysts SB</span>
-      <span class="sig sig-cyan">HBM4 AI supercycle</span>
-      <span class="sig sig-green">Q2 EPS +42% beat</span>
-      <span class="sig sig-green">fwd P/E 16.8x (tanie)</span>
-      <span class="sig sig-amber">Beta 2.39</span>
-      <span class="sig sig-red">−30% po earnings</span>
-      <span class="sig sig-amber">Google TurboQuant risk</span>
-    </div>
-
-    <div class="p-earnings">
-      <div>
-        <div class="earnings-label">Następny earnings</div>
-        <div class="earnings-date">Q3 FY26 — 24 Cze 2026</div>
-      </div>
-      <div class="earnings-days">83 dni</div>
-    </div>
-
-    <a href="https://kalibracjadirac.pl/mu-raport.html" target="_blank" class="report-btn">Otwórz pełny raport ANAL — MU</a>
   </div>
 
-  <!-- ═══ SATL ═══ -->
-  <div class="p-card">
-    <div class="p-accent accent-satl"></div>
-    <div class="p-top">
-      <div class="p-left">
-        <div class="p-ticker c-purple">SATL</div>
-        <div class="p-company">Satellogic Inc. · NASDAQ</div>
-        <div class="p-role spekulacja">Spekulacja / Lottery</div>
-      </div>
-      <div class="p-right">
-        <div class="p-price-date">Cena 26.03.2026</div>
-        <div class="p-price-current c-amber">$5.93</div>
-        <div class="p-pnl c-red">▼ −1.2% vs entry</div>
-      </div>
+  <div class="card-metrics">
+    <div class="cm">
+      <div class="cm-val c-green">37/37</div>
+      <div class="cm-lbl">Analysts SB</div>
     </div>
-
-    <div class="p-entry-row">
-      <div class="p-entry-box">
-        <div class="p-entry-val c-text2">~$6.00</div>
-        <div class="p-entry-lbl">Avg Entry</div>
-      </div>
-      <div class="p-entry-box">
-        <div class="p-entry-val">145</div>
-        <div class="p-entry-lbl">Akcji</div>
-      </div>
-      <div class="p-entry-box">
-        <div class="p-entry-val c-text2">$6.84</div>
-        <div class="p-entry-lbl">52W High</div>
-      </div>
-      <div class="p-entry-box">
-        <div class="p-entry-val c-amber">−13.3%</div>
-        <div class="p-entry-lbl">Od 52W High</div>
-      </div>
+    <div class="cm">
+      <div class="cm-val c-cyan">$512</div>
+      <div class="cm-lbl">Consensus PT</div>
     </div>
-
-    <div class="sl-tp-section">
-      <div class="sl-tp-title">Stop-Loss / Take-Profit</div>
-
-      <div class="sl-tp-row">
-        <span class="sl-tp-tag sl">SL</span>
-        <span class="sl-tp-val c-red">$4.80</span>
-        <span class="sl-tp-rr">−20% od entry</span>
-        <span class="sl-tp-note">⚠ raport: hard floor $3.00</span>
-      </div>
-      <div class="sl-tp-row">
-        <span class="sl-tp-tag tp1">TP1</span>
-        <span class="sl-tp-val c-cyan">$9.60</span>
-        <span class="sl-tp-rr">+60% · zamknij 50%</span>
-      </div>
-      <div class="sl-tp-row">
-        <span class="sl-tp-tag tp2">TP2</span>
-        <span class="sl-tp-val c-green">$12.00+</span>
-        <span class="sl-tp-rr">+100% · reszta pozycji</span>
-      </div>
-
-      <!-- PRICE BAR -->
-      <div class="price-bar-wrap" style="margin-top:10px;">
-        <div class="price-bar-labels">
-          <span>SL $4.80</span>
-          <span>Entry $6.00</span>
-          <span>Teraz $5.93</span>
-          <span>TP1 $9.60</span>
-          <span>TP2 $12</span>
-        </div>
-        <div class="price-bar-track">
-          <div class="price-bar-fill" style="width:100%"></div>
-          <!-- ($5.93-$4.80)/($12-$4.80) = 1.13/7.20 = 15.7% -->
-          <div class="price-bar-cursor" style="left:15.7%"></div>
-        </div>
-      </div>
+    <div class="cm">
+      <div class="cm-val c-amber">16.8x</div>
+      <div class="cm-lbl">Fwd P/E</div>
     </div>
-
-    <div class="p-signals">
-      <span class="sig sig-purple">Net loss −96% YoY</span>
-      <span class="sig sig-purple">Merlin launch X.2026</span>
-      <span class="sig sig-green">IDT insider kupuje</span>
-      <span class="sig sig-green">Cantor PT $7.00</span>
-      <span class="sig sig-red">Shelf $200M — dilucja</span>
-      <span class="sig sig-amber">Weiss: SELL (D−)</span>
-      <span class="sig sig-cyan">Northland PT $6.50</span>
+    <div class="cm">
+      <div class="cm-val c-text2">2.39</div>
+      <div class="cm-lbl">Beta</div>
     </div>
-
-    <div class="p-earnings">
-      <div>
-        <div class="earnings-label">Następny earnings</div>
-        <div class="earnings-date">Q1 2026 — Maj 2026</div>
-      </div>
-      <div class="earnings-days">~45 dni</div>
-    </div>
-
-    <a href="https://kalibracjadirac.pl/satl-raport.html" target="_blank" class="report-btn">Otwórz pełny raport ANAL — SATL</a>
   </div>
 
-  <!-- ═══ AVGO ═══ -->
-  <div class="p-card">
-    <div class="p-accent accent-avgo"></div>
-    <div class="p-top">
-      <div class="p-left">
-        <div class="p-ticker c-purple">AVGO</div>
-        <div class="p-company">Broadcom Inc. · NASDAQ</div>
-        <div class="p-role skarbiec">Skarbiec — core long-term</div>
-      </div>
-      <div class="p-right">
-        <div class="p-price-date">Cena ~01.04.2026</div>
-        <div class="p-price-current c-amber">~$310</div>
-        <div class="p-pnl c-red">▼ −1.3% vs entry</div>
-      </div>
+  <div class="sl-tp-section">
+    <div class="sltp-row">
+      <span class="sltp-tag tag-sl">SL</span>
+      <span class="sltp-val c-red">$314.00</span>
+      <span class="sltp-pct c-dim">−10.3%</span>
+      <span class="sltp-note">⚠ raport sugeruje $290</span>
+    </div>
+    <div class="sltp-row">
+      <span class="sltp-tag tag-tp1">TP1</span>
+      <span class="sltp-val c-cyan">$422.00</span>
+      <span class="sltp-pct c-green">+20.6%</span>
+      <span class="sltp-note">zamknij 50% pozycji</span>
+    </div>
+    <div class="sltp-row">
+      <span class="sltp-tag tag-tp2">TP2</span>
+      <span class="sltp-val c-green">$512+</span>
+      <span class="sltp-pct c-green">+46.3%</span>
+      <span class="sltp-note">consensus PT · R:R ≈ 3:1</span>
     </div>
 
-    <div class="p-entry-row">
-      <div class="p-entry-box">
-        <div class="p-entry-val c-text2">$313.94</div>
-        <div class="p-entry-lbl">Avg Entry</div>
+    <!-- SL→Teraz→TP bar: range $314–$512 = $198 -->
+    <div class="price-bar-outer">
+      <div class="price-bar-meta">
+        <span>SL $314</span><span>TP1 $422</span><span>TP2 $512</span>
       </div>
-      <div class="p-entry-box">
-        <div class="p-entry-val">~2.42</div>
-        <div class="p-entry-lbl">Akcji</div>
-      </div>
-      <div class="p-entry-box">
-        <div class="p-entry-val c-text2">$414.61</div>
-        <div class="p-entry-lbl">ATH</div>
-      </div>
-      <div class="p-entry-box">
-        <div class="p-entry-val c-red">−25.3%</div>
-        <div class="p-entry-lbl">Od ATH</div>
+      <div class="price-bar-track">
+        <div class="price-bar-fill" style="width:100%;background:linear-gradient(90deg,rgba(255,51,85,.5) 0%,rgba(255,184,0,.5) 40%,rgba(0,229,255,.5) 70%,rgba(0,255,136,.5) 100%);"></div>
+        <div class="price-entry-mark" style="left:18.2%;" title="Entry $350"></div>
+        <div class="price-tp1-mark" style="left:54.5%;" title="TP1 $422"></div>
+        <!-- current $336: (336-314)/198 = 11.1% -->
+        <div class="price-cursor" style="left:11.1%;" title="Teraz ~$336"></div>
       </div>
     </div>
-
-    <div class="sl-tp-section">
-      <div class="sl-tp-title">Stop-Loss / Take-Profit (Skarbiec — bez TP)</div>
-
-      <div class="sl-tp-row">
-        <span class="sl-tp-tag sl">SL</span>
-        <span class="sl-tp-val c-red">$288.00</span>
-        <span class="sl-tp-rr">−8.3% od entry</span>
-        <span class="sl-tp-note">raport: $255 (luźniejszy)</span>
-      </div>
-      <div class="sl-tp-row">
-        <span class="sl-tp-tag skarbiec">DCA T1</span>
-        <span class="sl-tp-val c-purple">$295–325</span>
-        <span class="sl-tp-rr">← teraz w tej strefie ✓</span>
-      </div>
-      <div class="sl-tp-row">
-        <span class="sl-tp-tag skarbiec">DCA T3</span>
-        <span class="sl-tp-val c-purple">$240–255</span>
-        <span class="sl-tp-rr">głęboka panika = dokup agresywnie</span>
-      </div>
-      <div class="sl-tp-row">
-        <span class="sl-tp-tag tp2">Avg PT</span>
-        <span class="sl-tp-val c-green">$431–470</span>
-        <span class="sl-tp-rr">+37–50% · 52 analityków · 0 SELL</span>
-      </div>
-
-      <!-- PRICE BAR -->
-      <div class="price-bar-wrap" style="margin-top:10px;">
-        <div class="price-bar-labels">
-          <span>SL $288</span>
-          <span>Entry $314</span>
-          <span>$310</span>
-          <span>DCA $325</span>
-          <span>PT $470</span>
-        </div>
-        <div class="price-bar-track">
-          <div class="price-bar-fill" style="width:100%"></div>
-          <!-- ($310-$288)/($470-$288) = 22/182 = 12.1% -->
-          <div class="price-bar-cursor" style="left:12.1%"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="p-signals">
-      <span class="sig sig-purple">52 analysts · 0 SELL</span>
-      <span class="sig sig-green">$8.4B AI rev Q1</span>
-      <span class="sig sig-green">$73B AI backlog</span>
-      <span class="sig sig-green">FCF $8B/qtr</span>
-      <span class="sig sig-cyan">XPU 5 hiperscalerów</span>
-      <span class="sig sig-amber">Beta 2.20</span>
-      <span class="sig sig-amber">Customer concentration</span>
-    </div>
-
-    <div class="p-earnings">
-      <div>
-        <div class="earnings-label">Następny earnings</div>
-        <div class="earnings-date">Q2 FY2026 — 04 Cze 2026</div>
-      </div>
-      <div class="earnings-days">63 dni</div>
-    </div>
-
-    <a href="https://kalibracjadirac.pl/avgo-raport.html" target="_blank" class="report-btn">Otwórz pełny raport ANAL — AVGO</a>
   </div>
 
-  <!-- ═══ AMKR ═══ -->
-  <div class="p-card">
-    <div class="p-accent accent-amkr"></div>
-    <div class="p-top">
-      <div class="p-left">
-        <div class="p-ticker c-orange">AMKR</div>
-        <div class="p-company">Amkor Technology · NASDAQ</div>
-        <div class="p-role bankomatat">Bankomatat #2</div>
-      </div>
-      <div class="p-right">
-        <div class="p-price-date">Cena ~01.04.2026</div>
-        <div class="p-price-current c-amber">~$41</div>
-        <div class="p-pnl c-red">▼ −12.4% vs entry</div>
-      </div>
-    </div>
-
-    <div class="p-entry-row">
-      <div class="p-entry-box">
-        <div class="p-entry-val c-text2">~$46.80</div>
-        <div class="p-entry-lbl">Avg Entry</div>
-      </div>
-      <div class="p-entry-box">
-        <div class="p-entry-val">~22.92</div>
-        <div class="p-entry-lbl">Akcji</div>
-      </div>
-      <div class="p-entry-box">
-        <div class="p-entry-val c-text2">$57.09</div>
-        <div class="p-entry-lbl">ATH</div>
-      </div>
-      <div class="p-entry-box">
-        <div class="p-entry-val c-red">−28.2%</div>
-        <div class="p-entry-lbl">Od ATH</div>
-      </div>
-    </div>
-
-    <div class="sl-tp-section">
-      <div class="sl-tp-title">Stop-Loss / Take-Profit</div>
-
-      <div class="sl-tp-row">
-        <span class="sl-tp-tag sl">SL</span>
-        <span class="sl-tp-val c-red">$40.30</span>
-        <span class="sl-tp-rr">−13.9% od entry</span>
-        <span class="sl-tp-note">⚠⚠ DECYZJA — raport T1: $30–33</span>
-      </div>
-      <div class="sl-tp-row">
-        <span class="sl-tp-tag tp1">TP1</span>
-        <span class="sl-tp-val c-cyan">$59.80</span>
-        <span class="sl-tp-rr">+27.8% · zamknij 50%</span>
-      </div>
-      <div class="sl-tp-row">
-        <span class="sl-tp-tag tp2">TP2</span>
-        <span class="sl-tp-val c-green">$66.30</span>
-        <span class="sl-tp-rr">+41.7% · reszta</span>
-        <span class="sl-tp-note">JPM/Needham PT $65</span>
-      </div>
-
-      <!-- PRICE BAR -->
-      <div class="price-bar-wrap" style="margin-top:10px;">
-        <div class="price-bar-labels">
-          <span>SL $40</span>
-          <span>Entry $46.80</span>
-          <span>$41</span>
-          <span>TP1 $59.80</span>
-          <span>TP2 $66</span>
-        </div>
-        <div class="price-bar-track">
-          <div class="price-bar-fill" style="width:100%"></div>
-          <!-- ($41-$40)/($66-$40) = 1/26 = 3.8% -->
-          <div class="price-bar-cursor" style="left:3.8%"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="p-signals">
-      <span class="sig sig-orange">Kim family block sale</span>
-      <span class="sig sig-green">PT $65 JPM/Needham</span>
-      <span class="sig sig-green">HDFO ×3 wzrost 2026</span>
-      <span class="sig sig-green">Arizona CHIPS Act</span>
-      <span class="sig sig-cyan">P/E 27x vs 39x peer</span>
-      <span class="sig sig-red">GM 12.5% Q1</span>
-      <span class="sig sig-amber">Beta 1.95</span>
-    </div>
-
-    <div class="p-earnings">
-      <div>
-        <div class="earnings-label">Następny earnings</div>
-        <div class="earnings-date">Q1 2026 — 04 Maj 2026</div>
-      </div>
-      <div class="earnings-days" style="color:var(--red); border-color:rgba(255,51,85,0.25); background:rgba(255,51,85,0.1);">32 dni ⚡</div>
-    </div>
-
-    <a href="https://kalibracjadirac.pl/amkr-raport.html" target="_blank" class="report-btn">Otwórz pełny raport ANAL — AMKR</a>
+  <div class="card-alert info">
+    <div class="card-alert-icon">ℹ</div>
+    <div class="card-alert-text"><strong>Strategia skalowania:</strong> Zamknij 50% na TP1 $422, resztę trzymaj do $512+. Nie wychodź w całości przed earnings 24 Cze.</div>
   </div>
+
+  <div class="card-signals">
+    <span class="sig sig-g">HBM4 AI supercycle</span>
+    <span class="sig sig-g">Q2 EPS +42% beat</span>
+    <span class="sig sig-g">$33.5B Q3 guidance</span>
+    <span class="sig sig-c">fwd P/E 16.8x — najtańszy S&P</span>
+    <span class="sig sig-r">−30% po earnings (sell-off)</span>
+    <span class="sig sig-a">Google TurboQuant risk</span>
+    <span class="sig sig-a">Beta 2.39</span>
+  </div>
+
+  <div class="card-earnings">
+    <div class="earnings-info">
+      <div class="earnings-lbl">Następny earnings</div>
+      <div class="earnings-date">Q3 FY2026 — 24 Cze 2026</div>
+    </div>
+    <div class="earnings-countdown" style="background:rgba(0,229,255,.1);color:var(--cyan);border:1px solid rgba(0,229,255,.25);">83 dni</div>
+  </div>
+
+  <a href="https://kalibracjadirac.pl/mu-raport.html" target="_blank" class="report-btn">Otwórz Raport ANAL — MU</a>
+</div>
+
+<!-- ══ SATL ══ -->
+<div class="pos-card satl" data-ticker="SATL">
+  <div class="card-head">
+    <div class="card-left">
+      <div class="card-ticker c-purple">SATL</div>
+      <div class="card-company">Satellogic Inc. · NASDAQ</div>
+      <div class="card-role-badge role-spekulacja">🎲 Spekulacja / Lottery</div>
+    </div>
+    <div class="card-right">
+      <div class="card-price-date">26.03.2026</div>
+      <div class="card-price-now c-amber">$5.93</div>
+      <div class="card-pnl c-red">▼ −1.2%</div>
+      <div class="card-entry-note c-dim">entry $6.00 · 145 szt.</div>
+    </div>
+  </div>
+
+  <div class="card-metrics">
+    <div class="cm">
+      <div class="cm-val c-purple">$7.00</div>
+      <div class="cm-lbl">Cantor PT (max)</div>
+    </div>
+    <div class="cm">
+      <div class="cm-val c-amber">$5.83</div>
+      <div class="cm-lbl">Avg PT buy-side</div>
+    </div>
+    <div class="cm">
+      <div class="cm-val c-green">−96%</div>
+      <div class="cm-lbl">Net loss YoY</div>
+    </div>
+    <div class="cm">
+      <div class="cm-val c-text2">~$490M</div>
+      <div class="cm-lbl">Market Cap</div>
+    </div>
+  </div>
+
+  <div class="sl-tp-section">
+    <div class="sltp-row">
+      <span class="sltp-tag tag-sl">SL</span>
+      <span class="sltp-val c-red">$4.80</span>
+      <span class="sltp-pct c-dim">−20.0%</span>
+      <span class="sltp-note">⚠ raport hard floor: $3.00</span>
+    </div>
+    <div class="sltp-row">
+      <span class="sltp-tag tag-tp1">TP1</span>
+      <span class="sltp-val c-cyan">$9.60</span>
+      <span class="sltp-pct c-green">+60.0%</span>
+      <span class="sltp-note">zamknij 50%</span>
+    </div>
+    <div class="sltp-row">
+      <span class="sltp-tag tag-tp2">TP2</span>
+      <span class="sltp-val c-green">$12.00+</span>
+      <span class="sltp-pct c-green">+100%</span>
+      <span class="sltp-note">R:R ≈ 2.5:1 (vs $3.00 SL: 4:1)</span>
+    </div>
+
+    <!-- range $4.80–$12.00 = $7.20 -->
+    <div class="price-bar-outer">
+      <div class="price-bar-meta">
+        <span>SL $4.80</span><span>TP1 $9.60</span><span>TP2 $12</span>
+      </div>
+      <div class="price-bar-track">
+        <div class="price-bar-fill" style="width:100%;background:linear-gradient(90deg,rgba(255,51,85,.5) 0%,rgba(255,184,0,.5) 30%,rgba(192,96,255,.5) 65%,rgba(0,255,136,.5) 100%);"></div>
+        <div class="price-entry-mark" style="left:16.7%;" title="Entry $6.00"></div>
+        <div class="price-tp1-mark" style="left:66.7%;" title="TP1 $9.60"></div>
+        <!-- current $5.93: (5.93-4.80)/7.20 = 15.7% -->
+        <div class="price-cursor" style="left:15.7%;" title="Teraz $5.93"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-alert warn">
+    <div class="card-alert-icon">⚠</div>
+    <div class="card-alert-text"><strong>Shelf $200M (19.03.2026):</strong> Potencjalna dilucja 40% przy aktywacji. Spółka ma $129M cash — brak presji, ale każde ogłoszenie = ryzyko −20–30%. Monitoruj IR.</div>
+  </div>
+
+  <div class="card-signals">
+    <span class="sig sig-p">Merlin launch X.2026 🛰</span>
+    <span class="sig sig-g">Net loss −96% YoY</span>
+    <span class="sig sig-g">IDT Corp insider kupuje</span>
+    <span class="sig sig-g">Cantor Fitzgerald PT $7.00</span>
+    <span class="sig sig-r">Shelf $200M — dilucja 40%</span>
+    <span class="sig sig-r">Weiss Ratings: SELL (D−)</span>
+    <span class="sig sig-a">Cash $129M (runway OK)</span>
+  </div>
+
+  <div class="card-earnings">
+    <div class="earnings-info">
+      <div class="earnings-lbl">Następny earnings</div>
+      <div class="earnings-date">Q1 2026 — Maj 2026</div>
+    </div>
+    <div class="earnings-countdown" style="background:rgba(192,96,255,.1);color:var(--purple);border:1px solid rgba(192,96,255,.25);">~45 dni</div>
+  </div>
+
+  <a href="https://kalibracjadirac.pl/satl-raport.html" target="_blank" class="report-btn">Otwórz Raport ANAL — SATL</a>
+</div>
+
+<!-- ══ AVGO ══ -->
+<div class="pos-card avgo" data-ticker="AVGO">
+  <div class="card-head">
+    <div class="card-left">
+      <div class="card-ticker c-purple">AVGO</div>
+      <div class="card-company">Broadcom Inc. · NASDAQ</div>
+      <div class="card-role-badge role-skarbiec">🏛 Skarbiec — Core Long-Term</div>
+    </div>
+    <div class="card-right">
+      <div class="card-price-date">~01.04.2026</div>
+      <div class="card-price-now c-amber">~$310</div>
+      <div class="card-pnl c-red">▼ −1.3%</div>
+      <div class="card-entry-note c-dim">entry $313.94 · 2.42 szt.</div>
+    </div>
+  </div>
+
+  <div class="card-metrics">
+    <div class="cm">
+      <div class="cm-val c-green">52/52</div>
+      <div class="cm-lbl">Analysts · 0 SELL</div>
+    </div>
+    <div class="cm">
+      <div class="cm-val c-purple">$431–470</div>
+      <div class="cm-lbl">Avg PT</div>
+    </div>
+    <div class="cm">
+      <div class="cm-val c-gold">$73B</div>
+      <div class="cm-lbl">AI Backlog</div>
+    </div>
+    <div class="cm">
+      <div class="cm-val c-green">68%</div>
+      <div class="cm-lbl">EBITDA Margin</div>
+    </div>
+  </div>
+
+  <div class="sl-tp-section">
+    <div class="sltp-row">
+      <span class="sltp-tag tag-sl">SL</span>
+      <span class="sltp-val c-red">$288.00</span>
+      <span class="sltp-pct c-dim">−8.3%</span>
+      <span class="sltp-note">raport: $255 (luźniejszy)</span>
+    </div>
+    <div class="sltp-row">
+      <span class="sltp-tag tag-dca">DCA T1</span>
+      <span class="sltp-val c-purple">$295–325</span>
+      <span class="sltp-pct c-cyan">← jesteśmy tu ✓</span>
+    </div>
+    <div class="sltp-row">
+      <span class="sltp-tag tag-dca">DCA T3</span>
+      <span class="sltp-val c-purple">$240–255</span>
+      <span class="sltp-pct c-dim">głęboka korekta</span>
+      <span class="sltp-note">dokup agresywnie</span>
+    </div>
+    <div class="sltp-row">
+      <span class="sltp-tag tag-tp2">PT</span>
+      <span class="sltp-val c-green">$431–470</span>
+      <span class="sltp-pct c-green">+39–52%</span>
+      <span class="sltp-note">Skarbiec — bez TP</span>
+    </div>
+
+    <!-- range $288–$470 = $182 -->
+    <div class="price-bar-outer">
+      <div class="price-bar-meta">
+        <span>SL $288</span><span>DCA $325</span><span>PT avg $450</span>
+      </div>
+      <div class="price-bar-track">
+        <div class="price-bar-fill" style="width:100%;background:linear-gradient(90deg,rgba(255,51,85,.5) 0%,rgba(255,184,0,.4) 20%,rgba(192,96,255,.5) 50%,rgba(0,255,136,.5) 100%);"></div>
+        <div class="price-entry-mark" style="left:14.3%;" title="Entry $313.94"></div>
+        <!-- current $310: (310-288)/182 = 12.1% -->
+        <div class="price-cursor" style="left:12.1%;" title="Teraz ~$310"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-alert info">
+    <div class="card-alert-icon">🏛</div>
+    <div class="card-alert-text"><strong>Brak TP — Skarbiec:</strong> Nie zamykaj tej pozycji na małych ruchach. Akumuluj na korektach. $100B AI revenue w 2027 wg CEO Hock Tan (analitycy: realnie $180–200B).</div>
+  </div>
+
+  <div class="card-signals">
+    <span class="sig sig-g">$8.4B AI rev Q1 (+106% YoY)</span>
+    <span class="sig sig-g">FCF $8B/kwartał</span>
+    <span class="sig sig-p">5 hiperscalerów XPU</span>
+    <span class="sig sig-g">VMware integration ✓</span>
+    <span class="sig sig-a">Beta 2.20</span>
+    <span class="sig sig-a">Customer concentration</span>
+    <span class="sig sig-c">−25% od ATH = okazja</span>
+  </div>
+
+  <div class="card-earnings">
+    <div class="earnings-info">
+      <div class="earnings-lbl">Następny earnings</div>
+      <div class="earnings-date">Q2 FY2026 — 04 Cze 2026</div>
+    </div>
+    <div class="earnings-countdown" style="background:rgba(192,96,255,.1);color:var(--purple);border:1px solid rgba(192,96,255,.25);">63 dni</div>
+  </div>
+
+  <a href="https://kalibracjadirac.pl/avgo-raport.html" target="_blank" class="report-btn">Otwórz Raport ANAL — AVGO</a>
+</div>
+
+<!-- ══ AMKR ══ -->
+<div class="pos-card amkr" data-ticker="AMKR">
+  <div class="card-head">
+    <div class="card-left">
+      <div class="card-ticker c-orange">AMKR</div>
+      <div class="card-company">Amkor Technology · NASDAQ</div>
+      <div class="card-role-badge role-bankomatat">⚡ Bankomatat #2</div>
+    </div>
+    <div class="card-right">
+      <div class="card-price-date">~01.04.2026</div>
+      <div class="card-price-now c-amber">~$41</div>
+      <div class="card-pnl c-red">▼ −12.4%</div>
+      <div class="card-entry-note c-dim">entry $46.80 · 22.92 szt.</div>
+    </div>
+  </div>
+
+  <div class="card-metrics">
+    <div class="cm">
+      <div class="cm-val c-green">$65</div>
+      <div class="cm-lbl">JPM/Needham PT</div>
+    </div>
+    <div class="cm">
+      <div class="cm-val c-orange">27x</div>
+      <div class="cm-lbl">P/E vs 39x peer</div>
+    </div>
+    <div class="cm">
+      <div class="cm-val c-cyan">~×3</div>
+      <div class="cm-lbl">HDFO wzrost '26</div>
+    </div>
+    <div class="cm">
+      <div class="cm-val c-text2">1.95</div>
+      <div class="cm-lbl">Beta</div>
+    </div>
+  </div>
+
+  <div class="sl-tp-section">
+    <div class="sltp-row">
+      <span class="sltp-tag tag-sl">SL</span>
+      <span class="sltp-val c-red">$40.30</span>
+      <span class="sltp-pct c-red">−13.9%</span>
+      <span class="sltp-note danger">⚠⚠ DECYZJA — bufor $0.70!</span>
+    </div>
+    <div class="sltp-row">
+      <span class="sltp-tag tag-tp1">TP1</span>
+      <span class="sltp-val c-cyan">$59.80</span>
+      <span class="sltp-pct c-green">+27.8%</span>
+      <span class="sltp-note">zamknij 50%</span>
+    </div>
+    <div class="sltp-row">
+      <span class="sltp-tag tag-tp2">TP2</span>
+      <span class="sltp-val c-green">$66.30</span>
+      <span class="sltp-pct c-green">+41.7%</span>
+      <span class="sltp-note">R:R ≈ 3.5:1</span>
+    </div>
+
+    <!-- range $40.30–$66.30 = $26.00 -->
+    <div class="price-bar-outer">
+      <div class="price-bar-meta">
+        <span>SL $40.30</span><span>Entry $46.80</span><span>TP1 $59.80</span><span>TP2 $66.30</span>
+      </div>
+      <div class="price-bar-track">
+        <div class="price-bar-fill" style="width:100%;background:linear-gradient(90deg,rgba(255,51,85,.5) 0%,rgba(255,184,0,.5) 25%,rgba(255,107,43,.5) 60%,rgba(0,255,136,.5) 100%);"></div>
+        <div class="price-entry-mark" style="left:25.0%;" title="Entry $46.80"></div>
+        <div class="price-tp1-mark" style="left:75.0%;" title="TP1 $59.80"></div>
+        <!-- current $41: (41-40.30)/26 = 2.7% -->
+        <div class="price-cursor" style="left:2.7%;" title="Teraz ~$41"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-alert danger">
+    <div class="card-alert-icon">🚨</div>
+    <div class="card-alert-text"><strong>SL $40.30 = bufor $0.70 (1.7%)</strong> od obecnej ceny. Raport ANAL wskazuje Tier 1 akumulację na $38–44 (SL raportu: $30–33). Decyzja: obniżyć SL do $30–33 i dać pozycji oddech, czy trzymać $40.30 i ryzykować wyjście na szumie?</div>
+  </div>
+
+  <div class="card-signals">
+    <span class="sig sig-r">Kim block sale — sell-off techniczny</span>
+    <span class="sig sig-g">PT $65 JPMorgan + Needham</span>
+    <span class="sig sig-g">HDFO ×3 wzrost 2026</span>
+    <span class="sig sig-g">Arizona CHIPS Act fab</span>
+    <span class="sig sig-c">P/E 27x vs 39x peer (dyskonto)</span>
+    <span class="sig sig-a">GM 12.5% Q1 (niska, rośnie)</span>
+  </div>
+
+  <div class="card-earnings">
+    <div class="earnings-info">
+      <div class="earnings-lbl">Następny earnings ⚡ PILNE</div>
+      <div class="earnings-date">Q1 2026 — 04 Maj 2026</div>
+    </div>
+    <div class="earnings-countdown" style="background:rgba(255,51,85,.12);color:var(--red);border:1px solid rgba(255,51,85,.3);">32 dni ⚡</div>
+  </div>
+
+  <a href="https://kalibracjadirac.pl/amkr-raport.html" target="_blank" class="report-btn">Otwórz Raport ANAL — AMKR</a>
+</div>
 
 </div><!-- /portfolio-grid -->
 
-<!-- ══ OPEN ISSUES / ALERTY ══ -->
-<div class="section-head" style="margin-top:28px;">
-  <div class="section-line"></div>
-  <div class="section-title">⚠ Otwarte Decyzje &amp; Alerty</div>
-  <div class="section-line"></div>
+<!-- ═══ KANDYDACI ═══ -->
+<div class="sec-divider">
+  <div class="sec-line"></div>
+  <div class="sec-label">👁 Kolejne pozycje — Kandydaci</div>
+  <div class="sec-line"></div>
 </div>
 
-<div class="alerts-section">
-  <div class="alert-box danger">
-    <div class="alert-title danger">⚠⚠ AMKR — Decyzja SL</div>
-    <div class="alert-body">
-      Nasz SL <strong>$40.30</strong> siedzi wewnątrz strefy akumulacji T1 raportu (<strong>$38–44</strong>). Raport sugeruje SL na <strong>$30–33</strong>.<br>
-      Byczku wszedł po <strong>~$46.80</strong> (Tier 2, nie Tier 1). Aktualna cena ~$41 — blisko SL.<br><br>
-      <strong>Decyzja otwarta:</strong> obniżyć SL do $30–33 (wg raportu) czy zostawić $40.30?
-    </div>
-  </div>
-  <div class="alert-box warn">
-    <div class="alert-title warn">⚠ MU — TP zbyt nisko vs konsensus</div>
-    <div class="alert-body">
-      Nasze TP1 $422 / TP2 $458 zamykają pozycję przed consensus PT analityków (<strong>$512</strong>).<br><br>
-      <strong>Rekomendacja:</strong> Zamknij 50% na TP1 $422, resztę zostaw do $512+. Nie wychodź w całości przed danymi Q3 (24 Cze'26).
-    </div>
-  </div>
-  <div class="alert-box warn">
-    <div class="alert-title warn">⚠ SATL — Shelf $200M</div>
-    <div class="alert-body">
-      Zarejestrowane 19.03.2026. Przy market cap ~$490M to potencjalnie +40% dilucja.<br>
-      Cash na bilansie ~$129M — nie ma presji korzystania, ale każde ogłoszenie = ryzyko −20–30%.<br>
-      <strong>Monitoruj komunikaty IR Satellogic.</strong>
-    </div>
-  </div>
-  <div class="alert-box info">
-    <div class="alert-title info">⚡ Najbliższy earnings — AMKR 04 Maj</div>
-    <div class="alert-body">
-      Earnings AMKR za <strong>32 dni</strong> (04.05.2026) to binary event dla pozycji.<br>
-      Kolejne: <strong>APH 29 Kwi (27 dni)</strong>, AMPX 07 Maj, SATL Maj, AVGO 04 Cze, MU 24 Cze.<br>
-      <strong>Maj 2026 = najgęstszy miesiąc earnings w całym watchliście.</strong>
-    </div>
-  </div>
-</div>
+<div class="cand-grid">
 
-<!-- ══ WATCHLIST ══ -->
-<div class="section-head" style="margin-top:32px;">
-  <div class="section-line"></div>
-  <div class="section-title">👁 Watchlist — Kandydaci</div>
-  <div class="section-line"></div>
-</div>
-
-<div class="watch-grid">
-
-  <!-- APH -->
-  <div class="w-card">
-    <div class="p-accent accent-watch" style="background: linear-gradient(90deg, var(--green), #00AA55);"></div>
-    <div class="w-top">
-      <div class="w-ticker c-green">APH</div>
-      <div class="w-company">Amphenol Corp. · NYSE</div>
-      <div class="w-price">$127.96</div>
-      <div class="w-upside c-green">PT avg $154 → +20% upside</div>
+  <div class="cand-card">
+    <div style="height:3px;background:linear-gradient(90deg,#004400,var(--green),#004400);"></div>
+    <div class="cand-head">
+      <div>
+        <div class="cand-ticker c-green">APH</div>
+        <div class="cand-company">Amphenol Corporation · NYSE</div>
+        <div class="cand-status" style="color:var(--green);border-color:rgba(0,255,136,.3);background:rgba(0,255,136,.07);">AI Compounder · Akumuluj</div>
+      </div>
+      <div class="cand-right">
+        <div class="cand-price">$127.96</div>
+        <div class="cand-upside c-green">PT avg $154 → +20%</div>
+        <div style="font-size:.65rem;color:var(--text3);margin-top:2px;">−23.5% od ATH $167</div>
+      </div>
     </div>
-    <div class="w-meta">
-      <div class="w-row"><span class="w-key">Entry T1</span><span class="w-val c-green">$122–130</span></div>
-      <div class="w-row"><span class="w-key">SL</span><span class="w-val c-red">$115</span></div>
-      <div class="w-row"><span class="w-key">Target</span><span class="w-val c-green">$155–165</span></div>
-      <div class="w-row"><span class="w-key">PEG</span><span class="w-val c-green">0.46 (tanie)</span></div>
-      <div class="w-row"><span class="w-key">Earnings</span><span class="w-val c-amber">29 Kwi'26 ⚡</span></div>
-      <div class="w-row"><span class="w-key">R:R</span><span class="w-val c-green">~3:1</span></div>
+    <div class="cand-meta">
+      <div class="cand-row"><span class="cand-key">Entry T1</span><span class="cand-val c-green">$122–130</span></div>
+      <div class="cand-row"><span class="cand-key">Stop-Loss</span><span class="cand-val c-red">$115</span></div>
+      <div class="cand-row"><span class="cand-key">Target</span><span class="cand-val c-green">$155–165</span></div>
+      <div class="cand-row"><span class="cand-key">R:R</span><span class="cand-val c-green">~3:1</span></div>
+      <div class="cand-row"><span class="cand-key">PEG</span><span class="cand-val c-green">0.46 — tanie</span></div>
+      <div class="cand-row"><span class="cand-key">Earnings</span><span class="cand-val c-amber">29 Kwi ⚡ 27 dni</span></div>
     </div>
-    <div class="w-signals">
-      <span class="sig sig-green" style="font-size:0.65rem;">+52% rev FY25</span>
-      <span class="sig sig-cyan" style="font-size:0.65rem;">AI datacenter compounder</span>
-      <span class="sig sig-green" style="font-size:0.65rem;">11 Buy 0 Sell</span>
+    <div class="cand-sigs">
+      <span class="sig sig-g">+52% rev FY25</span>
+      <span class="sig sig-g">11 Buy · 0 Sell</span>
+      <span class="sig sig-c">AI datacenter connector</span>
+      <span class="sig sig-g">Jefferies upgrade 01.04</span>
     </div>
-    <a href="https://kalibracjadirac.pl/aph-raport.html" target="_blank" class="w-btn">→ Raport ANAL</a>
+    <a href="https://kalibracjadirac.pl/aph-raport.html" target="_blank" class="cand-btn">Otwórz Raport ANAL — APH</a>
   </div>
 
-  <!-- AMPX -->
-  <div class="w-card">
-    <div class="p-accent accent-watch" style="background: linear-gradient(90deg, var(--gold), #BB8800);"></div>
-    <div class="w-top">
-      <div class="w-ticker c-gold">AMPX</div>
-      <div class="w-company">Amprius Technologies · NYSE</div>
-      <div class="w-price">$17.16</div>
-      <div class="w-upside c-amber">PT avg $20 → +16.6% upside</div>
+  <div class="cand-card">
+    <div style="height:3px;background:linear-gradient(90deg,#443300,var(--gold),#443300);"></div>
+    <div class="cand-head">
+      <div>
+        <div class="cand-ticker c-gold">AMPX</div>
+        <div class="cand-company">Amprius Technologies · NYSE</div>
+        <div class="cand-status" style="color:var(--amber);border-color:rgba(255,184,0,.3);background:rgba(255,184,0,.07);">Silicon Battery · Spekulacyjny</div>
+      </div>
+      <div class="cand-right">
+        <div class="cand-price">$17.16</div>
+        <div class="cand-upside c-amber">PT avg $20 → +16.6%</div>
+        <div style="font-size:.65rem;color:var(--text3);margin-top:2px;">−13.2% od ATH $19.76</div>
+      </div>
     </div>
-    <div class="w-meta">
-      <div class="w-row"><span class="w-key">Entry T1</span><span class="w-val c-green">$16.30–16.80</span></div>
-      <div class="w-row"><span class="w-key">SL</span><span class="w-val c-red">$12.50</span></div>
-      <div class="w-row"><span class="w-key">Target</span><span class="w-val c-green">$20–22</span></div>
-      <div class="w-row"><span class="w-key">Rev FY25</span><span class="w-val c-green">$73M +202%</span></div>
-      <div class="w-row"><span class="w-key">Earnings</span><span class="w-val c-amber">07 Maj'26</span></div>
-      <div class="w-row"><span class="w-key">Red flag</span><span class="w-val c-red">Insider sell $24M</span></div>
+    <div class="cand-meta">
+      <div class="cand-row"><span class="cand-key">Entry T1</span><span class="cand-val c-green">$16.30–16.80</span></div>
+      <div class="cand-row"><span class="cand-key">Stop-Loss</span><span class="cand-val c-red">$12.50</span></div>
+      <div class="cand-row"><span class="cand-key">Target</span><span class="cand-val c-green">$20–22</span></div>
+      <div class="cand-row"><span class="cand-key">R:R</span><span class="cand-val c-amber">~2:1</span></div>
+      <div class="cand-row"><span class="cand-key">Rev FY25</span><span class="cand-val c-green">$73M +202%</span></div>
+      <div class="cand-row"><span class="cand-key">Earnings</span><span class="cand-val c-amber">07 Maj · 35 dni</span></div>
     </div>
-    <div class="w-signals">
-      <span class="sig sig-gold" style="font-size:0.65rem;">500 Wh/kg SiMaxx</span>
-      <span class="sig sig-red" style="font-size:0.65rem;">CEO sprzedał 79%</span>
-      <span class="sig sig-green" style="font-size:0.65rem;">8 analysts 0 Sell</span>
+    <div class="cand-sigs">
+      <span class="sig sig-g">500 Wh/kg SiMaxx</span>
+      <span class="sig sig-g">8 analysts 0 Sell</span>
+      <span class="sig sig-r">CEO sprzedał 79% pozycji ⚠</span>
+      <span class="sig sig-a">Insider sell $24M+</span>
     </div>
-    <a href="https://kalibracjadirac.pl/ampx-raport.html" target="_blank" class="w-btn">→ Raport ANAL</a>
+    <a href="https://kalibracjadirac.pl/ampx-raport.html" target="_blank" class="cand-btn">Otwórz Raport ANAL — AMPX</a>
   </div>
-
 
 </div>
 
-<!-- ══ MASTER TABLE ══ -->
-<div class="section-head" style="margin-top:32px;">
-  <div class="section-line"></div>
-  <div class="section-title">📊 Tabela Zbiorcza — Wszystkie Spółki</div>
-  <div class="section-line"></div>
+<!-- ═══ TABELA ZBIORCZA ═══ -->
+<div class="sec-divider">
+  <div class="sec-line"></div>
+  <div class="sec-label">📊 Tabela Zbiorcza — SL / TP / R:R</div>
+  <div class="sec-line"></div>
 </div>
 
-<div class="master-table-wrap">
-  <div class="master-table-head">SL / TP / R:R — Przegląd</div>
-  <table class="mtable">
+<div class="mtable-wrap">
+  <table class="mt">
     <thead>
       <tr>
         <th>Ticker</th>
         <th>Rola</th>
-        <th class="td-r">Entry</th>
-        <th class="td-r">Teraz</th>
-        <th class="td-r">P&amp;L</th>
-        <th class="td-r">SL</th>
-        <th class="td-r">TP1</th>
-        <th class="td-r">TP2 / Cel</th>
-        <th class="td-r">R:R</th>
-        <th class="td-r">Earnings</th>
-        <th class="td-c">Raport</th>
+        <th class="tr">Entry</th>
+        <th class="tr">Teraz</th>
+        <th class="tr">P&amp;L%</th>
+        <th class="tr">SL</th>
+        <th class="tr">Ryzyko%</th>
+        <th class="tr">TP1</th>
+        <th class="tr">TP2 / Cel</th>
+        <th class="tr">R:R</th>
+        <th class="tr">Earnings</th>
+        <th class="tc">Raport</th>
       </tr>
     </thead>
     <tbody>
-      <tr style="background:rgba(0,229,255,0.03);">
-        <td><strong class="c-cyan">MU</strong></td>
-        <td><span style="color:var(--cyan);font-size:0.72rem;">Bankomatat #1</span></td>
-        <td class="td-r">$350</td>
-        <td class="td-r c-amber">~$336</td>
-        <td class="td-r c-red">−4.0%</td>
-        <td class="td-r c-red">$314 <span style="color:var(--text3);font-size:0.68rem;">(⚠$290)</span></td>
-        <td class="td-r c-cyan">$422</td>
-        <td class="td-r c-green">$512+</td>
-        <td class="td-r c-green">~3:1</td>
-        <td class="td-r c-amber">24 Cze'26</td>
-        <td class="td-c"><a href="https://kalibracjadirac.pl/mu-raport.html" target="_blank" class="rpt-link">MU →</a></td>
+      <tr style="background:rgba(0,229,255,.025);">
+        <td><strong class="c-cyan" style="font-family:'Syne',sans-serif;font-size:1.05rem;">MU</strong></td>
+        <td><span class="c-cyan" style="font-size:.72rem;">Bankomatat #1</span></td>
+        <td class="tr">$350</td>
+        <td class="tr c-amber">~$336</td>
+        <td class="tr c-red">−4.0%</td>
+        <td class="tr c-red">$314 <span class="c-dim" style="font-size:.68rem;">(⚠$290)</span></td>
+        <td class="tr c-amber">−10.3%</td>
+        <td class="tr c-cyan">$422</td>
+        <td class="tr c-green">$512+</td>
+        <td class="tr c-green">~3:1</td>
+        <td class="tr c-dim">24 Cze'26</td>
+        <td class="tc"><a href="https://kalibracjadirac.pl/mu-raport.html" target="_blank" class="rpt-cell">MU →</a></td>
       </tr>
-      <tr style="background:rgba(180,79,255,0.03);">
-        <td><strong class="c-purple">SATL</strong></td>
-        <td><span style="color:var(--purple);font-size:0.72rem;">Spekulacja</span></td>
-        <td class="td-r">$6.00</td>
-        <td class="td-r c-amber">$5.93</td>
-        <td class="td-r c-red">−1.2%</td>
-        <td class="td-r c-red">$4.80 <span style="color:var(--text3);font-size:0.68rem;">(⚠$3.00)</span></td>
-        <td class="td-r c-cyan">$9.60</td>
-        <td class="td-r c-green">$12.00+</td>
-        <td class="td-r c-amber">~2.5:1</td>
-        <td class="td-r c-amber">Maj'26</td>
-        <td class="td-c"><a href="https://kalibracjadirac.pl/satl-raport.html" target="_blank" class="rpt-link">SATL →</a></td>
+      <tr style="background:rgba(192,96,255,.02);">
+        <td><strong class="c-purple" style="font-family:'Syne',sans-serif;font-size:1.05rem;">SATL</strong></td>
+        <td><span class="c-purple" style="font-size:.72rem;">Spekulacja</span></td>
+        <td class="tr">$6.00</td>
+        <td class="tr c-amber">$5.93</td>
+        <td class="tr c-red">−1.2%</td>
+        <td class="tr c-red">$4.80 <span class="c-dim" style="font-size:.68rem;">(⚠$3.00)</span></td>
+        <td class="tr c-amber">−20.0%</td>
+        <td class="tr c-cyan">$9.60</td>
+        <td class="tr c-green">$12.00+</td>
+        <td class="tr c-amber">~2.5:1</td>
+        <td class="tr c-dim">Maj'26</td>
+        <td class="tc"><a href="https://kalibracjadirac.pl/satl-raport.html" target="_blank" class="rpt-cell">SATL →</a></td>
       </tr>
-      <tr style="background:rgba(180,79,255,0.04);">
-        <td><strong class="c-purple">AVGO</strong></td>
-        <td><span style="color:var(--purple);font-size:0.72rem;">Skarbiec</span></td>
-        <td class="td-r">$313.94</td>
-        <td class="td-r c-amber">~$310</td>
-        <td class="td-r c-red">−1.3%</td>
-        <td class="td-r c-red">$288 <span style="color:var(--text3);font-size:0.68rem;">(raport:$255)</span></td>
-        <td class="td-r c-purple">bez TP</td>
-        <td class="td-r c-green">$431–470</td>
-        <td class="td-r c-purple">∞</td>
-        <td class="td-r c-amber">04 Cze'26</td>
-        <td class="td-c"><a href="https://kalibracjadirac.pl/avgo-raport.html" target="_blank" class="rpt-link">AVGO →</a></td>
+      <tr style="background:rgba(192,96,255,.03);">
+        <td><strong class="c-purple" style="font-family:'Syne',sans-serif;font-size:1.05rem;">AVGO</strong></td>
+        <td><span class="c-purple" style="font-size:.72rem;">Skarbiec</span></td>
+        <td class="tr">$313.94</td>
+        <td class="tr c-amber">~$310</td>
+        <td class="tr c-red">−1.3%</td>
+        <td class="tr c-red">$288 <span class="c-dim" style="font-size:.68rem;">(raport:$255)</span></td>
+        <td class="tr c-amber">−8.3%</td>
+        <td class="tr c-purple">bez TP</td>
+        <td class="tr c-green">$431–470</td>
+        <td class="tr c-purple">∞</td>
+        <td class="tr c-dim">04 Cze'26</td>
+        <td class="tc"><a href="https://kalibracjadirac.pl/avgo-raport.html" target="_blank" class="rpt-cell">AVGO →</a></td>
       </tr>
-      <tr style="background:rgba(255,107,43,0.03);">
-        <td><strong class="c-orange">AMKR</strong></td>
-        <td><span style="color:var(--orange);font-size:0.72rem;">Bankomatat #2</span></td>
-        <td class="td-r">$46.80</td>
-        <td class="td-r c-amber">~$41</td>
-        <td class="td-r c-red">−12.4%</td>
-        <td class="td-r c-red">$40.30 <span style="color:var(--red);font-size:0.68rem;">⚠⚠ DECYZJA</span></td>
-        <td class="td-r c-cyan">$59.80</td>
-        <td class="td-r c-green">$66.30</td>
-        <td class="td-r c-green">~3.5:1</td>
-        <td class="td-r" style="color:var(--red);">04 Maj'26 ⚡</td>
-        <td class="td-c"><a href="https://kalibracjadirac.pl/amkr-raport.html" target="_blank" class="rpt-link">AMKR →</a></td>
+      <tr style="background:rgba(255,107,43,.02);">
+        <td><strong class="c-orange" style="font-family:'Syne',sans-serif;font-size:1.05rem;">AMKR</strong></td>
+        <td><span class="c-orange" style="font-size:.72rem;">Bankomatat #2</span></td>
+        <td class="tr">$46.80</td>
+        <td class="tr c-amber">~$41</td>
+        <td class="tr c-red">−12.4%</td>
+        <td class="tr c-red" style="font-weight:700;">$40.30 <span style="color:var(--red);font-size:.68rem;">⚠⚠</span></td>
+        <td class="tr c-red" style="font-weight:700;">−13.9%</td>
+        <td class="tr c-cyan">$59.80</td>
+        <td class="tr c-green">$66.30</td>
+        <td class="tr c-green">~3.5:1</td>
+        <td class="tr" style="color:var(--red);font-weight:700;">04 Maj'26 ⚡</td>
+        <td class="tc"><a href="https://kalibracjadirac.pl/amkr-raport.html" target="_blank" class="rpt-cell">AMKR →</a></td>
       </tr>
-      <tr><td colspan="11" style="height:6px;background:rgba(255,255,255,0.02);"></td></tr>
-      <tr style="opacity:0.7;">
-        <td><strong class="c-green">APH</strong></td>
-        <td><span class="c-dim" style="font-size:0.72rem;">Watchlist</span></td>
-        <td class="td-r c-dim">—</td>
-        <td class="td-r">$127.96</td>
-        <td class="td-r c-dim">—</td>
-        <td class="td-r c-red">$115</td>
-        <td class="td-r c-cyan">$155</td>
-        <td class="td-r c-green">$165</td>
-        <td class="td-r c-green">~3:1</td>
-        <td class="td-r c-amber">29 Kwi'26 ⚡</td>
-        <td class="td-c"><a href="https://kalibracjadirac.pl/aph-raport.html" target="_blank" class="rpt-link">APH →</a></td>
+      <tr style="opacity:.65; border-top: 1px solid var(--bd2);">
+        <td><strong class="c-green" style="font-family:'Syne',sans-serif;">APH</strong></td>
+        <td><span class="c-dim" style="font-size:.72rem;">Kandydat</span></td>
+        <td class="tr c-dim">—</td>
+        <td class="tr">$127.96</td>
+        <td class="tr c-dim">—</td>
+        <td class="tr c-red">$115</td>
+        <td class="tr c-dim">−10.1%</td>
+        <td class="tr c-cyan">$155</td>
+        <td class="tr c-green">$165</td>
+        <td class="tr c-green">~3:1</td>
+        <td class="tr c-amber">29 Kwi ⚡</td>
+        <td class="tc"><a href="https://kalibracjadirac.pl/aph-raport.html" target="_blank" class="rpt-cell">APH →</a></td>
       </tr>
-      <tr style="opacity:0.7;">
-        <td><strong class="c-gold">AMPX</strong></td>
-        <td><span class="c-dim" style="font-size:0.72rem;">Watchlist</span></td>
-        <td class="td-r c-dim">—</td>
-        <td class="td-r">$17.16</td>
-        <td class="td-r c-dim">—</td>
-        <td class="td-r c-red">$12.50</td>
-        <td class="td-r c-cyan">$20</td>
-        <td class="td-r c-green">$22</td>
-        <td class="td-r c-amber">~2:1</td>
-        <td class="td-r c-amber">07 Maj'26</td>
-        <td class="td-c"><a href="https://kalibracjadirac.pl/ampx-raport.html" target="_blank" class="rpt-link">AMPX →</a></td>
+      <tr style="opacity:.65;">
+        <td><strong class="c-gold" style="font-family:'Syne',sans-serif;">AMPX</strong></td>
+        <td><span class="c-dim" style="font-size:.72rem;">Kandydat</span></td>
+        <td class="tr c-dim">—</td>
+        <td class="tr">$17.16</td>
+        <td class="tr c-dim">—</td>
+        <td class="tr c-red">$12.50</td>
+        <td class="tr c-dim">—</td>
+        <td class="tr c-cyan">$20</td>
+        <td class="tr c-green">$22</td>
+        <td class="tr c-amber">~2:1</td>
+        <td class="tr c-amber">07 Maj'26</td>
+        <td class="tc"><a href="https://kalibracjadirac.pl/ampx-raport.html" target="_blank" class="rpt-cell">AMPX →</a></td>
       </tr>
     </tbody>
   </table>
 </div>
 
+<div class="decisions-box">
+  <div class="decisions-title">⚠ Otwarte Decyzje — wymagają Twojej odpowiedzi</div>
+  <ul class="decisions-list">
+    <li><strong>AMKR SL:</strong> Zostawić $40.30 (bufor $0.70, ryzyko wyrzucenia na szumie) czy obniżyć do $30–33 per raport ANAL (Tier 1 akumulacja $38–44)?</li>
+    <li><strong>MU TP skalowanie:</strong> Zamknąć 50% na TP1 $422 i puścić resztę do $512+, czy trzymać całość do $512?</li>
+  </ul>
+</div>
+
 </div><!-- /container -->
 
-<div class="footer">
-  PORTFOLIO DASHBOARD — MU · SATL · AVGO · AMKR (aktywne) · APH · AMPX (kandydaci) — 02.04.2026<br>
-  Dane wejścia z historii transakcji. Ceny rynkowe z raportów ANAL (26–27.03.2026). Nie stanowi rekomendacji inwestycyjnej.
+<div style="text-align:center;padding:20px;font-size:.65rem;color:var(--text3);border-top:1px solid var(--border);line-height:1.8;">
+  PORTFOLIO DASHBOARD · MU · SATL · AVGO · AMKR · APH · AMPX · 02.04.2026<br>
+  Dane z raportów ANAL. Ceny z 26–27.03.2026 i 01.04.2026. Nie stanowi rekomendacji inwestycyjnej.
 </div>
 
 </body>
