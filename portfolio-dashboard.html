@@ -268,21 +268,22 @@ body::before {
 /* REPORT BUTTON */
 .report-btn {
   display: block; width: 100%;
-  padding: 10px 16px;
-  background: rgba(0,229,255,0.05);
+  padding: 13px 16px;
+  background: #00E5FF;
   border: none;
-  border-top: 1px solid rgba(0,229,255,0.15);
-  color: var(--cyan);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: #07070A;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.82rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
   text-decoration: none; text-align: center;
   cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
+  transition: background 0.15s, box-shadow 0.15s;
   margin-top: auto;
+  box-shadow: 0 0 18px rgba(0,229,255,0.35);
 }
 .report-btn:hover {
-  background: rgba(0,229,255,0.12);
-  border-color: rgba(0,229,255,0.4);
+  background: #00FFFF;
+  box-shadow: 0 0 28px rgba(0,229,255,0.6);
 }
 .report-btn::before { content: '→  '; }
 
@@ -312,17 +313,19 @@ body::before {
 .w-signals { display: flex; flex-wrap: wrap; gap: 3px; padding: 6px 14px; }
 .w-btn {
   display: block; width: 100%;
-  padding: 7px 10px;
-  background: rgba(255,255,255,0.02);
-  border: none; border-top: 1px solid var(--border);
-  color: var(--text3); font-family: 'JetBrains Mono', monospace;
-  font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 9px 10px;
+  background: #00E5FF;
+  border: none;
+  color: #07070A; font-family: 'Syne', sans-serif;
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
   text-decoration: none; text-align: center; cursor: pointer;
-  transition: background 0.15s, color 0.15s;
+  transition: background 0.15s, box-shadow 0.15s;
+  box-shadow: 0 0 12px rgba(0,229,255,0.25);
 }
-.w-btn:hover { background: rgba(0,229,255,0.07); color: var(--cyan); }
-.w-btn.no-report { cursor: default; color: var(--text3); }
-.w-btn.no-report:hover { background: rgba(255,255,255,0.02); color: var(--text3); }
+.w-btn:hover { background: #00FFFF; box-shadow: 0 0 20px rgba(0,229,255,0.5); }
+.w-btn.no-report { cursor: default; background: var(--bg3); color: var(--text3); box-shadow: none; border-top: 1px solid var(--border); }
+.w-btn.no-report:hover { background: var(--bg3); color: var(--text3); box-shadow: none; }
 
 /* ═══ MASTER TABLE ═══ */
 .master-table-wrap {
@@ -359,12 +362,15 @@ table.mtable tr:hover td { background: rgba(255,255,255,0.015); }
 .td-c { text-align: center; }
 .rpt-link {
   display: inline-block;
-  font-size: 0.68rem; padding: 3px 10px; letter-spacing: 0.06em; text-transform: uppercase;
-  border: 1px solid rgba(0,229,255,0.3); color: var(--cyan); background: rgba(0,229,255,0.06);
+  font-size: 0.72rem; font-weight: 700; padding: 4px 12px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  background: #00E5FF; color: #07070A;
   text-decoration: none; white-space: nowrap; cursor: pointer;
-  transition: background 0.1s;
+  transition: background 0.1s, box-shadow 0.1s;
+  box-shadow: 0 0 8px rgba(0,229,255,0.25);
+  font-family: 'Syne', sans-serif;
 }
-.rpt-link:hover { background: rgba(0,229,255,0.15); }
+.rpt-link:hover { background: #00FFFF; box-shadow: 0 0 16px rgba(0,229,255,0.5); }
 .no-rpt { font-size: 0.68rem; color: var(--text3); }
 
 /* ═══ ALERTS BOX ═══ */
