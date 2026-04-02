@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANAL — AVGO / Broadcom Inc. — 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #060608;
+  --bg2:       #0A0A0F;
+  --bg3:       #0E0E16;
+  --bg4:       #14141E;
+  --border:    #18182A;
+  --border2:   #20203A;
+  --green:     #00FF88;
+  --red:       #FF3355;
+  --amber:     #FFB800;
+  --blue:      #00AAFF;
+  --purple:    #B44FFF;
+  --gold:      #FFD700;
+  --teal:      #00E5CC;
+  --text:      #E8E8F2;
+  --text2:     #8888A8;
+  --text3:     #50507A;
+  --mono:      'JetBrains Mono', monospace;
+  --sans:      'Syne', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:10px;scroll-behavior:smooth;}
+@media(min-width:1024px){html{zoom:1.43;}}
+body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:1.25rem;line-height:1.6;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.18) 2px,rgba(0,0,0,0.18) 4px);pointer-events:none;z-index:1000;}
+
+/* HEADER */
+.header{background:var(--bg2);border-bottom:2px solid rgba(180,79,255,0.4);padding:20px 28px 16px;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.header-left{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
+.ticker-big{font-family:var(--sans);font-size:2.6rem;font-weight:800;color:var(--purple);letter-spacing:0.05em;text-shadow:0 0 30px rgba(180,79,255,0.5);}
+.ticker-name{font-size:1.1rem;color:var(--text2);letter-spacing:0.08em;}
+.header-right{display:flex;align-items:center;gap:16px;flex-shrink:0;flex-wrap:wrap;}
+.price-big{font-family:var(--sans);font-size:2.2rem;font-weight:700;color:var(--text);}
+.price-sub{font-size:1.05rem;color:var(--red);font-weight:500;}
+.tag{font-size:0.95rem;padding:3px 10px;border-radius:2px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;}
+.tag-green {background:rgba(0,255,136,0.12);color:var(--green); border:1px solid rgba(0,255,136,0.3);}
+.tag-red   {background:rgba(255,51,85,0.12); color:var(--red);   border:1px solid rgba(255,51,85,0.3);}
+.tag-amber {background:rgba(255,184,0,0.12); color:var(--amber); border:1px solid rgba(255,184,0,0.3);}
+.tag-blue  {background:rgba(0,170,255,0.12); color:var(--blue);  border:1px solid rgba(0,170,255,0.3);}
+.tag-purple{background:rgba(180,79,255,0.15);color:var(--purple);border:1px solid rgba(180,79,255,0.4);}
+.tag-gold  {background:rgba(255,215,0,0.12); color:var(--gold);  border:1px solid rgba(255,215,0,0.3);}
+.tag-teal  {background:rgba(0,229,204,0.12); color:var(--teal);  border:1px solid rgba(0,229,204,0.3);}
+
+/* NAV */
+.nav-strip{background:var(--bg3);border-bottom:1px solid var(--border);padding:0 28px;display:flex;gap:0;overflow-x:auto;scrollbar-width:none;}
+.nav-strip::-webkit-scrollbar{display:none;}
+.nav-item{font-size:0.9rem;color:var(--text3);padding:10px 14px;cursor:pointer;white-space:nowrap;text-decoration:none;letter-spacing:0.05em;border-bottom:2px solid transparent;transition:all 0.15s;}
+.nav-item:hover{color:var(--text);border-bottom-color:var(--purple);}
+
+.container{max-width:1100px;margin:0 auto;padding:28px 28px 60px;display:flex;flex-direction:column;gap:28px;}
+
+.section{background:var(--bg2);border:1px solid var(--border);border-radius:2px;overflow:hidden;}
+.section-head{background:var(--bg3);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;gap:12px;}
+.section-num{font-size:0.8rem;color:var(--text3);letter-spacing:0.12em;}
+.section-title{font-family:var(--sans);font-size:1.1rem;font-weight:700;color:var(--text);letter-spacing:0.06em;text-transform:uppercase;flex:1;}
+.section-body{padding:20px;}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+@media(max-width:700px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr 1fr;}}
+
+.kpi{background:var(--bg3);border:1px solid var(--border2);padding:14px 16px;display:flex;flex-direction:column;gap:4px;}
+.kpi-label{font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;}
+.kpi-value{font-family:var(--sans);font-size:1.7rem;font-weight:700;color:var(--text);line-height:1;}
+.kpi-value.green {color:var(--green);}  .kpi-value.red   {color:var(--red);}
+.kpi-value.amber {color:var(--amber);}  .kpi-value.purple{color:var(--purple);}
+.kpi-value.gold  {color:var(--gold);}   .kpi-value.teal  {color:var(--teal);}
+.kpi-value.blue  {color:var(--blue);}
+.kpi-sub{font-size:0.85rem;color:var(--text2);}
+
+.table-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:1.05rem;}
+th{background:var(--bg4);color:var(--text3);font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;text-align:left;padding:8px 12px;border-bottom:1px solid var(--border2);font-weight:400;}
+td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top;}
+tr:last-child td{border-bottom:none;} tr:hover td{background:rgba(255,255,255,0.02);}
+.td-right{text-align:right;} .td-green{color:var(--green);font-weight:500;} .td-red{color:var(--red);font-weight:500;}
+.td-amber{color:var(--amber);font-weight:500;} .td-dim{color:var(--text2);}
+.td-purple{color:var(--purple);font-weight:500;} .td-gold{color:var(--gold);font-weight:500;}
+
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.bar-label{font-size:0.9rem;color:var(--text2);width:180px;flex-shrink:0;}
+.bar-track{flex:1;height:5px;background:var(--bg4);border-radius:2px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:2px;background:var(--purple);}
+.bar-fill.green{background:var(--green);} .bar-fill.red{background:var(--red);} .bar-fill.amber{background:var(--amber);}
+.bar-fill.gold{background:var(--gold);} .bar-fill.teal{background:var(--teal);}
+.bar-val{font-size:0.9rem;color:var(--text);width:80px;text-align:right;flex-shrink:0;}
+
+.prose{font-size:1.1rem;color:var(--text2);line-height:1.75;}
+.prose p{margin-bottom:12px;} .prose p:last-child{margin-bottom:0;}
+.prose strong{color:var(--text);font-weight:500;}
+.prose .hl-green{color:var(--green);font-weight:500;} .prose .hl-red{color:var(--red);font-weight:500;}
+.prose .hl-amber{color:var(--amber);font-weight:500;} .prose .hl-purple{color:var(--purple);font-weight:500;}
+.prose .hl-gold{color:var(--gold);font-weight:500;} .prose .hl-teal{color:var(--teal);font-weight:500;}
+
+.seg-grid{display:flex;flex-direction:column;gap:8px;}
+.seg-row{display:flex;align-items:center;gap:12px;}
+.seg-name{font-size:0.9rem;color:var(--text2);width:210px;flex-shrink:0;}
+.seg-bar{flex:1;height:22px;background:var(--bg4);border-radius:1px;overflow:hidden;}
+.seg-fill{height:100%;display:flex;align-items:center;padding-left:8px;font-size:0.8rem;font-weight:500;}
+
+.signal-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);}
+.signal-row:last-child{border-bottom:none;}
+.signal-name{font-size:0.95rem;color:var(--text2);}
+.signal-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.dot-green{background:var(--green);box-shadow:0 0 6px rgba(0,255,136,0.6);}
+.dot-red{background:var(--red);box-shadow:0 0 6px rgba(255,51,85,0.6);}
+.dot-amber{background:var(--amber);box-shadow:0 0 6px rgba(255,184,0,0.6);}
+.dot-purple{background:var(--purple);box-shadow:0 0 6px rgba(180,79,255,0.6);}
+.dot-gold{background:var(--gold);box-shadow:0 0 6px rgba(255,215,0,0.6);}
+.dot-grey{background:var(--text3);}
+.signal-val{font-size:0.95rem;color:var(--text);font-weight:500;min-width:100px;text-align:right;}
+
+.tier{border:1px solid var(--border2);margin-bottom:10px;overflow:hidden;}
+.tier-head{padding:8px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+.tier-head.t1{background:rgba(0,255,136,0.06);} .tier-head.t2{background:rgba(255,184,0,0.06);} .tier-head.t3{background:rgba(0,170,255,0.06);}
+.tier-name{font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;}
+.t1 .tier-name{color:var(--green);} .t2 .tier-name{color:var(--amber);} .t3 .tier-name{color:var(--blue);}
+.tier-body{padding:10px 14px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.tier-item-label{font-size:0.78rem;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:2px;}
+.tier-item-val{font-size:1.05rem;color:var(--text);font-weight:500;}
+
+.risk-item{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+.risk-item:last-child{border-bottom:none;}
+.risk-badge{font-size:0.75rem;padding:2px 8px;border-radius:1px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;flex-shrink:0;margin-top:2px;width:58px;text-align:center;}
+.risk-HIGH{background:rgba(255,51,85,0.2);color:var(--red);border:1px solid rgba(255,51,85,0.3);}
+.risk-MED{background:rgba(255,184,0,0.15);color:var(--amber);border:1px solid rgba(255,184,0,0.3);}
+.risk-LOW{background:rgba(0,255,136,0.1);color:var(--green);border:1px solid rgba(0,255,136,0.2);}
+.risk-title{font-size:1rem;color:var(--text);font-weight:500;margin-bottom:3px;}
+.risk-desc{font-size:0.95rem;color:var(--text2);line-height:1.55;}
+
+.scenario-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.scenario-card{padding:14px;border:1px solid var(--border2);}
+.sc-bull{border-top:2px solid var(--green);} .sc-base{border-top:2px solid var(--amber);} .sc-bear{border-top:2px solid var(--red);}
+.sc-head{font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;margin-bottom:8px;}
+.sc-bull .sc-head{color:var(--green);} .sc-base .sc-head{color:var(--amber);} .sc-bear .sc-head{color:var(--red);}
+.sc-price{font-family:var(--sans);font-size:2rem;font-weight:700;margin-bottom:4px;}
+.sc-bull .sc-price{color:var(--green);} .sc-base .sc-price{color:var(--amber);} .sc-bear .sc-price{color:var(--red);}
+.sc-prob{font-size:0.85rem;color:var(--text3);margin-bottom:10px;}
+.sc-text{font-size:0.9rem;color:var(--text2);line-height:1.55;}
+
+.verdict-box{border:1px solid rgba(180,79,255,0.4);background:rgba(180,79,255,0.05);padding:20px;display:flex;flex-direction:column;gap:14px;}
+.verdict-rating{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.verdict-stars{font-size:1.8rem;letter-spacing:0.05em;color:var(--gold);}
+.verdict-label{font-family:var(--sans);font-size:1.8rem;font-weight:800;color:var(--purple);text-transform:uppercase;letter-spacing:0.05em;}
+.verdict-text{font-size:1.05rem;color:var(--text2);line-height:1.7;}
+.verdict-text strong{color:var(--text);}
+
+/* MEGA STAT */
+.mega-stat{text-align:center;padding:20px;background:var(--bg3);border:1px solid var(--border2);}
+.mega-val{font-family:var(--sans);font-size:3.6rem;font-weight:800;line-height:1;}
+.mega-lbl{font-size:0.85rem;color:var(--text2);margin-top:6px;letter-spacing:0.08em;text-transform:uppercase;}
+
+/* CUSTOMERS */
+.customer-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:16px;}
+.customer-box{padding:10px 8px;background:var(--bg3);border:1px solid var(--border2);text-align:center;}
+.customer-name{font-size:0.9rem;color:var(--text);font-weight:600;margin-bottom:4px;}
+.customer-chip{font-size:0.75rem;color:var(--text3);}
+.customer-demand{font-size:0.82rem;font-weight:500;margin-top:4px;}
+
+.level-chart{position:relative;background:var(--bg3);border:1px solid var(--border2);padding:20px 16px;height:220px;margin:12px 0;}
+.level-line{position:absolute;left:80px;right:16px;height:1px;display:flex;align-items:center;}
+.level-line.dashed{border-top:1px dashed;} .level-line.solid{border-top:2px solid;}
+.level-line-green {border-color:var(--green);}  .level-line-red   {border-color:var(--red);}
+.level-line-amber {border-color:var(--amber);}  .level-line-purple{border-color:var(--purple);}
+.level-line-blue  {border-color:var(--blue);}   .level-line-gold  {border-color:var(--gold);}
+.level-label{position:absolute;left:0;font-size:0.8rem;transform:translateY(-50%);white-space:nowrap;}
+.level-price{position:absolute;right:0;font-size:0.8rem;transform:translateY(-50%);padding-right:4px;}
+
+.consensus-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.c-label{font-size:0.85rem;color:var(--text2);width:70px;flex-shrink:0;}
+.c-count{font-size:0.85rem;color:var(--text3);width:30px;text-align:center;}
+
+.alert-banner{background:rgba(255,215,0,0.07);border:1px solid rgba(255,215,0,0.35);padding:12px 16px;font-size:0.95rem;color:var(--gold);display:flex;gap:10px;align-items:flex-start;margin-bottom:16px;}
+.alert-icon{flex-shrink:0;font-size:1.3rem;margin-top:1px;}
+
+.sep{height:1px;background:var(--border);margin:16px 0;}
+.inline-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+
+.footer{text-align:center;padding:20px;font-size:0.8rem;color:var(--text3);border-top:1px solid var(--border);line-height:1.8;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <span class="ticker-big">AVGO</span>
+    <span class="ticker-name">BROADCOM INC. · NASDAQ · Semiconductor + Infrastructure Software · Mega-cap $1.42T</span>
+  </div>
+  <div class="header-right">
+    <span class="price-big">$309.51</span>
+    <span class="price-sub">▼ -25% od ATH $414.61</span>
+    <span class="tag tag-purple">STRONG BUY</span>
+    <span class="tag tag-gold">$100B AI 2027</span>
+    <span class="tag tag-teal">XPU + VMware Moat</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-strip">
+  <a class="nav-item" href="#s01">01 MODEL</a>
+  <a class="nav-item" href="#s02">02 FINANSE</a>
+  <a class="nav-item" href="#s03">03 ANALITYCY</a>
+  <a class="nav-item" href="#s04">04 MOMENTUM</a>
+  <a class="nav-item" href="#s05">05 TECHNICZNE</a>
+  <a class="nav-item" href="#s06">06 WEJŚCIE</a>
+  <a class="nav-item" href="#s07">07 SCENARIUSZE</a>
+  <a class="nav-item" href="#s08">08 RYZYKA</a>
+  <a class="nav-item" href="#s09">09 WERDYKT</a>
+</div>
+
+<div class="container">
+
+<!-- ══ 01 MODEL ══ -->
+<div class="section" id="s01">
+  <div class="section-head">
+    <span class="section-num">// 01</span>
+    <span class="section-title">Model Biznesowy</span>
+    <span class="tag tag-purple">AI Custom Silicon #1</span>
+    <span class="tag tag-teal">VMware Enterprise Moat</span>
+    <span class="tag tag-gold">Hock Tan Serial Acquirer</span>
+  </div>
+  <div class="section-body">
+    <div class="prose" style="margin-bottom:18px;">
+      <p>Broadcom to <strong>globalny konglomerat technologiczny</strong> zbudowany przez Hock Tana przez dekadę agresywnych akwizycji — od Avago (2016, $37B) przez Broadcom Corp., CA Technologies, Symantec Enterprise, do VMware ($69B, 2023). Dziś AVGO operuje w dwóch gigantycznych segmentach: <span class="hl-purple">Semiconductor Solutions</span> ($12.5B revenue w Q1 FY2026 — custom AI accelerators/XPU, sieci datacenter, storage) i <span class="hl-teal">Infrastructure Software</span> ($6.8B w Q1 — VMware, Symantec, mainframe). Razem: $19.3B kwartalnie, rosnąc 29% YoY.</p>
+      <p>Kluczowa teza: Broadcom stał się <strong>niezbędną "infrastrukturą AI"</strong> — jednocześnie produkuje chipy XPU (custom AI accelerators dla Google TPU, Meta MTIA, OpenAI, Anthropic, Apple) ORAZ dostarcza software który każde duże przedsiębiorstwo i chmura potrzebuje do działania (VMware, Symantec). To unikatowe połączenie: <span class="hl-gold">hardware AI + software enterprise = dwie strumienie recurring revenue z high margins</span>.</p>
+      <p>CEO Hock Tan (68 lat) to jeden z najbardziej skutecznych CEO w historii tech — każda akwizycja transformacyjnie poprawiała marże i free cash flow. VMware: zakup za $69B, model subskrypcyjny wdrożony agresywnie, software operating margin przekracza 78%.</p>
+    </div>
+
+    <div style="margin-bottom:16px;">
+      <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Revenue Mix Q1 FY2026 ($19.31B)</div>
+      <div class="seg-grid">
+        <div class="seg-row">
+          <span class="seg-name">Semiconductor — AI Custom XPU</span>
+          <div class="seg-bar"><div class="seg-fill" style="width:44%;background:rgba(180,79,255,0.3);color:var(--purple);">~44% → +106% AI YoY</div></div>
+        </div>
+        <div class="seg-row">
+          <span class="seg-name">Semiconductor — AI Networking</span>
+          <div class="seg-bar"><div class="seg-fill" style="width:21%;background:rgba(0,229,204,0.25);color:var(--teal);">~21% — Tomahawk 6</div></div>
+        </div>
+        <div class="seg-row">
+          <span class="seg-name">Infrastructure Software (VMware)</span>
+          <div class="seg-bar"><div class="seg-fill" style="width:35%;background:rgba(0,170,255,0.2);color:var(--blue);">~35% — $6.8B recurring</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">5 potwierdzonych klientów XPU (AI chip customers)</div>
+    <div class="customer-grid">
+      <div class="customer-box">
+        <div class="customer-name">Google</div>
+        <div class="customer-chip">TPU Ironwood/Sunfish</div>
+        <div class="customer-demand" style="color:var(--green);">4.5M units 2026E</div>
+      </div>
+      <div class="customer-box">
+        <div class="customer-name">Anthropic</div>
+        <div class="customer-chip">Custom XPU</div>
+        <div class="customer-demand" style="color:var(--purple);">1 GW → 3+ GW 2027</div>
+      </div>
+      <div class="customer-box">
+        <div class="customer-name">Meta</div>
+        <div class="customer-chip">MTIA Training</div>
+        <div class="customer-demand" style="color:var(--amber);">Multi-year program</div>
+      </div>
+      <div class="customer-box">
+        <div class="customer-name">OpenAI</div>
+        <div class="customer-chip">Custom silicon</div>
+        <div class="customer-demand" style="color:var(--teal);">Start ship 2027 1GW+</div>
+      </div>
+      <div class="customer-box">
+        <div class="customer-name">Apple</div>
+        <div class="customer-chip">AI accelerator</div>
+        <div class="customer-demand" style="color:var(--gold);">Potwierdzony</div>
+      </div>
+    </div>
+
+    <div class="grid-4">
+      <div class="kpi">
+        <span class="kpi-label">AI Revenue Q1 FY2026</span>
+        <span class="kpi-value purple">$8.4B</span>
+        <span class="kpi-sub">+106% YoY; Q2 guided $10.7B</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">AI Backlog (18 mies.)</span>
+        <span class="kpi-value gold">$73B</span>
+        <span class="kpi-sub">"Backlog rośnie" — Hock Tan</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">AI Revenue 2027 target</span>
+        <span class="kpi-value green">&gt;$100B</span>
+        <span class="kpi-sub">Tylko chipy; analitycy mówią $180–200B</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">TSMC supply secured</span>
+        <span class="kpi-value teal">do 2028</span>
+        <span class="kpi-sub">Wafers + HBM + substrates + T-glass</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 02 FINANSE ══ -->
+<div class="section" id="s02">
+  <div class="section-head">
+    <span class="section-num">// 02</span>
+    <span class="section-title">Finanse</span>
+    <span class="tag tag-purple">Record Q1 FY2026</span>
+    <span class="tag tag-gold">68% EBITDA Margin</span>
+  </div>
+  <div class="section-body">
+
+    <div class="grid-4" style="margin-bottom:18px;">
+      <div class="kpi">
+        <span class="kpi-label">Revenue Q1 FY2026</span>
+        <span class="kpi-value purple">$19.31B</span>
+        <span class="kpi-sub">+29% YoY; beat $19.18B (+0.5%)</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Adj. EPS Q1 FY2026</span>
+        <span class="kpi-value green">$2.05</span>
+        <span class="kpi-sub">+1.5% beat vs est. $2.02</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">EBITDA Margin Q1</span>
+        <span class="kpi-value gold">68%</span>
+        <span class="kpi-sub">Record; Q2 guided 68%</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Free Cash Flow Q1</span>
+        <span class="kpi-value green">$8.01B</span>
+        <span class="kpi-sub">~41% FCF margin — maszynka</span>
+      </div>
+    </div>
+
+    <div class="grid-4" style="margin-bottom:18px;">
+      <div class="kpi">
+        <span class="kpi-label">Revenue Q2 FY2026 Guidance</span>
+        <span class="kpi-value purple">$22.0B</span>
+        <span class="kpi-sub">vs. est. $20.56B (+7%!) — ogromny beat</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">AI Rev Q2 FY2026 Guidance</span>
+        <span class="kpi-value gold">$10.7B</span>
+        <span class="kpi-sub">+140% YoY; +27% QoQ</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Revenue FY2025 (annual)</span>
+        <span class="kpi-value">$63.89B</span>
+        <span class="kpi-sub">+24% YoY; net income $23.13B</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">EBITDA (TTM)</span>
+        <span class="kpi-value teal">$37.14B</span>
+        <span class="kpi-sub">Margin 54.67% TTM; 68% adj. Q1</span>
+      </div>
+    </div>
+
+    <div class="alert-banner">
+      <span class="alert-icon">💡</span>
+      <span><strong>Historyczna perspektywa:</strong> Hock Tan ogłosił "line of sight to exceed $100B in AI revenue in 2027 — from chips alone". Broadcom's total FY2025 revenue = $63.89B. Firma przewiduje że <strong>jeden pod-segment jednego segmentu</strong> przekroczy całościowe przychody firmy z 2025 roku. Analitycy (Bernstein, BofA) twierdzą że $100B może być ZANIŻONE — szacują $180–200B przy 10 GW compute capacity.</span>
+    </div>
+
+    <div class="table-wrap" style="margin-bottom:16px;">
+      <table>
+        <thead>
+          <tr><th>Rok fiskalny (X)</th><th class="td-right">Revenue</th><th class="td-right">YoY%</th><th class="td-right">Adj. EBITDA%</th><th class="td-right">FCF</th><th class="td-right">AI Rev.</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>FY2022</td><td class="td-right td-dim">$33.2B</td><td class="td-right td-green">+21%</td><td class="td-right td-dim">~55%</td><td class="td-right td-dim">~$16B</td><td class="td-right td-dim">incipient</td></tr>
+          <tr><td>FY2023</td><td class="td-right td-dim">$35.8B</td><td class="td-right td-green">+8%</td><td class="td-right td-dim">~58%</td><td class="td-right td-dim">~$17B</td><td class="td-right td-dim">~$3B</td></tr>
+          <tr><td>FY2024 (VMware full)</td><td class="td-right td-dim">$51.6B</td><td class="td-right td-green">+44%</td><td class="td-right">~62%</td><td class="td-right td-dim">~$26B</td><td class="td-right td-amber">~$12B</td></tr>
+          <tr style="background:rgba(180,79,255,0.04);"><td><strong>FY2025 ✦ Record</strong></td><td class="td-right td-purple"><strong>$63.89B</strong></td><td class="td-right td-green"><strong>+24%</strong></td><td class="td-right td-gold"><strong>~65%</strong></td><td class="td-right td-green"><strong>~$30B+</strong></td><td class="td-right td-purple"><strong>~$30B</strong></td></tr>
+          <tr><td>Q1 FY2026</td><td class="td-right td-purple">$19.31B</td><td class="td-right td-green">+29%</td><td class="td-right td-gold">68%</td><td class="td-right td-green">$8.01B</td><td class="td-right td-gold">$8.4B</td></tr>
+          <tr><td>Q2 FY2026 Guidance</td><td class="td-right td-gold">$22.0B</td><td class="td-right td-green">+47%</td><td class="td-right td-gold">68%</td><td class="td-right td-dim">—</td><td class="td-right td-gold">$10.7B</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Profil marżowy — unikatowy dla skali</div>
+    <div class="bar-row">
+      <span class="bar-label">Adj. EBITDA Margin Q1</span>
+      <div class="bar-track"><div class="bar-fill gold" style="width:100%"></div></div>
+      <span class="bar-val td-gold">68%</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Gross Margin Q1</span>
+      <div class="bar-track"><div class="bar-fill" style="width:95%"></div></div>
+      <span class="bar-val td-purple">77%</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">FCF Margin Q1</span>
+      <div class="bar-track"><div class="bar-fill green" style="width:60%"></div></div>
+      <span class="bar-val td-green">~41%</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Software op. margin</span>
+      <div class="bar-track"><div class="bar-fill teal" style="width:89%"></div></div>
+      <span class="bar-val td-teal">&gt;78%</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">AI Rev. YoY Q1</span>
+      <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+      <span class="bar-val td-purple">+106%</span>
+    </div>
+
+    <div class="sep"></div>
+    <div class="grid-3">
+      <div class="kpi">
+        <span class="kpi-label">P/E (TTM, adj. EPS ~$8)</span>
+        <span class="kpi-value amber">~39x</span>
+        <span class="kpi-sub">Forward ~25x na FY2027E EPS</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Buyback auth. 2026</span>
+        <span class="kpi-value">$10B</span>
+        <span class="kpi-sub">Board zatwierdził do końca 2026</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Dywidenda kw. ($0.65)</span>
+        <span class="kpi-value green">$2.60 ann.</span>
+        <span class="kpi-sub">Yield ~0.84%; systematycznie rośnie</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 03 ANALITYCY ══ -->
+<div class="section" id="s03">
+  <div class="section-head">
+    <span class="section-num">// 03</span>
+    <span class="section-title">Analitycy Wall Street</span>
+    <span class="tag tag-gold">29–52 analityków</span>
+    <span class="tag tag-purple">Strong Buy — 0 Sell</span>
+  </div>
+  <div class="section-body">
+
+    <div class="grid-2" style="margin-bottom:18px;">
+      <div>
+        <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Konsensus (stockanalysis — 29 an.)</div>
+        <div class="consensus-row">
+          <span class="c-label">BUY/SB</span>
+          <div class="bar-track" style="height:8px;"><div class="bar-fill green" style="width:100%"></div></div>
+          <span class="c-count">29</span>
+        </div>
+        <div class="consensus-row">
+          <span class="c-label">HOLD</span>
+          <div class="bar-track" style="height:8px;"><div class="bar-fill amber" style="width:0%"></div></div>
+          <span class="c-count">0</span>
+        </div>
+        <div class="consensus-row">
+          <span class="c-label">SELL</span>
+          <div class="bar-track" style="height:8px;"><div class="bar-fill red" style="width:0%"></div></div>
+          <span class="c-count">0</span>
+        </div>
+        <div style="margin-top:14px;" class="kpi">
+          <span class="kpi-label">Avg PT (29 analityków)</span>
+          <span class="kpi-value green">$431.24</span>
+          <span class="kpi-sub">+39% upside vs. $309.51</span>
+        </div>
+        <div style="margin-top:8px;" class="kpi">
+          <span class="kpi-label">Konsensus (TradingView 52 an.)</span>
+          <span class="kpi-value gold">$470.31</span>
+          <span class="kpi-sub">+52% upside; 48 Buy, 0 Sell</span>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Kluczowe targety (po Q1 FY26)</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Dom maklerski</th><th>Rating</th><th class="td-right">PT</th></tr></thead>
+            <tbody>
+              <tr><td>Bank of America</td><td class="td-green">Top Pick</td><td class="td-right td-gold">$500</td></tr>
+              <tr><td>Morgan Stanley</td><td class="td-green">Overweight</td><td class="td-right td-purple">$470 ↑</td></tr>
+              <tr><td>GF Securities</td><td class="td-green">Buy</td><td class="td-right td-purple">$450</td></tr>
+              <tr><td>Seeking Alpha DCF</td><td class="td-green">Strong Buy</td><td class="td-right td-teal">$491.88</td></tr>
+              <tr><td>24/7 Wall St. bull</td><td class="td-green">Strong Buy</td><td class="td-right td-green">$462</td></tr>
+              <tr><td>Max estimate</td><td class="td-green">—</td><td class="td-right td-gold">$582–630</td></tr>
+              <tr><td>Min estimate</td><td class="td-amber">Hold/Caution</td><td class="td-right td-amber">$223–360</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Coverage AVGO jest masywne — 29-52 analityków, zero rekomendacji SELL. Po Q1 FY2026 (04 mar '26) gdzie AI revenue +106% YoY do $8.4B a guidance Q2 $22B przebił consensus $20.56B o $1.5B — fala podwyżek PT. <span class="hl-gold">Morgan Stanley $470, BofA Top Pick $500, DCF Seeking Alpha $491</span>. Bernstein stwierdził wprost: "Own Nvidia, Own Broadcom — avoid AMD." Analitycy kwestionowali guidance $100B na 2027 jako <strong>zbyt niski</strong> — własne szacunki wskazują $180-200B przy scenariuszu 10 GW. <span class="hl-purple">Przy cenie $309.51 i avg PT $431-470 — mamy +39% do +52% implied upside od konsensusu Wall Street</span>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 04 MOMENTUM ══ -->
+<div class="section" id="s04">
+  <div class="section-head">
+    <span class="section-num">// 04</span>
+    <span class="section-title">Momentum & Katalyzatory</span>
+    <span class="tag tag-red">YTD -8% vs flat S&P500</span>
+    <span class="tag tag-gold">Macro correction, nie fundamenty</span>
+  </div>
+  <div class="section-body">
+    <div class="grid-2" style="margin-bottom:18px;">
+      <div>
+        <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Zmiana ceny</div>
+        <div class="signal-row">
+          <span class="signal-name">ATH (52-tyg. high)</span>
+          <div class="signal-dot dot-red"></div>
+          <span class="signal-val">$414.61</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">52-tyg. low</span>
+          <div class="signal-dot dot-grey"></div>
+          <span class="signal-val">$138.10</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Cena (01.04.2026)</span>
+          <div class="signal-dot dot-purple"></div>
+          <span class="signal-val td-purple">$309.51</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Od ATH (-25.3%)</span>
+          <div class="signal-dot dot-red"></div>
+          <span class="signal-val td-red">-$105.10</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">YTD 2026</span>
+          <div class="signal-dot dot-red"></div>
+          <span class="signal-val td-red">~-8%</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">1Y total return</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">~+90%</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Beta</span>
+          <div class="signal-dot dot-amber"></div>
+          <span class="signal-val">β = 2.20</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Market Cap</span>
+          <div class="signal-dot dot-purple"></div>
+          <span class="signal-val td-purple">$1.42T</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Katalyzatory</div>
+        <div class="signal-row">
+          <span class="signal-name">Q1 FY26 Beat — AI +106%</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">Zrealizowany ✓</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Q2 Guid. $22B (+$1.5B vs est.)</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">Zrealizowany ✓</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">$973M DISA defense deal (mar'26)</span>
+          <div class="signal-dot dot-gold"></div>
+          <span class="signal-val td-gold">Zamknięty ✓</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Tomahawk 6 — 102.4 Tbps ship</span>
+          <div class="signal-dot dot-teal"></div>
+          <span class="signal-val td-teal">W produkcji ✓</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Q2 FY2026 Earnings</span>
+          <div class="signal-dot dot-amber"></div>
+          <span class="signal-val td-amber">04 Cze 2026</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">OpenAI chip — start ship 2027</span>
+          <div class="signal-dot dot-gold"></div>
+          <span class="signal-val td-gold">Potwierdzony</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">TSMC supply secured do 2028</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">Locked ✓</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Insider selling ($88M mar'26)</span>
+          <div class="signal-dot dot-red"></div>
+          <span class="signal-val td-red">Negatywny sign.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Korekta AVGO -25% od ATH przy <strong>jednoczesnym Q1 FY26 który był najlepszym kwartałem w historii</strong> spółki to klasyczna makro-indukowana presja — nie fundamentalna deterioracja. YTD underperformance -8% vs. S&P500 flat wynika z: (1) rotation out of AI mega-caps, (2) TSMC capacity bottleneck news (March 24 — Broadcom sam wskazał że TSMC jest zbliżone do limitów — ale to bullish dla Broadcom, który <span class="hl-gold">jako jeden z pierwszych locked up supply do 2028</span>). (3) Insider selling $88M — przy skali spółki i bez context: CFO/executives diversifying, nie panic selling. <span class="hl-purple">CEO Hock Tan stwierdził dosłownie: "We have never seen bookings of the nature that what we have seen over the past three months."</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 05 TECHNICZNE ══ -->
+<div class="section" id="s05">
+  <div class="section-head">
+    <span class="section-num">// 05</span>
+    <span class="section-title">Analiza Techniczna</span>
+    <span class="tag tag-red">Poniżej 50d i 100d MA</span>
+    <span class="tag tag-amber">9-tyg. triangle pattern</span>
+  </div>
+  <div class="section-body">
+    <div class="grid-2" style="margin-bottom:16px;">
+      <div>
+        <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Poziomy kluczowe</div>
+        <div class="signal-row">
+          <span class="signal-name">ATH / 52w High</span>
+          <div class="signal-dot dot-red"></div>
+          <span class="signal-val">$414.61</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Resistance — 50d MA</span>
+          <div class="signal-dot dot-red"></div>
+          <span class="signal-val td-red">~$360–370</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Resistance — $340</span>
+          <div class="signal-dot dot-amber"></div>
+          <span class="signal-val td-amber">~$340</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Cena (01.04.2026)</span>
+          <div class="signal-dot dot-purple"></div>
+          <span class="signal-val td-purple">$309.51</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Support 1 (1W MA50)</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">~$315–320</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Support 2 — key zone</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">$280–295</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Support 3 — deep</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">$240–255</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">52w Low (absolutny dołek)</span>
+          <div class="signal-dot dot-grey"></div>
+          <span class="signal-val td-dim">$138.10</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Sygnały techniczne</div>
+        <div class="signal-row">
+          <span class="signal-name">Długoterminowy trend</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">Secular bull (4Y)</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Krótkoterminowy</span>
+          <div class="signal-dot dot-red"></div>
+          <span class="signal-val td-red">Bearish correction</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Triangle pattern (9 tygodni)</span>
+          <div class="signal-dot dot-amber"></div>
+          <span class="signal-val td-amber">Forming — breakout?</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">1W MA50 rebound</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">Historycznie silny</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">RSI</span>
+          <div class="signal-dot dot-amber"></div>
+          <span class="signal-val td-amber">Neutral/oversold</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Beta</span>
+          <div class="signal-dot dot-amber"></div>
+          <span class="signal-val">2.20 — high vol.</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Options flow (01.04)</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">+5.51% on day</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Mapa poziomów cenowych</div>
+    <div class="level-chart">
+      <div class="level-line dashed level-line-red" style="top:4%;">
+        <span class="level-label" style="top:4%;color:var(--red);">ATH</span>
+        <span class="level-price" style="top:4%;color:var(--red);">$414.61</span>
+      </div>
+      <div class="level-line dashed level-line-red" style="top:17%;">
+        <span class="level-label" style="top:17%;color:var(--red);">50d MA / R1</span>
+        <span class="level-price" style="top:17%;color:var(--red);">~$365</span>
+      </div>
+      <div class="level-line dashed level-line-amber" style="top:29%;">
+        <span class="level-label" style="top:29%;color:var(--amber);">Resistance R2</span>
+        <span class="level-price" style="top:29%;color:var(--amber);">$340</span>
+      </div>
+      <div class="level-line solid level-line-purple" style="top:41%;">
+        <span class="level-label" style="top:41%;color:var(--purple);">► CENA</span>
+        <span class="level-price" style="top:41%;color:var(--purple);">$309.51</span>
+      </div>
+      <div class="level-line dashed level-line-green" style="top:48%;">
+        <span class="level-label" style="top:48%;color:var(--green);">S1 — 1W MA50</span>
+        <span class="level-price" style="top:48%;color:var(--green);">$315–320</span>
+      </div>
+      <div class="level-line dashed level-line-green" style="top:63%;">
+        <span class="level-label" style="top:63%;color:var(--green);">S2 — key zone</span>
+        <span class="level-price" style="top:63%;color:var(--green);">$280–295</span>
+      </div>
+      <div class="level-line dashed level-line-green" style="top:78%;">
+        <span class="level-label" style="top:78%;color:var(--green);">S3 — H&amp;S target</span>
+        <span class="level-price" style="top:78%;color:var(--green);">$235–255</span>
+      </div>
+      <div class="level-line dashed level-line-gold" style="top:90%;">
+        <span class="level-label" style="top:90%;color:var(--gold);">4Y Channel low</span>
+        <span class="level-price" style="top:90%;color:var(--gold);">~$200</span>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>AVGO jest technicznie w 9-tygodniowej konsolidacji trójkąta po korekcji z ATH $414. Jeden analityk wskazuje na potencjalny Head & Shoulders z neckline — jeśli potwierdzi się, target $235-240. <span class="hl-amber">To jest kluczowe ryzyko techniczne.</span> Kontrargument: każde dotknięcie 1W MA50 (tygodniowej średniej 50-tygodniowej) w 4-letnim Channel Up prowadziło do silnego odbicia — a jesteśmy w pobliżu tej linii (~$315-320). W piątek 28 marca akcja ruszyła +5.51% bez wyraźnego newsa — możliwy pivot. <span class="hl-purple">Beta 2.20 oznacza że przy pozytywnym makro AVGO urośnie szybciej niż rynek.</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 06 WEJŚCIE ══ -->
+<div class="section" id="s06">
+  <div class="section-head">
+    <span class="section-num">// 06</span>
+    <span class="section-title">Strategia Wejścia</span>
+    <span class="tag tag-blue">3 Tiers</span>
+    <span class="tag tag-purple">Tier 1 aktywny</span>
+  </div>
+  <div class="section-body">
+
+    <div class="tier">
+      <div class="tier-head t1">
+        <span class="tier-name">Tier 1 — Akumulacja (AKTYWNA STREFA)</span>
+        <span class="tag tag-green">Cena $309 = w strefie</span>
+      </div>
+      <div class="tier-body">
+        <div><div class="tier-item-label">Strefa wejścia</div><div class="tier-item-val">$295 – $325</div></div>
+        <div><div class="tier-item-label">Stop-Loss</div><div class="tier-item-val td-red">$255 (-15%)</div></div>
+        <div><div class="tier-item-label">Target / Upside</div><div class="tier-item-val td-green">$430–500 (+35–60%)</div></div>
+        <div><div class="tier-item-label">Risk/Reward</div><div class="tier-item-val td-green">~3–4:1</div></div>
+        <div><div class="tier-item-label">Horyzont</div><div class="tier-item-val">9–18 mies.</div></div>
+        <div><div class="tier-item-label">Kontekst</div><div class="tier-item-val td-dim">Macro correction; fundamenty OK</div></div>
+      </div>
+    </div>
+
+    <div class="tier">
+      <div class="tier-head t2">
+        <span class="tier-name">Tier 2 — Momentum entry (po przełamaniu $340)</span>
+        <span class="tag tag-amber">Confirm breakout 50d MA</span>
+      </div>
+      <div class="tier-body">
+        <div><div class="tier-item-label">Strefa wejścia</div><div class="tier-item-val">$340 – $375</div></div>
+        <div><div class="tier-item-label">Stop-Loss</div><div class="tier-item-val td-red">$318 (-9%)</div></div>
+        <div><div class="tier-item-label">Target / Upside</div><div class="tier-item-val td-green">$450–500 (+25–40%)</div></div>
+        <div><div class="tier-item-label">Risk/Reward</div><div class="tier-item-val td-amber">~2.5:1</div></div>
+        <div><div class="tier-item-label">Horyzont</div><div class="tier-item-val">6–12 mies.</div></div>
+        <div><div class="tier-item-label">Kontekst</div><div class="tier-item-val td-dim">Po potwierdzeniu trendu</div></div>
+      </div>
+    </div>
+
+    <div class="tier">
+      <div class="tier-head t3">
+        <span class="tier-name">Tier 3 — Deep correction (H&S / macro shock)</span>
+        <span class="tag tag-blue">Jeśli $280 nie utrzyma</span>
+      </div>
+      <div class="tier-body">
+        <div><div class="tier-item-label">Strefa wejścia</div><div class="tier-item-val">$235 – $270</div></div>
+        <div><div class="tier-item-label">Stop-Loss</div><div class="tier-item-val td-red">$195 (-20%)</div></div>
+        <div><div class="tier-item-label">Target / Upside</div><div class="tier-item-val td-green">$450–550 (+80–130%)</div></div>
+        <div><div class="tier-item-label">Risk/Reward</div><div class="tier-item-val td-green">~5:1</div></div>
+        <div><div class="tier-item-label">Horyzont</div><div class="tier-item-val">12–24 mies.</div></div>
+        <div><div class="tier-item-label">Kontekst</div><div class="tier-item-val td-dim">4Y Channel low / panic</div></div>
+      </div>
+    </div>
+
+    <div class="prose" style="margin-top:14px;">
+      <p><span class="hl-purple">Taktyka dla mega-cap:</span> AVGO przy $309 jest w Tier 1. <strong>DCA: 40% teraz przy $309, 35% przy $280-295 (jeśli zejdzie), 25% przy $240-255 (głęboka korekta)</strong>. SL pod $200 (naruszenie 4Y channel — to by oznaczało koniec secular bull). <strong>Vs. avg analyst PT $431-470 — implied upside +39 do +52%</strong> przy najbardziej pokrywanej spółce na Wall Street (52 analityków!). Earnings Q2 FY2026 (04.06.2026): kolejne wielkie wydarzenie — jeśli AI revenue przekroczy $10.7B guidancu i poda Q3 guidance powyżej $24B, możliwy natychmiastowy breakout przez $340-350. <span class="hl-gold">Przy $100B AI revenue 2027 target i forward P/E ~25x, fair value to $450-550.</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 07 SCENARIUSZE ══ -->
+<div class="section" id="s07">
+  <div class="section-head">
+    <span class="section-num">// 07</span>
+    <span class="section-title">Scenariusze 12–24 miesięczne</span>
+  </div>
+  <div class="section-body">
+
+    <!-- Mega stats row -->
+    <div class="grid-3" style="margin-bottom:18px;">
+      <div class="mega-stat">
+        <div class="mega-val" style="color:var(--green);">$200B</div>
+        <div class="mega-lbl">Potencjalne AI revenue 2027 (analitycy max)</div>
+      </div>
+      <div class="mega-stat">
+        <div class="mega-val" style="color:var(--gold);">$100B</div>
+        <div class="mega-lbl">AI revenue 2027 target — oficjalny (chips only)</div>
+      </div>
+      <div class="mega-stat">
+        <div class="mega-val" style="color:var(--purple);">$73B</div>
+        <div class="mega-lbl">AI backlog next 18 miesięcy (i rośnie)</div>
+      </div>
+    </div>
+
+    <div class="scenario-grid">
+      <div class="scenario-card sc-bull">
+        <div class="sc-head">🚀 Bull Case — AI Supercycle</div>
+        <div class="sc-price">$550–630</div>
+        <div class="sc-prob">Prawdopodobieństwo: 30%</div>
+        <div class="sc-text">AI revenue 2027 przekracza $150-200B (Bernstein/BofA model). Anthropic skaluje do 3+ GW, OpenAI start 2027, 5. klient ogłoszony. VMware synergies przekraczają 80% op. margin. EPS FY2027 przekracza $12-15. Forward P/E ~35-40x. MCap przekracza $2.5T — Nvidia level.</div>
+      </div>
+      <div class="scenario-card sc-base">
+        <div class="sc-head">📊 Base Case — On Track</div>
+        <div class="sc-price">$430–500</div>
+        <div class="sc-prob">Prawdopodobieństwo: 50%</div>
+        <div class="sc-text">AI revenue 2027 ~$100-120B zgodnie z guidancem. Computing +47% YoY FY2026. Software utrzymuje 78%+ margins. EPS FY2027 ~$10-12. Forward P/E ~35x. Kurs wraca do avg PT analityków $431-470. MCap ~$1.8-2.0T.</div>
+      </div>
+      <div class="scenario-card sc-bear">
+        <div class="sc-head">🐻 Bear Case — Hyperscaler Pause</div>
+        <div class="sc-price">$220–280</div>
+        <div class="sc-prob">Prawdopodobieństwo: 20%</div>
+        <div class="sc-text">Jeden z 5 klientów XPU ogranicza CapEx o 30-50% (AI ROI concerns). Non-AI semiconductor flat lub down. VMware customer pushback eskaluje. TSMC bottleneck opóźnia dostawy. Techniczny H&S potwierdza się. EPS rozczarowuje. Multiple compression do 28-30x forward.</div>
+      </div>
+    </div>
+
+    <div class="prose" style="margin-top:14px;">
+      <p>AVGO to spółka gdzie <strong>even the bear case jest tylko -28% od bieżącej ceny</strong> — fundamenty są zbyt silne żeby kurs się zawalił bez poważnej recesji lub systemowego kryzysu AI. Bull case +80% vs. bear case -28% to jedna z najlepszych asymetrii wśród large-cap tech. <span class="hl-gold">$100B AI revenue 2027 przy 68% EBITDA margin = ~$68B AI EBITDA</span>. Przy EV/EBITDA 25x to $1.7T market cap z samego AI semiconductors — bez VMware ($37B annual revenue, 78% margin).</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 08 RYZYKA ══ -->
+<div class="section" id="s08">
+  <div class="section-head">
+    <span class="section-num">// 08</span>
+    <span class="section-title">Ryzyka</span>
+    <span class="tag tag-red">2x HIGH · 4x MED · 2x LOW</span>
+  </div>
+  <div class="section-body">
+
+    <div class="risk-item">
+      <span class="risk-badge risk-HIGH">HIGH</span>
+      <div>
+        <div class="risk-title">Koncentracja klientów AI — 5 hyperscalerów</div>
+        <div class="risk-desc">Google, Meta, Anthropic, OpenAI, Apple generują zdecydowaną większość AI semiconductor revenue. Redukcja CapEx przez któregokolwiek z nich (AI ROI concerns, budget reallocation, in-house alternatives) to bezpośredni cios w revenue. Google ma historię in-sourcing (TPU v1-v4 = Broadcom, ale TPU v5+ design może ewoluować). Customer concentration to najważniejsze strukturalne ryzyko Broadcom.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <span class="risk-badge risk-HIGH">HIGH</span>
+      <div>
+        <div class="risk-title">TSMC capacity bottleneck — double edge sword</div>
+        <div class="risk-desc">Broadcom sam ogłosił (24 mar '26) że TSMC hits capacity limits — "what seemed like infinite capacity has become a bottleneck." Broadcom secured supply do 2028 (bullish), ale: (1) opóźnienia w TSMC mogą spowolnić production ramp XPU, (2) nowa capacity nie nadejdzie before 2027, (3) jeśli Nvidia dostanie priorytet (CoWoS) — pozostali klienci mogą poczekać. Broadcom ma być "very good partners" z TSMC ale bez gwarancji publicznych.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <span class="risk-badge risk-MED">MED</span>
+      <div>
+        <div class="risk-title">VMware customer pushback / regulatorzy</div>
+        <div class="risk-desc">Hock Tan agresywnie przekonwertował VMware na model subskrypcyjny — istotne podwyżki cen dla enterprise customers. EU antitrust regulatorzy prowadzą dochodzenie dot. VMware Cloud Service Provider programme. Lobbyiści naciskają na interwencję. Jeśli regulatorzy wymuszą zmiany cenowe — software margin może ucierpieć. Jednocześnie software jest "sticky" — klienci nie mają łatwych alternatyw.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <span class="risk-badge risk-MED">MED</span>
+      <div>
+        <div class="risk-title">Non-AI semiconductor stagnacja</div>
+        <div class="risk-desc">Broadband, wireless, enterprise storage, industrial — segmenty non-AI semiconductor były płaskie lub słabe w Q1 FY2026. Jeden analityk obniżył rating do SELL właśnie z tego powodu — słabość non-AI i software vs. expectations. Jeśli AI boom stopniowo stanie się całym P&L, to concentration risk rośnie. Normalny semiconductor cycle recovery może być dłuższy niż oczekiwany.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <span class="risk-badge risk-MED">MED</span>
+      <div>
+        <div class="risk-title">Geopolityka / eksport controls / Chiny</div>
+        <div class="risk-desc">Broadcom ma expozycję na Chiny przez wielu klientów końcowych (np. szacowane 2M units H200 chips z Chin — China kupuje AI chips przez hyperscalerów). Export controls mogą uderzyć w pośredni demand. Geopolityczne napięcia z Tajwanem (TSMC) to systemowe ryzyko dla całego przemysłu semicap. Broadcom ma manufacturing w USA (San Jose HQ) ale core chip design flow przez TSMC.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <span class="risk-badge risk-MED">MED</span>
+      <div>
+        <div class="risk-title">Wycena — premium do historii i peers</div>
+        <div class="risk-desc">P/E TTM ~39-63x (różne źródła; TTM GAAP EPS $5.13) — premia do historycznej średniej. Forward P/E FY2027E ~25x przy założeniu $12+ EPS to relatywnie tanie, ale wymaga wykonania $100B+ AI revenue. Jeśli AI revenue miss — multiple compression może być gwałtowny. Beta 2.20 oznacza że korekta rynkowa -10% = AVGO -22%.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <span class="risk-badge risk-LOW">LOW</span>
+      <div>
+        <div class="risk-title">Insider selling $88M (marzec 2026)</div>
+        <div class="risk-desc">$88M insider sales w marcu 2026 — bez szczegółów o których executive sprzedawał. Przy market cap $1.42T to ~0.006% — symbolicznie małe. Prawdopodobna dywersyfikacja osobistych portfeli vs. exercise of options. Monitorowalne, ale przy tej skali spółki nie jest materially significant.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <span class="risk-badge risk-LOW">LOW</span>
+      <div>
+        <div class="risk-title">Hock Tan succession — 68 lat CEO</div>
+        <div class="risk-desc">Hock Tan ma 68 lat. Broadcom jest zbudowane na jego wizji i zdolności do akwizycji. Brak wyraźnego sukcesora publicznie. Długoterminowe ryzyko sukcesji — ale Tan regularnie wskazuje na silny management team i nie ma sygnałów planowanego odejścia w krótkim terminie.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 09 WERDYKT ══ -->
+<div class="section" id="s09">
+  <div class="section-head">
+    <span class="section-num">// 09</span>
+    <span class="section-title">Werdykt</span>
+    <span class="tag tag-purple">STRONG BUY</span>
+    <span class="tag tag-gold">Flagship pozycja AI portfolio</span>
+  </div>
+  <div class="section-body">
+    <div class="verdict-box">
+      <div class="verdict-rating">
+        <span class="verdict-stars">★★★★★</span>
+        <span class="verdict-label">STRONG BUY</span>
+        <span class="tag tag-amber" style="margin-left:8px;">Ryzyko: ŚREDNIE</span>
+        <span class="tag tag-gold" style="margin-left:4px;">Conviction: MAX</span>
+      </div>
+      <div class="verdict-text">
+        <p>AVGO to <strong>najwyższa conviction w tej serii ANAL</strong>. Przy cenie $309.51 masz: 52 analityków pokrywających spółkę ze Strong Buy i zero SELL, avg PT $431-470 (+39-52% upside), FCF $8B per kwartał, EBITDA margin 68%, AI revenue rosnące 106% YoY, $73B backlog, 5 XPU klientów z multi-year commitments, i CEO który ogłasza "line of sight to $100B AI chip revenue 2027 — which analysts think is too low."</p>
+        <p>Korekta -25% od ATH jest <strong>w 100% makro-driven</strong>: rotation out of AI, TSMC bottleneck news (bullish dla Broadcom który locked supply!), ogólna presja na Nasdaq. Q1 FY2026 był absolutnie rekordowy — nie ma żadnego fundamentalnego deterioration. <span class="hl-gold">Q2 Guidance $22B ($1.5B powyżej konsensusu) to był jeden z największych guidance beatów w historii tej spółki.</span></p>
+        <p><strong>Skala jest przytłaczająca:</strong> $100B AI revenue z chipów 2027 = więcej niż całe przychody firmy dziś ($64B w FY2025). Do tego +$35-40B z VMware/software (78%+ margin). Broadcom w 2027 może być firmą z $130-150B annual revenue i 65%+ EBITDA margin. Przy EV/EBITDA 25x to $2.0-2.5T market cap — vs. $1.42T dziś. <span class="hl-purple">+40-75% upside fundamentalny w 18-24 miesiącach.</span></p>
+        <p><strong>Pozycjonowanie:</strong> Core pozycja, nie trading play. DCA $295-325 (Tier 1), SL pod $200 (4Y channel breakdown). Earnings 04.06.2026 to najważniejszy event — jeśli AI revenue Q2 przekroczy $10.7B guided i Q3 guidance będzie powyżej $24-25B, powrót do ATH w 2026 jest realistyczny.</p>
+      </div>
+    </div>
+
+    <div class="sep"></div>
+
+    <div class="grid-4">
+      <div class="kpi">
+        <span class="kpi-label">Cena (01.04.2026)</span>
+        <span class="kpi-value purple">$309.51</span>
+        <span class="kpi-sub">NASDAQ: AVGO · Market cap $1.42T</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Avg PT — 52 analityków</span>
+        <span class="kpi-value green">$431–470</span>
+        <span class="kpi-sub">+39–52% upside; 0 SELL</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Stop-Loss (Tier 1)</span>
+        <span class="kpi-value red">$255</span>
+        <span class="kpi-sub">Poniżej 4Y channel support</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Najbliższy Earnings</span>
+        <span class="kpi-value amber">04 Cze</span>
+        <span class="kpi-sub">Q2 FY2026 — AI rev. vs. $10.7B guide</span>
+      </div>
+    </div>
+
+    <div class="inline-tags" style="margin-top:14px;">
+      <span class="tag tag-purple">AI Custom XPU #1</span>
+      <span class="tag tag-purple">$73B AI Backlog</span>
+      <span class="tag tag-gold">$100B+ AI Rev 2027E</span>
+      <span class="tag tag-gold">68% EBITDA Margin</span>
+      <span class="tag tag-green">29-52 analysts: Strong Buy / 0 Sell</span>
+      <span class="tag tag-green">FCF $8B/qtr</span>
+      <span class="tag tag-teal">VMware Enterprise Moat</span>
+      <span class="tag tag-teal">Tomahawk 6 — 102.4 Tbps</span>
+      <span class="tag tag-amber">Customer concentration risk</span>
+      <span class="tag tag-amber">TSMC capacity bottleneck</span>
+      <span class="tag tag-red">Beta 2.20 — volatile</span>
+      <span class="tag tag-blue">Q2 Earnings 04 Cze 2026</span>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  ANAL REPORT — AVGO / BROADCOM INC. — wygenerowano 01.04.2026<br>
+  Dane: Q1 FY2026 earnings 04.03.2026 (CNBC), Q2 guidance, Morgan Stanley PT $470 (06.03.2026), BofA Top Pick $500, GF Securities $450, stockanalysis.com, tipranks.com, 247wallst.com, seekingalpha.com, tradingview.com<br>
+  ⚠ Raport wyłącznie informacyjny. Nie stanowi rekomendacji inwestycyjnej. Inwestuj na własne ryzyko.
+</div>
+
+</body>
+</html>
