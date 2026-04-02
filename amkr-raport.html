@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANAL — AMKR / Amkor Technology — 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #080810;
+  --bg2:       #0C0C16;
+  --bg3:       #11111C;
+  --bg4:       #181825;
+  --border:    #1C1C2C;
+  --border2:   #222235;
+  --green:     #00FF88;
+  --red:       #FF3355;
+  --amber:     #FFB800;
+  --blue:      #00AAFF;
+  --purple:    #9945FF;
+  --orange:    #FF6B2B;
+  --text:      #E8E8F0;
+  --text2:     #9090A8;
+  --text3:     #5A5A70;
+  --mono:      'JetBrains Mono', monospace;
+  --sans:      'Syne', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:10px;scroll-behavior:smooth;}
+@media(min-width:1024px){html{zoom:1.43;}}
+body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:1.25rem;line-height:1.6;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.15) 2px,rgba(0,0,0,0.15) 4px);pointer-events:none;z-index:1000;}
+
+/* HEADER */
+.header{background:var(--bg2);border-bottom:1px solid var(--border2);padding:20px 28px 16px;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.header-left{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
+.ticker-big{font-family:var(--sans);font-size:2.4rem;font-weight:800;color:var(--orange);letter-spacing:0.05em;text-shadow:0 0 24px rgba(255,107,43,0.45);}
+.ticker-name{font-size:1.1rem;color:var(--text2);letter-spacing:0.08em;}
+.header-right{display:flex;align-items:center;gap:16px;flex-shrink:0;}
+.price-big{font-family:var(--sans);font-size:2rem;font-weight:700;color:var(--text);}
+.price-change{font-size:1.1rem;font-weight:500;}
+.up{color:var(--green);} .dn{color:var(--red);}
+.tag{font-size:0.95rem;padding:3px 10px;border-radius:2px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;}
+.tag-green {background:rgba(0,255,136,0.12);color:var(--green); border:1px solid rgba(0,255,136,0.25);}
+.tag-red   {background:rgba(255,51,85,0.12); color:var(--red);   border:1px solid rgba(255,51,85,0.25);}
+.tag-amber {background:rgba(255,184,0,0.12); color:var(--amber); border:1px solid rgba(255,184,0,0.25);}
+.tag-blue  {background:rgba(0,170,255,0.12); color:var(--blue);  border:1px solid rgba(0,170,255,0.25);}
+.tag-orange{background:rgba(255,107,43,0.12);color:var(--orange);border:1px solid rgba(255,107,43,0.30);}
+.tag-purple{background:rgba(153,69,255,0.12);color:var(--purple);border:1px solid rgba(153,69,255,0.25);}
+
+/* NAV */
+.nav-strip{background:var(--bg3);border-bottom:1px solid var(--border);padding:0 28px;display:flex;gap:0;overflow-x:auto;scrollbar-width:none;}
+.nav-strip::-webkit-scrollbar{display:none;}
+.nav-item{font-size:0.9rem;color:var(--text3);padding:10px 14px;cursor:pointer;white-space:nowrap;text-decoration:none;letter-spacing:0.05em;border-bottom:2px solid transparent;transition:all 0.15s;}
+.nav-item:hover{color:var(--text);border-bottom-color:var(--orange);}
+
+.container{max-width:1100px;margin:0 auto;padding:28px 28px 60px;display:flex;flex-direction:column;gap:28px;}
+
+/* SECTION */
+.section{background:var(--bg2);border:1px solid var(--border);border-radius:2px;overflow:hidden;}
+.section-head{background:var(--bg3);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;gap:12px;}
+.section-num{font-size:0.8rem;color:var(--text3);letter-spacing:0.12em;}
+.section-title{font-family:var(--sans);font-size:1.1rem;font-weight:700;color:var(--text);letter-spacing:0.06em;text-transform:uppercase;flex:1;}
+.section-body{padding:20px;}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+@media(max-width:700px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr 1fr;}}
+
+.kpi{background:var(--bg3);border:1px solid var(--border2);padding:14px 16px;display:flex;flex-direction:column;gap:4px;}
+.kpi-label{font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;}
+.kpi-value{font-family:var(--sans);font-size:1.7rem;font-weight:700;color:var(--text);line-height:1;}
+.kpi-value.green {color:var(--green);}  .kpi-value.red   {color:var(--red);}
+.kpi-value.amber {color:var(--amber);}  .kpi-value.orange{color:var(--orange);}
+.kpi-value.blue  {color:var(--blue);}   .kpi-value.purple{color:var(--purple);}
+.kpi-sub{font-size:0.85rem;color:var(--text2);}
+
+.table-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:1.05rem;}
+th{background:var(--bg4);color:var(--text3);font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;text-align:left;padding:8px 12px;border-bottom:1px solid var(--border2);font-weight:400;}
+td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top;}
+tr:last-child td{border-bottom:none;} tr:hover td{background:rgba(255,255,255,0.02);}
+.td-right{text-align:right;} .td-green{color:var(--green);font-weight:500;} .td-red{color:var(--red);font-weight:500;}
+.td-amber{color:var(--amber);font-weight:500;} .td-dim{color:var(--text2);} .td-orange{color:var(--orange);font-weight:500;}
+
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.bar-label{font-size:0.9rem;color:var(--text2);width:160px;flex-shrink:0;}
+.bar-track{flex:1;height:5px;background:var(--bg4);border-radius:2px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:2px;background:var(--orange);}
+.bar-fill.green{background:var(--green);} .bar-fill.red{background:var(--red);} .bar-fill.amber{background:var(--amber);}
+.bar-val{font-size:0.9rem;color:var(--text);width:70px;text-align:right;flex-shrink:0;}
+
+.prose{font-size:1.1rem;color:var(--text2);line-height:1.75;}
+.prose p{margin-bottom:12px;} .prose p:last-child{margin-bottom:0;}
+.prose strong{color:var(--text);font-weight:500;}
+.prose .hl-green{color:var(--green);font-weight:500;} .prose .hl-red{color:var(--red);font-weight:500;}
+.prose .hl-amber{color:var(--amber);font-weight:500;} .prose .hl-orange{color:var(--orange);font-weight:500;}
+
+.seg-grid{display:flex;flex-direction:column;gap:8px;}
+.seg-row{display:flex;align-items:center;gap:12px;}
+.seg-name{font-size:0.9rem;color:var(--text2);width:200px;flex-shrink:0;}
+.seg-bar{flex:1;height:20px;background:var(--bg4);border-radius:1px;overflow:hidden;}
+.seg-fill{height:100%;display:flex;align-items:center;padding-left:8px;font-size:0.8rem;font-weight:500;}
+
+.signal-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);}
+.signal-row:last-child{border-bottom:none;}
+.signal-name{font-size:0.95rem;color:var(--text2);}
+.signal-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.dot-green{background:var(--green);box-shadow:0 0 6px rgba(0,255,136,0.6);}
+.dot-red{background:var(--red);box-shadow:0 0 6px rgba(255,51,85,0.6);}
+.dot-amber{background:var(--amber);box-shadow:0 0 6px rgba(255,184,0,0.6);}
+.dot-orange{background:var(--orange);box-shadow:0 0 6px rgba(255,107,43,0.6);}
+.dot-grey{background:var(--text3);}
+.signal-val{font-size:0.95rem;color:var(--text);font-weight:500;min-width:90px;text-align:right;}
+
+.tier{border:1px solid var(--border2);margin-bottom:10px;overflow:hidden;}
+.tier-head{padding:8px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+.tier-head.t1{background:rgba(0,255,136,0.06);} .tier-head.t2{background:rgba(255,184,0,0.06);} .tier-head.t3{background:rgba(0,170,255,0.06);}
+.tier-name{font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;}
+.t1 .tier-name{color:var(--green);} .t2 .tier-name{color:var(--amber);} .t3 .tier-name{color:var(--blue);}
+.tier-body{padding:10px 14px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.tier-item-label{font-size:0.78rem;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:2px;}
+.tier-item-val{font-size:1.05rem;color:var(--text);font-weight:500;}
+
+.risk-item{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+.risk-item:last-child{border-bottom:none;}
+.risk-badge{font-size:0.75rem;padding:2px 8px;border-radius:1px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;flex-shrink:0;margin-top:2px;width:58px;text-align:center;}
+.risk-HIGH{background:rgba(255,51,85,0.2);color:var(--red);border:1px solid rgba(255,51,85,0.3);}
+.risk-MED{background:rgba(255,184,0,0.15);color:var(--amber);border:1px solid rgba(255,184,0,0.3);}
+.risk-LOW{background:rgba(0,255,136,0.1);color:var(--green);border:1px solid rgba(0,255,136,0.2);}
+.risk-title{font-size:1rem;color:var(--text);font-weight:500;margin-bottom:3px;}
+.risk-desc{font-size:0.95rem;color:var(--text2);line-height:1.55;}
+
+.scenario-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.scenario-card{padding:14px;border:1px solid var(--border2);}
+.sc-bull{border-top:2px solid var(--green);} .sc-base{border-top:2px solid var(--amber);} .sc-bear{border-top:2px solid var(--red);}
+.sc-head{font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;margin-bottom:8px;}
+.sc-bull .sc-head{color:var(--green);} .sc-base .sc-head{color:var(--amber);} .sc-bear .sc-head{color:var(--red);}
+.sc-price{font-family:var(--sans);font-size:2rem;font-weight:700;margin-bottom:4px;}
+.sc-bull .sc-price{color:var(--green);} .sc-base .sc-price{color:var(--amber);} .sc-bear .sc-price{color:var(--red);}
+.sc-prob{font-size:0.85rem;color:var(--text3);margin-bottom:10px;}
+.sc-text{font-size:0.9rem;color:var(--text2);line-height:1.55;}
+
+.verdict-box{border:1px solid rgba(255,107,43,0.35);background:rgba(255,107,43,0.04);padding:20px;display:flex;flex-direction:column;gap:14px;}
+.verdict-rating{display:flex;align-items:center;gap:16px;}
+.verdict-stars{font-size:1.8rem;letter-spacing:0.05em;color:var(--amber);}
+.verdict-label{font-family:var(--sans);font-size:1.8rem;font-weight:800;color:var(--orange);text-transform:uppercase;letter-spacing:0.05em;}
+.verdict-text{font-size:1.05rem;color:var(--text2);line-height:1.7;}
+.verdict-text strong{color:var(--text);}
+
+.level-chart{position:relative;background:var(--bg3);border:1px solid var(--border2);padding:20px 16px;height:220px;margin:12px 0;}
+.level-line{position:absolute;left:75px;right:16px;height:1px;display:flex;align-items:center;}
+.level-line.dashed{border-top:1px dashed;} .level-line.solid{border-top:1.5px solid;}
+.level-line-green{border-color:var(--green);} .level-line-red{border-color:var(--red);}
+.level-line-amber{border-color:var(--amber);} .level-line-orange{border-color:var(--orange);}
+.level-line-blue{border-color:var(--blue);}
+.level-label{position:absolute;left:0;font-size:0.8rem;transform:translateY(-50%);white-space:nowrap;}
+.level-price{position:absolute;right:0;font-size:0.8rem;transform:translateY(-50%);padding-right:4px;}
+
+.consensus-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.c-label{font-size:0.85rem;color:var(--text2);width:70px;flex-shrink:0;}
+.c-count{font-size:0.85rem;color:var(--text3);width:24px;text-align:center;}
+
+.alert-banner{background:rgba(255,107,43,0.08);border:1px solid rgba(255,107,43,0.3);padding:10px 14px;font-size:0.95rem;color:var(--orange);display:flex;gap:10px;align-items:flex-start;margin-bottom:16px;}
+.alert-icon{flex-shrink:0;font-size:1.2rem;margin-top:1px;}
+
+.sep{height:1px;background:var(--border);margin:16px 0;}
+.inline-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+
+/* CAPEX visual */
+.capex-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+.capex-box{padding:12px;background:var(--bg3);border:1px solid var(--border2);text-align:center;}
+.capex-pct{font-family:var(--sans);font-size:1.8rem;font-weight:700;margin-bottom:4px;}
+.capex-desc{font-size:0.82rem;color:var(--text2);line-height:1.4;}
+
+.footer{text-align:center;padding:20px;font-size:0.8rem;color:var(--text3);border-top:1px solid var(--border);line-height:1.8;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <span class="ticker-big">AMKR</span>
+    <span class="ticker-name">AMKOR TECHNOLOGY · NASDAQ · OSAT / Advanced Packaging</span>
+  </div>
+  <div class="header-right">
+    <span class="price-big">$41.25</span>
+    <span class="price-change dn">▼ -27% od ATH $57.09</span>
+    <span class="tag tag-orange">BUY / AKUMULUJ</span>
+    <span class="tag tag-blue">HDFO + Arizona</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-strip">
+  <a class="nav-item" href="#s01">01 MODEL</a>
+  <a class="nav-item" href="#s02">02 FINANSE</a>
+  <a class="nav-item" href="#s03">03 ANALITYCY</a>
+  <a class="nav-item" href="#s04">04 MOMENTUM</a>
+  <a class="nav-item" href="#s05">05 TECHNICZNE</a>
+  <a class="nav-item" href="#s06">06 WEJŚCIE</a>
+  <a class="nav-item" href="#s07">07 SCENARIUSZE</a>
+  <a class="nav-item" href="#s08">08 RYZYKA</a>
+  <a class="nav-item" href="#s09">09 WERDYKT</a>
+</div>
+
+<div class="container">
+
+<!-- ══ 01 MODEL ══ -->
+<div class="section" id="s01">
+  <div class="section-head">
+    <span class="section-num">// 01</span>
+    <span class="section-title">Model Biznesowy</span>
+    <span class="tag tag-orange">OSAT #2 Global</span>
+    <span class="tag tag-blue">AI Advanced Packaging</span>
+    <span class="tag tag-green">Arizona CHIPS Act</span>
+  </div>
+  <div class="section-body">
+    <div class="prose" style="margin-bottom:18px;">
+      <p>Amkor Technology to <strong>drugi największy globalny OSAT</strong> (Outsourced Semiconductor Assembly & Test) z przychodami $6.7B w 2025 roku. Firma założona w 1968 przez rodzinę Kim (wciąż ~kontrolujący akcjonariat) pakuje i testuje chipy dla największych IDM-ów i fabless — Apple, Nvidia, Qualcomm, Broadcom, Samsung, Intel. Siedziba w Tempe, Arizona; zakłady produkcyjne w Korei, Japonii, Wietnamie, Singapurze, Tajwanie i (w budowie) USA.</p>
+      <p>Kluczowa transformacja: z <span class="hl-amber">mobile-focused commodity OSAT</span> w kierunku <span class="hl-orange">premium AI advanced packaging play</span>. Napędza ją HDFO (High-Density Fan-Out) i 2.5D packaging dla AI acceleratorów — zaawansowane technologie łączenia pamięci HBM z procesorami GPU/TPU. Advanced products generują już <strong>&gt;80% total revenue</strong> w Q4'25.</p>
+      <p>Strategiczna kotwica: <strong>$7B kampus w Arizonie</strong> (faza 1: ~$3.5B, 1.8M sq ft, manufacturing start H1 2028) — największa inwestycja w historii spółki. Finansowanie: CHIPS Act ($407M bezpośrednie + do $2.85B łącznych incentywów). Partner technologiczny: TSMC. Docelowy klient: Nvidia (packaging dla następnej generacji AI acceleratorów od 2027-2028).</p>
+    </div>
+
+    <div style="margin-bottom:16px;">
+      <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Mix przychodów — end markets (FY2025)</div>
+      <div class="seg-grid">
+        <div class="seg-row">
+          <span class="seg-name">Communications (iOS, mobile)</span>
+          <div class="seg-bar"><div class="seg-fill" style="width:38%;background:rgba(0,170,255,0.25);color:var(--blue);">~38% — Apple SiP dominant</div></div>
+        </div>
+        <div class="seg-row">
+          <span class="seg-name">Computing / AI / HPC</span>
+          <div class="seg-bar"><div class="seg-fill" style="width:28%;background:rgba(255,107,43,0.3);color:var(--orange);">~28% → +20% YoY 2026</div></div>
+        </div>
+        <div class="seg-row">
+          <span class="seg-name">Automotive Advanced</span>
+          <div class="seg-bar"><div class="seg-fill" style="width:17%;background:rgba(0,255,136,0.25);color:var(--green);">~17% — secular growth</div></div>
+        </div>
+        <div class="seg-row">
+          <span class="seg-name">Industrial / Consumer / Other</span>
+          <div class="seg-bar"><div class="seg-fill" style="width:17%;background:rgba(153,69,255,0.2);color:var(--purple);">~17% — mainstream</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-4">
+      <div class="kpi">
+        <span class="kpi-label">Revenue FY2025</span>
+        <span class="kpi-value orange">$6.71B</span>
+        <span class="kpi-sub">+6% YoY; adv. prod. &gt;80% rev</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Market Cap (01.04.26)</span>
+        <span class="kpi-value">~$10.2B</span>
+        <span class="kpi-sub">vs. revenue $6.7B — P/S ~1.5x</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Pracownicy</span>
+        <span class="kpi-value">30 800</span>
+        <span class="kpi-sub">Globalnie, mar'26</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Arizona CapEx total</span>
+        <span class="kpi-value orange">$7B</span>
+        <span class="kpi-sub">Multi-phase; faza 1 start H1'28</span>
+      </div>
+    </div>
+
+    <div class="sep"></div>
+
+    <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">CapEx 2026 — alokacja $2.5–3.0B</div>
+    <div class="capex-grid">
+      <div class="capex-box">
+        <div class="capex-pct" style="color:var(--orange);">65–70%</div>
+        <div class="capex-desc">Rozbudowa obiektów<br>(Arizona ph.1, Korea +20% cleanroom, Vietnam)</div>
+      </div>
+      <div class="capex-box">
+        <div class="capex-pct" style="color:var(--blue);">30–35%</div>
+        <div class="capex-desc">HDFO / test / advanced packaging equipment<br>(AI & HPC capacity)</div>
+      </div>
+      <div class="capex-box">
+        <div class="capex-pct" style="color:var(--text2);">~5%</div>
+        <div class="capex-desc">R&D / quality<br>programy</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 02 FINANSE ══ -->
+<div class="section" id="s02">
+  <div class="section-head">
+    <span class="section-num">// 02</span>
+    <span class="section-title">Finanse</span>
+    <span class="tag tag-green">Q4'25 +57% EPS beat</span>
+    <span class="tag tag-amber">Marże pod presją CapEx</span>
+  </div>
+  <div class="section-body">
+
+    <div class="grid-4" style="margin-bottom:18px;">
+      <div class="kpi">
+        <span class="kpi-label">Revenue Q4 2025</span>
+        <span class="kpi-value green">$1.89B</span>
+        <span class="kpi-sub">+16% YoY; beat est. $1.83B (+3%)</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">GAAP EPS Q4 2025</span>
+        <span class="kpi-value green">$0.69</span>
+        <span class="kpi-sub">+57% beat vs. est. $0.44 ⚡</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Gross Margin Q4</span>
+        <span class="kpi-value orange">16.7%</span>
+        <span class="kpi-sub">vs. 14.3% Q3 — poprawa QoQ</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">EBITDA Q4 2025</span>
+        <span class="kpi-value">$369M</span>
+        <span class="kpi-sub">+16.3% beat vs. est. $317M</span>
+      </div>
+    </div>
+
+    <div class="grid-4" style="margin-bottom:18px;">
+      <div class="kpi">
+        <span class="kpi-label">Revenue FY2025</span>
+        <span class="kpi-value orange">$6.71B</span>
+        <span class="kpi-sub">+6% YoY; EBITDA $1.16B</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Operating Cash Flow</span>
+        <span class="kpi-value">$1.10B</span>
+        <span class="kpi-sub">FCF $308M (po CapEx $850M 2025)</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Liquidity (rok. koniec)</span>
+        <span class="kpi-value green">$3.0B</span>
+        <span class="kpi-sub">Cash $2.0B + revolver; Debt $1.4B</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Debt / EBITDA</span>
+        <span class="kpi-value green">~1.2x</span>
+        <span class="kpi-sub">Bezpieczny poziom dźwigni</span>
+      </div>
+    </div>
+
+    <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Q1 FY2026 Guidance (sezonowe minimum)</div>
+    <div class="grid-3" style="margin-bottom:16px;">
+      <div class="kpi">
+        <span class="kpi-label">Revenue Q1'26 Guid.</span>
+        <span class="kpi-value orange">$1.65B</span>
+        <span class="kpi-sub">mid. $1.6–1.7B; vs. est. $1.54B (+7%)</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Gross Margin Q1'26</span>
+        <span class="kpi-value amber">12.5–13.5%</span>
+        <span class="kpi-sub">Presja CapEx deprecjacji / Vietnam</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">EPS Q1'26 Guidance</span>
+        <span class="kpi-value amber">$0.18–0.28</span>
+        <span class="kpi-sub">vs. est. $0.23; Q1 sezonowo słaby</span>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Rok / Q</th><th class="td-right">Revenue</th><th class="td-right">YoY%</th><th class="td-right">GM%</th><th class="td-right">EPS GAAP</th><th class="td-right">EBITDA</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>FY2022</td><td class="td-right td-dim">$7.09B</td><td class="td-right td-green">+25%</td><td class="td-right">15.8%</td><td class="td-right td-dim">$2.38</td><td class="td-right td-dim">$1.36B</td></tr>
+          <tr><td>FY2023</td><td class="td-right td-dim">$6.50B</td><td class="td-right td-red">-8.3%</td><td class="td-right td-red">13.5%</td><td class="td-right td-dim">$1.22</td><td class="td-right td-dim">$1.18B</td></tr>
+          <tr><td>FY2024</td><td class="td-right td-dim">$6.32B</td><td class="td-right td-red">-2.8%</td><td class="td-right">14.8%</td><td class="td-right td-dim">$1.43</td><td class="td-right td-dim">$1.09B</td></tr>
+          <tr style="background:rgba(255,107,43,0.04);"><td><strong>FY2025 ✦</strong></td><td class="td-right td-orange"><strong>$6.71B</strong></td><td class="td-right td-green"><strong>+6%</strong></td><td class="td-right td-orange"><strong>14.0%</strong></td><td class="td-right td-orange"><strong>$1.50</strong></td><td class="td-right td-orange"><strong>$1.16B</strong></td></tr>
+          <tr><td>Q4 2025 ★</td><td class="td-right td-green">$1.89B</td><td class="td-right td-green">+16%</td><td class="td-right td-green">16.7%</td><td class="td-right td-green">$0.69</td><td class="td-right">$369M</td></tr>
+          <tr><td>Q1'26 Guidance</td><td class="td-right td-amber">~$1.65B</td><td class="td-right td-amber">+25%</td><td class="td-right td-red">12.5–13.5%</td><td class="td-right td-amber">$0.18–0.28</td><td class="td-right td-dim">est.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sep"></div>
+
+    <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Marże — pozycja vs. peers</div>
+    <div class="bar-row">
+      <span class="bar-label">AMKR Gross Margin Q4</span>
+      <div class="bar-track"><div class="bar-fill" style="width:48%"></div></div>
+      <span class="bar-val td-orange">16.7%</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">AMKR Oper. Margin Q4</span>
+      <div class="bar-track"><div class="bar-fill green" style="width:29%"></div></div>
+      <span class="bar-val td-green">9.8%</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Revenue YoY Q4'25</span>
+      <div class="bar-track"><div class="bar-fill green" style="width:49%"></div></div>
+      <span class="bar-val td-green">+16%</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Computing growth 2026E</span>
+      <div class="bar-track"><div class="bar-fill green" style="width:62%"></div></div>
+      <span class="bar-val td-green">&gt;20%</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">HDFO/2.5D growth 2026E</span>
+      <div class="bar-track"><div class="bar-fill" style="width:95%"></div></div>
+      <span class="bar-val td-orange">~3x !</span>
+    </div>
+
+    <div class="sep"></div>
+    <div class="grid-3">
+      <div class="kpi">
+        <span class="kpi-label">P/E (TTM, $1.50 EPS)</span>
+        <span class="kpi-value amber">~27x</span>
+        <span class="kpi-sub">vs. peers 39x — discount!</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">EV/EBITDA</span>
+        <span class="kpi-value">~9–10x</span>
+        <span class="kpi-sub">Capital-intensive, atrakcyjnie wyceniony</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Dywidenda (ann.)</span>
+        <span class="kpi-value">$0.334</span>
+        <span class="kpi-sub">Yield ~0.8%; Q1 ex-div mar'26</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 03 ANALITYCY ══ -->
+<div class="section" id="s03">
+  <div class="section-head">
+    <span class="section-num">// 03</span>
+    <span class="section-title">Analitycy Wall Street</span>
+    <span class="tag tag-orange">Buy consensus</span>
+    <span class="tag tag-green">PT avg $56.25 (+36% upside)</span>
+  </div>
+  <div class="section-body">
+
+    <div class="grid-2" style="margin-bottom:18px;">
+      <div>
+        <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Konsensus (investing.com, mar'26)</div>
+        <div class="consensus-row">
+          <span class="c-label">BUY</span>
+          <div class="bar-track" style="height:8px;"><div class="bar-fill green" style="width:100%"></div></div>
+          <span class="c-count">3</span>
+        </div>
+        <div class="consensus-row">
+          <span class="c-label">HOLD</span>
+          <div class="bar-track" style="height:8px;"><div class="bar-fill amber" style="width:0%"></div></div>
+          <span class="c-count">0</span>
+        </div>
+        <div class="consensus-row">
+          <span class="c-label">SELL</span>
+          <div class="bar-track" style="height:8px;"><div class="bar-fill red" style="width:0%"></div></div>
+          <span class="c-count">0</span>
+        </div>
+        <div style="margin-top:14px;" class="kpi">
+          <span class="kpi-label">Avg Price Target (investing.com)</span>
+          <span class="kpi-value green">$56.25</span>
+          <span class="kpi-sub">+36% upside vs. $41.25; range $43–$65</span>
+        </div>
+        <div style="margin-top:8px;" class="kpi">
+          <span class="kpi-label">Narrative Fair Value (Simply Wall St.)</span>
+          <span class="kpi-value orange">$65</span>
+          <span class="kpi-sub">+58% vs. bieżącej ceny; DCF $4.62 (konserwatywny)</span>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Kluczowe ratingi</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Dom maklerski</th><th>Rating</th><th class="td-right">PT</th></tr></thead>
+            <tbody>
+              <tr><td>JPMorgan</td><td class="td-green">Overweight</td><td class="td-right td-green">$65</td></tr>
+              <tr><td>Needham</td><td class="td-green">Buy</td><td class="td-right td-green">$65</td></tr>
+              <tr><td>Zacks</td><td class="td-amber">Hold (#3)</td><td class="td-right td-amber">—</td></tr>
+              <tr><td>Public.com cons.</td><td class="td-orange">Buy (8 an.)</td><td class="td-right td-orange">$52.88</td></tr>
+              <tr><td>StockAnalysis (7 an.)</td><td class="td-green">Buy avg</td><td class="td-right td-green">$25.86 *</td></tr>
+              <tr><td>Simply Wall St. FV</td><td class="td-green">Buy narrative</td><td class="td-right td-orange">$65</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="font-size:0.78rem;color:var(--text3);margin-top:6px;">* StockAnalysis $25.86 — podejrzanie niskie, prawdopodobnie historyczne/stale dane</div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Po Q4'25 earnings (EPS $0.69 vs. est $0.44 — <span class="hl-green">+57% beat</span>) JPMorgan i Needham podniosły PTs do $65 (z ~$40 wcześniej). AMKR handluje przy <strong>~27x P/E TTM vs. peer average 39x</strong> — strukturalne dyskonto dla spółki capital-intensive. Jednak przy computing &gt;20% wzrostu i HDFO ~3x w 2026, forward P/E może wyglądać znacznie bardziej atrakcyjnie. Revenue consensus FY2026 ~$7.2B (+8% YoY) wydaje się konserwatywny jeśli CPU HDFO ramps wychodzą do HVM w H2'26 zgodnie z planem. <span class="hl-orange">Avg PT $56.25 przy cenie $41.25 to +36% implied upside</span> — najlepsza asymetria spośród naszych spółek z serii ANAL.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 04 MOMENTUM ══ -->
+<div class="section" id="s04">
+  <div class="section-head">
+    <span class="section-num">// 04</span>
+    <span class="section-title">Momentum & Katalyzatory</span>
+    <span class="tag tag-red">-27% od ATH</span>
+    <span class="tag tag-orange">Kim family sell-off ⚠</span>
+  </div>
+  <div class="section-body">
+
+    <div class="alert-banner">
+      <span class="alert-icon">🔔</span>
+      <span><strong>Kim Family block sale:</strong> Rodzina Kim (kontrolujący akcjonariusz) sprzedała 10M akcji common stock przez ofertę wtórną (~$470M po ~$47/sh) w lutym 2026 — to główny czynnik presji na kurs od ATH. Technicznie bearish signal krótkoterminowo, ale akcje zostały zakupione przez instytucje (nie "poszły w rynek"). Sell-off nie zmienia fundamentów operacyjnych spółki.</span>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:18px;">
+      <div>
+        <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Zmiana ceny</div>
+        <div class="signal-row">
+          <span class="signal-name">52-tyg. high (ATH)</span>
+          <div class="signal-dot dot-red"></div>
+          <span class="signal-val">$57.09</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">52-tyg. low</span>
+          <div class="signal-dot dot-grey"></div>
+          <span class="signal-val">$14.03</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">1Y zwrot (do mar'26)</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">+117.5%</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Od ATH ($57.09)</span>
+          <div class="signal-dot dot-red"></div>
+          <span class="signal-val td-red">-27.7%</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Beta</span>
+          <div class="signal-dot dot-amber"></div>
+          <span class="signal-val">β = 1.89–2.00</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">MarketCap (01.04.26)</span>
+          <div class="signal-dot dot-orange"></div>
+          <span class="signal-val td-orange">~$10.2B</span>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Katalyzatory 2026</div>
+        <div class="signal-row">
+          <span class="signal-name">Q4'25 EPS beat +57%</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">Zrealizowany ✓</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Q1'26 Guidance &gt;consensus</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">$1.65B vs $1.54B ✓</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">2x CPU HDFO ramp HVM</span>
+          <div class="signal-dot dot-amber"></div>
+          <span class="signal-val td-amber">H2 2026 target</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Investor Day 2026</span>
+          <div class="signal-dot dot-amber"></div>
+          <span class="signal-val td-amber">Ogłoszony</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Arizona faza 1 postęp</span>
+          <div class="signal-dot dot-orange"></div>
+          <span class="signal-val td-orange">W budowie</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">CHIPS Act funding</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">$407M awarded</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Q1'26 Earnings</span>
+          <div class="signal-dot dot-amber"></div>
+          <span class="signal-val td-amber">04 Maj 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>AMKR przeszedł burzliwy kwartał: spektakularny Q4 earnings beat (+57% EPS) wystrzelił akcję do ATH $57.09 w połowie lutego 2026, po czym <span class="hl-red">block sale rodziny Kim (10M akcji ≈ $470M)</span> wymusił korektę do ~$41-44. To klasyczna techniczna presja podaży, nie zmiana fundamentów. Vietnam break-even uwolnił koreańskie moce przerobowe na premium HDFO. Dwa programy CPU HDFO w finalnych kwalifikacjach — launch HVM w H2 2026 to następny duży katalizator. Management prognozuje <strong>~3x wzrost HDFO/2.5D w 2026</strong> — jeśli to się zmaterializuje, H2 będzie wyraźnie silniejszy od H1.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 05 TECHNICZNE ══ -->
+<div class="section" id="s05">
+  <div class="section-head">
+    <span class="section-num">// 05</span>
+    <span class="section-title">Analiza Techniczna</span>
+    <span class="tag tag-red">Poniżej 50d i 100d MA</span>
+    <span class="tag tag-green">200d MA mocny support</span>
+  </div>
+  <div class="section-body">
+    <div class="grid-2" style="margin-bottom:16px;">
+      <div>
+        <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Poziomy kluczowe</div>
+        <div class="signal-row">
+          <span class="signal-name">ATH / 52-tyg. high</span>
+          <div class="signal-dot dot-red"></div>
+          <span class="signal-val">$57.09</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Resistance — 50d MA</span>
+          <div class="signal-dot dot-red"></div>
+          <span class="signal-val td-red">~$47.71</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Resistance — Kijun / 20d MA</span>
+          <div class="signal-dot dot-amber"></div>
+          <span class="signal-val td-amber">~$45.37–45.86</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Bieżąca cena (31 mar)</span>
+          <div class="signal-dot dot-orange"></div>
+          <span class="signal-val td-orange">$41.25</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Support 1 — 100d MA</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">~$43.99</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Support 2 — volume cluster</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">~$38–40</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Support 3 — 200d MA (MOCNY)</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">~$34.61</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Sygnały techniczne</div>
+        <div class="signal-row">
+          <span class="signal-name">Trend długoterminowy (200d)</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">Strongly Bullish</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Trend krótkoterminowy</span>
+          <div class="signal-dot dot-red"></div>
+          <span class="signal-val td-red">Bearish (poniżej 50d)</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">MACD (D1)</span>
+          <div class="signal-dot dot-red"></div>
+          <span class="signal-val td-red">Strong Sell</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">RSI (14)</span>
+          <div class="signal-dot dot-amber"></div>
+          <span class="signal-val td-amber">~45 (neutral-weak)</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Weekly MACD/RSI/ADX</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">Strong Buy</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Beta</span>
+          <div class="signal-dot dot-amber"></div>
+          <span class="signal-val">1.89 — high vol.</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Pivot buy (6 mar'26)</span>
+          <div class="signal-dot dot-orange"></div>
+          <span class="signal-val td-orange">+5.5% od dołka</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Mapa poziomów cenowych</div>
+    <div class="level-chart">
+      <div class="level-line dashed level-line-red" style="top:5%;">
+        <span class="level-label" style="top:5%;color:var(--red);">ATH</span>
+        <span class="level-price" style="top:5%;color:var(--red);">$57.09</span>
+      </div>
+      <div class="level-line dashed level-line-red" style="top:18%;">
+        <span class="level-label" style="top:18%;color:var(--red);">50d MA / R1</span>
+        <span class="level-price" style="top:18%;color:var(--red);">$47.71</span>
+      </div>
+      <div class="level-line dashed level-line-amber" style="top:28%;">
+        <span class="level-label" style="top:28%;color:var(--amber);">Kijun / 20d MA</span>
+        <span class="level-price" style="top:28%;color:var(--amber);">$45.37</span>
+      </div>
+      <div class="level-line solid level-line-orange" style="top:42%;">
+        <span class="level-label" style="top:42%;color:var(--orange);">► CENA</span>
+        <span class="level-price" style="top:42%;color:var(--orange);">$41.25</span>
+      </div>
+      <div class="level-line dashed level-line-green" style="top:52%;">
+        <span class="level-label" style="top:52%;color:var(--green);">100d MA S1</span>
+        <span class="level-price" style="top:52%;color:var(--green);">$43.99</span>
+      </div>
+      <div class="level-line dashed level-line-green" style="top:64%;">
+        <span class="level-label" style="top:64%;color:var(--green);">Volume Cluster S2</span>
+        <span class="level-price" style="top:64%;color:var(--green);">$38–40</span>
+      </div>
+      <div class="level-line solid level-line-green" style="top:78%;">
+        <span class="level-label" style="top:78%;color:var(--green);">200d MA — S3 (MOCNY)</span>
+        <span class="level-price" style="top:78%;color:var(--green);">$34.61</span>
+      </div>
+      <div class="level-line dashed level-line-blue" style="top:89%;">
+        <span class="level-label" style="top:89%;color:var(--blue);">Trendline S4</span>
+        <span class="level-price" style="top:89%;color:var(--blue);">~$30–33</span>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Technicznie AMKR jest <span class="hl-red">w krótkoterminowym downtrend</span> (poniżej 50d i 20d MA, MACD sell), ale <span class="hl-green">200d MA na $34.61 pozostaje silnym wsparciem</span> — i to właśnie tutaj zaczyna się prawdziwa strefa akumulacji. Weekly timeframe pokazuje silne buy sygnały — trend wzrostowy od $14 do $57 jest integralny. Obecna cena $41.25 jest poniżej wszystkich krótko- i średnioterminowych MA co technicznie oznacza oversold w kontekście fundamentalnym. <span class="hl-amber">Breakout powyżej $47.71 (50d MA)</span> byłby potwierdzeniem powrotu trendu wzrostowego i prawdopodobnie otworzy drogę do nowych ATH.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 06 WEJŚCIE ══ -->
+<div class="section" id="s06">
+  <div class="section-head">
+    <span class="section-num">// 06</span>
+    <span class="section-title">Strategia Wejścia</span>
+    <span class="tag tag-blue">3 Tiers</span>
+    <span class="tag tag-orange">Tier 1 aktywny teraz</span>
+  </div>
+  <div class="section-body">
+
+    <div class="tier">
+      <div class="tier-head t1">
+        <span class="tier-name">Tier 1 — Strefa akumulacji (AKTYWNA)</span>
+        <span class="tag tag-green">Cena $41.25 = w strefie</span>
+      </div>
+      <div class="tier-body">
+        <div><div class="tier-item-label">Strefa wejścia</div><div class="tier-item-val">$38 – $44</div></div>
+        <div><div class="tier-item-label">Stop-Loss</div><div class="tier-item-val td-red">$33 (-15%)</div></div>
+        <div><div class="tier-item-label">Target / Upside</div><div class="tier-item-val td-green">$55–65 (+30–55%)</div></div>
+        <div><div class="tier-item-label">Risk/Reward</div><div class="tier-item-val td-green">~3–4:1</div></div>
+        <div><div class="tier-item-label">Horyzont</div><div class="tier-item-val">6–15 mies.</div></div>
+        <div><div class="tier-item-label">Kontekst</div><div class="tier-item-val td-dim">Post Kim-sale, korekta techniczna</div></div>
+      </div>
+    </div>
+
+    <div class="tier">
+      <div class="tier-head t2">
+        <span class="tier-name">Tier 2 — Momentum Entry (po przełamaniu 50d MA)</span>
+        <span class="tag tag-amber">Czekaj na $47.71</span>
+      </div>
+      <div class="tier-body">
+        <div><div class="tier-item-label">Strefa wejścia</div><div class="tier-item-val">$47 – $52</div></div>
+        <div><div class="tier-item-label">Stop-Loss</div><div class="tier-item-val td-red">$43 (-9%)</div></div>
+        <div><div class="tier-item-label">Target / Upside</div><div class="tier-item-val td-green">$65–70 (+28–40%)</div></div>
+        <div><div class="tier-item-label">Risk/Reward</div><div class="tier-item-val td-amber">~2.5:1</div></div>
+        <div><div class="tier-item-label">Horyzont</div><div class="tier-item-val">6–12 mies.</div></div>
+        <div><div class="tier-item-label">Kontekst</div><div class="tier-item-val td-dim">Breakout z konsolidacji + H2 catalyst</div></div>
+      </div>
+    </div>
+
+    <div class="tier">
+      <div class="tier-head t3">
+        <span class="tier-name">Tier 3 — Deep Value (200d MA / makro wyprzedaż)</span>
+        <span class="tag tag-blue">Jeśli $38 nie utrzyma</span>
+      </div>
+      <div class="tier-body">
+        <div><div class="tier-item-label">Strefa wejścia</div><div class="tier-item-val">$33 – $38</div></div>
+        <div><div class="tier-item-label">Stop-Loss</div><div class="tier-item-val td-red">$28 (-18%)</div></div>
+        <div><div class="tier-item-label">Target / Upside</div><div class="tier-item-val td-green">$60–75 (+70–110%)</div></div>
+        <div><div class="tier-item-label">Risk/Reward</div><div class="tier-item-val td-green">~5:1</div></div>
+        <div><div class="tier-item-label">Horyzont</div><div class="tier-item-val">12–24 mies.</div></div>
+        <div><div class="tier-item-label">Kontekst</div><div class="tier-item-val td-dim">200d MA / trendline support</div></div>
+      </div>
+    </div>
+
+    <div class="prose" style="margin-top:14px;">
+      <p><span class="hl-orange">Taktyka:</span> Cena $41.25 jest w środku Tier 1. <strong>Strategia DCA: 40% teraz ($41), 35% na $38-39, 25% zostaw na Tier 3 przy $33-35</strong>. SL całości pod $30 (naruszenie 200d MA i trendline — wtedy teza inwestycyjna wymaga rewizji). Earnings Q1'26 (04 Maj) to binary event — słabe wyniki mogą zejść do $36-38, świetne mogą uruchomić breakout ponad $45. <strong>Vs. avg analyst PT $56.25 — ryzyko/zwrot jest najkorzystniejszy ze wszystkich analizowanych spółek w tej serii.</strong> JPMorgan i Needham mają $65 = +57% upside od bieżącej ceny.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 07 SCENARIUSZE ══ -->
+<div class="section" id="s07">
+  <div class="section-head">
+    <span class="section-num">// 07</span>
+    <span class="section-title">Scenariusze 12–18 miesięczne</span>
+  </div>
+  <div class="section-body">
+    <div class="scenario-grid">
+      <div class="scenario-card sc-bull">
+        <div class="sc-head">🚀 Bull Case</div>
+        <div class="sc-price">$65–80</div>
+        <div class="sc-prob">Prawdopodobieństwo: 35%</div>
+        <div class="sc-text">Oba CPU HDFO programy wchodzą do HVM w H2'26 zgodnie z planem. Computing rośnie &gt;30% YoY. Arizona Phase 1 postępuje, Nvidia potwierdza umowy na packaging 2028. FY2026 EPS przekracza $2.50. Rerating do 28-35x forward. Kim family sell-off okazuje się jedyną główną presją podażową — ustępuje po wchłonięciu przez instytucje.</div>
+      </div>
+      <div class="scenario-card sc-base">
+        <div class="sc-head">📊 Base Case</div>
+        <div class="sc-price">$52–65</div>
+        <div class="sc-prob">Prawdopodobieństwo: 45%</div>
+        <div class="sc-text">HDFO ramp przebiega zgodnie z guidancem, H2'26 wyraźnie lepszy od H1. FY2026 revenue ~$7.2–7.5B (+8–12% YoY). Gross margin poprawia się do 15-16% w H2 wraz ze wzrostem obłożenia. EPS FY2026 ~$2.00. Kurs wraca do PT analityków $56 w 9-12 miesiącach. P/E normalizuje się do ~28-30x forward.</div>
+      </div>
+      <div class="scenario-card sc-bear">
+        <div class="sc-head">🐻 Bear Case</div>
+        <div class="sc-price">$28–38</div>
+        <div class="sc-prob">Prawdopodobieństwo: 20%</div>
+        <div class="sc-text">CPU HDFO kwalifikacje opóźniają się do 2027. Semi cycle skręca w dół (AI capex plateau, recession). Masywny CapEx $2.5-3B przy niskim utilization = marże gniecione deprecjacją. Komunikacja (iOS) słabnie sezonowo. Dalsze block sales rodziny Kim. Cena wraca do 200d MA ~$34 lub niżej. Na tym poziomie dyskonto do NAV jest dramatyczne.</div>
+      </div>
+    </div>
+    <div class="prose" style="margin-top:14px;">
+      <p>AMKR jest <strong>bardziej przewidywalną historią niż KLIC</strong> — bazowy biznes to $6.7B revenue z dywersyfikacją między Apple/AI/Auto, nie single-technology bet. Główna niepewność to timing HDFO ramp i margin recovery przy masywnym CapEx cyklu. <span class="hl-orange">Asymetria jest wyraźna</span>: przy $41 bull case daje +60-95%, bear case -15 do -30%. Amkor ma głęboki moat jako #2 globalny OSAT z zakorzenionymi relacjami z Apple i rosnącą pozycją w AI packaging — to nie jest spółka która "znika" nawet w scenariuszu spowolnienia.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 08 RYZYKA ══ -->
+<div class="section" id="s08">
+  <div class="section-head">
+    <span class="section-num">// 08</span>
+    <span class="section-title">Ryzyka</span>
+    <span class="tag tag-red">3x HIGH · 3x MED · 2x LOW</span>
+  </div>
+  <div class="section-body">
+
+    <div class="risk-item">
+      <span class="risk-badge risk-HIGH">HIGH</span>
+      <div>
+        <div class="risk-title">Masywny CapEx cykl — marże pod presją przez 2026-2027</div>
+        <div class="risk-desc">$2.5-3.0B CapEx w 2026 (vs. $850M w 2025 — wzrost 3x) oznacza dramatyczny skok deprecjacji. Q1'26 guided gross margin 12.5-13.5% — najniższy od lat. Jeśli HDFO capacity nie wypełni się szybko (utilization), marże pozostaną gniecione do 2027 lub dłużej. Każde opóźnienie w CPU HDFO programs = dłuższa "marżowa dolina". FCF może być ujemny w 2026 przy pełnym CapEx.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <span class="risk-badge risk-HIGH">HIGH</span>
+      <div>
+        <div class="risk-title">Kim Family block sales — potencjalna dalsza podaż</div>
+        <div class="risk-desc">Rodzina Kim sprzedała 10M akcji (~$470M) w lutym 2026. Wciąż kontroluje znaczny pakiet. Każda kolejna wtórna oferta to presja podażowa na kurs. Motywacja: diversyfikacja osobistego majątku — niekoniecznie sygnał o fundamentach, ale rynek reaguje negatywnie. Monitoruj insider transaction filings na SEC.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <span class="risk-badge risk-HIGH">HIGH</span>
+      <div>
+        <div class="risk-title">Koncentracja na Apple — iOS ecosystem risk</div>
+        <div class="risk-desc">~38% przychodów pochodzi z Communications (zdominowane przez Apple SiP). Każde rozczarowanie iPhone demand, zmiana dostawcy SiP przez Apple lub opóźnienie nowego modelu bezpośrednio uderza w AMKR. Apple ma historię dywersyfikowania dostawców. Utrata nawet 10% SiP udziału to ~$200-250M revenue risk.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <span class="risk-badge risk-MED">MED</span>
+      <div>
+        <div class="risk-title">Opóźnienie Arizona / ryzyko wykonania</div>
+        <div class="risk-desc">Faza 1 Arizony (~1.8M sq ft) planuje start manufacturing w H1 2028. Opóźnienia budowlane, rekrutacja wykwalifikowanych pracowników w US, integracja z procesami produkcyjnymi — typowe ryzyka greenfield. CHIPS Act funding ($407M) uzależniony od spełnienia warunków rządowych. Zmiana administracji politycznej = ryzyko dla incentywów.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <span class="risk-badge risk-MED">MED</span>
+      <div>
+        <div class="risk-title">Geopolityka / eksport controls / Chiny</div>
+        <div class="risk-desc">Amkor ma zakłady w Korei, Japonii, Azji — ekspozycja na eskalację trade war. Export controls na zaawansowane packaging do Chin (jeśli rozszerzą się na OSAT) mogą ograniczyć rynek. Substrat i pamięć HBM supply dynamics jako potencjalne bottlenecks przy HVM rampie. Management wymienił to jako ryzyko explicite w earnings call.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <span class="risk-badge risk-MED">MED</span>
+      <div>
+        <div class="risk-title">Nowy CEO Kevin Engel — strategic transition</div>
+        <div class="risk-desc">Kevin Engel objął stanowisko CEO w 2026. Poprzednik budował relacje z klientami przez dekady. Transformacja kulturowa przy jednoczesnym masywnym CapEx cyklu to ryzyko egzekucyjne. Mniejsze niż w KLIC (tam interim CEO/CFO w jednej osobie), ale monitorowalne.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <span class="risk-badge risk-LOW">LOW</span>
+      <div>
+        <div class="risk-title">Marże strukturalnie niskie vs. peers</div>
+        <div class="risk-desc">Gross margin ~14-17% to niskie poziomy vs. fabless czy semicap. OSAT jest capital-intensive i competitive — ASE Technology (AMKR's main rival) też inwestuje. Jednak advanced packaging (HDFO, 2.5D) niesie wyższe marże niż tradycyjny packaging — mix shift powinien poprawić strukturę marż w 2027+.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <span class="risk-badge risk-LOW">LOW</span>
+      <div>
+        <div class="risk-title">Cykliczność semiconductor demand</div>
+        <div class="risk-desc">AMKR jest dojrzalszy i bardziej zdywersyfikowany niż KLIC, ale wciąż wrażliwy na semiconductor cycle. Beta 1.89 vs. rynek — spółka porusza się szybciej niż indeksy. Diversyfikacja: Apple/AI/Automotive/Industrial zapewnia bufory, ale przy globalnej recesji wszystkie segmenty będą pod presją.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 09 WERDYKT ══ -->
+<div class="section" id="s09">
+  <div class="section-head">
+    <span class="section-num">// 09</span>
+    <span class="section-title">Werdykt</span>
+    <span class="tag tag-orange">BUY / AKUMULUJ</span>
+    <span class="tag tag-amber">Najlepsza asymetria w serii ANAL</span>
+  </div>
+  <div class="section-body">
+    <div class="verdict-box">
+      <div class="verdict-rating">
+        <span class="verdict-stars">★★★★☆</span>
+        <span class="verdict-label">BUY — AKUMULUJ</span>
+        <span class="tag tag-amber" style="margin-left:8px;">Ryzyko: ŚREDNIE-WYSOKIE</span>
+      </div>
+      <div class="verdict-text">
+        <p>AMKR oferuje <strong>najciekawszy risk/reward w tej serii ANAL</strong>. Przy cenie $41.25 masz: avg analyst PT $56.25 (+36%), JPMorgan/Needham PT $65 (+57%), narrative FV $65 (Simply Wall St.). To nie jest spekulacja jak KLIC — to <strong>strukturalnie niedowartościowana spółka z realnym fundamentalnym upsajdem</strong>.</p>
+        <p>Korekta -27% od ATH jest w pełni wyjaśniona przez <strong>techniczne czynniki (Kim family block sale)</strong>, nie przez pogorszenie fundamentów. Q4'25 wyniki były najlepsze w historii spółki — EPS +57% vs. consensus, EBITDA +16% vs. est. Guidance Q1'26 przebiło oczekiwania o 7%. Computing segment guiduje &gt;20% wzrost YoY, HDFO/2.5D ma się niemal potroić.</p>
+        <p>Główne ryzyko: <strong>marżowa dolina w 2026 przy $2.5-3B CapEx</strong> — Q1 guided gross margin 12.5-13.5% będzie boleć. To jednak przejściowe — utilization HDFO capacity w H2'26 i 2027 będzie kluczowy. Arizona to 3-5 letni projekt który przy powodzeniu jest game-changer dla pozycji AMKR w AI supply chain. <span class="hl-orange">P/E ~27x przy peer avg 39x to strukturalne dyskonto które powinno się zawęzić gdy EPS wróci powyżej $2.00.</span></p>
+        <p><strong>Pozycjonowanie:</strong> Tier 1 wejście $38-44 z SL $30. DCA: 40% teraz, reszta na ewentualnym dalszym osłabieniu. Catalyst watch: Q1 Earnings 04.05.2026 — guidance H2 i update na CPU HDFO kwalifikacje to być albo nie być dla odbicia. Horizon: 12-18 mies. do realizacji pełnego potencjału.</p>
+      </div>
+    </div>
+
+    <div class="sep"></div>
+
+    <div class="grid-4">
+      <div class="kpi">
+        <span class="kpi-label">Cena (31.03.2026)</span>
+        <span class="kpi-value orange">$41.25</span>
+        <span class="kpi-sub">NASDAQ: AMKR</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Avg PT analityków</span>
+        <span class="kpi-value green">$56.25</span>
+        <span class="kpi-sub">+36% upside; JPM/Needham $65</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Stop-Loss (Tier 1)</span>
+        <span class="kpi-value red">$30–33</span>
+        <span class="kpi-sub">Poniżej 200d MA + trendline</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Najbliższy Earnings</span>
+        <span class="kpi-value amber">04 Maj</span>
+        <span class="kpi-sub">Q1'26 — critical catalyst</span>
+      </div>
+    </div>
+
+    <div class="inline-tags" style="margin-top:14px;">
+      <span class="tag tag-orange">OSAT #2 Global</span>
+      <span class="tag tag-orange">HDFO / 2.5D Advanced Packaging</span>
+      <span class="tag tag-orange">Arizona — CHIPS Act</span>
+      <span class="tag tag-green">+57% EPS beat Q4</span>
+      <span class="tag tag-green">P/E 27x vs peers 39x</span>
+      <span class="tag tag-green">JPM/Needham PT $65</span>
+      <span class="tag tag-amber">CapEx marżowa presja 2026</span>
+      <span class="tag tag-amber">Kim Family block sales</span>
+      <span class="tag tag-red">Gross Margin Q1 12.5%</span>
+      <span class="tag tag-red">Beta 1.89 — high vol.</span>
+      <span class="tag tag-blue">Q1 Earnings 04 Maj</span>
+      <span class="tag tag-blue">CPU HDFO HVM H2'26</span>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  ANAL REPORT — AMKR / AMKOR TECHNOLOGY, INC. — wygenerowano 01.04.2026<br>
+  Dane: Q4 2025 earnings 09.02.2026, Q1'26 guidance 09.02.2026, investing.com, stocktitan.net, JPMorgan/Needham upgrades luty 2026, simplywall.st<br>
+  ⚠ Raport wyłącznie informacyjny. Nie stanowi rekomendacji inwestycyjnej. Inwestuj na własne ryzyko.
+</div>
+
+</body>
+</html>
