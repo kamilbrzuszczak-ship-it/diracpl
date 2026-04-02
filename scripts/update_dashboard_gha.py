@@ -120,21 +120,21 @@ def main():
             html, flags=re.DOTALL
         )
 
+    
     # Calculate Total P&L
     total_pnl_usd = total_current_val - total_invested
     total_pnl_pct = (total_pnl_usd / total_invested) * 100
     pnl_usd_str = f"{'+' if total_pnl_usd >= 0 else '-'}${abs(total_pnl_usd):,.2f}"
     pnl_pct_str = f"{'+' if total_pnl_pct >= 0 else ''}{total_pnl_pct:.2f}%"
     pnl_cls = "c-green" if total_pnl_usd >= 0 else "c-red"
-    
-    # Replace the FIRST hero stat (previously Avg P&L)
-    html = re.sub(
-        r'(<div class="hero-stat-val )([^"]+)(">)([^<]+)(</div>\s*<div class="hero-stat-lbl">)[^<]+(</div>\s*<div class="hero-stat-sub">)[^<]+(</div>\s*<div class="hero-stat-glow" style="background:linear-gradient\(90deg,var\(--)[a-z]+(\),transparent\)"></div>)',
-        rf'\g<1>{pnl_cls}{pnl_usd_str}Total P&amp;L (USD)Val: ${total_current_val:,.2f} ({pnl_pct_str}){"green" if total_pnl_usd >= 0 else "red"}\8',
-        html, count=1
-    )
+
+    # Update SUPER HERO markers
+    html = re.sub(r'<!-- SH_VAL -->.*?<!-- /SH_VAL -->', f'<!-- SH_VAL -->${total_current_val:,.2f}<!-- /SH_VAL -->', html, flags=re.DOTALL)
+    html = re.sub(r'<!-- SH_PNL -->.*?<!-- /SH_PNL -->', f'<!-- SH_PNL --><span class="{pnl_cls}">{pnl_usd_str}</span> <span class="{pnl_cls}">({pnl_pct_str})</span><!-- /SH_PNL -->', html, flags=re.DOTALL)
+    html = re.sub(r'<!-- SH_INV -->.*?<!-- /SH_INV -->', f'<!-- SH_INV -->Zainwestowany kapitał: <strong>${total_invested:,.2f}</strong><!-- /SH_INV -->', html, flags=re.DOTALL)
 
     for ticker in ["MU", "SATL", "AVGO", "AMKR"]:
+
         if ticker not in prices: continue
         price = prices[ticker]
         data = entries[ticker]
