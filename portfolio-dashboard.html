@@ -83,7 +83,7 @@ body::before { content: ''; position: fixed; inset: 0; background: repeating-lin
 
 /* ─── HERO STATS ─── */
 .hero-stats {
-  display: grid; grid-template-columns: repeat(5, 1fr);
+  display: grid; grid-template-columns: repeat(4, 1fr);
   background: var(--bg2); border-bottom: 1px solid var(--border);
 }
 .hero-stat {
@@ -404,6 +404,40 @@ table.mt .tc { text-align: center; }
 }
 @media(max-width: 768px) { .analytics-grid { grid-template-columns: 1fr; } }
 
+
+/* ─── SUPER HERO ─── */
+.super-hero {
+  background: radial-gradient(ellipse at top, rgba(0, 229, 255, 0.05) 0%, var(--bg) 80%);
+  border-bottom: 1px solid var(--border);
+  padding: 50px 20px; text-align: center; position: relative;
+}
+.super-hero::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  opacity: 0.8;
+}
+.sh-label { 
+  font-size: 0.9rem; letter-spacing: 0.3em; text-transform: uppercase; 
+  color: var(--cyan); margin-bottom: 15px; font-weight: 800; 
+}
+.sh-value { 
+  font-family: 'Syne', sans-serif; font-size: 5rem; font-weight: 800; line-height: 1; 
+  color: #FFFFFF; text-shadow: 0 0 50px rgba(0,229,255,0.15); margin-bottom: 20px; 
+}
+.sh-pnl-row { 
+  font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; 
+  display: flex; justify-content: center; gap: 20px; align-items: baseline;
+}
+.sh-pnl-row .c-green { text-shadow: 0 0 25px rgba(0,255,136,0.3); }
+.sh-pnl-row .c-red { text-shadow: 0 0 25px rgba(255,51,85,0.3); }
+.sh-invested { 
+  margin-top: 25px; font-size: 0.9rem; color: var(--text3); letter-spacing: 0.08em; 
+  text-transform: uppercase; font-weight: 600;
+}
+.sh-invested strong { color: var(--text2); }
+@media(max-width: 768px) { .sh-value { font-size: 3.5rem; } .sh-pnl-row { font-size: 1.5rem; } }
+@media(max-width: 480px) { .sh-value { font-size: 2.8rem; } .sh-pnl-row { font-size: 1.2rem; } }
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -435,14 +469,20 @@ table.mt .tc { text-align: center; }
   </div>
 </div>
 
+
+<!-- ═══ SUPER HERO ═══ -->
+<div class="super-hero">
+  <div class="sh-label">Wartość Portfela na Żywo</div>
+  <div class="sh-value"><!-- SH_VAL -->$0.00<!-- /SH_VAL --></div>
+  <div class="sh-pnl-row">
+    <!-- SH_PNL --><span class="c-text3">$0.00</span> <span class="c-text3">(0.00%)</span><!-- /SH_PNL -->
+  </div>
+  <div class="sh-invested"><!-- SH_INV -->Zainwestowany kapitał: <strong>$0.00</strong><!-- /SH_INV --></div>
+</div>
+
 <!-- ═══ HERO STATS ═══ -->
 <div class="hero-stats">
-  <div class="hero-stat">
-    <div class="hero-stat-val c-red">−4.7%</div>
-    <div class="hero-stat-lbl">Avg P&amp;L portfela</div>
-    <div class="hero-stat-sub">wszystkie pozycje pod wodą</div>
-    <div class="hero-stat-glow" style="background:linear-gradient(90deg,var(--red),transparent)"></div>
-  </div>
+  
   <div class="hero-stat">
     <div class="hero-stat-val" style="color:var(--red)">32 dni ⚡</div>
     <div class="hero-stat-lbl">Next earnings — AMKR</div>
