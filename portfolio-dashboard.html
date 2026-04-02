@@ -31,8 +31,9 @@
   --sans:   'Syne', sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{font-size:10px;scroll-behavior:smooth;}
-@media(min-width:1024px){html{zoom:1.43;}}
+html{font-size:13px;scroll-behavior:smooth;}
+@media(min-width:1400px){html{zoom:1.25;}}
+@media(min-width:1800px){html{zoom:1.5;}}
 body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:1.2rem;line-height:1.6;min-height:100vh;}
 body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.15) 2px,rgba(0,0,0,0.15) 4px);pointer-events:none;z-index:1000;}
 
@@ -417,6 +418,67 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   align-items: center;
 }
 
+/* REPORT LINK BUTTON */
+.report-btn {
+  display: block;
+  width: 100%;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--bd2);
+  border-top: none;
+  padding: 8px 16px;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.report-btn:hover {
+  background: rgba(0,229,255,0.07);
+  color: var(--cyan);
+  border-color: rgba(0,229,255,0.25);
+}
+.report-btn span { margin-left: 6px; }
+
+/* Card hover effect */
+.stock-card { cursor: default; }
+.stock-card.has-report { cursor: pointer; }
+.stock-card.has-report:hover { border-color: rgba(0,229,255,0.3); }
+
+/* BACK BUTTON */
+.back-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--bg3);
+  border: 1px solid var(--bd2);
+  color: var(--text2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  padding: 8px 16px;
+  cursor: pointer;
+  text-decoration: none;
+  z-index: 999;
+  display: none;
+}
+
+/* Mobile tweaks */
+@media(max-width:600px) {
+  .masthead-title { font-size: 2rem; }
+  .stat-item { min-width: 90px; padding: 10px 8px; }
+  .stat-val { font-size: 1.2rem; }
+  .ticker { font-size: 1.5rem; }
+  .price { font-size: 1.3rem; }
+  .card-metrics { grid-template-columns: repeat(2,1fr); }
+  .entry-row { grid-template-columns: 1fr 1fr 1fr; }
+  .comp-table { font-size: 0.72rem; }
+  .comp-table th, .comp-table td { padding: 5px 6px; }
+  .risk-axis { grid-template-columns: 1fr; }
+}
+
 .footer {
   text-align: center;
   padding: 20px;
@@ -427,6 +489,20 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   margin-top: 28px;
 }
 </style>
+<script>
+const BASE = "https://kalibracjadirac.pl/";
+const REPORTS = {
+  AVGO: BASE + "avgo-raport.html",
+  MU:   BASE + "mu-raport.html",
+  AMKR: BASE + "amkr-raport.html",
+  APH:  BASE + "aph-raport.html",
+  AMPX: BASE + "ampx-raport.html",
+  SATL: BASE + "satl-raport.html",
+};
+function openReport(ticker) {
+  if (REPORTS[ticker]) window.open(REPORTS[ticker], '_blank');
+}
+</script>
 </head>
 <body>
 
@@ -632,7 +708,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 <div class="stock-grid">
 
   <!-- AVGO CARD -->
-  <div class="stock-card">
+  <div class="stock-card has-report" onclick="openReport('AVGO')" title="Kliknij → Raport AVGO">
     <div class="card-accent accent-strong-buy"></div>
     <div class="card-header">
       <div class="card-left">
@@ -697,9 +773,10 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       </div>
     </div>
   </div>
+    <a href="javascript:void(0)" onclick="event.stopPropagation();openReport('AVGO')" class="report-btn">→ OTWÓRZ PEŁNY RAPORT <span>AVGO</span></a>
 
   <!-- MU CARD -->
-  <div class="stock-card">
+  <div class="stock-card has-report" onclick="openReport('MU')" title="Kliknij → Raport MU">
     <div class="card-accent accent-strong-buy"></div>
     <div class="card-header">
       <div class="card-left">
@@ -764,6 +841,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       </div>
     </div>
   </div>
+    <a href="javascript:void(0)" onclick="event.stopPropagation();openReport('MU')" class="report-btn">→ OTWÓRZ PEŁNY RAPORT <span>MU</span></a>
 
 </div>
 
@@ -777,7 +855,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 <div class="stock-grid">
 
   <!-- AMKR CARD -->
-  <div class="stock-card">
+  <div class="stock-card has-report" onclick="openReport('AMKR')" title="Kliknij → Raport AMKR">
     <div class="card-accent accent-buy"></div>
     <div class="card-header">
       <div class="card-left">
@@ -842,9 +920,10 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       </div>
     </div>
   </div>
+    <a href="javascript:void(0)" onclick="event.stopPropagation();openReport('AMKR')" class="report-btn">→ OTWÓRZ PEŁNY RAPORT <span>AMKR</span></a>
 
   <!-- APH CARD -->
-  <div class="stock-card">
+  <div class="stock-card has-report" onclick="openReport('APH')" title="Kliknij → Raport APH">
     <div class="card-accent accent-buy"></div>
     <div class="card-header">
       <div class="card-left">
@@ -909,6 +988,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       </div>
     </div>
   </div>
+    <a href="javascript:void(0)" onclick="event.stopPropagation();openReport('APH')" class="report-btn">→ OTWÓRZ PEŁNY RAPORT <span>APH</span></a>
 
   <!-- KLIC CARD -->
   <div class="stock-card">
@@ -1056,7 +1136,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   </div>
 
   <!-- AMPX CARD -->
-  <div class="stock-card">
+  <div class="stock-card has-report" onclick="openReport('AMPX')" title="Kliknij → Raport AMPX">
     <div class="card-accent accent-spec-buy"></div>
     <div class="card-header">
       <div class="card-left">
@@ -1121,9 +1201,10 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       </div>
     </div>
   </div>
+    <a href="javascript:void(0)" onclick="event.stopPropagation();openReport('AMPX')" class="report-btn">→ OTWÓRZ PEŁNY RAPORT <span>AMPX</span></a>
 
   <!-- SATL CARD -->
-  <div class="stock-card">
+  <div class="stock-card has-report" onclick="openReport('SATL')" title="Kliknij → Raport SATL">
     <div class="card-accent accent-spec"></div>
     <div class="card-header">
       <div class="card-left">
@@ -1188,6 +1269,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       </div>
     </div>
   </div>
+    <a href="javascript:void(0)" onclick="event.stopPropagation();openReport('SATL')" class="report-btn">→ OTWÓRZ PEŁNY RAPORT <span>SATL</span></a>
 
 </div>
 
