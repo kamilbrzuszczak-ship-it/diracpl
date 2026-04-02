@@ -178,8 +178,44 @@ tr:last-child td{border-bottom:none;} tr:hover td{background:rgba(255,255,255,0.
 
 .footer{text-align:center;padding:20px;font-size:0.8rem;color:var(--text3);border-top:1px solid var(--border);line-height:1.8;}
 </style>
+
+<style id="dash-nav-style">
+.dash-nav-bar {
+  position: sticky; top: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: space-between;
+  background: #0a0a10;
+  border-bottom: 2px solid #00E5FF;
+  padding: 10px 24px;
+  font-family: 'JetBrains Mono', monospace;
+  gap: 16px;
+}
+.dash-nav-back {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #00E5FF;
+  color: #07070A;
+  font-weight: 700; font-size: 0.85rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  text-decoration: none;
+  padding: 8px 20px;
+  transition: background 0.15s;
+}
+.dash-nav-back:hover { background: #00FFFF; }
+.dash-nav-back::before { content: '←  '; font-size: 1rem; }
+.dash-nav-ticker {
+  font-size: 1.4rem; font-weight: 800;
+  color: #00E5FF; letter-spacing: 0.08em;
+  font-family: 'Syne', sans-serif;
+}
+.dash-nav-hint { font-size: 0.72rem; color: #50506A; }
+</style>
 </head>
 <body>
+<div class="dash-nav-bar">
+  <a href="https://kalibracjadirac.pl/portfolio-dashboard.html" class="dash-nav-back">Wróć do Dashboardu</a>
+  <div class="dash-nav-ticker">AMKR</div>
+  <div class="dash-nav-hint">Raport ANAL · kalibracjadirac.pl</div>
+</div>
+
 
 <!-- HEADER -->
 <div class="header">
