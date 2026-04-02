@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SATL — Raport Analityczny | 27.03.2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060a0f;
+    --surface: #0d1521;
+    --surface2: #111c2d;
+    --border: #1e3050;
+    --accent: #00d4ff;
+    --accent2: #00ff88;
+    --accent3: #ff6b35;
+    --warn: #ffd166;
+    --danger: #ff4757;
+    --text: #f0f8ff;
+    --muted: #94afc8;
+    --strong-buy: #00ff88;
+    --buy: #00d4ff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @media (min-width: 1024px) {
+    html { zoom: 1.43; }
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  .header {
+    position: relative;
+    padding: 60px 48px 40px;
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header::after {
+    content: 'AMPX';
+    position: absolute;
+    right: -20px; top: -10px;
+    font-family: 'Syne', sans-serif;
+    font-size: 180px;
+    font-weight: 800;
+    color: rgba(0,212,255,0.04);
+    letter-spacing: -10px;
+    pointer-events: none;
+  }
+
+  .tag {
+    display: inline-block;
+    background: rgba(0,212,255,0.1);
+    border: 1px solid rgba(0,212,255,0.3);
+    color: var(--accent);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    margin-bottom: 20px;
+  }
+
+  .header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .header h1 span { color: var(--accent); }
+
+  .header-sub {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  .price-hero {
+    display: flex;
+    align-items: flex-end;
+    gap: 24px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+
+  .price-main {
+    font-family: 'Syne', sans-serif;
+    font-size: 64px;
+    font-weight: 800;
+    color: var(--warn);
+    line-height: 1;
+  }
+
+  .price-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 8px;
+  }
+  .price-meta .change-neg {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--danger);
+  }
+  .price-meta .date {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  .stat-pills {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+  .pill {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    font-size: 11px;
+  }
+  .pill span { color: var(--muted); }
+  .pill strong { color: var(--accent); margin-left: 6px; }
+
+  /* MAIN LAYOUT */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .price-main { font-size: 44px; }
+    .header { padding: 32px 18px 24px; }
+    .header h1 { font-size: 26px; }
+    .section { padding: 28px 18px; }
+    .footer { padding: 24px 18px; }
+    .entry-card { flex-direction: column; gap: 10px; }
+    .analyst-row { flex-wrap: wrap; }
+    .analyst-name { min-width: unset; width: 100%; }
+    .momentum-grid { grid-template-columns: repeat(2,1fr); }
+    .price-hero { gap: 14px; }
+    .stat-pills { gap: 8px; }
+    .pill { font-size: 10px; padding: 6px 10px; }
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 40px 48px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .section h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--accent);
+  }
+  .card.green::before { background: var(--accent2); }
+  .card.orange::before { background: var(--accent3); }
+  .card.yellow::before { background: var(--warn); }
+  .card.red::before { background: var(--danger); }
+
+  .card-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .card-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+  }
+  .card-value.accent { color: var(--accent); }
+  .card-value.green { color: var(--accent2); }
+  .card-value.orange { color: var(--accent3); }
+  .card-value.yellow { color: var(--warn); }
+  .card-value.red { color: var(--danger); }
+
+  .card-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* FINANCIAL TABLE */
+  .fin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  .fin-table th {
+    text-align: left;
+    color: var(--muted);
+    font-weight: 400;
+    letter-spacing: 1px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+  .fin-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(30,48,80,0.5);
+    color: var(--text);
+  }
+  .fin-table tr:hover td { background: rgba(0,212,255,0.03); }
+  .fin-table .up { color: var(--accent2); }
+  .fin-table .down { color: var(--danger); }
+  .fin-table .neutral { color: var(--warn); }
+  .fin-table .label-col { color: var(--muted); font-size: 11px; }
+  .fin-table .right { text-align: right; }
+  .fin-table .mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* ANALYST TARGETS */
+  .analyst-row {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(30,48,80,0.5);
+    gap: 16px;
+  }
+  .analyst-row:last-child { border-bottom: none; }
+  .analyst-name {
+    min-width: 180px;
+    font-size: 12px;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .analyst-action {
+    flex: 1;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .analyst-target {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent2);
+    min-width: 80px;
+    text-align: right;
+  }
+  .analyst-rating {
+    background: rgba(0,255,136,0.1);
+    border: 1px solid rgba(0,255,136,0.3);
+    color: var(--accent2);
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    text-transform: uppercase;
+    min-width: 90px;
+    text-align: center;
+  }
+  .analyst-rating.buy { 
+    background: rgba(0,212,255,0.1);
+    border-color: rgba(0,212,255,0.3);
+    color: var(--accent);
+  }
+
+  /* SUPPORT/RESISTANCE */
+  .level-bar {
+    position: relative;
+    height: 48px;
+    margin: 4px 0;
+    display: flex;
+    align-items: center;
+  }
+  .level-label {
+    width: 100px;
+    font-size: 11px;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+  .level-track {
+    flex: 1;
+    height: 2px;
+    background: var(--border);
+    position: relative;
+  }
+  .level-marker {
+    position: absolute;
+    top: -10px;
+    width: 2px;
+    height: 22px;
+    transform: translateX(-50%);
+  }
+  .level-marker.price { background: var(--warn); }
+  .level-marker.support { background: var(--accent2); }
+  .level-marker.resistance { background: var(--danger); }
+  .level-price-tag {
+    position: absolute;
+    top: -26px;
+    transform: translateX(-50%);
+    font-size: 10px;
+    white-space: nowrap;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+  }
+
+  /* SCENARIOS */
+  .scenario {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    position: relative;
+  }
+  .scenario-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .scenario-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .scenario-prob {
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+  }
+  .scenario-target {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .scenario-return {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .scenario-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.7;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    margin-top: 8px;
+  }
+
+  /* MOMENTUM */
+  .momentum-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+  }
+  @media (max-width: 768px) { .momentum-grid { grid-template-columns: repeat(2,1fr); } }
+
+  .momentum-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 16px;
+    text-align: center;
+  }
+  .momentum-card .m-label {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .momentum-card .m-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .momentum-card .m-signal {
+    font-size: 10px;
+    margin-top: 4px;
+  }
+  .bull { color: var(--accent2); }
+  .bear { color: var(--danger); }
+  .neutral-c { color: var(--warn); }
+
+  /* RISK */
+  .risk-item {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(30,48,80,0.5);
+    align-items: flex-start;
+  }
+  .risk-item:last-child { border-bottom: none; }
+  .risk-icon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .risk-content { flex: 1; }
+  .risk-title { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .risk-desc { font-size: 11px; color: var(--muted); line-height: 1.6; }
+
+  /* ENTRY LEVELS */
+  .entry-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .entry-tier {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    min-width: 80px;
+  }
+  .entry-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    min-width: 100px;
+  }
+  .entry-rationale {
+    font-size: 11px;
+    color: var(--muted);
+    flex: 1;
+    line-height: 1.6;
+  }
+  .entry-upside {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    min-width: 60px;
+    text-align: right;
+    color: var(--accent2);
+  }
+
+  /* FOOTER */
+  .footer {
+    padding: 32px 48px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+  }
+  .disclaimer {
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 900px;
+  }
+  .footer-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .footer-date {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    padding: 0 0 20px 20px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0,212,255,0.5);
+  }
+  .timeline-item.past::before { background: var(--muted); box-shadow: none; }
+  .timeline-item.future::before { 
+    background: transparent;
+    border: 2px solid var(--accent2);
+    box-shadow: 0 0 8px rgba(0,255,136,0.4);
+  }
+  .tl-date { font-size: 10px; color: var(--muted); margin-bottom: 4px; }
+  .tl-event { font-size: 12px; color: var(--text); font-weight: 600; }
+  .tl-detail { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* BADGE */
+  .badge {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .badge.new { background: rgba(0,255,136,0.15); border: 1px solid rgba(0,255,136,0.4); color: var(--accent2); }
+  .badge.warn { background: rgba(255,209,102,0.15); border: 1px solid rgba(255,209,102,0.4); color: var(--warn); }
+  .badge.alert { background: rgba(255,71,87,0.15); border: 1px solid rgba(255,71,87,0.4); color: var(--danger); }
+
+  /* UPSIDE CALC */
+  .upside-bar {
+    height: 6px;
+    background: var(--border);
+    margin: 8px 0 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  .upside-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    transition: width 0.3s;
+  }
+
+  /* Inline highlight */
+  .hl { color: var(--accent); }
+  .hl-g { color: var(--accent2); }
+  .hl-o { color: var(--accent3); }
+  .hl-y { color: var(--warn); }
+  .hl-r { color: var(--danger); }
+
+  p { color: var(--muted); font-size: 12px; line-height: 1.8; }
+  p + p { margin-top: 10px; }
+  strong { color: var(--text); }
+  
+  .divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+  .note-box {
+    background: rgba(255,209,102,0.06);
+    border: 1px solid rgba(255,209,102,0.2);
+    border-left: 3px solid var(--warn);
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .note-box strong { color: var(--warn); }
+
+  .alert-box {
+    background: rgba(255,71,87,0.06);
+    border: 1px solid rgba(255,71,87,0.2);
+    border-left: 3px solid var(--danger);
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .alert-box strong { color: var(--danger); }
+
+  .verdict-box {
+    background: linear-gradient(135deg, rgba(0,255,136,0.05) 0%, rgba(0,212,255,0.05) 100%);
+    border: 1px solid rgba(0,212,255,0.2);
+    padding: 28px 32px;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .verdict-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+  }
+  .verdict-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .verdict-rating {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--accent2);
+    margin-bottom: 8px;
+  }
+  .verdict-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 700px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ HEADER ═══ -->
+<div class="header">
+  <div class="tag">Raport Analityczny</div>
+  <h1>Satellogic Inc.<br><span>NASDAQ: SATL</span></h1>
+  <div class="header-sub">Orbita. Inteligencja. Skala. &nbsp;|&nbsp; Geospatial Earth Observation · Defense Intelligence &nbsp;|&nbsp; 27.03.2026</div>
+
+  <div class="price-hero">
+    <div class="price-main">$5.93</div>
+    <div class="price-meta">
+      <div class="change-neg">▲ +8.5% (5D)</div>
+      <div class="date">Zamknięcie 26.03.2026 · Post-Merlin rally</div>
+    </div>
+  </div>
+
+  <div class="stat-pills">
+    <div class="pill"><span>52W High</span><strong>$6.84</strong></div>
+    <div class="pill"><span>52W Low</span><strong>$1.26</strong></div>
+    <div class="pill"><span>Market Cap</span><strong>~$490M</strong></div>
+    <div class="pill"><span>Revenue FY25</span><strong>$17.7M</strong></div>
+    <div class="pill"><span>Cash</span><strong>$94.4M + $35M</strong></div>
+    <div class="pill"><span>Konsensus analityków</span><strong>STRONG BUY</strong></div>
+    <div class="pill"><span>Avg. PT (buy-side)</span><strong>$5.83</strong></div>
+    <div class="pill"><span>Max PT</span><strong>$7.00</strong></div>
+    <div class="pill"><span>Następny raport</span><strong>Q1 2026 (maj)</strong></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ MODEL DZIAŁANIA ═══ -->
+<div class="section">
+  <div class="section-label">01 &mdash; Model Działania i Technologia</div>
+  <h2>Kim jest Satellogic?</h2>
+
+  <p>Satellogic (założona 2010, Davidson NC — po redomicylacji z Argentyny) to pierwsza w pełni <strong>zintegrowana pionowo firma geospatialna</strong> — projektuje, produkuje, wystrzeliwuje i operuje satelitami obserwacji Ziemi, dostarczając obrazy i analizy rządom, służbom wywiadowczym i klientom komercyjnym. Produkuje własne satelity NewSat za ok. $1.3M każdy — kilkanaście razy taniej niż rynkowa średnia.</p>
+  <p>W 2025 roku spółka dokonała <strong>„Strategic Reset"</strong> — przeniosła siedzibę do Delaware, skupiając się na kontraktach obronnych USA (DoD, ONR) kosztem szerszego rynku komercyjnego. Efekt: North America = 68% sprzedaży, koszty operacyjne spadły o 25%, strata netto skurczyła się z $116M do $4.8M. Teraz spółka wchodzi w kolejną transformację: z modelu jednorazowego taskingu na subskrypcyjny model ciągłego wywiadu (<strong>Aleph Observer + Merlin</strong>).</p>
+
+  <div class="divider"></div>
+
+  <div class="grid-2">
+    <div>
+      <div class="section-label" style="font-size:9px">Produkty &amp; Platforma</div>
+      <div class="card" style="margin-bottom:12px">
+        <div class="card-label">NewSat Constellation (aktywna) — 19 satelitów LEO</div>
+        <div class="card-value accent" style="font-size:18px">Sub-metrowa rozdzielczość · ~$1.3M/sat</div>
+        <div class="card-sub">Najniższy koszt produkcji satelitów EO na rynku. Szybki tasking-to-delivery. Baza dla Aleph Observer. 5 pasmowy multispektralny imaging.</div>
+      </div>
+      <div class="card" style="margin-bottom:12px">
+        <div class="card-label">Aleph Observer™ — URUCHOMIONY 23.02.2026</div>
+        <div class="card-value accent" style="font-size:18px">Persistent Global Intelligence</div>
+        <div class="card-sub">Subskrypcyjny produkt monitoringu. Zamiast jednorazowego taskingu — ciągłe monitorowanie setek lokalizacji dziennie z przewidywalną dostawą. Model SaaS dla wywiadu.</div>
+      </div>
+      <div class="card green">
+        <div class="card-label">Merlin Constellation™ — START X 2026 <span class="badge new">Katalizator</span></div>
+        <div class="card-value green" style="font-size:18px">Codzienne remapowanie planety · 1m</div>
+        <div class="card-sub">Pierwsza konstelacja remapująca całą Ziemię codziennie w rozdzielczości 1m. AI-first, ISL real-time, finansowana kontraktem $30M. Start: X 2026, FOC: H1 2027. Rozszerza Aleph Observer z tysięcy do milionów monitorowanych lokalizacji.</div>
+      </div>
+    </div>
+    <div>
+      <div class="section-label" style="font-size:9px">Rynki Docelowe</div>
+      <table class="fin-table">
+        <tr><th>Segment</th><th>Status</th><th>Potencjał</th></tr>
+        <tr><td>US Defense / Intelligence (DoD, ONR)</td><td class="up">Aktywny</td><td class="up">★★★★★</td></tr>
+        <tr><td>NATO / Allied Govts</td><td class="up">Aktywny (Albania, CEiiA)</td><td class="up">★★★★★</td></tr>
+        <tr><td>Maritime Intelligence</td><td class="up">Slingshot I/II/III</td><td class="up">★★★★☆</td></tr>
+        <tr><td>Sovereign EO (rządy)</td><td class="up">Aktywny</td><td class="up">★★★★☆</td></tr>
+        <tr><td>Komercja (agri, infrastr.)</td><td class="neutral">Ograniczony</td><td class="up">★★★☆☆</td></tr>
+        <tr><td>India Intelligence</td><td class="up">Suhora deal (Q3 2025)</td><td class="up">★★★★☆</td></tr>
+      </table>
+
+      <div class="note-box" style="margin-top:12px">
+        <strong>KEY MOAT:</strong> Koszt produkcji satelitów (~$1.3M) to fundament jednostkowej ekonomiki, której żaden rywale nie replikuje. Pionowa integracja = pełna kontrola jakości i szybkości dostawy. Merlin usuwa historyczny trade-off EO: pokrycie vs. rozdzielczość — jednocześnie.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ WYNIKI FINANSOWE ═══ -->
+<div class="section">
+  <div class="section-label">02 &mdash; Wyniki Finansowe</div>
+  <h2>Strategic Reset daje rezultaty</h2>
+
+  <div class="grid-3" style="margin-bottom:20px">
+    <div class="card green">
+      <div class="card-label">Revenue FY2025</div>
+      <div class="card-value green">$17.7M</div>
+      <div class="card-sub">▲ +38% YoY vs $12.8M w 2024</div>
+    </div>
+    <div class="card green">
+      <div class="card-label">Revenue Q4 2025</div>
+      <div class="card-value green">$6.2M</div>
+      <div class="card-sub">▲ +94% YoY · rekordowy kwartał</div>
+    </div>
+    <div class="card green">
+      <div class="card-label">Koszty operacyjne FY25</div>
+      <div class="card-value green">−25%</div>
+      <div class="card-sub">Strukturalna redukcja — efekt Strategic Reset</div>
+    </div>
+    <div class="card green">
+      <div class="card-label">Net Loss FY2025</div>
+      <div class="card-value green">−$4.8M</div>
+      <div class="card-sub">vs −$116.3M w 2024 — redukcja o 96%!</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Adj. EBITDA Loss FY25</div>
+      <div class="card-value accent">−$17.4M</div>
+      <div class="card-sub">Poprawa o 48% YoY. Strukturalna, nie jednorazowa.</div>
+    </div>
+    <div class="card green">
+      <div class="card-label">Cash (12.2025 + oferta 01.2026)</div>
+      <div class="card-value green">~$129M</div>
+      <div class="card-sub">$94.4M + $35M direct offering (01.2026)</div>
+    </div>
+  </div>
+
+  <div class="section-label" style="font-size:9px">Historyczna trajektoria</div>
+  <table class="fin-table">
+    <tr>
+      <th>Okres</th>
+      <th class="right">Revenue</th>
+      <th class="right">YoY</th>
+      <th class="right">Net Loss</th>
+      <th class="right">Adj. EBITDA</th>
+      <th class="right">Uwagi</th>
+    </tr>
+    <tr>
+      <td class="label-col">FY2024</td>
+      <td class="right mono">$12.8M</td>
+      <td class="right">baza</td>
+      <td class="right down">−$116.3M</td>
+      <td class="right down">−$33.4M</td>
+      <td class="right" style="font-size:10px; color:var(--muted)">Restrukturyzacja</td>
+    </tr>
+    <tr>
+      <td class="label-col">Q3 2025</td>
+      <td class="right mono">$3.6M</td>
+      <td class="right up">+29% QoQ</td>
+      <td class="right neutral">poprawa</td>
+      <td class="right neutral">—</td>
+      <td class="right" style="font-size:10px; color:var(--muted)">Suhora (Indie) deal</td>
+    </tr>
+    <tr>
+      <td class="label-col"><strong>Q4 2025 (rekord)</strong></td>
+      <td class="right mono up"><strong>$6.2M</strong></td>
+      <td class="right up"><strong>+94% YoY</strong></td>
+      <td class="right up">drastyczna poprawa</td>
+      <td class="right up">—</td>
+      <td class="right" style="font-size:10px; color:var(--muted)">Backlog $28.6M &lt;12M</td>
+    </tr>
+    <tr>
+      <td class="label-col"><strong>FY2025</strong></td>
+      <td class="right mono up"><strong>$17.7M</strong></td>
+      <td class="right up"><strong>+38%</strong></td>
+      <td class="right up"><strong>−$4.8M</strong></td>
+      <td class="right up"><strong>−$17.4M</strong></td>
+      <td class="right" style="font-size:10px; color:var(--muted)">Strategic Reset ✓</td>
+    </tr>
+  </table>
+
+  <div class="divider"></div>
+
+  <div class="section-label" style="font-size:9px">Guidance 2026 + Kluczowe Kontrakty</div>
+  <div class="grid-2">
+    <div class="verdict-box">
+      <div class="verdict-title">2026 Financial Outlook</div>
+      <div class="verdict-rating">$30.87M</div>
+      <div style="font-size:13px; color:var(--muted); margin-bottom:12px">Revenue guidance (+74% YoY)</div>
+      <table class="fin-table">
+        <tr><td class="label-col">Backlog &lt;12M (Q4 2025)</td><td class="right up">$28.6M</td></tr>
+        <tr><td class="label-col">Kontrakt Merlin (klucz)</td><td class="right up">$30M (pełne finansowanie)</td></tr>
+        <tr><td class="label-col">CEiiA deal (Portugalia)</td><td class="right up">$18M (2 satelity NewSat V)</td></tr>
+        <tr><td class="label-col">Albania monitoring</td><td class="right up">Przedłużony +11 mies.</td></tr>
+        <tr><td class="label-col">Suhora (Indie, Q3 2025)</td><td class="right up">7-cyfrowy kontrakt</td></tr>
+        <tr><td class="label-col">Slingshot II/III (ONR)</td><td class="right up">8 satelitów ISL (2026–27)</td></tr>
+        <tr><td class="label-col">Launch Merlin sat #1</td><td class="right neutral">X 2026 (Październik)</td></tr>
+        <tr><td class="label-col">Merlin FOC</td><td class="right neutral">H1 2027</td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="note-box">
+        <strong>Merlin — w pełni sfinansowany:</strong> Konstelacja Merlin jest finansowana przez kontrakt klienta $30M — brak ryzyka cash-burn związanego z rozwojem. To fundamentalnie inny profil ryzyka niż typowe deep-space pre-revenue stories.
+      </div>
+      <div class="note-box">
+        <strong>Shelf Registration $200M (19.03.2026):</strong> Spółka złożyła rejestrację do sprzedaży akcji o wartości do $200M. To potencjalne ryzyko dilucji, ale też sygnał planowanego agresywnego wzrostu. Przy cash $129M nie ma presji natychmiastowego skorzystania.
+      </div>
+      <div class="note-box">
+        <strong>Zmiana modelu → SaaS:</strong> CEO potwierdził: "Aleph Observer to game-changer — przewidywalne, cykliczne przychody zamiast jednorazowych zleceń." Subskrypcja = wyższy mnożnik wyceny w przyszłości.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ ANALITYCY ═══ -->
+<div class="section">
+  <div class="section-label">03 &mdash; Targety Analityków</div>
+  <h2>Consensus: <span style="color:var(--accent2)">STRONG BUY</span> — podzielony obóz</h2>
+
+  <p style="margin-bottom:20px">Uwaga: rynek analityków SATL jest podzielony — silne buy od 4 domów inwestycyjnych, ale Weiss Ratings (Sell) i Wall Street Zen (Sell) sygnalizują kontrarian view. Loop Capital (neutralny $4.50) daje konserwatywny bufor. Northland podniósł PT po wynikach Q4.</p>
+
+  <div class="analyst-row">
+    <div class="analyst-name">Cantor Fitzgerald</div>
+    <div class="analyst-action">Inicjacja Overweight 20.02.2026 · Analyst: Andres Sheppard</div>
+    <div class="analyst-rating">Strong Buy</div>
+    <div class="analyst-target">$7.00</div>
+  </div>
+  <div class="analyst-row">
+    <div class="analyst-name">Northland Securities</div>
+    <div class="analyst-action">Raised PT $5.50 → $6.50, 20.03.2026 &nbsp;<span class="badge new">Raised</span></div>
+    <div class="analyst-rating">Strong Buy</div>
+    <div class="analyst-target">$6.50</div>
+  </div>
+  <div class="analyst-row">
+    <div class="analyst-name">Freedom Capital</div>
+    <div class="analyst-action">Upgraded Strong Buy, 11.03.2026 &nbsp;<span class="badge new">Upgrade</span></div>
+    <div class="analyst-rating">Strong Buy</div>
+    <div class="analyst-target">$4.50</div>
+  </div>
+  <div class="analyst-row">
+    <div class="analyst-name">Craig-Hallum</div>
+    <div class="analyst-action">Inicjacja Buy 21.01.2026 · Analyst: Jeff Van Rhee</div>
+    <div class="analyst-rating buy">Buy</div>
+    <div class="analyst-target">$5.00</div>
+  </div>
+  <div class="analyst-row">
+    <div class="analyst-name">Loop Capital</div>
+    <div class="analyst-action">Coverage 11.03.2026 — konserwatywny cel</div>
+    <div class="analyst-rating buy">Neutral/Buy</div>
+    <div class="analyst-target">$4.50</div>
+  </div>
+  <div class="analyst-row">
+    <div class="analyst-name">Weiss Ratings</div>
+    <div class="analyst-action">Podtrzymuje Sell (D-) · ostrzeżenie o dilucji <span class="badge alert">SELL</span></div>
+    <div class="analyst-rating" style="background:rgba(255,71,87,0.1);border-color:rgba(255,71,87,0.3);color:var(--danger)">Sell</div>
+    <div class="analyst-target" style="color:var(--danger)">—</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="grid-3">
+    <div class="card green">
+      <div class="card-label">Średni PT (buy-side, 4 domy)</div>
+      <div class="card-value green">$5.83</div>
+      <div class="card-sub">Upside vs. $5.93: <strong class="hl-y">−1.7% (AT PAR)</strong></div>
+      <div class="upside-bar"><div class="upside-fill" style="width:55%"></div></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Max PT (Cantor Fitzgerald)</div>
+      <div class="card-value accent">$7.00</div>
+      <div class="card-sub">Upside: <strong class="hl">+18%</strong> — Overweight</div>
+      <div class="upside-bar"><div class="upside-fill" style="width:100%"></div></div>
+    </div>
+    <div class="card yellow">
+      <div class="card-label">Min PT (buy-side)</div>
+      <div class="card-value yellow">$4.50</div>
+      <div class="card-sub">Freedom Capital / Loop Capital — Downside: <strong class="hl-r">−24%</strong></div>
+      <div class="upside-bar"><div class="upside-fill" style="width:15%"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ MOMENTUM ═══ -->
+<div class="section">
+  <div class="section-label">04 &mdash; Analiza Momentum</div>
+  <h2>Eksplozja z dna — +371% w 6 miesięcy</h2>
+
+  <p>SATL to jeden z najsilniejszych momentum play'ów na NASDAQ w Q1 2026. Od 52W low $1.26 (wrzesień 2025) do obecnych $5.93 to ruch +371% w ~6 miesięcy. Katalizatorem były kolejno: wyniki Q4 2025 (net loss −$4.8M vs −$116M rok temu), inicjacja Cantor Fitzgerald $7.00 PT, upgrade Freedom Capital i podwyżka Northland do $6.50 — wszystko w ciągu 6 tygodni. Spółka jest aktualnie tuż przy 52W high $6.84.</p>
+
+  <div class="momentum-grid">
+    <div class="momentum-card">
+      <div class="m-label">Trend 6M (od dna)</div>
+      <div class="m-val bull">+371%</div>
+      <div class="m-signal bull">● EXCEPTIONAL</div>
+    </div>
+    <div class="momentum-card">
+      <div class="m-label">Trend 1M</div>
+      <div class="m-val bull">+62%</div>
+      <div class="m-signal bull">● SILNY WZROST</div>
+    </div>
+    <div class="momentum-card">
+      <div class="m-label">vs S&P500 (3M)</div>
+      <div class="m-val bull">massive</div>
+      <div class="m-signal bull">● OUTPERFORM</div>
+    </div>
+    <div class="momentum-card">
+      <div class="m-label">Odległość od 52W High</div>
+      <div class="m-val neutral-c">−13.3%</div>
+      <div class="m-signal neutral-c">● $6.84 do przebicia</div>
+    </div>
+    <div class="momentum-card">
+      <div class="m-label">SMA20 vs SMA50</div>
+      <div class="m-val bull">ABOVE</div>
+      <div class="m-signal bull">● BULLISH</div>
+    </div>
+    <div class="momentum-card">
+      <div class="m-label">Shelf $200M (19.03)</div>
+      <div class="m-val bear">RYZYKO</div>
+      <div class="m-signal bear">● Dilution alert</div>
+    </div>
+    <div class="momentum-card">
+      <div class="m-label">Short Interest</div>
+      <div class="m-val neutral-c">~8–9%</div>
+      <div class="m-signal neutral-c">● Squeeze potencjał</div>
+    </div>
+    <div class="momentum-card">
+      <div class="m-label">Insider transakcje</div>
+      <div class="m-val bull">BUYING</div>
+      <div class="m-signal bull">● IDT Corp akumuluje</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-label" style="font-size:9px">Kluczowe zdarzenia momentum — oś czasu</div>
+  <div class="timeline">
+    <div class="timeline-item past">
+      <div class="tl-date">Wrzesień 2025</div>
+      <div class="tl-event">52W Low $1.26 — dno cyklu</div>
+      <div class="tl-detail">Rynek ignoruje Strategic Reset. Spółka handluje jak zombie stock. Smart money akumuluje cicho.</div>
+    </div>
+    <div class="timeline-item past">
+      <div class="tl-date">Q3 2025</div>
+      <div class="tl-event">Suhora deal (Indie) — 7-cyfrowy kontrakt</div>
+      <div class="tl-detail">Dywersyfikacja geograficzna poza USA. Indie jako strategiczny klient rządowy. Kurs +35% w tygodniu ogłoszenia.</div>
+    </div>
+    <div class="timeline-item past">
+      <div class="tl-date">21.01.2026</div>
+      <div class="tl-event">Craig-Hallum inicjuje Buy PT $5.00 <span class="badge new">Inicjacja</span></div>
+      <div class="tl-detail">Pierwszy duży dom maklerski inicjuje pokrycie po Strategic Reset. Sygnał dla instytucji — warto przyglądać się bliżej.</div>
+    </div>
+    <div class="timeline-item past">
+      <div class="tl-date">Styczeń 2026</div>
+      <div class="tl-event">Direct Offering $35M po $3.50/akcję</div>
+      <div class="tl-detail">Spółka pozyskała $35M przy wycenie $3.50 — dilucja, ale wzmocnienie bilansu do ~$129M cash. Kurs +30% w miesiąc po offering.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">20.02.2026</div>
+      <div class="tl-event">Cantor Fitzgerald Overweight PT $7.00 <span class="badge new">Katalizator</span></div>
+      <div class="tl-detail">Prestiżowa inicjacja z najwyższym PT $7.00. Andres Sheppard wyróżnia Merlin i Aleph Observer jako przełomowe. Kurs +18% w tygodniu.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">23.02.2026</div>
+      <div class="tl-event">Aleph Observer — oficjalny launch <span class="badge new">Produkt</span></div>
+      <div class="tl-detail">Subskrypcyjny produkt persistent intelligence dostępny komercyjnie. Zmiana modelu biznesowego z transakcyjnego na SaaS — przełomowe dla wyceny.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">11.03.2026</div>
+      <div class="tl-event">Freedom Capital Upgrade + Loop Capital inicjacja <span class="badge new">Katalizator</span></div>
+      <div class="tl-detail">Freedom Capital upgrade do Strong Buy. Loop Capital inicjuje $4.50 (konserwatywny). Tego samego dnia CEiiA deal $18M ogłoszony.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">19.03.2026</div>
+      <div class="tl-event">Shelf Registration $200M <span class="badge alert">Ryzyko</span></div>
+      <div class="tl-detail">Rejestracja możliwości emisji do $200M. Kurs −8% w dniu ogłoszenia. Rynkowy strach przed dilucją. Spółka ma $129M cash — nie ma presji korzystania.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">20.03.2026</div>
+      <div class="tl-event">Northland Raised PT $5.50 → $6.50 <span class="badge new">Raised</span></div>
+      <div class="tl-detail">Podwyżka po wynikach Q4 2025. Net loss −$4.8M vs −$116M rok temu. Revenue Q4: $6.2M (+94% YoY). Kurs odbija od korekty po shelf.</div>
+    </div>
+    <div class="timeline-item future">
+      <div class="tl-date">Maj 2026</div>
+      <div class="tl-event">Q1 2026 Earnings <span class="badge new">Katalizator</span></div>
+      <div class="tl-detail">Pierwszy kwartał pod Aleph Observer jako produktem. Test pipeline kontraktów. Estymata ~$6.5–7M revenue. Kluczowy dla tezy wzrostowej.</div>
+    </div>
+    <div class="timeline-item future">
+      <div class="tl-date">Październik 2026</div>
+      <div class="tl-event">Merlin Satellite #1 — Launch <span class="badge new">Mega-Katalizator</span></div>
+      <div class="tl-detail">Pierwszy satelita Merlin na orbicie. Demonstracja daily remapping capacity. Potencjalny masowy medialny zainteresowanie — ruch kursu rzędu +30–60% możliwy.</div>
+    </div>
+    <div class="timeline-item future">
+      <div class="tl-date">H1 2027</div>
+      <div class="tl-event">Merlin FOC — Pełna operacyjność <span class="badge new">Inflection Point</span></div>
+      <div class="tl-detail">Konstelacja Merlin w pełni operacyjna — codzienne remapowanie planety w 1m. Przejście do fazy komercyjnej. Moment definiujący wycenę długoterminową.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ TECHNICALS ═══ -->
+<div class="section">
+  <div class="section-label">05 &mdash; Analiza Techniczna &amp; Poziomy</div>
+  <h2>Wsparcia, opory i strefy wejścia</h2>
+
+  <div class="grid-2">
+    <div>
+      <div class="section-label" style="font-size:9px">Kluczowe poziomy techniczne</div>
+      <table class="fin-table">
+        <tr><th>Poziom</th><th class="right">Cena</th><th>Typ</th><th>Znaczenie</th></tr>
+        <tr>
+          <td class="label-col">Cantor PT (max)</td>
+          <td class="right up mono">$7.00</td>
+          <td><span style="color:var(--danger)">Cel #1</span></td>
+          <td style="font-size:10px; color:var(--muted)">Najwyższy PT analityków</td>
+        </tr>
+        <tr>
+          <td class="label-col">52W High</td>
+          <td class="right mono" style="color:var(--danger)">$6.84</td>
+          <td><span style="color:var(--danger)">Opór #1</span></td>
+          <td style="font-size:10px; color:var(--muted)">Do przebicia → new ATH</td>
+        </tr>
+        <tr>
+          <td class="label-col">Northland PT</td>
+          <td class="right mono" style="color:var(--accent3)">$6.50</td>
+          <td><span style="color:var(--accent3)">Opór #2</span></td>
+          <td style="font-size:10px; color:var(--muted)">Raised 20.03 — magnetyczny</td>
+        </tr>
+        <tr>
+          <td class="label-col"><strong>KURS DZIŚ</strong></td>
+          <td class="right warn mono"><strong>$5.93</strong></td>
+          <td><span style="color:var(--warn)">● CENA</span></td>
+          <td style="font-size:10px; color:var(--muted)">Zamknięcie 26.03.2026</td>
+        </tr>
+        <tr>
+          <td class="label-col">Wsparcie #1</td>
+          <td class="right up mono">$5.50</td>
+          <td><span style="color:var(--accent2)">Wsparcie</span></td>
+          <td style="font-size:10px; color:var(--muted)">Prior Northland PT / breakout zone</td>
+        </tr>
+        <tr>
+          <td class="label-col">Wsparcie #2</td>
+          <td class="right up mono">$5.00</td>
+          <td><span style="color:var(--accent2)">Wsparcie</span></td>
+          <td style="font-size:10px; color:var(--muted)">Craig-Hallum PT / psychologiczny</td>
+        </tr>
+        <tr>
+          <td class="label-col">Wsparcie #3 (silne)</td>
+          <td class="right up mono">$4.50</td>
+          <td><span style="color:var(--accent2)">Wsparcie</span></td>
+          <td style="font-size:10px; color:var(--muted)">Loop Capital PT / shelf offering zone</td>
+        </tr>
+        <tr>
+          <td class="label-col">Wsparcie #4 (twarde)</td>
+          <td class="right up mono">$3.50</td>
+          <td><span style="color:var(--accent2)">Wsparcie</span></td>
+          <td style="font-size:10px; color:var(--muted)">Direct Offering cena ze stycznia 2026</td>
+        </tr>
+        <tr>
+          <td class="label-col">Hard floor</td>
+          <td class="right up mono">$3.00</td>
+          <td><span style="color:var(--accent2)">Wsparcie</span></td>
+          <td style="font-size:10px; color:var(--muted)">Poniżej → naruszenie tezy</td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <div class="section-label" style="font-size:9px">Sygnały techniczne (27.03.2026)</div>
+      <table class="fin-table">
+        <tr><th>Wskaźnik</th><th class="right">Sygnał</th></tr>
+        <tr><td>Moving Averages (overall)</td><td class="right up">STRONG BUY</td></tr>
+        <tr><td>SMA20 vs SMA50</td><td class="right up">Bullish (powyżej)</td></tr>
+        <tr><td>Trend od dna (wrzesień 2025)</td><td class="right up">+371% — nienaruszony</td></tr>
+        <tr><td>Odległość od 52W High</td><td class="right neutral">−13.3% ($6.84)</td></tr>
+        <tr><td>Oscillatory (RSI)</td><td class="right neutral">Umiarkowanie wykupiony</td></tr>
+        <tr><td>Shelf Registration</td><td class="right down">Ryzyko dilucji −$200M</td></tr>
+        <tr><td>Insider kupno (IDT Corp)</td><td class="right up">Akumulacja — bullish</td></tr>
+        <tr><td>Trend krótkoterm. (1 tyg.)</td><td class="right up">+8.5% — rajd</td></tr>
+        <tr><td>Trend średnioterm. (1M)</td><td class="right up">+62% — silny</td></tr>
+        <tr><td>Kataliz. harmonogram</td><td class="right up">Merlin launch X.2026</td></tr>
+      </table>
+
+      <div class="alert-box" style="margin-top:12px">
+        <strong>⚠ SHELF $200M:</strong> Największe technicznie ryzyko dla kursu. Jeśli spółka skorzysta z shelf w okolicach $6–7, dilucja może wyhamować wzrost. Jednak $129M cash na bilansie sprawia, że nie ma presji. Obserwować ogłoszenia.
+      </div>
+      <div class="note-box">
+        <strong>IDT Corporation (insider):</strong> Główny akcjonariusz IDT Corp systematycznie dokupuje akcje SATL — to wyraźny sygnał byczego przekonania od insiderów stojących po stronie kupna, nie sprzedaży.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ WEJŚCIE ═══ -->
+<div class="section">
+  <div class="section-label">06 &mdash; Strategia Agresywnego Stock Pickingu</div>
+  <h2>Najlepsze poziomy wejścia</h2>
+
+  <p style="margin-bottom:20px">SATL handluje przy $5.93 — zaledwie 13% poniżej 52W high $6.84, z Cantor PT $7.00 jako celem. Trend wzrostowy nienaruszony od września 2025. Shelf $200M to jedyne strukturalne ryzyko. Przy agresywnej strategii: każda korekta do wsparć to okazja, target minimum $6.50–$7.00 w ciągu 6M przy realizacji katalizatorów.</p>
+
+  <div class="entry-card">
+    <div class="entry-tier">TIER 1<br><span style="color:var(--accent2)">Optymalne</span></div>
+    <div class="entry-price" style="color:var(--accent2)">$5.40–$5.60</div>
+    <div class="entry-rationale">
+      <strong>Retest prior Northland PT $5.50 jako wsparcia.</strong> Strefa, gdzie poprzedni PT staje się magnetycznym wsparciem po podwyżce do $6.50. Stop-loss: $4.90. Najczystszy techniczny setup — wejście po ewentualnej realizacji zysku przez krótkoterminowych traderów. Upside do $7: +27%.
+    </div>
+    <div class="entry-upside">+27%<br><span style="font-size:10px; color:var(--muted)">do PT $7.00</span></div>
+  </div>
+
+  <div class="entry-card">
+    <div class="entry-tier">TIER 2<br><span style="color:var(--accent)">Bieżące</span></div>
+    <div class="entry-price" style="color:var(--warn)">$5.80–$6.00</div>
+    <div class="entry-rationale">
+      <strong>Bieżąca strefa (okolice wczorajszego zamknięcia $5.93).</strong> Kurs buduje bazę po rajdzie z $3.50. Wejście teraz z stop-loss $4.90 jest uzasadnione dla agresywnych — fundamenty niezmienione, Merlin launch zbliża się, Aleph Observer generuje pierwsze przychody SaaS. Ryzyko shelf dilucji jest głównym czynnikiem hamującym.
+    </div>
+    <div class="entry-upside">+18%<br><span style="font-size:10px; color:var(--muted)">do PT $7.00</span></div>
+  </div>
+
+  <div class="entry-card">
+    <div class="entry-tier">TIER 3<br><span style="color:var(--accent3)">Głęboka<br>korekta</span></div>
+    <div class="entry-price" style="color:var(--accent3)">$4.50–$5.00</div>
+    <div class="entry-rationale">
+      <strong>Strefa shelf/dilution fear.</strong> Jeśli spółka ogłosi skorzystanie z shelf registration lub rynek wejdzie w risk-off, możliwy powrót do $4.50–5.00. Craig-Hallum PT $5.00 i Loop Capital $4.50 jako magnesy. Wejście tutaj z stop $3.80 daje upside do $7.00 = +40–55%. Najlepszy risk/reward przy agresywnej strategii.
+    </div>
+    <div class="entry-upside">+40–55%<br><span style="font-size:10px; color:var(--muted)">do PT $7.00</span></div>
+  </div>
+
+  <div class="note-box">
+    <strong>Stop-Loss bezwarunkowy:</strong> Poniżej $3.00 (naruszenie trendu wzrostowego od dna). Przebicie oznacza powrót do bazy akumulacyjnej — zakwestionowanie całej tezy inwestycyjnej.
+  </div>
+  <div class="note-box">
+    <strong>Strategia skalowania:</strong> 35% na Tier 2 (teraz), 40% na Tier 1 ($5.50), 25% na Tier 3 ($4.50 jeśli shelf announcement). Przetrzymaj do launchu Merlin (październik 2026) jako minimalny horyzont.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ SCENARIUSZE ═══ -->
+<div class="section">
+  <div class="section-label">07 &mdash; Analiza Scenariuszy Wzrostu (12M)</div>
+  <h2>3 scenariusze wyceny</h2>
+
+  <div class="grid-3">
+    <div class="scenario">
+      <div class="scenario-header">
+        <div class="scenario-name" style="color:var(--danger)">🐻 Niedźwiedzi</div>
+        <div class="scenario-prob">Prawdopodobieństwo: 25%</div>
+      </div>
+      <div class="scenario-target" style="color:var(--danger)">$3.00–$4.00</div>
+      <div class="scenario-return" style="color:var(--danger)">−33% do −49%</div>
+      <div class="scenario-desc">
+        • Shelf $200M — spółka skorzysta z rejestracji i wyemituje masowo akcje<br>
+        • Revenue 2026 nie realizuje guidance $30.87M (opóźnienie kontraktów)<br>
+        • Merlin launch opóźniony o 6+ miesięcy (problemy techniczne)<br>
+        • Makro: risk-off, sell small-caps<br>
+        • Kurs wraca do strefy direct offering $3.50
+      </div>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-header">
+        <div class="scenario-name" style="color:var(--accent)">⚖ Bazowy</div>
+        <div class="scenario-prob">Prawdopodobieństwo: 50%</div>
+      </div>
+      <div class="scenario-target" style="color:var(--accent)">$6.50–$7.50</div>
+      <div class="scenario-return" style="color:var(--accent)">+10% do +26%</div>
+      <div class="scenario-desc">
+        • Revenue 2026 realizuje ~$30–35M guidance<br>
+        • Merlin launch zgodnie z planem (X.2026)<br>
+        • Kolejne kontrakty rządowe USA/NATO<br>
+        • Aleph Observer tworzy pierwsze przychody subskrypcyjne<br>
+        • Kurs atakuje 52W High $6.84, Cantor PT $7.00
+      </div>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-header">
+        <div class="scenario-name" style="color:var(--accent2)">🚀 Byk</div>
+        <div class="scenario-prob">Prawdopodobieństwo: 25%</div>
+      </div>
+      <div class="scenario-target" style="color:var(--accent2)">$10–$15</div>
+      <div class="scenario-return" style="color:var(--accent2)">+69% do +153%</div>
+      <div class="scenario-desc">
+        • Duży kontrakt DoD/NSA/NRO ogłoszony publicznie<br>
+        • Merlin wzbudza masowe zainteresowanie mediów i instytucji<br>
+        • Przychody SaaS z Aleph Observer zaskakują (+50% vs est.)<br>
+        • Nowe inicjacje analityczne z PT $10+<br>
+        • Short squeeze przy przejściu $7 bariera psychologiczna<br>
+        • Przejęcie przez Maxar/Palantir/L3Harris jako exit
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-label" style="font-size:9px">Potencjał długoterminowy (3–5 lat)</div>
+  <div class="grid-2">
+    <div>
+      <p>Satellogic celuje w rynek geospatial intelligence wyceniany na <strong class="hl">$100+ miliardów</strong> do 2030 roku. Merlin — jeśli zrealizowany — jako jedyna konstelacja remapująca planetę codziennie w 1m rozdzielczości staje się infrastrukturą krytyczną dla globalnego wywiadu, monitoringu klimatycznego i logistyki.</p>
+      <p>Przy modelu SaaS i 1000 subskrybentów Aleph Observer w $1–5M ARR każdy, TAM jest wielomilionowy. Długoterminowa cena akcji $20–50 jest uzasadniona fundamentalnie przy realizacji Merlin FOC (H1 2027).</p>
+    </div>
+    <div>
+      <table class="fin-table">
+        <tr><th>Rok</th><th class="right">Revenue (est.)</th><th class="right">Wzrost</th></tr>
+        <tr><td>2025A</td><td class="right mono up">$17.7M</td><td class="right up">+38%</td></tr>
+        <tr><td>2026E (guidance)</td><td class="right mono up">$30.87M</td><td class="right up">+74%</td></tr>
+        <tr><td>2027E (Merlin FOC)</td><td class="right mono">$60–80M</td><td class="right neutral">est.</td></tr>
+        <tr><td>2028E</td><td class="right mono">$120–160M</td><td class="right neutral">est.</td></tr>
+        <tr><td>2030E (Merlin scale)</td><td class="right mono up">$300–500M</td><td class="right up">CAGR ~80%</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ RYZYKA ═══ -->
+<div class="section">
+  <div class="section-label">08 &mdash; Ryzyka Kluczowe</div>
+  <h2>Co może pójść nie tak?</h2>
+
+  <div class="grid-2">
+    <div>
+      <div class="risk-item">
+        <div class="risk-icon" style="color:var(--danger)">⚠</div>
+        <div class="risk-content">
+          <div class="risk-title">Shelf Registration $200M — dilucja <span class="badge alert">AKTYWNE</span></div>
+          <div class="risk-desc">19.03.2026 spółka zarejestrowała możliwość emisji akcji do $200M. Przy market cap ~$490M to potencjalnie +40% dilucja. Nie ma presji cashowej ($129M), ale każdy sygnał o skorzystaniu z shelf może zepchnąć kurs −20 do −30%.</div>
+        </div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-icon" style="color:var(--warn)">🛰</div>
+        <div class="risk-content">
+          <div class="risk-title">Ryzyko opóźnienia Merlin</div>
+          <div class="risk-desc">Launch X.2026 zakłada brak problemów technicznych i dostępność rakiety nośnej. Historycznie launches LEO miewają opóźnienia 3–9 miesięcy. Opóźnienie Merlin = odroczenie kluczowego katalizatora i ryzyko przesunięcia przychodów.</div>
+        </div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-icon" style="color:var(--accent3)">💰</div>
+        <div class="risk-content">
+          <div class="risk-title">Koncentracja klientów / zależność od kontraktów rządowych</div>
+          <div class="risk-desc">North America = 68% przychodów, dominująco kontrakty DoD/ONR. Każde zamrożenie budżetu obronnego USA, zmiana administracji lub przetarg przegrany z Maxar/BlackSky = ryzyko gwałtownego spadku revenue.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="risk-item">
+        <div class="risk-icon" style="color:var(--warn)">🏦</div>
+        <div class="risk-content">
+          <div class="risk-title">Mała płynność i zmienność Small-Cap</div>
+          <div class="risk-desc">Market cap ~$490M to mid-small cap. Spółka podatna na gwałtowne ruchy przy niskim wolumenie. Wyjście dużego akcjonariusza lub negatywna nota analityczna może powodować −15 do −25% w jednej sesji.</div>
+        </div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-icon" style="color:var(--danger)">🌍</div>
+        <div class="risk-content">
+          <div class="risk-title">Konkurencja: Planet Labs, BlackSky, Maxar, Satelites AIRBUS</div>
+          <div class="risk-desc">Rynek EO jest coraz bardziej tłoczny. Planet Labs ma już 200+ satelitów, BlackSky dostarcza 30cm rozdzielczość. Merlin musi zaoferować wyraźnie wyższą wartość (codzienność + rozdzielczość) aby uzasadnić premium przy przetargach.</div>
+        </div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-icon" style="color:var(--accent)">📉</div>
+        <div class="risk-content">
+          <div class="risk-title">Weiss Ratings Sell — kontrarian view</div>
+          <div class="risk-desc">Weiss ocenia SATL jako D- (Sell) wskazując ryzyko dalszych strat, niedojrzały model przychodowy i historię dilucji. Punkt widzenia ważny dla zarządzania ryzykiem — nie ignorować.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ WERDYKT ═══ -->
+<div class="section" style="border-bottom:none">
+  <div class="section-label">09 &mdash; Werdykt Końcowy</div>
+  <h2>Podsumowanie dla agresywnego inwestora</h2>
+
+  <div class="verdict-box">
+    <div class="verdict-title">Ocena — Agresywny Stock Picking</div>
+    <div class="verdict-rating">SPEKULATYWNY BUY ★★★★</div>
+    <div class="verdict-desc">
+      Satellogic to jedna z bardziej asymetrycznych okazji na małych spółkach kosmicznych w 2026 roku. Spółka przeszła transformację z "bleeding cash story" do "emerging defense intelligence platform" — net loss spadł z $116M do $4.8M w jeden rok. To nie przypadek, to strukturalna zmiana.
+      <br><br>
+      <strong>Merlin jest najważniejszym katalizatorem.</strong> Pierwsza konstelacja remapująca Ziemię codziennie w 1m to potencjalnie game-changing produkt dla wywiadu, monitoringu i ubezpieczeń. W pełni sfinansowany ($30M kontrakt) — brak ryzyka cash-burnout na R&D.
+      <br><br>
+      <strong>Główne ryzyko to shelf $200M.</strong> Dopóki spółka go nie aktywuje, trend wzrostowy jest nienaruszony. Monitoruj ogłoszenia o korzystaniu z shelf — to jedyna rzecz, która może poważnie uszkodzić pozycję krótkoterminowo.
+      <br><br>
+      <strong>Strategia:</strong> Akumuluj $5.40–$6.00, stop $3.00, target $7.00 (Cantor PT) w ciągu 6M, $10–15 przy realizacji Merlin. Horyzont minimum do launchu Merlin (październik 2026).
+    </div>
+  </div>
+
+  <div class="grid-3" style="margin-top:16px">
+    <div class="card green">
+      <div class="card-label">Rekomendacja</div>
+      <div class="card-value green" style="font-size:20px">AKUMULUJ</div>
+      <div class="card-sub">$5.40–$6.00 w 2–3 transzach</div>
+    </div>
+    <div class="card yellow">
+      <div class="card-label">Stop-Loss Bezwarunkowy</div>
+      <div class="card-value yellow" style="font-size:20px">$3.00</div>
+      <div class="card-sub">Poniżej trendu wzrostowego od dna</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Target 12M (bazowy)</div>
+      <div class="card-value accent" style="font-size:20px">$7.00–$10</div>
+      <div class="card-sub">+18% do +69% | Katalizator: Merlin launch X.2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ FOOTER ═══ -->
+<div class="footer">
+  <div class="footer-meta">
+    <div class="footer-logo">ANAL Report — SATL</div>
+    <div class="footer-date">Wygenerowano: 27.03.2026 · Dane: MarketBeat, TipRanks, StockAnalysis, SEC EDGAR, Cantor Fitzgerald, Northland, Craig-Hallum</div>
+  </div>
+  <div class="disclaimer">
+    <strong style="color:var(--muted)">DISCLAIMER:</strong> Ten raport ma charakter wyłącznie informacyjny i edukacyjny. Nie stanowi rekomendacji inwestycyjnej ani porady finansowej w rozumieniu przepisów prawa. Inwestowanie w akcje wiąże się z ryzykiem utraty całości lub części kapitału. Wyniki historyczne nie gwarantują przyszłych zwrotów. Przed podjęciem decyzji inwestycyjnej skonsultuj się z licencjonowanym doradcą finansowym. Autor nie ponosi odpowiedzialności za decyzje podjęte na podstawie niniejszego materiału. Żaden poziom wejścia, stop-loss ani target nie jest gwarantowany.
+  </div>
+</div>
+
+</body>
+</html>
