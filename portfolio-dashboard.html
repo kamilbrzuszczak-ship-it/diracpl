@@ -389,7 +389,23 @@ table.mt .tc { text-align: center; }
 .c-green { color: var(--green); } .c-red { color: var(--red); } .c-amber { color: var(--amber); }
 .c-cyan { color: var(--cyan); } .c-purple { color: var(--purple); } .c-orange { color: var(--orange); }
 .c-gold { color: var(--gold); } .c-dim { color: var(--text3); } .c-text2 { color: var(--text2); }
+
+/* ─── ANALYTICS ─── */
+.analytics-section {
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 18px 28px;
+}
+.analytics-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+}
+.analytics-card {
+  background: var(--bg3); border: 1px solid var(--border); border-radius: 4px;
+  padding: 16px;
+}
+@media(max-width: 768px) { .analytics-grid { grid-template-columns: 1fr; } }
+
 </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -450,6 +466,25 @@ table.mt .tc { text-align: center; }
     <div class="hero-stat-lbl">Decyzje do podjęcia</div>
     <div class="hero-stat-sub">AMKR SL · MU TP skalowanie</div>
     <div class="hero-stat-glow" style="background:linear-gradient(90deg,var(--amber),transparent)"></div>
+  </div>
+</div>
+
+
+<!-- ═══ PORTFOLIO ANALYTICS ═══ -->
+<div class="analytics-section">
+  <div class="analytics-grid">
+    <div class="analytics-card">
+      <div class="tl-head" style="margin-bottom:8px;">⚖️ Podział Portfela (USD Value)</div>
+      <div style="position: relative; height: 180px; width: 100%; display: flex; justify-content: center;">
+        <canvas id="weightChart"></canvas>
+      </div>
+    </div>
+    <div class="analytics-card">
+      <div class="tl-head" style="margin-bottom:8px;">🛡️ Strategia / Rola (% Kapitału)</div>
+      <div style="position: relative; height: 180px; width: 100%; display: flex; justify-content: center;">
+        <canvas id="roleChart"></canvas>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1198,6 +1233,65 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(updateDashboard, 60000); // co minutę
 });
 </script>
+
+<script>
+// CHART_DATA_START
+const liveChartData = { "MU": 1834.56, "SATL": 859.85, "AVGO": 750.25, "AMKR": 939.72 };
+// CHART_DATA_END
+
+document.addEventListener("DOMContentLoaded", () => {
+    Chart.defaults.color = "#8888AA";
+    Chart.defaults.font.family = "'JetBrains Mono', monospace";
+    
+    const ctxWeight = document.getElementById('weightChart').getContext('2d');
+    const weightChart = new Chart(ctxWeight, {
+        type: 'doughnut',
+        data: {
+            labels: ['MU (Bankomatat)', 'SATL (Spekulacja)', 'AVGO (Skarbiec)', 'AMKR (Bankomatat)'],
+            datasets: [{
+                data: [liveChartData.MU, liveChartData.SATL, liveChartData.AVGO, liveChartData.AMKR],
+                backgroundColor: ['#00E5FF', '#C060FF', '#B44FFF', '#FF6B2B'],
+                borderWidth: 1,
+                borderColor: '#10101A'
+            }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            cutout: '65%',
+            plugins: {
+                legend: { position: 'right', labels: { boxWidth: 12, font: { size: 10 } } },
+                tooltip: { callbacks: { label: (ctx) => ' $' + ctx.raw.toFixed(2) } }
+            }
+        }
+    });
+
+    const ctxRole = document.getElementById('roleChart').getContext('2d');
+    const bankomatat = liveChartData.MU + liveChartData.AMKR;
+    const skarbiec = liveChartData.AVGO;
+    const spekulacja = liveChartData.SATL;
+    
+    new Chart(ctxRole, {
+        type: 'doughnut',
+        data: {
+            labels: ['Bankomaty (Swing)', 'Skarbiec (Core)', 'Spekulacja (Venture)'],
+            datasets: [{
+                data: [bankomatat, skarbiec, spekulacja],
+                backgroundColor: ['#00E5FF', '#B44FFF', '#FFB800'],
+                borderWidth: 1, borderColor: '#10101A'
+            }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            cutout: '65%',
+            plugins: {
+                legend: { position: 'right', labels: { boxWidth: 12, font: { size: 10 } } },
+                tooltip: { callbacks: { label: (ctx) => ' $' + ctx.raw.toFixed(2) } }
+            }
+        }
+    });
+});
+</script>
 </body>
+
 
 </html>
