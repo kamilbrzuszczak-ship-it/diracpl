@@ -1,0 +1,26 @@
+name: Update Dashboard Prices
+
+on:
+  schedule:
+    - cron: '*/30 13-21 * * 1-5' # Co 30 minut w godzinach handlu
+  workflow_dispatch: # Możliwość ręcznego odpalenia
+
+jobs:
+  update-prices:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install yfinance
+
+      - name: Run update script
+        env:
+          GH_PAT: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/update_dashboard_gha.py
