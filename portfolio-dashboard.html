@@ -3,18 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ANAL MASTER — Portfolio Overview — 01.04.2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<title>PORTFOLIO DASHBOARD — 02.04.2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg:     #07070A;
   --bg2:    #0C0C12;
   --bg3:    #111118;
-  --bg4:    #171720;
+  --bg4:    #17171F;
   --border: #1A1A28;
-  --bd2:    #222235;
+  --bd2:    #252538;
   --green:  #00FF88;
   --red:    #FF3355;
   --amber:  #FFB800;
@@ -22,1437 +20,1132 @@
   --purple: #B44FFF;
   --orange: #FF6B2B;
   --cyan:   #00E5FF;
-  --teal:   #00E5CC;
   --gold:   #FFD700;
   --text:   #E8E8F2;
   --text2:  #8888A8;
   --text3:  #50506A;
-  --mono:   'JetBrains Mono', monospace;
-  --sans:   'Syne', sans-serif;
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{font-size:13px;scroll-behavior:smooth;}
-@media(min-width:1400px){html{zoom:1.25;}}
-@media(min-width:1800px){html{zoom:1.5;}}
-body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:1.2rem;line-height:1.6;min-height:100vh;}
-body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.15) 2px,rgba(0,0,0,0.15) 4px);pointer-events:none;z-index:1000;}
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.12) 2px, rgba(0,0,0,0.12) 4px);
+  pointer-events: none; z-index: 0;
+}
 
-/* MASTHEAD */
-.masthead {
+/* ═══ HEADER ═══ */
+.header {
   background: var(--bg2);
   border-bottom: 2px solid var(--bd2);
-  padding: 24px 28px 20px;
-  text-align: center;
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  position: relative; z-index: 1;
 }
-.masthead-title {
-  font-family: var(--sans);
-  font-size: 3rem;
+.header-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   background: linear-gradient(90deg, var(--purple), var(--cyan), var(--green));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 6px;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
-.masthead-sub {
-  font-size: 1rem;
-  color: var(--text3);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
+.header-meta { font-size: 0.8rem; color: var(--text3); letter-spacing: 0.08em; }
+.header-meta span { color: var(--text2); margin-left: 6px; }
 
-/* STATS BAR */
-.stats-bar {
+/* ═══ SUMMARY BAR ═══ */
+.summary-bar {
   display: flex;
   gap: 0;
   background: var(--bg3);
   border-bottom: 1px solid var(--border);
   overflow-x: auto;
-  scrollbar-width: none;
+  position: relative; z-index: 1;
 }
-.stats-bar::-webkit-scrollbar{display:none;}
-.stat-item {
-  flex: 1;
-  min-width: 120px;
-  padding: 14px 16px;
+.summary-bar::-webkit-scrollbar { display: none; }
+.sum-item {
+  flex: 1; min-width: 130px;
+  padding: 14px 18px;
   border-right: 1px solid var(--border);
   text-align: center;
 }
-.stat-item:last-child{border-right:none;}
-.stat-val {
-  font-family: var(--sans);
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-bottom: 2px;
+.sum-item:last-child { border-right: none; }
+.sum-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.4rem; font-weight: 700;
+  line-height: 1.1; margin-bottom: 3px;
 }
-.stat-lbl {
-  font-size: 0.72rem;
-  color: var(--text3);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.sum-lbl { font-size: 0.68rem; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; }
+.c-green { color: var(--green); }
+.c-red   { color: var(--red); }
+.c-amber { color: var(--amber); }
+.c-cyan  { color: var(--cyan); }
+.c-purple{ color: var(--purple); }
+.c-orange{ color: var(--orange); }
+.c-gold  { color: var(--gold); }
+.c-blue  { color: var(--blue); }
+.c-dim   { color: var(--text3); }
+.c-text2 { color: var(--text2); }
+
+/* ═══ SECTIONS ═══ */
+.container { max-width: 1280px; margin: 0 auto; padding: 24px 20px 60px; position: relative; z-index: 1; }
+
+.section-head {
+  display: flex; align-items: center; gap: 12px;
+  margin: 28px 0 16px;
+}
+.section-line { flex: 1; height: 1px; background: var(--bd2); }
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text3); white-space: nowrap;
 }
 
-/* FILTERS / LEGEND */
-.legend-bar {
-  display: flex;
-  gap: 10px;
-  padding: 12px 28px;
-  background: var(--bg2);
-  border-bottom: 1px solid var(--border);
-  align-items: center;
-  flex-wrap: wrap;
-}
-.legend-lbl {
-  font-size: 0.78rem;
-  color: var(--text3);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-right: 4px;
-}
-.pill {
-  font-size: 0.8rem;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-}
-.pill-5    { background: rgba(0,255,136,0.18);  color: var(--green);  border: 1px solid rgba(0,255,136,0.35); }
-.pill-4    { background: rgba(0,229,255,0.15);  color: var(--cyan);   border: 1px solid rgba(0,229,255,0.3); }
-.pill-3p   { background: rgba(255,184,0,0.15);  color: var(--amber);  border: 1px solid rgba(255,184,0,0.3); }
-.pill-3    { background: rgba(255,107,43,0.15); color: var(--orange); border: 1px solid rgba(255,107,43,0.3); }
-.pill-mid  { background: rgba(180,79,255,0.15); color: var(--purple); border: 1px solid rgba(180,79,255,0.3); }
-
-/* MAIN GRID */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px 20px 60px;
-}
-
-/* SECTOR HEADER */
-.sector-head {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 28px 0 14px;
-}
-.sector-line { flex: 1; height: 1px; background: var(--bd2); }
-.sector-title {
-  font-family: var(--sans);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--text3);
-  white-space: nowrap;
-}
-
-/* STOCK CARD */
-.stock-grid {
+/* ═══ PORTFOLIO CARDS ═══ */
+.portfolio-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 14px;
 }
-@media (max-width: 900px) {
-  .stock-grid { grid-template-columns: 1fr; }
-}
 
-.stock-card {
+.p-card {
   background: var(--bg2);
   border: 1px solid var(--border);
-  position: relative;
   overflow: hidden;
-  transition: border-color 0.2s;
+  display: flex; flex-direction: column;
 }
-.stock-card:hover { border-color: var(--bd2); }
 
-/* accent top bar */
-.card-accent { height: 3px; width: 100%; }
-.accent-strong-buy { background: linear-gradient(90deg, var(--green), #00CC6A); }
-.accent-buy        { background: linear-gradient(90deg, var(--cyan), #0088CC); }
-.accent-spec-buy   { background: linear-gradient(90deg, var(--amber), #CC8800); }
-.accent-hold-watch { background: linear-gradient(90deg, var(--orange), #CC4400); }
-.accent-spec       { background: linear-gradient(90deg, var(--purple), #7722CC); }
+/* Accent bar */
+.p-accent { height: 3px; width: 100%; }
+.accent-mu     { background: linear-gradient(90deg, var(--cyan), #0088CC); }
+.accent-satl   { background: linear-gradient(90deg, var(--purple), #7722CC); }
+.accent-avgo   { background: linear-gradient(90deg, var(--purple), var(--cyan)); }
+.accent-amkr   { background: linear-gradient(90deg, var(--orange), #CC4400); }
+.accent-watch  { background: linear-gradient(90deg, var(--text3), var(--bd2)); }
 
-.card-header {
+/* Card top */
+.p-top {
   padding: 14px 16px 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 10px;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
 }
-
-.card-left {}
-.ticker {
-  font-family: var(--sans);
-  font-size: 1.8rem;
-  font-weight: 800;
-  line-height: 1;
+.p-left {}
+.p-ticker {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem; font-weight: 800; line-height: 1;
   margin-bottom: 2px;
 }
-.company {
-  font-size: 0.8rem;
-  color: var(--text2);
-  line-height: 1.3;
-}
-.sector-tag {
-  font-size: 0.68rem;
-  color: var(--text3);
-  margin-top: 2px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.card-right { text-align: right; flex-shrink: 0; }
-.price {
-  font-family: var(--sans);
-  font-size: 1.6rem;
-  font-weight: 700;
-  line-height: 1;
-}
-.from-ath {
-  font-size: 0.78rem;
-  margin-top: 3px;
-}
-
-/* RATING BADGE */
-.rating-badge {
+.p-company { font-size: 0.78rem; color: var(--text2); }
+.p-role {
   display: inline-block;
-  font-family: var(--sans);
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 3px 10px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 2px 8px; margin-top: 5px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--bd2);
+  color: var(--text3);
+}
+.p-role.bankomatat { border-color: rgba(0,229,255,0.3); color: var(--cyan); background: rgba(0,229,255,0.06); }
+.p-role.skarbiec   { border-color: rgba(180,79,255,0.3); color: var(--purple); background: rgba(180,79,255,0.06); }
+.p-role.spekulacja { border-color: rgba(255,184,0,0.3); color: var(--amber); background: rgba(255,184,0,0.06); }
+
+.p-right { text-align: right; flex-shrink: 0; }
+.p-price-current {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.6rem; font-weight: 700; line-height: 1;
+}
+.p-price-date { font-size: 0.65rem; color: var(--text3); margin-bottom: 4px; }
+.p-pnl {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem; font-weight: 700;
   margin-top: 4px;
 }
 
-/* METRICS ROW */
-.card-metrics {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+/* Entry info */
+.p-entry-row {
+  display: flex; gap: 0;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
-.metric {
-  padding: 8px 10px;
+.p-entry-box {
+  flex: 1; padding: 8px 10px; text-align: center;
   border-right: 1px solid var(--border);
-  text-align: center;
 }
-.metric:last-child { border-right: none; }
-.metric-val {
-  font-family: var(--sans);
-  font-size: 1rem;
+.p-entry-box:last-child { border-right: none; }
+.p-entry-val { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; line-height: 1.2; }
+.p-entry-lbl { font-size: 0.6rem; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 1px; }
+
+/* SL/TP Bar */
+.sl-tp-section { padding: 12px 16px; }
+.sl-tp-title { font-size: 0.65rem; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+
+.sl-tp-row {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 6px; font-size: 0.78rem;
+}
+.sl-tp-tag {
+  font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 2px 7px; min-width: 42px; text-align: center;
   font-weight: 700;
-  line-height: 1.2;
 }
-.metric-lbl {
-  font-size: 0.65rem;
-  color: var(--text3);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-top: 1px;
+.sl-tp-tag.sl { background: rgba(255,51,85,0.15); border: 1px solid rgba(255,51,85,0.3); color: var(--red); }
+.sl-tp-tag.tp1 { background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.25); color: var(--cyan); }
+.sl-tp-tag.tp2 { background: rgba(0,255,136,0.1); border: 1px solid rgba(0,255,136,0.25); color: var(--green); }
+.sl-tp-tag.skarbiec { background: rgba(180,79,255,0.1); border: 1px solid rgba(180,79,255,0.25); color: var(--purple); }
+
+.sl-tp-val { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; min-width: 72px; }
+.sl-tp-rr  { color: var(--text3); font-size: 0.72rem; }
+.sl-tp-note { color: var(--amber); font-size: 0.68rem; margin-left: auto; }
+
+/* Progress bar */
+.price-bar-wrap { margin: 6px 0 10px; }
+.price-bar-labels {
+  display: flex; justify-content: space-between;
+  font-size: 0.65rem; color: var(--text3); margin-bottom: 4px;
+}
+.price-bar-track {
+  height: 6px; background: var(--bg4);
+  border-radius: 3px; position: relative; overflow: visible;
+}
+.price-bar-fill {
+  height: 100%; border-radius: 3px;
+  background: linear-gradient(90deg, var(--red), var(--amber), var(--green));
+}
+.price-bar-cursor {
+  position: absolute; top: -4px;
+  width: 3px; height: 14px;
+  background: white;
+  border-radius: 2px;
+  transform: translateX(-50%);
+  box-shadow: 0 0 6px rgba(255,255,255,0.6);
 }
 
-/* BODY */
-.card-body { padding: 12px 16px; }
-
-.thesis {
-  font-size: 0.92rem;
-  color: var(--text2);
-  line-height: 1.6;
-  margin-bottom: 10px;
-}
-.thesis strong { color: var(--text); }
-.thesis .hl { font-weight: 600; }
-
-/* SIGNAL ROW MINI */
-.signals {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  margin-bottom: 10px;
+/* Signals */
+.p-signals {
+  display: flex; flex-wrap: wrap; gap: 4px;
+  padding: 0 16px 10px;
 }
 .sig {
-  font-size: 0.7rem;
-  padding: 2px 8px;
-  border-radius: 2px;
-  white-space: nowrap;
-  letter-spacing: 0.04em;
+  font-size: 0.68rem; padding: 2px 8px; border-radius: 2px;
+  white-space: nowrap; letter-spacing: 0.03em;
 }
-.sig-green  { background: rgba(0,255,136,0.1);  color: var(--green);  border: 1px solid rgba(0,255,136,0.2); }
-.sig-red    { background: rgba(255,51,85,0.1);  color: var(--red);    border: 1px solid rgba(255,51,85,0.2); }
-.sig-amber  { background: rgba(255,184,0,0.1);  color: var(--amber);  border: 1px solid rgba(255,184,0,0.2); }
-.sig-blue   { background: rgba(0,170,255,0.1);  color: var(--blue);   border: 1px solid rgba(0,170,255,0.2); }
-.sig-purple { background: rgba(180,79,255,0.1); color: var(--purple); border: 1px solid rgba(180,79,255,0.2); }
-.sig-dim    { background: rgba(255,255,255,0.04); color: var(--text3); border: 1px solid var(--border); }
+.sig-green  { background: rgba(0,255,136,0.08); color: var(--green);  border: 1px solid rgba(0,255,136,0.18); }
+.sig-red    { background: rgba(255,51,85,0.08);  color: var(--red);    border: 1px solid rgba(255,51,85,0.18); }
+.sig-amber  { background: rgba(255,184,0,0.08);  color: var(--amber);  border: 1px solid rgba(255,184,0,0.18); }
+.sig-cyan   { background: rgba(0,229,255,0.08);  color: var(--cyan);   border: 1px solid rgba(0,229,255,0.18); }
+.sig-purple { background: rgba(180,79,255,0.08); color: var(--purple); border: 1px solid rgba(180,79,255,0.18); }
+.sig-dim    { background: rgba(255,255,255,0.03); color: var(--text3); border: 1px solid var(--border); }
 
-/* ENTRY/TARGET ROW */
-.entry-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 6px;
-  margin-bottom: 10px;
-}
-.entry-box {
-  background: var(--bg3);
-  padding: 6px 8px;
-  text-align: center;
-}
-.entry-label {
-  font-size: 0.62rem;
-  color: var(--text3);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 2px;
-}
-.entry-val {
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-/* CATALYST */
-.catalyst {
-  font-size: 0.8rem;
-  color: var(--text3);
-  border-top: 1px solid var(--border);
-  padding-top: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-}
-.catalyst-event {
-  color: var(--amber);
-  font-weight: 500;
-}
-
-/* STARS */
-.stars { font-size: 1rem; letter-spacing: 0.05em; color: var(--gold); }
-
-/* COMPARISON TABLE */
-.comp-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 8px;
-}
-.comp-table th {
-  background: var(--bg4);
-  color: var(--text3);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-align: left;
-  padding: 8px 10px;
-  border-bottom: 1px solid var(--bd2);
-  font-weight: 400;
-}
-.comp-table td {
-  padding: 7px 10px;
-  border-bottom: 1px solid var(--border);
-  font-size: 0.88rem;
-  vertical-align: middle;
-}
-.comp-table tr:last-child td { border-bottom: none; }
-.comp-table tr:hover td { background: rgba(255,255,255,0.02); }
-.td-r { text-align: right; }
-.c-green { color: var(--green); font-weight: 500; }
-.c-red   { color: var(--red);   font-weight: 500; }
-.c-amber { color: var(--amber); font-weight: 500; }
-.c-dim   { color: var(--text3); }
-.c-cyan  { color: var(--cyan);  font-weight: 500; }
-.c-purple{ color: var(--purple);font-weight: 500; }
-.c-gold  { color: var(--gold);  font-weight: 500; }
-.c-orange{ color: var(--orange);font-weight: 500; }
-.c-blue  { color: var(--blue);  font-weight: 500; }
-
-/* PORTFOLIO SUMMARY SECTION */
-.summary-section {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  margin-top: 28px;
-  overflow: hidden;
-}
-.summary-head {
-  background: var(--bg3);
-  border-bottom: 1px solid var(--bd2);
-  padding: 12px 20px;
-  font-family: var(--sans);
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text);
-}
-.summary-body { padding: 18px 20px; }
-
-/* RISK MATRIX */
-.risk-axis {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 10px;
-  margin-bottom: 18px;
-}
-.risk-box {
-  padding: 12px;
-  border: 1px solid var(--bd2);
-  background: var(--bg3);
-}
-.risk-box-title {
-  font-size: 0.75rem;
-  color: var(--text3);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.risk-ticker-list {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.risk-ticker {
-  font-size: 0.88rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* REPORT LINK BUTTON */
-.report-btn {
-  display: block;
-  width: 100%;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--bd2);
-  border-top: none;
+/* Earnings countdown */
+.p-earnings {
+  display: flex; align-items: center; justify-content: space-between;
   padding: 8px 16px;
-  font-family: var(--mono);
+  background: var(--bg3);
+  border-top: 1px solid var(--border);
   font-size: 0.75rem;
-  color: var(--text3);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-decoration: none;
-  text-align: center;
+}
+.earnings-label { color: var(--text3); letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.65rem; }
+.earnings-date  { color: var(--amber); font-weight: 600; }
+.earnings-days  {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.9rem; font-weight: 700;
+  background: rgba(255,184,0,0.12);
+  border: 1px solid rgba(255,184,0,0.25);
+  color: var(--amber);
+  padding: 2px 10px;
+}
+
+/* REPORT BUTTON */
+.report-btn {
+  display: block; width: 100%;
+  padding: 10px 16px;
+  background: rgba(0,229,255,0.05);
+  border: none;
+  border-top: 1px solid rgba(0,229,255,0.15);
+  color: var(--cyan);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+  text-decoration: none; text-align: center;
   cursor: pointer;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  transition: background 0.15s, border-color 0.15s;
+  margin-top: auto;
 }
 .report-btn:hover {
-  background: rgba(0,229,255,0.07);
-  color: var(--cyan);
-  border-color: rgba(0,229,255,0.25);
+  background: rgba(0,229,255,0.12);
+  border-color: rgba(0,229,255,0.4);
 }
-.report-btn span { margin-left: 6px; }
+.report-btn::before { content: '→  '; }
 
-/* Card hover effect */
-.stock-card { cursor: default; }
-.stock-card.has-report { cursor: pointer; }
-.stock-card.has-report:hover { border-color: rgba(0,229,255,0.3); }
+/* ═══ WATCHLIST ═══ */
+.watch-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.w-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.w-top { padding: 12px 14px 8px; }
+.w-ticker {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.3rem; font-weight: 800; line-height: 1;
+}
+.w-company { font-size: 0.72rem; color: var(--text2); margin-bottom: 6px; }
+.w-price { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; }
+.w-upside { font-size: 0.72rem; margin-top: 2px; }
+.w-meta { display: flex; flex-direction: column; gap: 4px; padding: 8px 14px; border-top: 1px solid var(--border); font-size: 0.72rem; }
+.w-row { display: flex; justify-content: space-between; }
+.w-key { color: var(--text3); }
+.w-val { font-weight: 600; }
+.w-signals { display: flex; flex-wrap: wrap; gap: 3px; padding: 6px 14px; }
+.w-btn {
+  display: block; width: 100%;
+  padding: 7px 10px;
+  background: rgba(255,255,255,0.02);
+  border: none; border-top: 1px solid var(--border);
+  color: var(--text3); font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+  text-decoration: none; text-align: center; cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.w-btn:hover { background: rgba(0,229,255,0.07); color: var(--cyan); }
+.w-btn.no-report { cursor: default; color: var(--text3); }
+.w-btn.no-report:hover { background: rgba(255,255,255,0.02); color: var(--text3); }
 
-/* BACK BUTTON */
-.back-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
+/* ═══ MASTER TABLE ═══ */
+.master-table-wrap {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  overflow-x: auto;
+}
+.master-table-head {
   background: var(--bg3);
-  border: 1px solid var(--bd2);
-  color: var(--text2);
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  padding: 8px 16px;
-  cursor: pointer;
-  text-decoration: none;
-  z-index: 999;
-  display: none;
+  border-bottom: 1px solid var(--bd2);
+  padding: 12px 18px;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
 }
-
-/* Mobile tweaks */
-@media(max-width:600px) {
-  .masthead-title { font-size: 2rem; }
-  .stat-item { min-width: 90px; padding: 10px 8px; }
-  .stat-val { font-size: 1.2rem; }
-  .ticker { font-size: 1.5rem; }
-  .price { font-size: 1.3rem; }
-  .card-metrics { grid-template-columns: repeat(2,1fr); }
-  .entry-row { grid-template-columns: 1fr 1fr 1fr; }
-  .comp-table { font-size: 0.72rem; }
-  .comp-table th, .comp-table td { padding: 5px 6px; }
-  .risk-axis { grid-template-columns: 1fr; }
+table.mtable {
+  width: 100%; border-collapse: collapse; font-size: 0.82rem;
 }
+table.mtable th {
+  background: var(--bg4);
+  color: var(--text3); font-size: 0.66rem; letter-spacing: 0.1em;
+  text-transform: uppercase; font-weight: 400;
+  padding: 9px 12px; border-bottom: 1px solid var(--bd2);
+  white-space: nowrap;
+}
+table.mtable td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+table.mtable tr:last-child td { border-bottom: none; }
+table.mtable tr:hover td { background: rgba(255,255,255,0.015); }
+.td-r { text-align: right; }
+.td-c { text-align: center; }
+.rpt-link {
+  display: inline-block;
+  font-size: 0.68rem; padding: 3px 10px; letter-spacing: 0.06em; text-transform: uppercase;
+  border: 1px solid rgba(0,229,255,0.3); color: var(--cyan); background: rgba(0,229,255,0.06);
+  text-decoration: none; white-space: nowrap; cursor: pointer;
+  transition: background 0.1s;
+}
+.rpt-link:hover { background: rgba(0,229,255,0.15); }
+.no-rpt { font-size: 0.68rem; color: var(--text3); }
 
+/* ═══ ALERTS BOX ═══ */
+.alerts-section {
+  margin-top: 20px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+.alert-box {
+  background: var(--bg2); border: 1px solid var(--border);
+  padding: 14px 16px;
+}
+.alert-box.warn { border-left: 3px solid var(--amber); }
+.alert-box.danger { border-left: 3px solid var(--red); }
+.alert-box.info  { border-left: 3px solid var(--cyan); }
+.alert-box.ok    { border-left: 3px solid var(--green); }
+.alert-title { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
+.alert-title.warn { color: var(--amber); }
+.alert-title.danger { color: var(--red); }
+.alert-title.info   { color: var(--cyan); }
+.alert-title.ok     { color: var(--green); }
+.alert-body { font-size: 0.8rem; color: var(--text2); line-height: 1.6; }
+.alert-body strong { color: var(--text); }
+
+/* ═══ FOOTER ═══ */
 .footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 0.75rem;
-  color: var(--text3);
-  border-top: 1px solid var(--border);
-  line-height: 1.8;
-  margin-top: 28px;
+  text-align: center; padding: 20px;
+  font-size: 0.68rem; color: var(--text3);
+  border-top: 1px solid var(--border); margin-top: 28px; line-height: 1.8;
+  position: relative; z-index: 1;
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width: 900px) {
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .watch-grid { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width: 560px) {
+  .watch-grid { grid-template-columns: 1fr; }
+  .summary-bar { display: grid; grid-template-columns: repeat(3,1fr); }
+  .sum-item { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .alerts-section { grid-template-columns: 1fr; }
+  .header { padding: 14px 16px; }
+  .header-title { font-size: 1.1rem; }
+  .container { padding: 16px 12px 40px; }
 }
 </style>
-<script>
-const BASE = "https://kalibracjadirac.pl/";
-const REPORTS = {
-  AVGO: BASE + "avgo-raport.html",
-  MU:   BASE + "mu-raport.html",
-  AMKR: BASE + "amkr-raport.html",
-  APH:  BASE + "aph-raport.html",
-  AMPX: BASE + "ampx-raport.html",
-  SATL: BASE + "satl-raport.html",
-};
-function openReport(ticker) {
-  if (REPORTS[ticker]) window.open(REPORTS[ticker], '_blank');
-}
-</script>
 </head>
 <body>
 
-<!-- MASTHEAD -->
-<div class="masthead">
-  <div class="masthead-title">ANAL MASTER DASHBOARD</div>
-  <div class="masthead-sub">Portfolio Intelligence Report · 8 spółek · wygenerowano 01.04.2026</div>
-</div>
-
-<!-- STATS BAR -->
-<div class="stats-bar">
-  <div class="stat-item">
-    <div class="stat-val" style="color:var(--text)">8</div>
-    <div class="stat-lbl">Spółek</div>
+<!-- ══ HEADER ══ -->
+<div class="header">
+  <div>
+    <div class="header-title">PORTFOLIO DASHBOARD</div>
+    <div class="header-meta">Portfel aktywny: MU · SATL · AVGO · AMKR &nbsp;|&nbsp;<span>02.04.2026</span></div>
   </div>
-  <div class="stat-item">
-    <div class="stat-val" style="color:var(--green)">5</div>
-    <div class="stat-lbl">Buy / Strong Buy</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-val" style="color:var(--amber)">2</div>
-    <div class="stat-lbl">Spekulacyjny / Hold</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-val" style="color:var(--purple)">1</div>
-    <div class="stat-lbl">Momentum Play</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-val" style="color:var(--gold)">+43%</div>
-    <div class="stat-lbl">Avg analyst upside</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-val" style="color:var(--cyan)">MU</div>
-    <div class="stat-lbl">Largest EPS beat (Q2)</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-val" style="color:var(--green)">AVGO</div>
-    <div class="stat-lbl">Highest conviction</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-val" style="color:var(--purple)">SATL</div>
-    <div class="stat-lbl">Highest risk / speculative</div>
+  <div style="font-size:0.72rem; color:var(--text3); text-align:right; line-height:1.8;">
+    Dane wejścia i SL/TP z raportów ANAL<br>
+    Ceny aktualne: 26–27.03.2026
   </div>
 </div>
 
-<!-- LEGEND -->
-<div class="legend-bar">
-  <span class="legend-lbl">Rating:</span>
-  <span class="pill pill-5">★★★★★ Strong Buy</span>
-  <span class="pill pill-4">★★★★☆ Buy</span>
-  <span class="pill pill-3p">★★★☆☆ Spekulacyjny Buy</span>
-  <span class="pill pill-3">★★★☆☆ Akumuluj</span>
-  <span class="pill pill-mid">★★☆☆☆ Spekulacyjny</span>
+<!-- ══ SUMMARY BAR ══ -->
+<div class="summary-bar">
+  <div class="sum-item">
+    <div class="sum-val c-red">−5.2%</div>
+    <div class="sum-lbl">Avg P&amp;L portfela</div>
+  </div>
+  <div class="sum-item">
+    <div class="sum-val c-amber">32 dni</div>
+    <div class="sum-lbl">Next earnings (AMKR)</div>
+  </div>
+  <div class="sum-item">
+    <div class="sum-val c-cyan">4</div>
+    <div class="sum-lbl">Pozycje aktywne</div>
+  </div>
+  <div class="sum-item">
+    <div class="sum-val c-amber">$40.30</div>
+    <div class="sum-lbl">AMKR SL — decyzja ⚠</div>
+  </div>
+  <div class="sum-item">
+    <div class="sum-val c-green">$512</div>
+    <div class="sum-lbl">MU consensus PT</div>
+  </div>
+  <div class="sum-item">
+    <div class="sum-val c-purple">AVGO</div>
+    <div class="sum-lbl">Skarbiec — no TP</div>
+  </div>
+  <div class="sum-item">
+    <div class="sum-val c-amber">$3.00</div>
+    <div class="sum-lbl">SATL hard floor</div>
+  </div>
+  <div class="sum-item">
+    <div class="sum-val c-gold">Paź'26</div>
+    <div class="sum-lbl">SATL Merlin launch</div>
+  </div>
 </div>
 
 <div class="container">
 
-<!-- ══ MASTER COMPARISON TABLE ══ -->
-<div class="summary-section">
-  <div class="summary-head">📊 Tabela Porównawcza — Wszystkie Spółki</div>
-  <div class="summary-body">
-    <table class="comp-table">
-      <thead>
-        <tr>
-          <th>Ticker</th>
-          <th>Spółka</th>
-          <th>Sektor</th>
-          <th class="td-r">Cena</th>
-          <th class="td-r">ATH</th>
-          <th class="td-r">Od ATH</th>
-          <th class="td-r">Avg PT</th>
-          <th class="td-r">Upside</th>
-          <th>Rating</th>
-          <th class="td-r">Earnings</th>
-          <th>Główna teza</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- AVGO -->
-        <tr style="background:rgba(180,79,255,0.04);">
-          <td><strong style="color:var(--purple);font-size:1.1rem;">AVGO</strong></td>
-          <td class="c-dim">Broadcom</td>
-          <td class="c-dim">AI Semi + SW</td>
-          <td class="td-r"><strong>$309.51</strong></td>
-          <td class="td-r c-dim">$414.61</td>
-          <td class="td-r c-red">-25.3%</td>
-          <td class="td-r c-green">$431–470</td>
-          <td class="td-r c-green"><strong>+39–52%</strong></td>
-          <td><span style="color:var(--gold)">★★★★★ STRONG BUY</span></td>
-          <td class="td-r c-amber">04 Cze'26</td>
-          <td class="c-dim">$100B AI 2027; XPU+VMware moat; makro korekta</td>
-        </tr>
-        <!-- MU -->
-        <tr style="background:rgba(0,229,255,0.03);">
-          <td><strong style="color:var(--cyan);font-size:1.1rem;">MU</strong></td>
-          <td class="c-dim">Micron Tech.</td>
-          <td class="c-dim">Memory / HBM</td>
-          <td class="td-r"><strong>~$336</strong></td>
-          <td class="td-r c-dim">$471.34</td>
-          <td class="td-r c-red">-28.7%</td>
-          <td class="td-r c-green">$443–533</td>
-          <td class="td-r c-green"><strong>+32–59%</strong></td>
-          <td><span style="color:var(--green)">★★★★☆ STRONG BUY</span></td>
-          <td class="td-r c-amber">24 Cze'26</td>
-          <td class="c-dim">HBM4 AI; Q2 +42% EPS beat; -30% po earnings sell-off</td>
-        </tr>
-        <!-- AMKR -->
-        <tr style="background:rgba(255,107,43,0.03);">
-          <td><strong style="color:var(--orange);font-size:1.1rem;">AMKR</strong></td>
-          <td class="c-dim">Amkor Tech.</td>
-          <td class="c-dim">OSAT Packaging</td>
-          <td class="td-r"><strong>$41.25</strong></td>
-          <td class="td-r c-dim">$57.09</td>
-          <td class="td-r c-red">-27.7%</td>
-          <td class="td-r c-green">$56–65</td>
-          <td class="td-r c-green"><strong>+36–57%</strong></td>
-          <td><span style="color:var(--cyan)">★★★★☆ BUY</span></td>
-          <td class="td-r c-amber">04 Maj'26</td>
-          <td class="c-dim">HDFO/2.5D AI; Kim family sell-off; P/E 27x vs 39x peer</td>
-        </tr>
-        <!-- APH -->
-        <tr style="background:rgba(0,255,136,0.02);">
-          <td><strong style="color:var(--green);font-size:1.1rem;">APH</strong></td>
-          <td class="c-dim">Amphenol</td>
-          <td class="c-dim">Connectors / AI</td>
-          <td class="td-r"><strong>$129.55</strong></td>
-          <td class="td-r c-dim">$167.04</td>
-          <td class="td-r c-red">-22.4%</td>
-          <td class="td-r c-green">$155–172</td>
-          <td class="td-r c-green"><strong>+20–33%</strong></td>
-          <td><span style="color:var(--green)">★★★★☆ AKUMULUJ</span></td>
-          <td class="td-r c-amber">29 Kwi'26</td>
-          <td class="c-dim">AI datacenter compounder; PEG 0.46; CCS fiber akwizycja</td>
-        </tr>
-        <!-- LNG -->
-        <tr style="background:rgba(0,170,255,0.02);">
-          <td><strong style="color:var(--blue);font-size:1.1rem;">LNG</strong></td>
-          <td class="c-dim">Cheniere Energy</td>
-          <td class="c-dim">LNG / Energy</td>
-          <td class="td-r"><strong>~$235</strong></td>
-          <td class="td-r c-dim">~$297</td>
-          <td class="td-r c-amber">-21%</td>
-          <td class="td-r c-amber">$265–287</td>
-          <td class="td-r c-amber"><strong>+13–22%</strong></td>
-          <td><span style="color:var(--amber)">★★★☆☆ HOLD/BUY</span></td>
-          <td class="td-r c-dim">Q1'26 maj</td>
-          <td class="c-dim">$10B buyback; long-term contracts; EPS spada 16% yoy</td>
-        </tr>
-        <!-- KLIC -->
-        <tr style="background:rgba(0,229,255,0.02);">
-          <td><strong style="color:var(--cyan);font-size:1.1rem;">KLIC</strong></td>
-          <td class="c-dim">Kulicke & Soffa</td>
-          <td class="c-dim">Wire Bonding</td>
-          <td class="td-r"><strong>~$67</strong></td>
-          <td class="td-r c-dim">$77.50</td>
-          <td class="td-r c-amber">-13.5%</td>
-          <td class="td-r c-red">$54 avg</td>
-          <td class="td-r c-red"><strong>-19% avg!</strong></td>
-          <td><span style="color:var(--amber)">★★★☆☆ SPEC. BUY</span></td>
-          <td class="td-r c-amber">05 Maj'26</td>
-          <td class="c-dim">TCB/HBM inflection; cena > avg PT; execution risk</td>
-        </tr>
-        <!-- AMPX -->
-        <tr style="background:rgba(255,215,0,0.02);">
-          <td><strong style="color:var(--gold);font-size:1.1rem;">AMPX</strong></td>
-          <td class="c-dim">Amprius Tech.</td>
-          <td class="c-dim">Battery / EV / Defense</td>
-          <td class="td-r"><strong>$17.16</strong></td>
-          <td class="td-r c-dim">$19.76</td>
-          <td class="td-r c-amber">-13.2%</td>
-          <td class="td-r c-gold">$20.00</td>
-          <td class="td-r c-amber"><strong>+16.6%</strong></td>
-          <td><span style="color:var(--gold)">★★★☆☆ SPEC. BUY</span></td>
-          <td class="td-r c-amber">07 Maj'26</td>
-          <td class="c-dim">Silicon anode batteries $73M FY25 (+202% YoY); insider sell red flag; 8 analityków 0 Sell; SL $12.50</td>
-        </tr>
-        <!-- SATL -->
-        <tr style="background:rgba(180,79,255,0.02);">
-          <td><strong style="color:var(--purple);font-size:1.1rem;">SATL</strong></td>
-          <td class="c-dim">Satellogic</td>
-          <td class="c-dim">Space / Defense</td>
-          <td class="td-r"><strong>$5.93</strong></td>
-          <td class="td-r c-dim">$6.84</td>
-          <td class="td-r c-amber">-13.3%</td>
-          <td class="td-r c-purple">$5.83–7.00</td>
-          <td class="td-r c-purple"><strong>+18–27%</strong></td>
-          <td><span style="color:var(--purple)">★★★☆☆ SPEC. BUY</span></td>
-          <td class="td-r c-dim">Q1 Maj'26</td>
-          <td class="c-dim">Merlin launch X.2026; US defense pivot; net loss -96% YoY; shelf $200M ryzyko dilucji</td>
-        </tr>
-      </tbody>
-    </table>
+<!-- ══ PORTFEL AKTYWNY ══ -->
+<div class="section-head">
+  <div class="section-line"></div>
+  <div class="section-title">💼 Portfel Aktywny</div>
+  <div class="section-line"></div>
+</div>
+
+<div class="portfolio-grid">
+
+  <!-- ═══ MU ═══ -->
+  <div class="p-card">
+    <div class="p-accent accent-mu"></div>
+    <div class="p-top">
+      <div class="p-left">
+        <div class="p-ticker c-cyan">MU</div>
+        <div class="p-company">Micron Technology · NASDAQ</div>
+        <div class="p-role bankomatat">Bankomatat #1</div>
+      </div>
+      <div class="p-right">
+        <div class="p-price-date">Cena ~01.04.2026</div>
+        <div class="p-price-current c-amber">~$336</div>
+        <div class="p-pnl c-red">▼ −4.0% vs entry</div>
+      </div>
+    </div>
+
+    <div class="p-entry-row">
+      <div class="p-entry-box">
+        <div class="p-entry-val c-text2">~$350</div>
+        <div class="p-entry-lbl">Avg Entry</div>
+      </div>
+      <div class="p-entry-box">
+        <div class="p-entry-val">~5.46</div>
+        <div class="p-entry-lbl">Akcji</div>
+      </div>
+      <div class="p-entry-box">
+        <div class="p-entry-val c-text2">$471.34</div>
+        <div class="p-entry-lbl">ATH</div>
+      </div>
+      <div class="p-entry-box">
+        <div class="p-entry-val c-text2">−28.7%</div>
+        <div class="p-entry-lbl">Od ATH</div>
+      </div>
+    </div>
+
+    <div class="sl-tp-section">
+      <div class="sl-tp-title">Stop-Loss / Take-Profit</div>
+
+      <div class="sl-tp-row">
+        <span class="sl-tp-tag sl">SL</span>
+        <span class="sl-tp-val c-red">$314.00</span>
+        <span class="sl-tp-rr">−10.3% od entry</span>
+        <span class="sl-tp-note">⚠ raport mówi $290</span>
+      </div>
+      <div class="sl-tp-row">
+        <span class="sl-tp-tag tp1">TP1</span>
+        <span class="sl-tp-val c-cyan">$422.00</span>
+        <span class="sl-tp-rr">+20.6% · zamknij 50%</span>
+        <span class="sl-tp-note">⚠ < consensus PT $512</span>
+      </div>
+      <div class="sl-tp-row">
+        <span class="sl-tp-tag tp2">TP2</span>
+        <span class="sl-tp-val c-green">$512+</span>
+        <span class="sl-tp-rr">+46% · reszta pozycji</span>
+      </div>
+
+      <!-- PRICE BAR -->
+      <div class="price-bar-wrap" style="margin-top:10px;">
+        <div class="price-bar-labels">
+          <span>SL $314</span>
+          <span>Entry $350</span>
+          <span>Teraz $336</span>
+          <span>TP1 $422</span>
+          <span>TP2 $512</span>
+        </div>
+        <div class="price-bar-track">
+          <div class="price-bar-fill" style="width:100%"></div>
+          <!-- cursor: ($336-$314)/($512-$314) = 22/198 = 11.1% -->
+          <div class="price-bar-cursor" style="left:11.1%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-signals">
+      <span class="sig sig-green">37/37 analysts SB</span>
+      <span class="sig sig-cyan">HBM4 AI supercycle</span>
+      <span class="sig sig-green">Q2 EPS +42% beat</span>
+      <span class="sig sig-green">fwd P/E 16.8x (tanie)</span>
+      <span class="sig sig-amber">Beta 2.39</span>
+      <span class="sig sig-red">−30% po earnings</span>
+      <span class="sig sig-amber">Google TurboQuant risk</span>
+    </div>
+
+    <div class="p-earnings">
+      <div>
+        <div class="earnings-label">Następny earnings</div>
+        <div class="earnings-date">Q3 FY26 — 24 Cze 2026</div>
+      </div>
+      <div class="earnings-days">83 dni</div>
+    </div>
+
+    <a href="https://kalibracjadirac.pl/mu-raport.html" target="_blank" class="report-btn">Otwórz pełny raport ANAL — MU</a>
+  </div>
+
+  <!-- ═══ SATL ═══ -->
+  <div class="p-card">
+    <div class="p-accent accent-satl"></div>
+    <div class="p-top">
+      <div class="p-left">
+        <div class="p-ticker c-purple">SATL</div>
+        <div class="p-company">Satellogic Inc. · NASDAQ</div>
+        <div class="p-role spekulacja">Spekulacja / Lottery</div>
+      </div>
+      <div class="p-right">
+        <div class="p-price-date">Cena 26.03.2026</div>
+        <div class="p-price-current c-amber">$5.93</div>
+        <div class="p-pnl c-red">▼ −1.2% vs entry</div>
+      </div>
+    </div>
+
+    <div class="p-entry-row">
+      <div class="p-entry-box">
+        <div class="p-entry-val c-text2">~$6.00</div>
+        <div class="p-entry-lbl">Avg Entry</div>
+      </div>
+      <div class="p-entry-box">
+        <div class="p-entry-val">145</div>
+        <div class="p-entry-lbl">Akcji</div>
+      </div>
+      <div class="p-entry-box">
+        <div class="p-entry-val c-text2">$6.84</div>
+        <div class="p-entry-lbl">52W High</div>
+      </div>
+      <div class="p-entry-box">
+        <div class="p-entry-val c-amber">−13.3%</div>
+        <div class="p-entry-lbl">Od 52W High</div>
+      </div>
+    </div>
+
+    <div class="sl-tp-section">
+      <div class="sl-tp-title">Stop-Loss / Take-Profit</div>
+
+      <div class="sl-tp-row">
+        <span class="sl-tp-tag sl">SL</span>
+        <span class="sl-tp-val c-red">$4.80</span>
+        <span class="sl-tp-rr">−20% od entry</span>
+        <span class="sl-tp-note">⚠ raport: hard floor $3.00</span>
+      </div>
+      <div class="sl-tp-row">
+        <span class="sl-tp-tag tp1">TP1</span>
+        <span class="sl-tp-val c-cyan">$9.60</span>
+        <span class="sl-tp-rr">+60% · zamknij 50%</span>
+      </div>
+      <div class="sl-tp-row">
+        <span class="sl-tp-tag tp2">TP2</span>
+        <span class="sl-tp-val c-green">$12.00+</span>
+        <span class="sl-tp-rr">+100% · reszta pozycji</span>
+      </div>
+
+      <!-- PRICE BAR -->
+      <div class="price-bar-wrap" style="margin-top:10px;">
+        <div class="price-bar-labels">
+          <span>SL $4.80</span>
+          <span>Entry $6.00</span>
+          <span>Teraz $5.93</span>
+          <span>TP1 $9.60</span>
+          <span>TP2 $12</span>
+        </div>
+        <div class="price-bar-track">
+          <div class="price-bar-fill" style="width:100%"></div>
+          <!-- ($5.93-$4.80)/($12-$4.80) = 1.13/7.20 = 15.7% -->
+          <div class="price-bar-cursor" style="left:15.7%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-signals">
+      <span class="sig sig-purple">Net loss −96% YoY</span>
+      <span class="sig sig-purple">Merlin launch X.2026</span>
+      <span class="sig sig-green">IDT insider kupuje</span>
+      <span class="sig sig-green">Cantor PT $7.00</span>
+      <span class="sig sig-red">Shelf $200M — dilucja</span>
+      <span class="sig sig-amber">Weiss: SELL (D−)</span>
+      <span class="sig sig-cyan">Northland PT $6.50</span>
+    </div>
+
+    <div class="p-earnings">
+      <div>
+        <div class="earnings-label">Następny earnings</div>
+        <div class="earnings-date">Q1 2026 — Maj 2026</div>
+      </div>
+      <div class="earnings-days">~45 dni</div>
+    </div>
+
+    <a href="https://kalibracjadirac.pl/satl-raport.html" target="_blank" class="report-btn">Otwórz pełny raport ANAL — SATL</a>
+  </div>
+
+  <!-- ═══ AVGO ═══ -->
+  <div class="p-card">
+    <div class="p-accent accent-avgo"></div>
+    <div class="p-top">
+      <div class="p-left">
+        <div class="p-ticker c-purple">AVGO</div>
+        <div class="p-company">Broadcom Inc. · NASDAQ</div>
+        <div class="p-role skarbiec">Skarbiec — core long-term</div>
+      </div>
+      <div class="p-right">
+        <div class="p-price-date">Cena ~01.04.2026</div>
+        <div class="p-price-current c-amber">~$310</div>
+        <div class="p-pnl c-red">▼ −1.3% vs entry</div>
+      </div>
+    </div>
+
+    <div class="p-entry-row">
+      <div class="p-entry-box">
+        <div class="p-entry-val c-text2">$313.94</div>
+        <div class="p-entry-lbl">Avg Entry</div>
+      </div>
+      <div class="p-entry-box">
+        <div class="p-entry-val">~2.42</div>
+        <div class="p-entry-lbl">Akcji</div>
+      </div>
+      <div class="p-entry-box">
+        <div class="p-entry-val c-text2">$414.61</div>
+        <div class="p-entry-lbl">ATH</div>
+      </div>
+      <div class="p-entry-box">
+        <div class="p-entry-val c-red">−25.3%</div>
+        <div class="p-entry-lbl">Od ATH</div>
+      </div>
+    </div>
+
+    <div class="sl-tp-section">
+      <div class="sl-tp-title">Stop-Loss / Take-Profit (Skarbiec — bez TP)</div>
+
+      <div class="sl-tp-row">
+        <span class="sl-tp-tag sl">SL</span>
+        <span class="sl-tp-val c-red">$288.00</span>
+        <span class="sl-tp-rr">−8.3% od entry</span>
+        <span class="sl-tp-note">raport: $255 (luźniejszy)</span>
+      </div>
+      <div class="sl-tp-row">
+        <span class="sl-tp-tag skarbiec">DCA T1</span>
+        <span class="sl-tp-val c-purple">$295–325</span>
+        <span class="sl-tp-rr">← teraz w tej strefie ✓</span>
+      </div>
+      <div class="sl-tp-row">
+        <span class="sl-tp-tag skarbiec">DCA T3</span>
+        <span class="sl-tp-val c-purple">$240–255</span>
+        <span class="sl-tp-rr">głęboka panika = dokup agresywnie</span>
+      </div>
+      <div class="sl-tp-row">
+        <span class="sl-tp-tag tp2">Avg PT</span>
+        <span class="sl-tp-val c-green">$431–470</span>
+        <span class="sl-tp-rr">+37–50% · 52 analityków · 0 SELL</span>
+      </div>
+
+      <!-- PRICE BAR -->
+      <div class="price-bar-wrap" style="margin-top:10px;">
+        <div class="price-bar-labels">
+          <span>SL $288</span>
+          <span>Entry $314</span>
+          <span>$310</span>
+          <span>DCA $325</span>
+          <span>PT $470</span>
+        </div>
+        <div class="price-bar-track">
+          <div class="price-bar-fill" style="width:100%"></div>
+          <!-- ($310-$288)/($470-$288) = 22/182 = 12.1% -->
+          <div class="price-bar-cursor" style="left:12.1%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-signals">
+      <span class="sig sig-purple">52 analysts · 0 SELL</span>
+      <span class="sig sig-green">$8.4B AI rev Q1</span>
+      <span class="sig sig-green">$73B AI backlog</span>
+      <span class="sig sig-green">FCF $8B/qtr</span>
+      <span class="sig sig-cyan">XPU 5 hiperscalerów</span>
+      <span class="sig sig-amber">Beta 2.20</span>
+      <span class="sig sig-amber">Customer concentration</span>
+    </div>
+
+    <div class="p-earnings">
+      <div>
+        <div class="earnings-label">Następny earnings</div>
+        <div class="earnings-date">Q2 FY2026 — 04 Cze 2026</div>
+      </div>
+      <div class="earnings-days">63 dni</div>
+    </div>
+
+    <a href="https://kalibracjadirac.pl/avgo-raport.html" target="_blank" class="report-btn">Otwórz pełny raport ANAL — AVGO</a>
+  </div>
+
+  <!-- ═══ AMKR ═══ -->
+  <div class="p-card">
+    <div class="p-accent accent-amkr"></div>
+    <div class="p-top">
+      <div class="p-left">
+        <div class="p-ticker c-orange">AMKR</div>
+        <div class="p-company">Amkor Technology · NASDAQ</div>
+        <div class="p-role bankomatat">Bankomatat #2</div>
+      </div>
+      <div class="p-right">
+        <div class="p-price-date">Cena ~01.04.2026</div>
+        <div class="p-price-current c-amber">~$41</div>
+        <div class="p-pnl c-red">▼ −12.4% vs entry</div>
+      </div>
+    </div>
+
+    <div class="p-entry-row">
+      <div class="p-entry-box">
+        <div class="p-entry-val c-text2">~$46.80</div>
+        <div class="p-entry-lbl">Avg Entry</div>
+      </div>
+      <div class="p-entry-box">
+        <div class="p-entry-val">~22.92</div>
+        <div class="p-entry-lbl">Akcji</div>
+      </div>
+      <div class="p-entry-box">
+        <div class="p-entry-val c-text2">$57.09</div>
+        <div class="p-entry-lbl">ATH</div>
+      </div>
+      <div class="p-entry-box">
+        <div class="p-entry-val c-red">−28.2%</div>
+        <div class="p-entry-lbl">Od ATH</div>
+      </div>
+    </div>
+
+    <div class="sl-tp-section">
+      <div class="sl-tp-title">Stop-Loss / Take-Profit</div>
+
+      <div class="sl-tp-row">
+        <span class="sl-tp-tag sl">SL</span>
+        <span class="sl-tp-val c-red">$40.30</span>
+        <span class="sl-tp-rr">−13.9% od entry</span>
+        <span class="sl-tp-note">⚠⚠ DECYZJA — raport T1: $30–33</span>
+      </div>
+      <div class="sl-tp-row">
+        <span class="sl-tp-tag tp1">TP1</span>
+        <span class="sl-tp-val c-cyan">$59.80</span>
+        <span class="sl-tp-rr">+27.8% · zamknij 50%</span>
+      </div>
+      <div class="sl-tp-row">
+        <span class="sl-tp-tag tp2">TP2</span>
+        <span class="sl-tp-val c-green">$66.30</span>
+        <span class="sl-tp-rr">+41.7% · reszta</span>
+        <span class="sl-tp-note">JPM/Needham PT $65</span>
+      </div>
+
+      <!-- PRICE BAR -->
+      <div class="price-bar-wrap" style="margin-top:10px;">
+        <div class="price-bar-labels">
+          <span>SL $40</span>
+          <span>Entry $46.80</span>
+          <span>$41</span>
+          <span>TP1 $59.80</span>
+          <span>TP2 $66</span>
+        </div>
+        <div class="price-bar-track">
+          <div class="price-bar-fill" style="width:100%"></div>
+          <!-- ($41-$40)/($66-$40) = 1/26 = 3.8% -->
+          <div class="price-bar-cursor" style="left:3.8%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-signals">
+      <span class="sig sig-orange">Kim family block sale</span>
+      <span class="sig sig-green">PT $65 JPM/Needham</span>
+      <span class="sig sig-green">HDFO ×3 wzrost 2026</span>
+      <span class="sig sig-green">Arizona CHIPS Act</span>
+      <span class="sig sig-cyan">P/E 27x vs 39x peer</span>
+      <span class="sig sig-red">GM 12.5% Q1</span>
+      <span class="sig sig-amber">Beta 1.95</span>
+    </div>
+
+    <div class="p-earnings">
+      <div>
+        <div class="earnings-label">Następny earnings</div>
+        <div class="earnings-date">Q1 2026 — 04 Maj 2026</div>
+      </div>
+      <div class="earnings-days" style="color:var(--red); border-color:rgba(255,51,85,0.25); background:rgba(255,51,85,0.1);">32 dni ⚡</div>
+    </div>
+
+    <a href="https://kalibracjadirac.pl/amkr-raport.html" target="_blank" class="report-btn">Otwórz pełny raport ANAL — AMKR</a>
+  </div>
+
+</div><!-- /portfolio-grid -->
+
+<!-- ══ OPEN ISSUES / ALERTY ══ -->
+<div class="section-head" style="margin-top:28px;">
+  <div class="section-line"></div>
+  <div class="section-title">⚠ Otwarte Decyzje &amp; Alerty</div>
+  <div class="section-line"></div>
+</div>
+
+<div class="alerts-section">
+  <div class="alert-box danger">
+    <div class="alert-title danger">⚠⚠ AMKR — Decyzja SL</div>
+    <div class="alert-body">
+      Nasz SL <strong>$40.30</strong> siedzi wewnątrz strefy akumulacji T1 raportu (<strong>$38–44</strong>). Raport sugeruje SL na <strong>$30–33</strong>.<br>
+      Byczku wszedł po <strong>~$46.80</strong> (Tier 2, nie Tier 1). Aktualna cena ~$41 — blisko SL.<br><br>
+      <strong>Decyzja otwarta:</strong> obniżyć SL do $30–33 (wg raportu) czy zostawić $40.30?
+    </div>
+  </div>
+  <div class="alert-box warn">
+    <div class="alert-title warn">⚠ MU — TP zbyt nisko vs konsensus</div>
+    <div class="alert-body">
+      Nasze TP1 $422 / TP2 $458 zamykają pozycję przed consensus PT analityków (<strong>$512</strong>).<br><br>
+      <strong>Rekomendacja:</strong> Zamknij 50% na TP1 $422, resztę zostaw do $512+. Nie wychodź w całości przed danymi Q3 (24 Cze'26).
+    </div>
+  </div>
+  <div class="alert-box warn">
+    <div class="alert-title warn">⚠ SATL — Shelf $200M</div>
+    <div class="alert-body">
+      Zarejestrowane 19.03.2026. Przy market cap ~$490M to potencjalnie +40% dilucja.<br>
+      Cash na bilansie ~$129M — nie ma presji korzystania, ale każde ogłoszenie = ryzyko −20–30%.<br>
+      <strong>Monitoruj komunikaty IR Satellogic.</strong>
+    </div>
+  </div>
+  <div class="alert-box info">
+    <div class="alert-title info">⚡ Najbliższy earnings — AMKR 04 Maj</div>
+    <div class="alert-body">
+      Earnings AMKR za <strong>32 dni</strong> (04.05.2026) to binary event dla pozycji.<br>
+      Kolejne: <strong>APH 29 Kwi (27 dni)</strong>, AMPX 07 Maj, SATL Maj, AVGO 04 Cze, MU 24 Cze.<br>
+      <strong>Maj 2026 = najgęstszy miesiąc earnings w całym watchliście.</strong>
+    </div>
   </div>
 </div>
 
-<!-- ══ SECTOR DIVIDER: AI MEGA-CAPS ══ -->
-<div class="sector-head">
-  <div class="sector-line"></div>
-  <div class="sector-title">🔮 AI Mega-Cap Infrastructure</div>
-  <div class="sector-line"></div>
+<!-- ══ WATCHLIST ══ -->
+<div class="section-head" style="margin-top:32px;">
+  <div class="section-line"></div>
+  <div class="section-title">👁 Watchlist — Kandydaci</div>
+  <div class="section-line"></div>
 </div>
 
-<div class="stock-grid">
+<div class="watch-grid">
 
-  <!-- AVGO CARD -->
-  <div class="stock-card has-report" onclick="openReport('AVGO')" title="Kliknij → Raport AVGO">
-    <div class="card-accent accent-strong-buy"></div>
-    <div class="card-header">
-      <div class="card-left">
-        <div class="ticker" style="color:var(--purple)">AVGO</div>
-        <div class="company">Broadcom Inc.</div>
-        <div class="sector-tag">AI Custom Silicon · VMware · Networking</div>
-        <div class="rating-badge" style="background:rgba(180,79,255,0.15);color:var(--purple);border:1px solid rgba(180,79,255,0.3);">
-          ★★★★★ STRONG BUY
-        </div>
-      </div>
-      <div class="card-right">
-        <div class="price">$309.51</div>
-        <div class="from-ath" style="color:var(--red);">▼ -25% od ATH $414.61</div>
-        <div class="stars" style="margin-top:4px;">★★★★★</div>
-      </div>
+  <!-- APH -->
+  <div class="w-card">
+    <div class="p-accent accent-watch" style="background: linear-gradient(90deg, var(--green), #00AA55);"></div>
+    <div class="w-top">
+      <div class="w-ticker c-green">APH</div>
+      <div class="w-company">Amphenol Corp. · NYSE</div>
+      <div class="w-price">$127.96</div>
+      <div class="w-upside c-green">PT avg $154 → +20% upside</div>
     </div>
-    <div class="card-metrics">
-      <div class="metric">
-        <div class="metric-val" style="color:var(--gold)">$8.4B</div>
-        <div class="metric-lbl">AI Rev Q1</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--green)">+106%</div>
-        <div class="metric-lbl">AI YoY</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--purple)">68%</div>
-        <div class="metric-lbl">EBITDA Margin</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--gold)">$73B</div>
-        <div class="metric-lbl">AI Backlog</div>
-      </div>
+    <div class="w-meta">
+      <div class="w-row"><span class="w-key">Entry T1</span><span class="w-val c-green">$122–130</span></div>
+      <div class="w-row"><span class="w-key">SL</span><span class="w-val c-red">$115</span></div>
+      <div class="w-row"><span class="w-key">Target</span><span class="w-val c-green">$155–165</span></div>
+      <div class="w-row"><span class="w-key">PEG</span><span class="w-val c-green">0.46 (tanie)</span></div>
+      <div class="w-row"><span class="w-key">Earnings</span><span class="w-val c-amber">29 Kwi'26 ⚡</span></div>
+      <div class="w-row"><span class="w-key">R:R</span><span class="w-val c-green">~3:1</span></div>
     </div>
-    <div class="card-body">
-      <div class="thesis"><strong>Teza:</strong> CEO Hock Tan ogłosił "line of sight to $100B AI chip revenue 2027" — analitycy uważają, że <strong class="hl" style="color:var(--gold)">to za mało, właściwe to $180-200B</strong>. Q2 guidance $22B przebił consensus o $1.5B. 52 analityków: 0 SELL. Korekta -25% to makro, nie fundamenty.</div>
-      <div class="signals">
-        <span class="sig sig-green">$73B backlog ↑</span>
-        <span class="sig sig-green">5 XPU klientów</span>
-        <span class="sig sig-green">FCF $8B/qtr</span>
-        <span class="sig sig-red">Beta 2.20</span>
-        <span class="sig sig-amber">Customer concentration</span>
-        <span class="sig sig-amber">TSMC bottleneck</span>
-      </div>
-      <div class="entry-row">
-        <div class="entry-box">
-          <div class="entry-label">Wejście T1</div>
-          <div class="entry-val" style="color:var(--green)">$295–325</div>
-        </div>
-        <div class="entry-box">
-          <div class="entry-label">Stop-Loss</div>
-          <div class="entry-val" style="color:var(--red)">$255</div>
-        </div>
-        <div class="entry-box">
-          <div class="entry-label">Target (avg PT)</div>
-          <div class="entry-val" style="color:var(--purple)">$431–470</div>
-        </div>
-      </div>
-      <div class="catalyst">
-        <span>⚡ Nearest catalyst:</span>
-        <span class="catalyst-event">Q2 FY2026 Earnings — 04 Cze 2026</span>
-      </div>
+    <div class="w-signals">
+      <span class="sig sig-green" style="font-size:0.65rem;">+52% rev FY25</span>
+      <span class="sig sig-cyan" style="font-size:0.65rem;">AI datacenter compounder</span>
+      <span class="sig sig-green" style="font-size:0.65rem;">11 Buy 0 Sell</span>
     </div>
+    <a href="https://kalibracjadirac.pl/aph-raport.html" target="_blank" class="w-btn">→ Raport ANAL</a>
   </div>
-    <a href="javascript:void(0)" onclick="event.stopPropagation();openReport('AVGO')" class="report-btn">→ OTWÓRZ PEŁNY RAPORT <span>AVGO</span></a>
 
-  <!-- MU CARD -->
-  <div class="stock-card has-report" onclick="openReport('MU')" title="Kliknij → Raport MU">
-    <div class="card-accent accent-strong-buy"></div>
-    <div class="card-header">
-      <div class="card-left">
-        <div class="ticker" style="color:var(--cyan)">MU</div>
-        <div class="company">Micron Technology</div>
-        <div class="sector-tag">DRAM · HBM · NAND · Memory</div>
-        <div class="rating-badge" style="background:rgba(0,229,255,0.12);color:var(--cyan);border:1px solid rgba(0,229,255,0.25);">
-          ★★★★☆ STRONG BUY
-        </div>
-      </div>
-      <div class="card-right">
-        <div class="price">~$336</div>
-        <div class="from-ath" style="color:var(--red);">▼ -28.7% od ATH $471</div>
-        <div class="stars" style="margin-top:4px;">★★★★☆</div>
-      </div>
+  <!-- AMPX -->
+  <div class="w-card">
+    <div class="p-accent accent-watch" style="background: linear-gradient(90deg, var(--gold), #BB8800);"></div>
+    <div class="w-top">
+      <div class="w-ticker c-gold">AMPX</div>
+      <div class="w-company">Amprius Technologies · NYSE</div>
+      <div class="w-price">$17.16</div>
+      <div class="w-upside c-amber">PT avg $20 → +16.6% upside</div>
     </div>
-    <div class="card-metrics">
-      <div class="metric">
-        <div class="metric-val" style="color:var(--cyan)">$23.86B</div>
-        <div class="metric-lbl">Rev Q2 FY26</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--green)">+32%</div>
-        <div class="metric-lbl">EPS beat</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--amber)">~$33.8B</div>
-        <div class="metric-lbl">Q3 Est.</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--green)">31</div>
-        <div class="metric-lbl">Buy Analysts</div>
-      </div>
+    <div class="w-meta">
+      <div class="w-row"><span class="w-key">Entry T1</span><span class="w-val c-green">$16.30–16.80</span></div>
+      <div class="w-row"><span class="w-key">SL</span><span class="w-val c-red">$12.50</span></div>
+      <div class="w-row"><span class="w-key">Target</span><span class="w-val c-green">$20–22</span></div>
+      <div class="w-row"><span class="w-key">Rev FY25</span><span class="w-val c-green">$73M +202%</span></div>
+      <div class="w-row"><span class="w-key">Earnings</span><span class="w-val c-amber">07 Maj'26</span></div>
+      <div class="w-row"><span class="w-key">Red flag</span><span class="w-val c-red">Insider sell $24M</span></div>
     </div>
-    <div class="card-body">
-      <div class="thesis"><strong>Teza:</strong> Micron przeszedł <strong class="hl" style="color:var(--cyan)">historyczne Q2 FY2026 (+32% EPS beat)</strong>, po czym akcja <em>spadła -30%</em> — Google TurboQuant fears + DDR5 spot pricing. Klasyczny "sell the news" przy fundamentalnie rewolucyjnych wynikach. HBM4 AI supercycle dopiero zaczyna.</div>
-      <div class="signals">
-        <span class="sig sig-cyan">HBM4 AI #1</span>
-        <span class="sig sig-green">$33.8B Q3 est.</span>
-        <span class="sig sig-green">CapEx >$25B FY26</span>
-        <span class="sig sig-red">-30% po earnings</span>
-        <span class="sig sig-amber">Google TurboQuant</span>
-        <span class="sig sig-amber">Beta 2.50</span>
-      </div>
-      <div class="entry-row">
-        <div class="entry-box">
-          <div class="entry-label">Wejście T1</div>
-          <div class="entry-val" style="color:var(--green)">$300–340</div>
-        </div>
-        <div class="entry-box">
-          <div class="entry-label">Stop-Loss</div>
-          <div class="entry-val" style="color:var(--red)">$270</div>
-        </div>
-        <div class="entry-box">
-          <div class="entry-label">Target (avg PT)</div>
-          <div class="entry-val" style="color:var(--cyan)">$443–533</div>
-        </div>
-      </div>
-      <div class="catalyst">
-        <span>⚡ Nearest catalyst:</span>
-        <span class="catalyst-event">Q3 FY2026 Earnings — 24 Cze 2026</span>
-      </div>
+    <div class="w-signals">
+      <span class="sig sig-gold" style="font-size:0.65rem;">500 Wh/kg SiMaxx</span>
+      <span class="sig sig-red" style="font-size:0.65rem;">CEO sprzedał 79%</span>
+      <span class="sig sig-green" style="font-size:0.65rem;">8 analysts 0 Sell</span>
     </div>
+    <a href="https://kalibracjadirac.pl/ampx-raport.html" target="_blank" class="w-btn">→ Raport ANAL</a>
   </div>
-    <a href="javascript:void(0)" onclick="event.stopPropagation();openReport('MU')" class="report-btn">→ OTWÓRZ PEŁNY RAPORT <span>MU</span></a>
 
-</div>
-
-<!-- ══ SECTOR DIVIDER: SEMICONDUCTOR INFRASTRUCTURE ══ -->
-<div class="sector-head">
-  <div class="sector-line"></div>
-  <div class="sector-title">⚙️ Semiconductor Infrastructure</div>
-  <div class="sector-line"></div>
-</div>
-
-<div class="stock-grid">
-
-  <!-- AMKR CARD -->
-  <div class="stock-card has-report" onclick="openReport('AMKR')" title="Kliknij → Raport AMKR">
-    <div class="card-accent accent-buy"></div>
-    <div class="card-header">
-      <div class="card-left">
-        <div class="ticker" style="color:var(--orange)">AMKR</div>
-        <div class="company">Amkor Technology</div>
-        <div class="sector-tag">OSAT · Advanced Packaging · AI Infrastructure</div>
-        <div class="rating-badge" style="background:rgba(255,107,43,0.12);color:var(--orange);border:1px solid rgba(255,107,43,0.25);">
-          ★★★★☆ BUY / AKUMULUJ
-        </div>
-      </div>
-      <div class="card-right">
-        <div class="price">$41.25</div>
-        <div class="from-ath" style="color:var(--red);">▼ -27.7% od ATH $57.09</div>
-        <div class="stars" style="margin-top:4px;">★★★★☆</div>
-      </div>
+  <!-- LNG -->
+  <div class="w-card">
+    <div class="p-accent accent-watch" style="background: linear-gradient(90deg, var(--blue), #006699);"></div>
+    <div class="w-top">
+      <div class="w-ticker c-blue">LNG</div>
+      <div class="w-company">Cheniere Energy · NYSE</div>
+      <div class="w-price">~$235</div>
+      <div class="w-upside c-amber">PT avg $287 → +22%</div>
     </div>
-    <div class="card-metrics">
-      <div class="metric">
-        <div class="metric-val" style="color:var(--orange)">$1.89B</div>
-        <div class="metric-lbl">Rev Q4'25</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--green)">+57%</div>
-        <div class="metric-lbl">EPS beat</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--amber)">27x</div>
-        <div class="metric-lbl">P/E vs 39x peer</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--green)">$3B</div>
-        <div class="metric-lbl">Liquidity</div>
-      </div>
+    <div class="w-meta">
+      <div class="w-row"><span class="w-key">Entry</span><span class="w-val c-green">$220–240</span></div>
+      <div class="w-row"><span class="w-key">SL</span><span class="w-val c-red">$200</span></div>
+      <div class="w-row"><span class="w-key">Target</span><span class="w-val c-green">$265–290</span></div>
+      <div class="w-row"><span class="w-key">Buyback</span><span class="w-val c-green">$10B program</span></div>
+      <div class="w-row"><span class="w-key">Earnings</span><span class="w-val c-dim">Maj'26</span></div>
+      <div class="w-row"><span class="w-key">Uwaga</span><span class="w-val c-amber">EPS −16% / 3Y</span></div>
     </div>
-    <div class="card-body">
-      <div class="thesis"><strong>Teza:</strong> Kim family block sale (-$470M) zepchnął akcję -27% bez zmiany fundamentów. <strong class="hl" style="color:var(--orange)">JPMorgan + Needham PT $65 = +57% upside.</strong> HDFO/2.5D packaging prognozowane do ~3x wzrostu w 2026. Strukturalne dyskonto P/E 27x vs. peer avg 39x.</div>
-      <div class="signals">
-        <span class="sig sig-green">PT $65 JPM/Needham</span>
-        <span class="sig sig-green">HDFO ~3x 2026</span>
-        <span class="sig sig-green">Arizona CHIPS Act</span>
-        <span class="sig sig-red">Kim block sale</span>
-        <span class="sig sig-amber">GM 12.5% Q1</span>
-        <span class="sig sig-amber">CapEx $3B</span>
-      </div>
-      <div class="entry-row">
-        <div class="entry-box">
-          <div class="entry-label">Wejście T1</div>
-          <div class="entry-val" style="color:var(--green)">$38–44</div>
-        </div>
-        <div class="entry-box">
-          <div class="entry-label">Stop-Loss</div>
-          <div class="entry-val" style="color:var(--red)">$33</div>
-        </div>
-        <div class="entry-box">
-          <div class="entry-label">Target</div>
-          <div class="entry-val" style="color:var(--orange)">$55–65</div>
-        </div>
-      </div>
-      <div class="catalyst">
-        <span>⚡ Nearest catalyst:</span>
-        <span class="catalyst-event">Q1'26 Earnings — 04 Maj 2026</span>
-      </div>
+    <div class="w-signals">
+      <span class="sig sig-blue" style="font-size:0.65rem;">$10B buyback</span>
+      <span class="sig sig-green" style="font-size:0.65rem;">US LNG geopolit.</span>
+      <span class="sig sig-amber" style="font-size:0.65rem;">defensywna pozycja</span>
     </div>
+    <span class="w-btn no-report">— brak raportu ANAL —</span>
   </div>
-    <a href="javascript:void(0)" onclick="event.stopPropagation();openReport('AMKR')" class="report-btn">→ OTWÓRZ PEŁNY RAPORT <span>AMKR</span></a>
 
-  <!-- APH CARD -->
-  <div class="stock-card has-report" onclick="openReport('APH')" title="Kliknij → Raport APH">
-    <div class="card-accent accent-buy"></div>
-    <div class="card-header">
-      <div class="card-left">
-        <div class="ticker" style="color:var(--green)">APH</div>
-        <div class="company">Amphenol Corporation</div>
-        <div class="sector-tag">Connectors · AI Datacenter · Defense · Auto</div>
-        <div class="rating-badge" style="background:rgba(0,255,136,0.1);color:var(--green);border:1px solid rgba(0,255,136,0.25);">
-          ★★★★☆ AKUMULUJ
-        </div>
-      </div>
-      <div class="card-right">
-        <div class="price">$129.55</div>
-        <div class="from-ath" style="color:var(--red);">▼ -22.4% od ATH $167.04</div>
-        <div class="stars" style="margin-top:4px;">★★★★☆</div>
-      </div>
+  <!-- KLIC -->
+  <div class="w-card">
+    <div class="p-accent accent-watch" style="background: linear-gradient(90deg, var(--cyan), #005566);"></div>
+    <div class="w-top">
+      <div class="w-ticker c-cyan">KLIC</div>
+      <div class="w-company">Kulicke &amp; Soffa · NASDAQ</div>
+      <div class="w-price">~$67</div>
+      <div class="w-upside c-red">Avg PT $54.67 — PONIŻEJ CENY ⚠</div>
     </div>
-    <div class="card-metrics">
-      <div class="metric">
-        <div class="metric-val" style="color:var(--green)">$23.1B</div>
-        <div class="metric-lbl">Rev FY2025</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--green)">+52%</div>
-        <div class="metric-lbl">Revenue YoY</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--green)">0.46</div>
-        <div class="metric-lbl">PEG Ratio</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--cyan)">1.1x</div>
-        <div class="metric-lbl">Book-to-Bill</div>
-      </div>
+    <div class="w-meta">
+      <div class="w-row"><span class="w-key">Opt. entry</span><span class="w-val c-amber">$62–66</span></div>
+      <div class="w-row"><span class="w-key">SL</span><span class="w-val c-red">$57</span></div>
+      <div class="w-row"><span class="w-key">Target bull</span><span class="w-val c-cyan">$80–95</span></div>
+      <div class="w-row"><span class="w-key">CEO</span><span class="w-val c-red">BRAK — ryzyko</span></div>
+      <div class="w-row"><span class="w-key">Earnings</span><span class="w-val c-amber">05 Maj'26</span></div>
+      <div class="w-row"><span class="w-key">Uwaga</span><span class="w-val c-red">PT &lt; ceny!</span></div>
     </div>
-    <div class="card-body">
-      <div class="thesis"><strong>Teza:</strong> Globalny #2 w konektorach, <strong class="hl" style="color:var(--green)">AI datacenter compounder z 27.5% marżą operacyjną.</strong> PEG 0.46 = tanie względem tempa wzrostu. Jefferies upgrade 01.04.26. CCS akwizycja dodaje fiber. Book-to-bill 1.1 = demand acceleration.</div>
-      <div class="signals">
-        <span class="sig sig-green">+52% rev FY25</span>
-        <span class="sig sig-green">PEG 0.46</span>
-        <span class="sig sig-green">Jefferies upgrade ↑</span>
-        <span class="sig sig-amber">CCS integracja</span>
-        <span class="sig sig-amber">Copper vs optics</span>
-        <span class="sig sig-dim">Earnings 29 Kwi</span>
-      </div>
-      <div class="entry-row">
-        <div class="entry-box">
-          <div class="entry-label">Wejście T1</div>
-          <div class="entry-val" style="color:var(--green)">$122–130</div>
-        </div>
-        <div class="entry-box">
-          <div class="entry-label">Stop-Loss</div>
-          <div class="entry-val" style="color:var(--red)">$115</div>
-        </div>
-        <div class="entry-box">
-          <div class="entry-label">Target</div>
-          <div class="entry-val" style="color:var(--green)">$155–165</div>
-        </div>
-      </div>
-      <div class="catalyst">
-        <span>⚡ Nearest catalyst:</span>
-        <span class="catalyst-event">Q1'26 Earnings — 29 Kwi 2026</span>
-      </div>
+    <div class="w-signals">
+      <span class="sig sig-cyan" style="font-size:0.65rem;">TCB HBM inflection</span>
+      <span class="sig sig-red" style="font-size:0.65rem;">Avg PT poniżej ceny</span>
+      <span class="sig sig-amber" style="font-size:0.65rem;">binary story</span>
     </div>
-  </div>
-    <a href="javascript:void(0)" onclick="event.stopPropagation();openReport('APH')" class="report-btn">→ OTWÓRZ PEŁNY RAPORT <span>APH</span></a>
-
-  <!-- KLIC CARD -->
-  <div class="stock-card">
-    <div class="card-accent accent-spec-buy"></div>
-    <div class="card-header">
-      <div class="card-left">
-        <div class="ticker" style="color:var(--cyan)">KLIC</div>
-        <div class="company">Kulicke & Soffa</div>
-        <div class="sector-tag">Wire Bonding · TCB · HBM · Small-cap</div>
-        <div class="rating-badge" style="background:rgba(255,184,0,0.12);color:var(--amber);border:1px solid rgba(255,184,0,0.25);">
-          ★★★☆☆ SPEKULACYJNY BUY
-        </div>
-      </div>
-      <div class="card-right">
-        <div class="price">~$67</div>
-        <div class="from-ath" style="color:var(--amber);">▼ -13.5% od ATH $77.50</div>
-        <div class="stars" style="margin-top:4px;">★★★☆☆</div>
-      </div>
-    </div>
-    <div class="card-metrics">
-      <div class="metric">
-        <div class="metric-val" style="color:var(--cyan)">$199.6M</div>
-        <div class="metric-lbl">Rev Q1 FY26</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--green)">+33%</div>
-        <div class="metric-lbl">EPS beat</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--amber)">~70%</div>
-        <div class="metric-lbl">TCB growth FY26</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--red)">$54.67</div>
-        <div class="metric-lbl">Avg PT (poniżej!)</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="thesis"><strong>Uwaga:</strong> <strong class="hl" style="color:var(--red)">Avg analyst PT $54.67 = poniżej bieżącej ceny $67.</strong> Spekulacja na TCB/HBM inflection. Brak stałego CEO. Shipped pierwsze narzędzie HBM do klienta memory — to opcja na sukces, nie pewność.</div>
-      <div class="signals">
-        <span class="sig sig-cyan">TCB HBM ship ✓</span>
-        <span class="sig sig-green">ProMEM launch</span>
-        <span class="sig sig-red">PT poniżej ceny</span>
-        <span class="sig sig-red">Brak CEO</span>
-        <span class="sig sig-amber">Binary story</span>
-        <span class="sig sig-dim">Earnings 05 Maj</span>
-      </div>
-      <div class="entry-row">
-        <div class="entry-box">
-          <div class="entry-label">Optymalny</div>
-          <div class="entry-val" style="color:var(--green)">$62–66</div>
-        </div>
-        <div class="entry-box">
-          <div class="entry-label">Stop-Loss</div>
-          <div class="entry-val" style="color:var(--red)">$57</div>
-        </div>
-        <div class="entry-box">
-          <div class="entry-label">Target bull</div>
-          <div class="entry-val" style="color:var(--cyan)">$80–95</div>
-        </div>
-      </div>
-      <div class="catalyst">
-        <span>⚡ Nearest catalyst:</span>
-        <span class="catalyst-event">Q2 FY2026 Earnings — 05 Maj 2026</span>
-      </div>
-    </div>
+    <span class="w-btn no-report">— brak raportu ANAL —</span>
   </div>
 
 </div>
 
-<!-- ══ SECTOR DIVIDER: ENERGY + DEFENSE/SPACE ══ -->
-<div class="sector-head">
-  <div class="sector-line"></div>
-  <div class="sector-title">⚡ Energy · Defense · Space</div>
-  <div class="sector-line"></div>
+<!-- ══ MASTER TABLE ══ -->
+<div class="section-head" style="margin-top:32px;">
+  <div class="section-line"></div>
+  <div class="section-title">📊 Tabela Zbiorcza — Wszystkie Spółki</div>
+  <div class="section-line"></div>
 </div>
 
-<div class="stock-grid">
-
-  <!-- LNG CARD -->
-  <div class="stock-card">
-    <div class="card-accent accent-buy"></div>
-    <div class="card-header">
-      <div class="card-left">
-        <div class="ticker" style="color:var(--blue)">LNG</div>
-        <div class="company">Cheniere Energy</div>
-        <div class="sector-tag">LNG Infrastructure · Geopolitics · Energy Security</div>
-        <div class="rating-badge" style="background:rgba(0,170,255,0.12);color:var(--blue);border:1px solid rgba(0,170,255,0.25);">
-          ★★★☆☆ HOLD / BUY
-        </div>
-      </div>
-      <div class="card-right">
-        <div class="price">~$235</div>
-        <div class="from-ath" style="color:var(--amber);">▼ -21% od ATH ~$297</div>
-        <div class="stars" style="margin-top:4px;">★★★☆☆</div>
-      </div>
-    </div>
-    <div class="card-metrics">
-      <div class="metric">
-        <div class="metric-val" style="color:var(--blue)">$10B</div>
-        <div class="metric-lbl">Buyback program</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--amber)">-16%</div>
-        <div class="metric-lbl">EPS trend 3Y</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--green)">15</div>
-        <div class="metric-lbl">Buy analysts</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--amber)">$287</div>
-        <div class="metric-lbl">Avg PT</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="thesis"><strong>Teza:</strong> Największy eksporter LNG w USA z <strong class="hl" style="color:var(--blue)">wieloletnimi kontraktami i $10B buyback.</strong> Geopolityka (Iran, Europa) = rosnący strategiczny popyt na US LNG. Ryzyko: EPS prognozowany -16% YoY przez 3 lata. Defensywna, wolnorosnąca pozycja portfela.</div>
-      <div class="signals">
-        <span class="sig sig-blue">$10B buyback ↑</span>
-        <span class="sig sig-green">Long-term contracts</span>
-        <span class="sig sig-green">US LNG geopolit.</span>
-        <span class="sig sig-red">EPS -16% 3Y</span>
-        <span class="sig sig-amber">Gas price sensitivity</span>
-        <span class="sig sig-dim">Capacity expansion</span>
-      </div>
-      <div class="entry-row">
-        <div class="entry-box">
-          <div class="entry-label">Wejście</div>
-          <div class="entry-val" style="color:var(--green)">$220–240</div>
-        </div>
-        <div class="entry-box">
-          <div class="entry-label">Stop-Loss</div>
-          <div class="entry-val" style="color:var(--red)">$200</div>
-        </div>
-        <div class="entry-box">
-          <div class="entry-label">Target</div>
-          <div class="entry-val" style="color:var(--blue)">$265–290</div>
-        </div>
-      </div>
-      <div class="catalyst">
-        <span>⚡ Nearest catalyst:</span>
-        <span class="catalyst-event">Q1'26 Earnings — maj 2026</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- AMPX CARD -->
-  <div class="stock-card has-report" onclick="openReport('AMPX')" title="Kliknij → Raport AMPX">
-    <div class="card-accent accent-spec-buy"></div>
-    <div class="card-header">
-      <div class="card-left">
-        <div class="ticker" style="color:var(--gold)">AMPX</div>
-        <div class="company">Amprius Technologies</div>
-        <div class="sector-tag">Silicon Anode Battery · EV · Defense · Pre-revenue</div>
-        <div class="rating-badge" style="background:rgba(255,215,0,0.12);color:var(--gold);border:1px solid rgba(255,215,0,0.25);">
-          ★★★☆☆ SPEKULACYJNY BUY
-        </div>
-      </div>
-      <div class="card-right">
-        <div class="price">$17.16</div>
-        <div class="from-ath" style="color:var(--amber);">▼ -13.2% od ATH $19.76</div>
-        <div class="stars" style="margin-top:4px;">★★★☆☆</div>
-      </div>
-    </div>
-    <div class="card-metrics">
-      <div class="metric">
-        <div class="metric-val" style="color:var(--gold)">8</div>
-        <div class="metric-lbl">Analysts (0 Sell)</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--amber)">$20.00</div>
-        <div class="metric-lbl">Avg PT (+16.6%)</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--green)">24%</div>
-        <div class="metric-lbl">Gross Margin Q4</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--gold)">$73M</div>
-        <div class="metric-lbl">Revenue FY2025</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="thesis"><strong>Teza:</strong> Silicon anode batteries z <strong class="hl" style="color:var(--gold)">500 Wh/kg gęstością (SiMaxx)</strong> — rewolucja w lotnictwie, EV, obronie. <strong>$73M FY25 (+202% YoY)</strong>, guidance $125M+ 2026. Pierwsze pozytywne EBITDA Q4 2025. <strong class="hl" style="color:var(--red)">⚠ Czerwona flaga: były CEO sprzedał 79% pozycji ($16.73M). Director Chu: -55%. Łącznie insiderzy wyrzucili $24M+.</strong></div>
-      <div class="signals">
-        <span class="sig sig-gold">500 Wh/kg SiMaxx</span>
-        <span class="sig sig-green">+202% rev FY25</span>
-        <span class="sig sig-green">EBITDA+ Q4 2025</span>
-        <span class="sig sig-red">Insider sell $24M+</span>
-        <span class="sig sig-amber">Market cap $2.3B</span>
-        <span class="sig sig-dim">Earnings 07 Maj'26</span>
-      </div>
-      <div class="entry-row">
-        <div class="entry-box">
-          <div class="entry-label">T1 (optymalne)</div>
-          <div class="entry-val" style="color:var(--green)">$16.30–$16.80</div>
-        </div>
-        <div class="entry-box">
-          <div class="entry-label">Stop-Loss</div>
-          <div class="entry-val" style="color:var(--red)">$12.50</div>
-        </div>
-        <div class="entry-box">
-          <div class="entry-label">Target (bazowy)</div>
-          <div class="entry-val" style="color:var(--gold)">$20–22</div>
-        </div>
-      </div>
-      <div class="catalyst">
-        <span>⚡ Nearest catalyst:</span>
-        <span class="catalyst-event">Q1 2026 Earnings — 07 Maj 2026</span>
-      </div>
-    </div>
-  </div>
-    <a href="javascript:void(0)" onclick="event.stopPropagation();openReport('AMPX')" class="report-btn">→ OTWÓRZ PEŁNY RAPORT <span>AMPX</span></a>
-
-  <!-- SATL CARD -->
-  <div class="stock-card has-report" onclick="openReport('SATL')" title="Kliknij → Raport SATL">
-    <div class="card-accent accent-spec"></div>
-    <div class="card-header">
-      <div class="card-left">
-        <div class="ticker" style="color:var(--purple)">SATL</div>
-        <div class="company">Satellogic Inc.</div>
-        <div class="sector-tag">Earth Observation · Space · US Defense · Small-cap</div>
-        <div class="rating-badge" style="background:rgba(180,79,255,0.12);color:var(--purple);border:1px solid rgba(180,79,255,0.25);">
-          ★★★☆☆ SPEKULACYJNY BUY
-        </div>
-      </div>
-      <div class="card-right">
-        <div class="price">$5.93</div>
-        <div class="from-ath" style="color:var(--amber);">▼ -13.3% od ATH $6.84</div>
-        <div class="stars" style="margin-top:4px;">★★★☆☆</div>
-      </div>
-    </div>
-    <div class="card-metrics">
-      <div class="metric">
-        <div class="metric-val" style="color:var(--purple)">+94%</div>
-        <div class="metric-lbl">Q4'25 Rev YoY</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--amber)">$5.83</div>
-        <div class="metric-lbl">Avg PT buy-side</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--gold)">$7.00</div>
-        <div class="metric-lbl">Cantor PT (max)</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:var(--green)">~$490M</div>
-        <div class="metric-lbl">Market Cap</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="thesis"><strong>Teza:</strong> Earth observation nanosatelites + US DoD pivot. <strong class="hl" style="color:var(--purple)">Net loss -96% YoY ($116M→$4.8M)</strong>, Merlin constellation (1m/dzień, launch X.2026 — w pełni finansowany $30M kontraktem). IDT Corp (główny insder) akumuluje. <strong class="hl" style="color:var(--red)">Ryzyko: Shelf $200M (potencjalna dilucja 40%), revenue $17.7M FY25, Weiss Ratings Sell.</strong></div>
-      <div class="signals">
-        <span class="sig sig-purple">Net loss -96% YoY</span>
-        <span class="sig sig-purple">Merlin launch X.2026</span>
-        <span class="sig sig-green">US DoD / Slingshot</span>
-        <span class="sig sig-green">IDT insider kupuje</span>
-        <span class="sig sig-red">Shelf $200M dilucja</span>
-        <span class="sig sig-amber">Weiss Sell (D-)</span>
-      </div>
-      <div class="entry-row">
-        <div class="entry-box">
-          <div class="entry-label">T1 (optymalne)</div>
-          <div class="entry-val" style="color:var(--green)">$5.40–5.60</div>
-        </div>
-        <div class="entry-box">
-          <div class="entry-label">Stop-Loss</div>
-          <div class="entry-val" style="color:var(--red)">$3.00</div>
-        </div>
-        <div class="entry-box">
-          <div class="entry-label">Target (bazowy)</div>
-          <div class="entry-val" style="color:var(--purple)">$7.00–10.00</div>
-        </div>
-      </div>
-      <div class="catalyst">
-        <span>⚡ Nearest catalyst:</span>
-        <span class="catalyst-event">Q1 2026 Earnings — Maj 2026 · Merlin launch X.2026</span>
-      </div>
-    </div>
-  </div>
-    <a href="javascript:void(0)" onclick="event.stopPropagation();openReport('SATL')" class="report-btn">→ OTWÓRZ PEŁNY RAPORT <span>SATL</span></a>
-
-</div>
-
-<!-- ══ RISK MATRIX ══ -->
-<div class="summary-section" style="margin-top:28px;">
-  <div class="summary-head">⚖️ Risk/Conviction Matrix — Portfolio View</div>
-  <div class="summary-body">
-
-    <div class="risk-axis">
-      <div class="risk-box">
-        <div class="risk-box-title" style="color:var(--green)">🟢 Wysoka Conviction / Niskie Ryzyko</div>
-        <div class="risk-ticker-list">
-          <div class="risk-ticker">
-            <span style="color:var(--purple);font-weight:700;">AVGO</span>
-            <span class="c-green">★★★★★ mega-moat</span>
-          </div>
-          <div class="risk-ticker">
-            <span style="color:var(--cyan);font-weight:700;">MU</span>
-            <span class="c-green">★★★★☆ HBM cycle</span>
-          </div>
-        </div>
-      </div>
-      <div class="risk-box">
-        <div class="risk-box-title" style="color:var(--amber)">🟡 Średnia Conviction / Średnie Ryzyko</div>
-        <div class="risk-ticker-list">
-          <div class="risk-ticker">
-            <span style="color:var(--orange);font-weight:700;">AMKR</span>
-            <span class="c-amber">★★★★☆ Kim discount</span>
-          </div>
-          <div class="risk-ticker">
-            <span style="color:var(--green);font-weight:700;">APH</span>
-            <span class="c-amber">★★★★☆ compounder</span>
-          </div>
-          <div class="risk-ticker">
-            <span style="color:var(--blue);font-weight:700;">LNG</span>
-            <span class="c-amber">★★★☆☆ defensywna</span>
-          </div>
-        </div>
-      </div>
-      <div class="risk-box">
-        <div class="risk-box-title" style="color:var(--red)">🔴 Spekulatywna / Wysokie Ryzyko</div>
-        <div class="risk-ticker-list">
-          <div class="risk-ticker">
-            <span style="color:var(--cyan);font-weight:700;">KLIC</span>
-            <span class="c-red">★★★☆☆ TCB binary</span>
-          </div>
-          <div class="risk-ticker">
-            <span style="color:var(--gold);font-weight:700;">AMPX</span>
-            <span class="c-red">★★★☆☆ pre-revenue</span>
-          </div>
-          <div class="risk-ticker">
-            <span style="color:var(--purple);font-weight:700;">SATL</span>
-            <span class="c-red">★★★☆☆ micro-cap</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CONVICTION RANKING -->
-    <div style="font-size:0.78rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Ranking Conviction → Upside (analitycy)</div>
-    <table class="comp-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Ticker</th>
-          <th>Rating</th>
-          <th class="td-r">Cena</th>
-          <th class="td-r">Avg PT</th>
-          <th class="td-r">Implied Upside</th>
-          <th class="td-r">SL</th>
-          <th class="td-r">R/R</th>
-          <th>Nearest Earnings</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="background:rgba(180,79,255,0.05);">
-          <td class="c-purple">1</td>
-          <td><strong style="color:var(--purple)">AVGO</strong></td>
-          <td><span style="color:var(--gold)">★★★★★ STRONG BUY</span></td>
-          <td class="td-r">$309.51</td>
-          <td class="td-r c-green">$431–470</td>
-          <td class="td-r c-green"><strong>+39–52%</strong></td>
-          <td class="td-r c-red">$255</td>
-          <td class="td-r c-green">~3.5:1</td>
-          <td>04 Cze 2026</td>
-        </tr>
-        <tr>
-          <td class="c-cyan">2</td>
-          <td><strong style="color:var(--cyan)">MU</strong></td>
-          <td><span style="color:var(--green)">★★★★☆ STRONG BUY</span></td>
-          <td class="td-r">~$336</td>
-          <td class="td-r c-green">$443–533</td>
-          <td class="td-r c-green"><strong>+32–59%</strong></td>
-          <td class="td-r c-red">$270</td>
-          <td class="td-r c-green">~3:1</td>
-          <td>24 Cze 2026</td>
-        </tr>
-        <tr>
-          <td class="c-orange">3</td>
-          <td><strong style="color:var(--orange)">AMKR</strong></td>
-          <td><span style="color:var(--cyan)">★★★★☆ BUY</span></td>
-          <td class="td-r">$41.25</td>
-          <td class="td-r c-green">$56–65</td>
-          <td class="td-r c-green"><strong>+36–57%</strong></td>
-          <td class="td-r c-red">$33</td>
-          <td class="td-r c-green">~3.5:1</td>
-          <td>04 Maj 2026</td>
-        </tr>
-        <tr>
-          <td class="c-purple">4</td>
-          <td><strong style="color:var(--purple)">SATL</strong></td>
-          <td><span style="color:var(--purple)">★★★☆☆ SPEC.</span></td>
-          <td class="td-r">$5.93</td>
-          <td class="td-r c-purple">$5.83–7.00</td>
-          <td class="td-r c-purple"><strong>+18–27%</strong></td>
-          <td class="td-r c-red">$3.00</td>
-          <td class="td-r c-amber">~1.5:1</td>
-          <td>Q1 Maj 2026</td>
-        </tr>
-        <tr>
-          <td class="c-green">5</td>
-          <td><strong style="color:var(--green)">APH</strong></td>
-          <td><span style="color:var(--green)">★★★★☆ AKUMULUJ</span></td>
-          <td class="td-r">$129.55</td>
-          <td class="td-r c-green">$155–172</td>
-          <td class="td-r c-green"><strong>+20–33%</strong></td>
-          <td class="td-r c-red">$115</td>
-          <td class="td-r c-green">~2.5:1</td>
-          <td>29 Kwi 2026</td>
-        </tr>
-        <tr>
-          <td class="c-gold">6</td>
-          <td><strong style="color:var(--gold)">AMPX</strong></td>
-          <td><span style="color:var(--gold)">★★★☆☆ SPEC.</span></td>
-          <td class="td-r">$17.16</td>
-          <td class="td-r c-gold">$20.00</td>
-          <td class="td-r c-amber"><strong>+16.6%</strong></td>
-          <td class="td-r c-red">$12.50</td>
-          <td class="td-r c-amber">~2:1</td>
-          <td>07 Maj 2026</td>
-        </tr>
-        <tr>
-          <td class="c-blue">7</td>
-          <td><strong style="color:var(--blue)">LNG</strong></td>
-          <td><span style="color:var(--amber)">★★★☆☆ HOLD/BUY</span></td>
-          <td class="td-r">~$235</td>
-          <td class="td-r c-amber">$265–287</td>
-          <td class="td-r c-amber"><strong>+13–22%</strong></td>
-          <td class="td-r c-red">$200</td>
-          <td class="td-r c-amber">~1.5:1</td>
-          <td>maj 2026</td>
-        </tr>
-        <tr>
-          <td class="c-red">8</td>
-          <td><strong style="color:var(--cyan)">KLIC</strong></td>
-          <td><span style="color:var(--amber)">★★★☆☆ SPEC. BUY</span></td>
-          <td class="td-r">~$67</td>
-          <td class="td-r c-red">$54.67 (!)</td>
-          <td class="td-r c-red"><strong>-18% avg ⚠</strong></td>
-          <td class="td-r c-red">$57</td>
-          <td class="td-r c-red">speculative</td>
-          <td>05 Maj 2026</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div style="margin-top:16px;padding:12px 14px;background:rgba(255,215,0,0.06);border:1px solid rgba(255,215,0,0.2);font-size:0.88rem;color:var(--text2);line-height:1.65;">
-      <strong style="color:var(--gold)">⚡ Kluczowe obserwacje portfelowe:</strong><br>
-      <strong style="color:var(--text)">1.</strong> Wszystkie spółki tech są w -20 do -30% korekcie od ATH — <span style="color:var(--green);">okazja strukturalna</span>, nie katastrofa fundamentalna.<br>
-      <strong style="color:var(--text)">2.</strong> <strong style="color:var(--purple);">AVGO + MU</strong> to core pozycje: najlepsze fundamenty, największy upside do analitycznych PT, AI supercycle.<br>
-      <strong style="color:var(--text)">3.</strong> <strong style="color:var(--red);">KLIC</strong> to jedyna spółka gdzie avg PT analityków jest <em>poniżej</em> bieżącej ceny — spekulujesz na TCB ramp, nie na wycenę.<br>
-      <strong style="color:var(--text)">4.</strong> <strong style="color:var(--orange);">AMKR</strong> to najlepsza asymetria risk/reward spośród spółek mid-cap w portfelu — sell-off techniczny, nie fundamentalny.<br>
-      <strong style="color:var(--text)">5.</strong> <strong style="color:var(--blue);">LNG</strong> + <strong style="color:var(--gold);">AMPX</strong> + <strong style="color:var(--purple);">SATL</strong> to pozycje satelitarne — łącznie &lt;15% portfela ma sens.
-    </div>
-  </div>
+<div class="master-table-wrap">
+  <div class="master-table-head">SL / TP / R:R — Przegląd</div>
+  <table class="mtable">
+    <thead>
+      <tr>
+        <th>Ticker</th>
+        <th>Rola</th>
+        <th class="td-r">Entry</th>
+        <th class="td-r">Teraz</th>
+        <th class="td-r">P&amp;L</th>
+        <th class="td-r">SL</th>
+        <th class="td-r">TP1</th>
+        <th class="td-r">TP2 / Cel</th>
+        <th class="td-r">R:R</th>
+        <th class="td-r">Earnings</th>
+        <th class="td-c">Raport</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:rgba(0,229,255,0.03);">
+        <td><strong class="c-cyan">MU</strong></td>
+        <td><span style="color:var(--cyan);font-size:0.72rem;">Bankomatat #1</span></td>
+        <td class="td-r">$350</td>
+        <td class="td-r c-amber">~$336</td>
+        <td class="td-r c-red">−4.0%</td>
+        <td class="td-r c-red">$314 <span style="color:var(--text3);font-size:0.68rem;">(⚠$290)</span></td>
+        <td class="td-r c-cyan">$422</td>
+        <td class="td-r c-green">$512+</td>
+        <td class="td-r c-green">~3:1</td>
+        <td class="td-r c-amber">24 Cze'26</td>
+        <td class="td-c"><a href="https://kalibracjadirac.pl/mu-raport.html" target="_blank" class="rpt-link">MU →</a></td>
+      </tr>
+      <tr style="background:rgba(180,79,255,0.03);">
+        <td><strong class="c-purple">SATL</strong></td>
+        <td><span style="color:var(--purple);font-size:0.72rem;">Spekulacja</span></td>
+        <td class="td-r">$6.00</td>
+        <td class="td-r c-amber">$5.93</td>
+        <td class="td-r c-red">−1.2%</td>
+        <td class="td-r c-red">$4.80 <span style="color:var(--text3);font-size:0.68rem;">(⚠$3.00)</span></td>
+        <td class="td-r c-cyan">$9.60</td>
+        <td class="td-r c-green">$12.00+</td>
+        <td class="td-r c-amber">~2.5:1</td>
+        <td class="td-r c-amber">Maj'26</td>
+        <td class="td-c"><a href="https://kalibracjadirac.pl/satl-raport.html" target="_blank" class="rpt-link">SATL →</a></td>
+      </tr>
+      <tr style="background:rgba(180,79,255,0.04);">
+        <td><strong class="c-purple">AVGO</strong></td>
+        <td><span style="color:var(--purple);font-size:0.72rem;">Skarbiec</span></td>
+        <td class="td-r">$313.94</td>
+        <td class="td-r c-amber">~$310</td>
+        <td class="td-r c-red">−1.3%</td>
+        <td class="td-r c-red">$288 <span style="color:var(--text3);font-size:0.68rem;">(raport:$255)</span></td>
+        <td class="td-r c-purple">bez TP</td>
+        <td class="td-r c-green">$431–470</td>
+        <td class="td-r c-purple">∞</td>
+        <td class="td-r c-amber">04 Cze'26</td>
+        <td class="td-c"><a href="https://kalibracjadirac.pl/avgo-raport.html" target="_blank" class="rpt-link">AVGO →</a></td>
+      </tr>
+      <tr style="background:rgba(255,107,43,0.03);">
+        <td><strong class="c-orange">AMKR</strong></td>
+        <td><span style="color:var(--orange);font-size:0.72rem;">Bankomatat #2</span></td>
+        <td class="td-r">$46.80</td>
+        <td class="td-r c-amber">~$41</td>
+        <td class="td-r c-red">−12.4%</td>
+        <td class="td-r c-red">$40.30 <span style="color:var(--red);font-size:0.68rem;">⚠⚠ DECYZJA</span></td>
+        <td class="td-r c-cyan">$59.80</td>
+        <td class="td-r c-green">$66.30</td>
+        <td class="td-r c-green">~3.5:1</td>
+        <td class="td-r" style="color:var(--red);">04 Maj'26 ⚡</td>
+        <td class="td-c"><a href="https://kalibracjadirac.pl/amkr-raport.html" target="_blank" class="rpt-link">AMKR →</a></td>
+      </tr>
+      <tr><td colspan="11" style="height:6px;background:rgba(255,255,255,0.02);"></td></tr>
+      <tr style="opacity:0.7;">
+        <td><strong class="c-green">APH</strong></td>
+        <td><span class="c-dim" style="font-size:0.72rem;">Watchlist</span></td>
+        <td class="td-r c-dim">—</td>
+        <td class="td-r">$127.96</td>
+        <td class="td-r c-dim">—</td>
+        <td class="td-r c-red">$115</td>
+        <td class="td-r c-cyan">$155</td>
+        <td class="td-r c-green">$165</td>
+        <td class="td-r c-green">~3:1</td>
+        <td class="td-r c-amber">29 Kwi'26 ⚡</td>
+        <td class="td-c"><a href="https://kalibracjadirac.pl/aph-raport.html" target="_blank" class="rpt-link">APH →</a></td>
+      </tr>
+      <tr style="opacity:0.7;">
+        <td><strong class="c-gold">AMPX</strong></td>
+        <td><span class="c-dim" style="font-size:0.72rem;">Watchlist</span></td>
+        <td class="td-r c-dim">—</td>
+        <td class="td-r">$17.16</td>
+        <td class="td-r c-dim">—</td>
+        <td class="td-r c-red">$12.50</td>
+        <td class="td-r c-cyan">$20</td>
+        <td class="td-r c-green">$22</td>
+        <td class="td-r c-amber">~2:1</td>
+        <td class="td-r c-amber">07 Maj'26</td>
+        <td class="td-c"><a href="https://kalibracjadirac.pl/ampx-raport.html" target="_blank" class="rpt-link">AMPX →</a></td>
+      </tr>
+      <tr style="opacity:0.6;">
+        <td><strong class="c-blue">LNG</strong></td>
+        <td><span class="c-dim" style="font-size:0.72rem;">Watchlist</span></td>
+        <td class="td-r c-dim">—</td>
+        <td class="td-r">~$235</td>
+        <td class="td-r c-dim">—</td>
+        <td class="td-r c-red">$200</td>
+        <td class="td-r c-cyan">$265</td>
+        <td class="td-r c-green">$290</td>
+        <td class="td-r c-amber">~1.5:1</td>
+        <td class="td-r c-dim">Maj'26</td>
+        <td class="td-c"><span class="no-rpt">brak</span></td>
+      </tr>
+      <tr style="opacity:0.6;">
+        <td><strong class="c-cyan">KLIC</strong></td>
+        <td><span class="c-dim" style="font-size:0.72rem;">Watchlist</span></td>
+        <td class="td-r c-dim">—</td>
+        <td class="td-r">~$67</td>
+        <td class="td-r c-dim">—</td>
+        <td class="td-r c-red">$57</td>
+        <td class="td-r c-cyan">$80</td>
+        <td class="td-r c-green">$95</td>
+        <td class="td-r c-amber">specul.</td>
+        <td class="td-r c-amber">05 Maj'26</td>
+        <td class="td-c"><span class="no-rpt">brak</span></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 </div><!-- /container -->
 
 <div class="footer">
-  ANAL MASTER DASHBOARD — 8 spółek: AVGO · MU · AMKR · APH · LNG · KLIC · AMPX · SATL — wygenerowano 01.04.2026<br>
-  Dane aktualne na dzień raportu. Źródła: stockanalysis.com · tipranks.com · investing.com · tradingview.com · SEC filings · earnings calls<br>
-  ⚠ Wyłącznie informacyjny. Nie stanowi rekomendacji inwestycyjnej. Inwestuj na własne ryzyko.
+  PORTFOLIO DASHBOARD — MU · SATL · AVGO · AMKR (aktywne) · APH · AMPX · LNG · KLIC (watchlist) — 02.04.2026<br>
+  Dane wejścia z historii transakcji. Ceny rynkowe z raportów ANAL (26–27.03.2026). Nie stanowi rekomendacji inwestycyjnej.
 </div>
 
 </body>
