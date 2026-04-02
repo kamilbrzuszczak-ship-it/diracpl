@@ -92,7 +92,7 @@ def main():
         
         html = re.sub(
             rf'(<div class="pos-card {ticker.lower()}".*?<div class="card-price-now [^"]+">)([^<]+)(</div>)',
-            rf'\g<1>${price:.2f}',
+            rf'\g<1>${price:.2f}\3',
             html, flags=re.DOTALL
         )
         html = re.sub(
@@ -102,7 +102,7 @@ def main():
         )
         html = re.sub(
             rf'(<div class="pos-card {ticker.lower()}".*?<div class="card-price-date">)([^<]+)(</div>)',
-            rf'\g<1><span style="color:var(--green);">🟢 LIVE</span>',
+            rf'\g<1><span style="color:var(--green);">🟢 LIVE</span>\3',
             html, flags=re.DOTALL
         )
         html = re.sub(
@@ -116,7 +116,7 @@ def main():
         price = prices[ticker]
         html = re.sub(
             rf'(<div class="cand-ticker[^>]+>{ticker}</div>.*?<div class="cand-price">)([^<]+)(</div>)',
-            rf'\g<1>${price:.2f} 🟢',
+            rf'\g<1>${price:.2f}\3 🟢',
             html, flags=re.DOTALL
         )
 
@@ -144,7 +144,7 @@ def main():
         
         html = re.sub(
             rf'(<strong class="[a-z-]+" style="[^"]+">{ticker}</strong>.*?<td class="tr[^"]*">)~\$?\d+\.?\d*(</td>\s*<td class="tr )([^"]+)(">)[^<]+(</td>)',
-            rf'\g<1>${price:.2f}{pnl_cls}{pnl_str}',
+            rf'\g<1>${price:.2f}\3{pnl_cls}{pnl_str}',
             html, flags=re.DOTALL
         )
         
@@ -153,7 +153,7 @@ def main():
         price = prices[ticker]
         html = re.sub(
             rf'(<strong class="[a-z-]+" style="[^"]+">{ticker}</strong>.*?<td class="tr c-dim">—</td>\s*<td class="tr">)([^<]+)(</td>)',
-            rf'\g<1>${price:.2f}',
+            rf'\g<1>${price:.2f}\3',
             html, flags=re.DOTALL
         )
 
