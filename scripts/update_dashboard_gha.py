@@ -45,9 +45,15 @@ def main():
         print("Brak pobranych cen!")
         return
 
-    # Słownik z danymi wejścia z Twojego portfela
+    
+    # Słownik z danymi wejścia z Twojego portfela (z wolumenem do wagi)
     entries = {
-        "MU": {"entry": 350.0, "sl": 314.0, "tp": 512.0},
+        "MU": {"entry": 350.0, "sl": 314.0, "tp": 512.0, "shares": 5.46},
+        "SATL": {"entry": 6.00, "sl": 4.80, "tp": 12.0, "shares": 145.0},
+        "AVGO": {"entry": 313.94, "sl": 288.0, "tp": 470.0, "shares": 2.42},
+        "AMKR": {"entry": 46.80, "sl": 40.30, "tp": 66.30, "shares": 22.92}
+    }
+,
         "SATL": {"entry": 6.00, "sl": 4.80, "tp": 12.0},
         "AVGO": {"entry": 313.94, "sl": 288.0, "tp": 470.0},
         "AMKR": {"entry": 46.80, "sl": 40.30, "tp": 66.30}
@@ -60,7 +66,20 @@ def main():
         html
     )
 
+    
+    # Aktualizacja skryptu Chart.js w HTML (Wstrzykiwanie aktualnych wartości portfela USD)
+    live_values = {}
+    for t in ["MU", "SATL", "AVGO", "AMKR"]:
+        if t in prices:
+            live_values[t] = round(prices[t] * entries[t]["shares"], 2)
+        else:
+            live_values[t] = round(entries[t]["entry"] * entries[t]["shares"], 2)
+
+    chart_data_js = f'const liveChartData = {{ "MU": {live_values["MU"]}, "SATL": {live_values["SATL"]}, "AVGO": {live_values["AVGO"]}, "AMKR": {live_values["AMKR"]} }};'
+    html = re.sub(r'// CHART_DATA_START.*?// CHART_DATA_END', f'// CHART_DATA_START\n{chart_data_js}\n// CHART_DATA_END', html, flags=re.DOTALL)
+
     # 1. Aktualizacja KART PORTFELA
+
     for ticker in ["MU", "SATL", "AVGO", "AMKR"]:
         if ticker not in prices: continue
         price = prices[ticker]
