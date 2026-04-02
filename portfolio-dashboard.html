@@ -1108,5 +1108,96 @@ table.mt .tc { text-align: center; }
   Dane z raportów ANAL. Ceny z 26–27.03.2026 i 01.04.2026. Nie stanowi rekomendacji inwestycyjnej.
 </div>
 
+
+<!-- ═══ LIVE DATA SCRIPT ═══ -->
+<script>
+async function fetchYahooPrice(ticker) {
+  try {
+    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1m&range=1d`;
+    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+    const res = await fetch(proxyUrl);
+    if (!res.ok) return null;
+    const data = await res.json();
+    const parsed = JSON.parse(data.contents);
+    return parsed.chart.result[0].meta.regularMarketPrice;
+  } catch (err) {
+    console.error('Błąd pobierania:', ticker, err);
+    return null;
+  }
+}
+
+async function updateDashboard() {
+  const dateElems = document.querySelectorAll('.card-price-date, .header-date');
+  dateElems.forEach(el => {
+    if(el.classList.contains('header-date')) {
+      if(!el.innerHTML.includes('LIVE')) {
+        el.innerHTML += ' <span style="color:var(--green);font-weight:bold;">· 🟢 LIVE</span>';
+      }
+    } else {
+      el.innerHTML = '<span style="color:var(--green);">🟢 LIVE</span>';
+    }
+  });
+
+  const tickers = ['MU', 'SATL', 'AVGO', 'AMKR', 'APH', 'AMPX'];
+  const prices = {};
+  
+  for(let ticker of tickers) {
+    const p = await fetchYahooPrice(ticker);
+    if(p) prices[ticker] = p;
+  }
+
+  // Update Portfolio Cards
+  const cards = document.querySelectorAll('.pos-card');
+  cards.forEach(card => {
+    const ticker = card.getAttribute('data-ticker');
+    if(!prices[ticker]) return;
+    
+    const price = prices[ticker];
+    const priceNowEl = card.querySelector('.card-price-now');
+    const pnlEl = card.querySelector('.card-pnl');
+    const cursor = card.querySelector('.price-cursor');
+    
+    // Hardcoded entry values logic for PnL
+    let entry = 0, sl = 0, tp = 0;
+    if(ticker==='MU') { entry=350; sl=314; tp=512; }
+    if(ticker==='SATL') { entry=6.0; sl=4.8; tp=12; }
+    if(ticker==='AVGO') { entry=313.94; sl=288; tp=470; }
+    if(ticker==='AMKR') { entry=46.80; sl=40.30; tp=66.30; }
+
+    if(priceNowEl) priceNowEl.textContent = '$' + price.toFixed(2);
+    
+    if(pnlEl && entry > 0) {
+      const pnlPct = ((price - entry) / entry) * 100;
+      pnlEl.textContent = (pnlPct >= 0 ? '▲ +' : '▼ ') + pnlPct.toFixed(1) + '%';
+      pnlEl.className = 'card-pnl ' + (pnlPct >= 0 ? 'c-green' : 'c-red');
+    }
+
+    if(cursor && sl > 0 && tp > 0) {
+      let pct = ((price - sl) / (tp - sl)) * 100;
+      pct = Math.max(0, Math.min(100, pct));
+      cursor.style.left = pct.toFixed(1) + '%';
+      cursor.title = 'Teraz $' + price.toFixed(2);
+    }
+  });
+
+  // Update Candidates
+  const cands = document.querySelectorAll('.cand-card');
+  cands.forEach(card => {
+    const tickerEl = card.querySelector('.cand-ticker');
+    if(!tickerEl) return;
+    const ticker = tickerEl.textContent.trim();
+    if(!prices[ticker]) return;
+
+    const priceEl = card.querySelector('.cand-price');
+    if(priceEl) priceEl.textContent = '$' + prices[ticker].toFixed(2) + ' 🟢';
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateDashboard();
+  setInterval(updateDashboard, 60000); // co minutę
+});
+</script>
 </body>
+
 </html>
