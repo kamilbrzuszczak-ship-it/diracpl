@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANAL — APH / Amphenol Corporation — 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #0A0A0C;
+  --bg2:       #0F0F12;
+  --bg3:       #141418;
+  --bg4:       #1A1A20;
+  --border:    #1E1E26;
+  --border2:   #252530;
+  --green:     #00FF88;
+  --green2:    #00CC6A;
+  --red:       #FF3355;
+  --red2:      #CC2244;
+  --amber:     #FFB800;
+  --blue:      #00AAFF;
+  --purple:    #9945FF;
+  --text:      #E8E8F0;
+  --text2:     #9090A8;
+  --text3:     #5A5A70;
+  --accent:    #00FF88;
+  --mono:      'JetBrains Mono', monospace;
+  --sans:      'Syne', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 10px;
+  scroll-behavior: smooth;
+}
+
+@media (min-width: 1024px) {
+  html { zoom: 1.43; }
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ═══ SCANLINES OVERLAY ═══ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.15) 2px,
+    rgba(0,0,0,0.15) 4px
+  );
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* ═══ HEADER ═══ */
+.header {
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border2);
+  padding: 20px 28px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.header-left {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.ticker-big {
+  font-family: var(--sans);
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--green);
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 20px rgba(0,255,136,0.4);
+}
+
+.ticker-name {
+  font-size: 1.1rem;
+  color: var(--text2);
+  letter-spacing: 0.08em;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.price-big {
+  font-family: var(--sans);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.price-change {
+  font-size: 1.1rem;
+  color: var(--red);
+  font-weight: 500;
+}
+
+.price-change.up { color: var(--green); }
+
+.tag {
+  font-size: 0.95rem;
+  padding: 3px 10px;
+  border-radius: 2px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.tag-green  { background: rgba(0,255,136,0.12); color: var(--green); border: 1px solid rgba(0,255,136,0.25); }
+.tag-red    { background: rgba(255,51,85,0.12);  color: var(--red);   border: 1px solid rgba(255,51,85,0.25); }
+.tag-amber  { background: rgba(255,184,0,0.12);  color: var(--amber); border: 1px solid rgba(255,184,0,0.25); }
+.tag-blue   { background: rgba(0,170,255,0.12);  color: var(--blue);  border: 1px solid rgba(0,170,255,0.25); }
+.tag-purple { background: rgba(153,69,255,0.12); color: var(--purple);border: 1px solid rgba(153,69,255,0.25); }
+
+/* ═══ NAV STRIP ═══ */
+.nav-strip {
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+  padding: 0 28px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav-strip::-webkit-scrollbar { display: none; }
+
+.nav-item {
+  font-size: 0.9rem;
+  color: var(--text3);
+  padding: 10px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+}
+
+.nav-item:hover {
+  color: var(--text);
+  border-bottom-color: var(--green);
+}
+
+/* ═══ LAYOUT ═══ */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 28px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ═══ SECTION ═══ */
+.section {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.section-head {
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-num {
+  font-size: 0.8rem;
+  color: var(--text3);
+  letter-spacing: 0.12em;
+}
+
+.section-title {
+  font-family: var(--sans);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  flex: 1;
+}
+
+.section-body {
+  padding: 20px;
+}
+
+/* ═══ GRID HELPERS ═══ */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+
+@media (max-width: 700px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+}
+
+/* ═══ KPI CARD ═══ */
+.kpi {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.kpi-label {
+  font-size: 0.8rem;
+  color: var(--text3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.kpi-value {
+  font-family: var(--sans);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+}
+
+.kpi-value.green { color: var(--green); }
+.kpi-value.red   { color: var(--red); }
+.kpi-value.amber { color: var(--amber); }
+.kpi-value.blue  { color: var(--blue); }
+
+.kpi-sub {
+  font-size: 0.85rem;
+  color: var(--text2);
+}
+
+/* ═══ TABLE ═══ */
+.table-wrap { overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.05rem;
+}
+
+th {
+  background: var(--bg4);
+  color: var(--text3);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border2);
+  font-weight: 400;
+}
+
+td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: top;
+}
+
+tr:last-child td { border-bottom: none; }
+
+tr:hover td { background: rgba(255,255,255,0.02); }
+
+.td-right { text-align: right; }
+.td-green { color: var(--green); font-weight: 500; }
+.td-red   { color: var(--red);   font-weight: 500; }
+.td-amber { color: var(--amber); font-weight: 500; }
+.td-blue  { color: var(--blue);  font-weight: 500; }
+.td-dim   { color: var(--text2); }
+
+/* ═══ BARS ═══ */
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.bar-label {
+  font-size: 0.9rem;
+  color: var(--text2);
+  width: 120px;
+  flex-shrink: 0;
+}
+
+.bar-track {
+  flex: 1;
+  height: 5px;
+  background: var(--bg4);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--green);
+  transition: width 1s ease;
+}
+
+.bar-fill.red    { background: var(--red); }
+.bar-fill.amber  { background: var(--amber); }
+.bar-fill.blue   { background: var(--blue); }
+.bar-fill.purple { background: var(--purple); }
+
+.bar-val {
+  font-size: 0.9rem;
+  color: var(--text);
+  width: 60px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ═══ PROSE ═══ */
+.prose {
+  font-size: 1.1rem;
+  color: var(--text2);
+  line-height: 1.75;
+}
+
+.prose p { margin-bottom: 12px; }
+.prose p:last-child { margin-bottom: 0; }
+
+.prose strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.prose .hl-green { color: var(--green); font-weight: 500; }
+.prose .hl-red   { color: var(--red);   font-weight: 500; }
+.prose .hl-amber { color: var(--amber); font-weight: 500; }
+
+/* ═══ SEGMENT PILLS ═══ */
+.seg-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.seg-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.seg-name {
+  font-size: 0.9rem;
+  color: var(--text2);
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.seg-bar {
+  flex: 1;
+  height: 20px;
+  background: var(--bg4);
+  border-radius: 1px;
+  overflow: hidden;
+  position: relative;
+}
+
+.seg-fill {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* ═══ ANALYST CONSENSUS ═══ */
+.consensus-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.c-label {
+  font-size: 0.85rem;
+  color: var(--text2);
+  width: 70px;
+  flex-shrink: 0;
+}
+
+.c-count {
+  font-size: 0.85rem;
+  color: var(--text3);
+  width: 24px;
+  text-align: center;
+}
+
+/* ═══ ENTRY TIERS ═══ */
+.tier {
+  border: 1px solid var(--border2);
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.tier-head {
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.tier-head.t1 { background: rgba(0,255,136,0.07); }
+.tier-head.t2 { background: rgba(255,184,0,0.07); }
+.tier-head.t3 { background: rgba(0,170,255,0.07); }
+
+.tier-name {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.t1 .tier-name { color: var(--green); }
+.t2 .tier-name { color: var(--amber); }
+.t3 .tier-name { color: var(--blue); }
+
+.tier-body {
+  padding: 10px 14px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.tier-item-label {
+  font-size: 0.78rem;
+  color: var(--text3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.tier-item-val {
+  font-size: 1.05rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ═══ RISK MATRIX ═══ */
+.risk-item {
+  display: flex;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+
+.risk-item:last-child { border-bottom: none; }
+
+.risk-badge {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 1px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  margin-top: 2px;
+  width: 58px;
+  text-align: center;
+}
+
+.risk-HIGH   { background: rgba(255,51,85,0.2);   color: var(--red);   border: 1px solid rgba(255,51,85,0.3); }
+.risk-MED    { background: rgba(255,184,0,0.15);  color: var(--amber); border: 1px solid rgba(255,184,0,0.3); }
+.risk-LOW    { background: rgba(0,255,136,0.1);   color: var(--green); border: 1px solid rgba(0,255,136,0.2); }
+
+.risk-title {
+  font-size: 1rem;
+  color: var(--text);
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+.risk-desc {
+  font-size: 0.95rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+
+/* ═══ VERDICT BOX ═══ */
+.verdict-box {
+  border: 1px solid rgba(0,255,136,0.3);
+  background: rgba(0,255,136,0.04);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.verdict-rating {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.verdict-stars {
+  font-size: 1.8rem;
+  letter-spacing: 0.05em;
+  color: var(--amber);
+}
+
+.verdict-label {
+  font-family: var(--sans);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.verdict-text {
+  font-size: 1.05rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+
+.verdict-text strong { color: var(--text); }
+
+/* ═══ SCENARIO CARDS ═══ */
+.scenario-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.scenario-card {
+  padding: 14px;
+  border: 1px solid var(--border2);
+}
+
+.sc-bull { border-top: 2px solid var(--green); }
+.sc-base { border-top: 2px solid var(--amber); }
+.sc-bear { border-top: 2px solid var(--red); }
+
+.sc-head {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.sc-bull .sc-head { color: var(--green); }
+.sc-base .sc-head { color: var(--amber); }
+.sc-bear .sc-head { color: var(--red); }
+
+.sc-price {
+  font-family: var(--sans);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.sc-bull .sc-price { color: var(--green); }
+.sc-base .sc-price { color: var(--amber); }
+.sc-bear .sc-price { color: var(--red); }
+
+.sc-prob {
+  font-size: 0.85rem;
+  color: var(--text3);
+  margin-bottom: 10px;
+}
+
+.sc-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+
+/* ═══ MOMENTUM SIGNALS ═══ */
+.signal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.signal-row:last-child { border-bottom: none; }
+
+.signal-name {
+  font-size: 0.95rem;
+  color: var(--text2);
+}
+
+.signal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot-green  { background: var(--green); box-shadow: 0 0 6px rgba(0,255,136,0.6); }
+.dot-red    { background: var(--red);   box-shadow: 0 0 6px rgba(255,51,85,0.6); }
+.dot-amber  { background: var(--amber); box-shadow: 0 0 6px rgba(255,184,0,0.6); }
+.dot-grey   { background: var(--text3); }
+
+.signal-val {
+  font-size: 0.95rem;
+  color: var(--text);
+  font-weight: 500;
+  min-width: 80px;
+  text-align: right;
+}
+
+/* ═══ TECH LEVELS ═══ */
+.level-chart {
+  position: relative;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  padding: 20px 16px;
+  height: 200px;
+  margin: 12px 0;
+}
+
+.level-line {
+  position: absolute;
+  left: 60px;
+  right: 16px;
+  height: 1px;
+  display: flex;
+  align-items: center;
+}
+
+.level-line.dashed { border-top: 1px dashed; }
+.level-line.solid  { border-top: 1.5px solid; }
+
+.level-line-green  { border-color: var(--green); }
+.level-line-red    { border-color: var(--red); }
+.level-line-amber  { border-color: var(--amber); }
+.level-line-blue   { border-color: var(--blue); }
+.level-line-purple { border-color: var(--purple); }
+
+.level-label {
+  position: absolute;
+  left: 0;
+  font-size: 0.8rem;
+  transform: translateY(-50%);
+  white-space: nowrap;
+}
+
+.level-price {
+  position: absolute;
+  right: 0;
+  font-size: 0.8rem;
+  transform: translateY(-50%);
+  padding-right: 4px;
+}
+
+/* ═══ FOOTER ═══ */
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.8rem;
+  color: var(--text3);
+  border-top: 1px solid var(--border);
+  line-height: 1.8;
+}
+
+/* ═══ SEPARATOR ═══ */
+.sep {
+  height: 1px;
+  background: var(--border);
+  margin: 16px 0;
+}
+
+.inline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<div class="header">
+  <div class="header-left">
+    <span class="ticker-big">APH</span>
+    <span class="ticker-name">AMPHENOL CORPORATION · NYSE · Connectors & Interconnect</span>
+  </div>
+  <div class="header-right">
+    <span class="price-big">$127.96</span>
+    <span class="price-change">▼ -23.5% od ATH</span>
+    <span class="tag tag-green">STRONG BUY</span>
+    <span class="tag tag-amber">P/E 40x</span>
+  </div>
+</div>
+
+<!-- ═══ NAV STRIP ═══ -->
+<div class="nav-strip">
+  <a class="nav-item" href="#s01">01 MODEL</a>
+  <a class="nav-item" href="#s02">02 FINANSE</a>
+  <a class="nav-item" href="#s03">03 ANALITYCY</a>
+  <a class="nav-item" href="#s04">04 MOMENTUM</a>
+  <a class="nav-item" href="#s05">05 TECHNICZNE</a>
+  <a class="nav-item" href="#s06">06 WEJŚCIE</a>
+  <a class="nav-item" href="#s07">07 SCENARIUSZE</a>
+  <a class="nav-item" href="#s08">08 RYZYKA</a>
+  <a class="nav-item" href="#s09">09 WERDYKT</a>
+</div>
+
+<!-- ═══ CONTAINER ═══ -->
+<div class="container">
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 01 MODEL BIZNESOWY -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="s01">
+  <div class="section-head">
+    <span class="section-num">// 01</span>
+    <span class="section-title">Model Biznesowy</span>
+    <span class="tag tag-blue">Compounder</span>
+    <span class="tag tag-green">AI Infrastructure</span>
+  </div>
+  <div class="section-body">
+    <div class="prose" style="margin-bottom:18px;">
+      <p>Amphenol to <strong>globalny lider konektorów i systemów interconnect</strong> — firma założona w 1932 roku, #2 pod względem udziału rynkowego na świecie (~13-14% rynku wartego ~$80B). Produkuje elektryczne, elektroniczne i światłowodowe konektory oraz systemy łączności dla krytycznych zastosowań: od data center przez wojsko po pojazdy elektryczne. <span class="hl-green">Revenue 2025: $23.1B (+52% YoY)</span> — skok napędzony przez boom AI i akwizycje.</p>
+      <p>Trzy segmenty: <strong>Communications Solutions</strong> (AI/datacom, sieci mobilne, broadband), <strong>Harsh Environment Solutions</strong> (wojsko, lotnictwo, przemysł), <strong>Interconnect & Sensor Systems</strong> (automotive, medycyna, EV). Model zdecentralizowany — 150 tys. pracowników w 300+ zakładach, 40 krajach.</p>
+      <p>Kluczowa przewaga: <span class="hl-green">decentralized entrepreneurship</span> — każda jednostka działa jak startup, co umożliwiło zamknięcie 9 akwizycji od 2024r. w tym transformacyjne przejęcie CommScope CCS ($10.5B, styczeń 2026), które dodaje ekspozycję na światłowody.</p>
+    </div>
+
+    <div style="margin-bottom:16px;">
+      <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Struktura przychodów 2025 — segmenty</div>
+      <div class="seg-grid">
+        <div class="seg-row">
+          <span class="seg-name">Communications Solutions</span>
+          <div class="seg-bar">
+            <div class="seg-fill" style="width:55%;background:rgba(0,255,136,0.25);color:var(--green);">55% · AI/datacom #1 driver</div>
+          </div>
+        </div>
+        <div class="seg-row">
+          <span class="seg-name">Harsh Environment</span>
+          <div class="seg-bar">
+            <div class="seg-fill" style="width:27%;background:rgba(0,170,255,0.2);color:var(--blue);">27% · Def/Aero/Ind</div>
+          </div>
+        </div>
+        <div class="seg-row">
+          <span class="seg-name">Interconnect & Sensor</span>
+          <div class="seg-bar">
+            <div class="seg-fill" style="width:18%;background:rgba(153,69,255,0.2);color:var(--purple);">18% · Auto/EV/Med</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="kpi">
+        <span class="kpi-label">IT Datacom / AI udział w rev.</span>
+        <span class="kpi-value green">36%</span>
+        <span class="kpi-sub">vs &lt;20% kilka lat temu</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Kraje obecności</span>
+        <span class="kpi-value blue">40</span>
+        <span class="kpi-sub">300+ zakładów produkcyjnych</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Pozycja rynkowa</span>
+        <span class="kpi-value">#2</span>
+        <span class="kpi-sub">Globalny udział w rynku konektorów</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 02 FINANSE -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="s02">
+  <div class="section-head">
+    <span class="section-num">// 02</span>
+    <span class="section-title">Finanse</span>
+    <span class="tag tag-green">Record 2025</span>
+  </div>
+  <div class="section-body">
+
+    <div class="grid-4" style="margin-bottom:18px;">
+      <div class="kpi">
+        <span class="kpi-label">Revenue 2025</span>
+        <span class="kpi-value green">$23.1B</span>
+        <span class="kpi-sub">+52% YoY (vs $15.2B 2024)</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Revenue Q4'25</span>
+        <span class="kpi-value green">$6.4B</span>
+        <span class="kpi-sub">+49% YoY, beat est. $6.15B</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Adj. EPS Q4'25</span>
+        <span class="kpi-value green">$0.97</span>
+        <span class="kpi-sub">+76% YoY, beat est. $0.92</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Free Cash Flow 2025</span>
+        <span class="kpi-value green">$4.4B</span>
+        <span class="kpi-sub">103% konwersji z net income</span>
+      </div>
+    </div>
+
+    <div class="grid-4" style="margin-bottom:18px;">
+      <div class="kpi">
+        <span class="kpi-label">Adj. Oper. Margin Q4</span>
+        <span class="kpi-value green">27.5%</span>
+        <span class="kpi-sub">FY 2025: 26.2%</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">EBITDA</span>
+        <span class="kpi-value">$6.89B</span>
+        <span class="kpi-sub">Marża EBITDA 29.85%</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Net Income 2025</span>
+        <span class="kpi-value green">$4.27B</span>
+        <span class="kpi-sub">+76% YoY</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Return on Equity</span>
+        <span class="kpi-value green">36.9%</span>
+        <span class="kpi-sub">Profit margin 18.5%</span>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Rok</th>
+            <th class="td-right">Revenue</th>
+            <th class="td-right">YoY%</th>
+            <th class="td-right">Adj. EPS</th>
+            <th class="td-right">Oper. Margin</th>
+            <th class="td-right">FCF</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2022</td>
+            <td class="td-right td-dim">$12.6B</td>
+            <td class="td-right td-green">+21%</td>
+            <td class="td-right td-dim">$2.70</td>
+            <td class="td-right td-dim">22.1%</td>
+            <td class="td-right td-dim">$2.2B</td>
+          </tr>
+          <tr>
+            <td>2023</td>
+            <td class="td-right td-dim">$12.5B</td>
+            <td class="td-right td-red">-0.8%</td>
+            <td class="td-right td-dim">$2.69</td>
+            <td class="td-right td-dim">21.8%</td>
+            <td class="td-right td-dim">$2.4B</td>
+          </tr>
+          <tr>
+            <td>2024</td>
+            <td class="td-right td-dim">$15.2B</td>
+            <td class="td-right td-green">+22%</td>
+            <td class="td-right td-dim">$3.20</td>
+            <td class="td-right td-dim">23.5%</td>
+            <td class="td-right td-dim">$3.1B</td>
+          </tr>
+          <tr style="background:rgba(0,255,136,0.04);">
+            <td><strong>2025 ✦ Record</strong></td>
+            <td class="td-right td-green"><strong>$23.1B</strong></td>
+            <td class="td-right td-green"><strong>+52%</strong></td>
+            <td class="td-right td-green"><strong>~$3.70</strong></td>
+            <td class="td-right td-green"><strong>26.2%</strong></td>
+            <td class="td-right td-green"><strong>$4.4B</strong></td>
+          </tr>
+          <tr>
+            <td>Q1'26 Guidance</td>
+            <td class="td-right td-amber">$6.9–7.0B</td>
+            <td class="td-right td-amber">+43–45%</td>
+            <td class="td-right td-amber">$0.91–0.93</td>
+            <td class="td-right td-dim">—</td>
+            <td class="td-right td-dim">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sep"></div>
+
+    <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Marże vs konkurencja</div>
+    <div class="bar-row">
+      <span class="bar-label">APH Oper. Margin</span>
+      <div class="bar-track"><div class="bar-fill" style="width:82%"></div></div>
+      <span class="bar-val td-green">27.5%</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">TEL Oper. Margin</span>
+      <div class="bar-track"><div class="bar-fill red" style="width:60%"></div></div>
+      <span class="bar-val">19.8%</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Organic Growth 2025</span>
+      <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+      <span class="bar-val td-green">38%</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">TEL Organic Growth</span>
+      <div class="bar-track"><div class="bar-fill red" style="width:16%"></div></div>
+      <span class="bar-val">6%</span>
+    </div>
+
+    <div class="sep"></div>
+
+    <div class="grid-3">
+      <div class="kpi">
+        <span class="kpi-label">P/E (TTM)</span>
+        <span class="kpi-value amber">~40x</span>
+        <span class="kpi-sub">10-yr avg 28.8x → premia za AI</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">PEG Ratio</span>
+        <span class="kpi-value green">0.46</span>
+        <span class="kpi-sub">Tanie względem tempa wzrostu EPS</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Book-to-Bill Q4'25</span>
+        <span class="kpi-value green">1.1x</span>
+        <span class="kpi-sub">Orders rosną szybciej niż sprzedaż</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 03 ANALITYCY -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="s03">
+  <div class="section-head">
+    <span class="section-num">// 03</span>
+    <span class="section-title">Analitycy Wall Street</span>
+    <span class="tag tag-green">11 Buy / 1 Hold / 0 Sell</span>
+  </div>
+  <div class="section-body">
+
+    <div class="grid-2" style="margin-bottom:18px;">
+      <div>
+        <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Konsensus rating</div>
+        <div class="consensus-row">
+          <span class="c-label">BUY</span>
+          <div class="bar-track" style="height:8px;"><div class="bar-fill" style="width:85%"></div></div>
+          <span class="c-count">11</span>
+        </div>
+        <div class="consensus-row">
+          <span class="c-label">HOLD</span>
+          <div class="bar-track" style="height:8px;"><div class="bar-fill amber" style="width:8%"></div></div>
+          <span class="c-count">1</span>
+        </div>
+        <div class="consensus-row">
+          <span class="c-label">SELL</span>
+          <div class="bar-track" style="height:8px;"><div class="bar-fill red" style="width:0%"></div></div>
+          <span class="c-count">0</span>
+        </div>
+        <div style="margin-top:14px;" class="kpi">
+          <span class="kpi-label">Avg PT (Stockanalysis)</span>
+          <span class="kpi-value green">$154.73</span>
+          <span class="kpi-sub">+20% upside vs. bieżąca cena $127.96</span>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Wybrane targety (2026)</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Dom maklerski</th><th>Rating</th><th class="td-right">PT</th></tr></thead>
+            <tbody>
+              <tr><td>Seaport Research</td><td class="td-green">Buy</td><td class="td-right td-green">$210</td></tr>
+              <tr><td>JPMorgan</td><td class="td-green">Overweight</td><td class="td-right td-green">$185</td></tr>
+              <tr><td>Goldman Sachs</td><td class="td-green">Buy</td><td class="td-right td-green">$183</td></tr>
+              <tr><td>Citi</td><td class="td-green">Buy</td><td class="td-right td-green">$180</td></tr>
+              <tr><td>Evercore ISI</td><td class="td-green">Outperform</td><td class="td-right td-green">$165</td></tr>
+              <tr><td>Jefferies</td><td class="td-green">Buy</td><td class="td-right td-amber">upgrade↑</td></tr>
+              <tr><td>Baird</td><td class="td-green">Buy</td><td class="td-right">$139</td></tr>
+              <tr><td>UBS</td><td class="td-amber">Hold</td><td class="td-right td-dim">~$135</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p><strong>Jefferies (dziś, 01.04.2026)</strong> — <span class="hl-green">upgrade na Buy</span>, powołując się na perspektywy wzrostu data center. Firma podkreśla, że APH ma ~45% ekspozycji na datacenter/tech/defense i zakłada dominację miedzi w rackach AI przez minimum kolejne 2 lata. Prognozy Jefferies na lata 2026-2028 przekraczają consensus. Dodatkowo wskazuje na bliskie partnerstwo APH z Nvidią i skalę produkcji high-speed interconnect jako kluczowe atuty. <span class="hl-green">Evercore ISI</span> utrzymuje Outperform $165 i wskazuje, że APH może pobić consensus $31B przychodów i $4.36 EPS.</p>
+      <p>Median PT wg tickernerd (23 analityków): <strong>$169</strong> z zakresem $135–$210. Przy cenie $127.96 implikuje to <span class="hl-green">+32% upside do mediany</span>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 04 MOMENTUM -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="s04">
+  <div class="section-head">
+    <span class="section-num">// 04</span>
+    <span class="section-title">Momentum & Katalysatory</span>
+    <span class="tag tag-amber">YTD -11.7%</span>
+    <span class="tag tag-green">+83% last 12m</span>
+  </div>
+  <div class="section-body">
+    <div class="grid-2" style="margin-bottom:18px;">
+      <div>
+        <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Relatywna zmiana ceny</div>
+        <div class="signal-row">
+          <span class="signal-name">12-mies. zwrot</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">+82.9%</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">6-mies. zwrot</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">+20%</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">YTD 2026</span>
+          <div class="signal-dot dot-red"></div>
+          <span class="signal-val td-red">-11.7%</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Od ATH ($167.04)</span>
+          <div class="signal-dot dot-red"></div>
+          <span class="signal-val td-red">-23.4%</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Volatility (beta)</span>
+          <div class="signal-dot dot-amber"></div>
+          <span class="signal-val">β = 1.55</span>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Najważniejsze Katalysatory 2026</div>
+        <div class="signal-row">
+          <span class="signal-name">Q1'26 Earnings (29 Apr)</span>
+          <div class="signal-dot dot-amber"></div>
+          <span class="signal-val td-amber">Guidance $6.9-7B</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">CCS Integration (CommScope)</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">Zamknięte sty'26</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">NVIDIA AI buildout</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">Partner copper</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">1.6T Networking H2'26</span>
+          <div class="signal-dot dot-amber"></div>
+          <span class="signal-val td-amber">Ramping now</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Tariffs / China risk</span>
+          <div class="signal-dot dot-red"></div>
+          <span class="signal-val td-red">Headwind</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>APH doświadczyło <span class="hl-red">sell-off post-earnings w sty'26</span> mimo bicia guidancu — klasyczny "sell the news" po skoku >80% w ciągu roku. YTD -11.7% vs sektor XLI +2.6% tworzy <span class="hl-green">technicznie atrakcyjny punkt wejścia</span>. Order growth przyspieszył z 39% w Q3'25 do 68% na koniec roku — demand acceleration potwierdzona. Jefferies upgrade (01.04.2026) to pierwszy sygnał powrotu sentymentu instytucjonalnego.</p>
+      <p>Kluczowy katalizator Q2-Q3'26: skalowanie produkcji <strong>1.6T networking</strong> (aktywne kable miedziane 200Gbps/lane) oraz integracja synergii CCS (~$900M rev w Q1'26 guidance).</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 05 TECHNICZNE -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="s05">
+  <div class="section-head">
+    <span class="section-num">// 05</span>
+    <span class="section-title">Analiza Techniczna</span>
+    <span class="tag tag-amber">Trend Recovery</span>
+  </div>
+  <div class="section-body">
+
+    <div class="grid-2" style="margin-bottom:16px;">
+      <div>
+        <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Poziomy kluczowe</div>
+        <div class="signal-row">
+          <span class="signal-name">ATH (27.01.2026)</span>
+          <div class="signal-dot dot-red"></div>
+          <span class="signal-val">$167.04</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Resistance (200d MA)</span>
+          <div class="signal-dot dot-amber"></div>
+          <span class="signal-val td-amber">~$144</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Resistance (50d MA)</span>
+          <div class="signal-dot dot-amber"></div>
+          <span class="signal-val td-amber">~$138</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Bieżąca cena</span>
+          <div class="signal-dot dot-blue"></div>
+          <span class="signal-val td-blue">$127.96</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Support (volume cluster)</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">$120–122</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Support (głęboki)</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">~$108–112</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">52-tyg. low</span>
+          <div class="signal-dot dot-dim"></div>
+          <span class="signal-val td-dim">$56.45</span>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Sygnały techniczne</div>
+        <div class="signal-row">
+          <span class="signal-name">Trend dzienny</span>
+          <div class="signal-dot dot-amber"></div>
+          <span class="signal-val td-amber">Recovery</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">MACD (3m)</span>
+          <div class="signal-dot dot-red"></div>
+          <span class="signal-val td-red">Sell signal</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">RSI (14)</span>
+          <div class="signal-dot dot-amber"></div>
+          <span class="signal-val td-amber">~42 (neutral)</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Connors RSI2</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">BUY (3x)</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Vol. na spadkach</span>
+          <div class="signal-dot dot-red"></div>
+          <span class="signal-val td-red">Rising — uwaga</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Pivot bottom (5 lut)</span>
+          <div class="signal-dot dot-green"></div>
+          <span class="signal-val td-green">+12.6% od dołka</span>
+        </div>
+        <div class="signal-row">
+          <span class="signal-name">Beta</span>
+          <div class="signal-dot dot-amber"></div>
+          <span class="signal-val">1.55</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visual levels chart -->
+    <div style="font-size:0.8rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Mapa poziomów cenowych</div>
+    <div class="level-chart">
+      <!-- ATH -->
+      <div class="level-line dashed level-line-red" style="top:8%;">
+        <span class="level-label" style="top:8%;color:var(--red);">ATH</span>
+        <span class="level-price" style="top:8%;color:var(--red);">$167</span>
+      </div>
+      <!-- R1 200d MA -->
+      <div class="level-line dashed level-line-amber" style="top:30%;">
+        <span class="level-label" style="top:30%;color:var(--amber);">200d MA / R1</span>
+        <span class="level-price" style="top:30%;color:var(--amber);">$144</span>
+      </div>
+      <!-- 50d MA R2 -->
+      <div class="level-line dashed level-line-amber" style="top:43%;">
+        <span class="level-label" style="top:43%;color:var(--amber);">50d MA / R2</span>
+        <span class="level-price" style="top:43%;color:var(--amber);">$138</span>
+      </div>
+      <!-- Current price -->
+      <div class="level-line solid level-line-blue" style="top:56%;">
+        <span class="level-label" style="top:56%;color:var(--blue);">► CENA</span>
+        <span class="level-price" style="top:56%;color:var(--blue);">$127.96</span>
+      </div>
+      <!-- S1 -->
+      <div class="level-line dashed level-line-green" style="top:68%;">
+        <span class="level-label" style="top:68%;color:var(--green);">S1 Volume Cluster</span>
+        <span class="level-price" style="top:68%;color:var(--green);">$120</span>
+      </div>
+      <!-- S2 deep -->
+      <div class="level-line dashed level-line-green" style="top:82%;">
+        <span class="level-label" style="top:82%;color:var(--green);">S2 Głęboki support</span>
+        <span class="level-price" style="top:82%;color:var(--green);">$108-112</span>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>APH jest w trakcie korekty po parabolu z 2025 roku. Struktura: ATH $167 → pullback ~24% → obecnie konsolidacja w okolicach $125-130. <span class="hl-amber">Kluczowy test: przebicie 50d MA ~$138</span> potwierdziłoby powrót trendu wzrostowego. Ryzyko zejścia do $120-122 (volume support) w przypadku słabego rynku lub negatywnego flow. Głęboka korekta do $108-112 byłaby >30% odreagowaniem od ATH — historycznie ekstremalnie rzadkie w przypadku APH bez recesji.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 06 STRATEGIA WEJŚCIA -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="s06">
+  <div class="section-head">
+    <span class="section-num">// 06</span>
+    <span class="section-title">Strategia Wejścia</span>
+    <span class="tag tag-blue">3 Tiers</span>
+  </div>
+  <div class="section-body">
+
+    <div class="tier">
+      <div class="tier-head t1">
+        <span class="tier-name">Tier 1 — Optymalny pullback</span>
+        <span class="tag tag-green">Aktualnie dostępny</span>
+      </div>
+      <div class="tier-body">
+        <div>
+          <div class="tier-item-label">Strefa wejścia</div>
+          <div class="tier-item-val">$122 – $130</div>
+        </div>
+        <div>
+          <div class="tier-item-label">Stop-Loss</div>
+          <div class="tier-item-val td-red">$115 (-7%)</div>
+        </div>
+        <div>
+          <div class="tier-item-label">Target / Upside</div>
+          <div class="tier-item-val td-green">$155–165 (+22–30%)</div>
+        </div>
+        <div>
+          <div class="tier-item-label">Risk/Reward</div>
+          <div class="tier-item-val td-green">~3:1</div>
+        </div>
+        <div>
+          <div class="tier-item-label">Horyzont</div>
+          <div class="tier-item-val">6–12 mies.</div>
+        </div>
+        <div>
+          <div class="tier-item-label">Kontekst</div>
+          <div class="tier-item-val td-dim">Obecna konsolidacja</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier">
+      <div class="tier-head t2">
+        <span class="tier-name">Tier 2 — Strefa rynkowa (po potwierdzeniu)</span>
+        <span class="tag tag-amber">Po przebiciu $138</span>
+      </div>
+      <div class="tier-body">
+        <div>
+          <div class="tier-item-label">Strefa wejścia</div>
+          <div class="tier-item-val">$138 – $145</div>
+        </div>
+        <div>
+          <div class="tier-item-label">Stop-Loss</div>
+          <div class="tier-item-val td-red">$132 (-5%)</div>
+        </div>
+        <div>
+          <div class="tier-item-label">Target / Upside</div>
+          <div class="tier-item-val td-green">$170–180 (+20–27%)</div>
+        </div>
+        <div>
+          <div class="tier-item-label">Risk/Reward</div>
+          <div class="tier-item-val td-amber">~2.5:1</div>
+        </div>
+        <div>
+          <div class="tier-item-label">Horyzont</div>
+          <div class="tier-item-val">3–9 mies.</div>
+        </div>
+        <div>
+          <div class="tier-item-label">Kontekst</div>
+          <div class="tier-item-val td-dim">Breakout z konsolidacji</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier">
+      <div class="tier-head t3">
+        <span class="tier-name">Tier 3 — Głęboka korekta / akumulacja</span>
+        <span class="tag tag-blue">Jeśli $120 nie utrzyma</span>
+      </div>
+      <div class="tier-body">
+        <div>
+          <div class="tier-item-label">Strefa wejścia</div>
+          <div class="tier-item-val">$108 – $115</div>
+        </div>
+        <div>
+          <div class="tier-item-label">Stop-Loss</div>
+          <div class="tier-item-val td-red">$100 (-8%)</div>
+        </div>
+        <div>
+          <div class="tier-item-label">Target / Upside</div>
+          <div class="tier-item-val td-green">$155–175 (+35–55%)</div>
+        </div>
+        <div>
+          <div class="tier-item-label">Risk/Reward</div>
+          <div class="tier-item-val td-green">~5:1</div>
+        </div>
+        <div>
+          <div class="tier-item-label">Horyzont</div>
+          <div class="tier-item-val">12–18 mies.</div>
+        </div>
+        <div>
+          <div class="tier-item-label">Kontekst</div>
+          <div class="tier-item-val td-dim">Paniczna wyprzedaż</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prose" style="margin-top:14px;">
+      <p><span class="hl-amber">Uwaga taktyczna:</span> Cena bieżąca $127.96 jest w strefie Tier 1. Pozycja może być budowana skalowaniem (DCA) — 50% w $125-130, 50% w $115-120 jeśli zejdzie. Katalizator przyspieszający: earnings 29 apr 2026 — przy pozytywnym surprise możliwy breakout przez $138 od razu. <strong>Vs. consensus analityków ($154.73 avg PT)</strong> ryzyko/zwrot wygląda asymetrycznie korzystnie.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 07 SCENARIUSZE -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="s07">
+  <div class="section-head">
+    <span class="section-num">// 07</span>
+    <span class="section-title">Scenariusze 12-miesięczne</span>
+  </div>
+  <div class="section-body">
+    <div class="scenario-grid">
+      <div class="scenario-card sc-bull">
+        <div class="sc-head">🐂 Bull Case</div>
+        <div class="sc-price">$185–210</div>
+        <div class="sc-prob">Prawdopodobieństwo: 35%</div>
+        <div class="sc-text">AI capex nie zwalnia, APH bije guidancu Q1'26, CCS integracja przebiega sprawnie (+synergies), Jefferies i inne domy windują PT. Copper dominuje w rackach AI 2026-2027. Powrót powyżej ATH $167 i ekspansja multiple do 45-50x.</div>
+      </div>
+      <div class="scenario-card sc-base">
+        <div class="sc-head">📊 Base Case</div>
+        <div class="sc-price">$155–170</div>
+        <div class="sc-prob">Prawdopodobieństwo: 45%</div>
+        <div class="sc-text">APH dostarcza zgodnie z guidancem, CCS generuje ~$900M kwartalnie, AI demand stabilizuje się na wysokim poziomie. Kurs wraca do konsensusu analityków. P/E normalizuje się do 38-42x na fali rosnącego EPS.</div>
+      </div>
+      <div class="scenario-card sc-bear">
+        <div class="sc-head">🐻 Bear Case</div>
+        <div class="sc-price">$95–115</div>
+        <div class="sc-prob">Prawdopodobieństwo: 20%</div>
+        <div class="sc-text">AI capex cycle się zatrzymuje lub wchodzi w korektę, taryfy celne uderzają w marże (manufacturing w Chinach), CCS integracja zaskakuje negatywnie. Multiple de-re rating do 28-32x (historyczna średnia). Odpowiada ~35% drawdown od ceny bieżącej.</div>
+      </div>
+    </div>
+    <div class="prose" style="margin-top:14px;">
+      <p>Analitycy Coincodex prognozują APH w zakresie <strong>$119–156</strong> na rok 2026. Seaport Research ma najbardziej bycze PT $210, zakładając że APH zdominuje zarówno miedziany jak i światłowodowy segment AI rack po integracji CCS. Kluczowe pytanie: czy optyka zastąpi miedź szybciej niż oczekuje rynek?</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 08 RYZYKA -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="s08">
+  <div class="section-head">
+    <span class="section-num">// 08</span>
+    <span class="section-title">Ryzyka</span>
+    <span class="tag tag-red">3x HIGH · 3x MED · 2x LOW</span>
+  </div>
+  <div class="section-body">
+
+    <div class="risk-item">
+      <span class="risk-badge risk-HIGH">HIGH</span>
+      <div>
+        <div class="risk-title">Optyka vs. Miedź — technology shift</div>
+        <div class="risk-desc">Główny ryzyko dla byka APH. Jeśli optyczne interconnect (<em>co-packaged optics</em>) zastąpią miedź szybciej niż 2027-2028, core growth driver zniknie. Nvidia/Lumentum (inwestycja $2B, marzec 2026) to sygnał przyspieszenia. APH odpowiedział akwizycją CCS (fiber) ale integracja technologicznie trudna.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <span class="risk-badge risk-HIGH">HIGH</span>
+      <div>
+        <div class="risk-title">CCS Integration Risk ($10.5B akwizycja)</div>
+        <div class="risk-desc">CommScope CCS to 46% poprzedniej market cap APH — transformacyjna, nie bolt-on. Ryzyko: culture clash z decentralized model, write-downy, nieoczekiwane liabilities. Pierwsze pełne wyniki CCS w Q1'26 (29 apr) będą kluczowym testem.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <span class="risk-badge risk-HIGH">HIGH</span>
+      <div>
+        <div class="risk-title">Taryfy celne / eksport controls Chiny</div>
+        <div class="risk-desc">APH ma znaczące operacje produkcyjne w Chinach. Eskalacja trade war, taryfy Trumpa lub chińskie restrykcje eksportowe na komponenty mogą uderzyć w marże. Dodatkowo spór podatkowy z chińskim fiskusem — potencjalna ekspozycja do $200M.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <span class="risk-badge risk-MED">MED</span>
+      <div>
+        <div class="risk-title">AI Capex Slowdown</div>
+        <div class="risk-desc">Hiperskalarzy (Microsoft, Amazon, Google, Meta) wydali $300B+ capex w 2025. Każde rozczarowanie ROI z AI może spowolnić reinwestycje w H2'26 — bezpośredni headwind dla Communications Solutions. Broadcom buduje alternatywne rozwiązania wewnątrz hyperscaler architecture.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <span class="risk-badge risk-MED">MED</span>
+      <div>
+        <div class="risk-title">Wycena — premia do historii</div>
+        <div class="risk-desc">P/E ~40x vs 10-letnia średnia 28.8x. Jeśli wzrost EPS spowolni do normalnych 8-12% (z obecnych 50%+), multiple musi zejść — podwójne uderzenie. PEG 0.46 jest atrakcyjny tylko przy utrzymaniu tempa wzrostu.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <span class="risk-badge risk-MED">MED</span>
+      <div>
+        <div class="risk-title">Konkurencja TE Connectivity + nowe wejścia</div>
+        <div class="risk-desc">TEL reinwestuje agresywnie w 224G/lane ecosystem. Broadcom kontroluje architekturę AI clusters co pośrednio ogranicza APH pricing power. Nvidia buduje własne kablowe relacje (Lumentum).</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <span class="risk-badge risk-LOW">LOW</span>
+      <div>
+        <div class="risk-title">Cykliczność automotive / industrial</div>
+        <div class="risk-desc">27% przychodu z harsh environment / 18% interconnect sensor — te segmenty są wrażliwe na recesję. Komunikują jednak silny order backlog i ekspozycję na EV/defense które są strukturalnie rosnące.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <span class="risk-badge risk-LOW">LOW</span>
+      <div>
+        <div class="risk-title">Dywidenda / plik akcji</div>
+        <div class="risk-desc">Yield 0.57% — symboliczny. APH preferuje buyback (1.3M akcji Q4'25) i akwizycje. Nie ma ryzyka cięcia dywidendy, ale nie jest to stock dla income investors.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 09 WERDYKT -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="s09">
+  <div class="section-head">
+    <span class="section-num">// 09</span>
+    <span class="section-title">Werdykt</span>
+    <span class="tag tag-green">AKUMULUJ</span>
+  </div>
+  <div class="section-body">
+    <div class="verdict-box">
+      <div class="verdict-rating">
+        <span class="verdict-stars">★★★★☆</span>
+        <span class="verdict-label">AKUMULUJ / BUY</span>
+        <span class="tag tag-amber" style="margin-left:8px;">Ryzyko: ŚREDNIE</span>
+      </div>
+      <div class="verdict-text">
+        <p>Amphenol to <strong>institutional-grade compounder z wyjątkowym ekspozycją na dwa mega-trendy: AI infrastructure buildout i elektryfikację</strong>. Wyniki 2025 były historycznie rekordowe (+52% rev, +76% EPS) — i to przy organicznym wzroście 38%, nie tylko akwizycjach. Model zdecentralizowany działa: 27.5% marża operacyjna bije konkurencję o kilkanaście punktów.</p>
+        <p>Bieżąca korekta <strong>-23% od ATH</strong> jest klasyczną "wyceną do nowych realiów" po skoku >80% w 12 miesięcy. PEG 0.46 sugeruje że przy cenie $128 akcja jest <strong>tania względem własnego tempa wzrostu</strong>. Jefferies upgrade (dziś) + konsensus Strong Buy 11/1/0 to potwierdzenie.</p>
+        <p>Kluczowe ryzyko: <strong>copper vs. optyka</strong> — ale APH kupił CCS żeby być po obu stronach, a Evercore/Jefferies zgodnie uważają że miedź dominuje w rack AI przez 2026-2027. <strong>Earnings 29 apr 2026</strong> to najbliższy katalyzator — guidance powyżej $7B Q2 może być trigger breakout przez $138.</p>
+        <p style="margin-top:8px;"><strong>Pozycjonowanie:</strong> Tier 1 wejście $122-130 z SL $115. Target bazowy $155-165 w 6-12 mies. (+22-30%). Dla agresywnych inwestorów: APH to long-term compounder który warto trzymać przez cały AI capex cycle — nie tylko trade.</p>
+      </div>
+    </div>
+
+    <div class="sep"></div>
+
+    <div class="grid-4">
+      <div class="kpi">
+        <span class="kpi-label">Cena (01.04.2026)</span>
+        <span class="kpi-value blue">$127.96</span>
+        <span class="kpi-sub">NYSE: APH</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Target bazowy</span>
+        <span class="kpi-value green">$155–165</span>
+        <span class="kpi-sub">Avg PT analityków $154-172</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Stop-Loss (Tier 1)</span>
+        <span class="kpi-value red">$115</span>
+        <span class="kpi-sub">~-10% od ceny wejścia</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">Najbliższy Earnings</span>
+        <span class="kpi-value amber">29 Kwi</span>
+        <span class="kpi-sub">Q1'26 — kluczowy katalizator</span>
+      </div>
+    </div>
+
+    <div class="inline-tags" style="margin-top:14px;">
+      <span class="tag tag-green">Strong Buy consensus</span>
+      <span class="tag tag-green">PEG 0.46</span>
+      <span class="tag tag-green">AI Infrastructure Play</span>
+      <span class="tag tag-green">Compounder</span>
+      <span class="tag tag-amber">P/E premia</span>
+      <span class="tag tag-amber">CCS integration risk</span>
+      <span class="tag tag-red">Copper vs Optics</span>
+      <span class="tag tag-blue">Q1'26 Earnings 29 Apr</span>
+      <span class="tag tag-blue">Nvidia partnership</span>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  ANAL REPORT — APH / AMPHENOL CORPORATION — wygenerowano 01.04.2026<br>
+  Dane: earnings release 28.01.2026, Jefferies upgrade 01.04.2026, stockanalysis.com, tipranks.com, investing.com<br>
+  ⚠ Raport wyłącznie informacyjny. Nie stanowi rekomendacji inwestycyjnej. Inwestuj na własne ryzyko.
+</div>
+
+</body>
+</html>
