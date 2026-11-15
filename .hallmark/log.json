@@ -1,0 +1,24 @@
+[
+  {
+    "date": "2026-11-15",
+    "macrostructure": "Map / Diagram",
+    "theme": "custom",
+    "theme_axes": "duo-tone blocks / roman-serif / cool+warm",
+    "vibe": "druk riso: ultramaryna, sygnałowy pomarańcz, kremowy papier",
+    "enrichment": "Tier B hand-built SVG",
+    "nav": "N9",
+    "footer": "Ft1",
+    "brief": "kalibracjadirac.pl · rekolor po feedbacku 'nudna kolorystyka'"
+  },
+  {
+    "date": "2026-11-15",
+    "macrostructure": "Map / Diagram",
+    "theme": "custom",
+    "theme_axes": "light / roman-serif / warm",
+    "vibe": "papier pomiarowy, ślad sygnału, spokojne audio",
+    "enrichment": "Tier B hand-built SVG (wykres charakterystyki)",
+    "nav": "N9",
+    "footer": "Ft1",
+    "brief": "kalibracjadirac.pl · licencje Dirac Live + wsparcie przy pomiarze"
+  }
+]

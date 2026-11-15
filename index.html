@@ -1,557 +1,1163 @@
 <!DOCTYPE html>
-<html lang="pl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dirac Live Polska — Autoryzowany Reseller | Kalibracja Akustyki</title>
-<meta name="description" content="Oficjalny autoryzowany reseller Dirac Live w Polsce. Cyfrowa korekcja akustyki pomieszczeń dla audiofilów i kina domowego. Licencje Stereo, Full i Surround z pełnym polskim wsparciem technicznym.">
-<meta property="og:title" content="Dirac Live Polska — Autoryzowany Reseller">
-<meta property="og:description" content="Profesjonalna cyfrowa kalibracja akustyki. Oficjalne licencje Dirac Live z pełnym wsparciem po polsku.">
-<meta property="og:url" content="https://kalibracjadirac.pl">
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kalibracja Dirac Live — licencje i pomoc przy pomiarze | kalibracjadirac.pl</title>
+<meta name="description" content="Oryginalne licencje Dirac Live (Starter, Full, Surround) i pomoc przy pomiarze akustyki po polsku. Denon, Marantz, Arcam, NAD, Onkyo, StormAudio i inne — sprawdzimy bezpłatnie, czy Twój sprzęt obsługuje Dirac Live.">
+<link rel="canonical" href="https://kalibracjadirac.pl/">
+<meta name="robots" content="index, follow">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0f2686" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#071861" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pl_PL">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://kalibracjadirac.pl">
-<link rel="icon" type="image" href="https://kalibracjadirac.pl/favicon.ico">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400;600&display=swap" rel="stylesheet">
+<meta property="og:url" content="https://kalibracjadirac.pl/">
+<meta property="og:title" content="Kalibracja Dirac Live — licencje i pomoc przy pomiarze">
+<meta property="og:description" content="Kolumny grają dobrze. Pokój — niekoniecznie. Oryginalne licencje Dirac Live i wsparcie przy kalibracji po polsku.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400;600&family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap">
 <style>
-:root{--black:#080808;--deep:#0e0e10;--surface:#141416;--line:rgba(255,255,255,0.07);--line2:rgba(255,255,255,0.12);--white:#f0ede8;--off:#f4efda;--gold:#d4a843;--gold-light:#e8c46a;}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:var(--black);color:var(--white);font-family:'Josefin Sans',sans-serif;font-weight:400;overflow-x:hidden;}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:28px 56px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,rgba(8,8,8,0.95) 0%,transparent 100%);transition:transform 0.4s ease;}
-nav.nav-hide{transform:translateY(-100%);}
-.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px;z-index:110;}
-.nav-logo{font-family:'Josefin Sans',sans-serif;color:var(--white);text-decoration:none;text-transform:uppercase;display:flex;flex-direction:column;align-items:flex-start;gap:4px;}
-.nav-logo span{font-size:8px;font-weight:400;letter-spacing:0.14em;color:var(--gold);opacity:0.75;}
-.nav-left{display:flex;align-items:center;gap:24px;}
-.nav-sep{width:1px;height:28px;background:rgba(255,255,255,0.12);}
-.nav-audioplaza{display:flex;align-items:center;text-decoration:none;opacity:0.55;transition:opacity 0.3s;}
-.nav-audioplaza:hover{opacity:1;}
-.nav-links{display:flex;gap:40px;list-style:none;}
-.nav-links a{font-size:14px;letter-spacing:0.25em;text-transform:uppercase;color:var(--off);text-decoration:none;transition:color 0.3s;}
-.nav-links a:hover{color:var(--white);}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 56px 80px;position:relative;overflow:hidden;}
-.hero::after{content:'';position:absolute;right:-10%;top:20%;width:600px;height:600px;background:radial-gradient(circle,rgba(212,168,67,0.06) 0%,transparent 70%);pointer-events:none;}
-.hero-logo-right{position:absolute;right:7%;top:50%;transform:translateY(-50%);pointer-events:none;z-index:2;opacity:0;animation:fadeUp 1.2s ease 1.2s forwards;}
-.hero-logo-right::before{content:'';position:absolute;inset:-80px;background:radial-gradient(ellipse at center,rgba(212,168,67,0.12) 0%,transparent 65%);}
-.hero-logo-right svg{filter:drop-shadow(0 0 40px rgba(212,168,67,0.5));opacity:0.28;}
-.hero-eyebrow{position:relative;z-index:3;font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:36px;opacity:0;animation:fadeUp 1s ease 0.3s forwards;}
-.hero-title{position:relative;z-index:3;font-family:'Cormorant Garamond',serif;font-size:clamp(52px,8vw,110px);font-weight:300;line-height:0.95;letter-spacing:-0.02em;max-width:800px;opacity:0;animation:fadeUp 1s ease 0.5s forwards;}
-.hero-title em{font-style:italic;color:var(--gold-light);}
-.hero-sub{position:relative;z-index:3;font-size:16px;letter-spacing:0.02em;color:var(--white);margin-top:40px;max-width:420px;line-height:1.6;opacity:0;animation:fadeUp 1s ease 0.8s forwards;}
-.hero-cta{position:relative;z-index:3;margin-top:60px;display:flex;gap:24px;align-items:center;opacity:0;animation:fadeUp 1s ease 1s forwards;}
-.btn-primary{font-family:'Josefin Sans',sans-serif;font-size:12px;font-weight:300;letter-spacing:0.35em;text-transform:uppercase;color:var(--black);background:var(--gold);border:none;padding:18px 44px;text-decoration:none;display:inline-block;transition:background 0.3s,transform 0.3s;}
-.btn-primary:hover{background:var(--gold-light);transform:translateY(-1px);}
-.btn-ghost{font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:var(--off);text-decoration:none;border-bottom:1px solid var(--line2);padding-bottom:2px;transition:color 0.3s,border-color 0.3s;}
-.btn-ghost:hover{color:var(--white);border-color:var(--gold);}
-.hero-scroll{position:absolute;bottom:40px;left:56px;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--off);display:flex;align-items:center;gap:16px;z-index:3;opacity:0;animation:fadeUp 1s ease 1.4s forwards;}
-.scroll-line{width:40px;height:1px;background:var(--gold);animation:scrollPulse 2s ease-in-out infinite;}
-section{padding:120px 56px;border-top:1px solid var(--line);position:relative;}
-.section-label{font-size:30px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:64px;display:flex;align-items:center;gap:20px;}
-.section-label::after{content:'';flex:1;max-width:60px;height:1px;background:var(--gold);opacity:0.4;}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
-.about-left{display:flex;flex-direction:column;}
-.about-right{display:flex;flex-direction:column;}
-.about-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,3.8vw,52px);font-weight:300;line-height:1.1;letter-spacing:-0.01em;margin-bottom:48px;}
-.about-title em{font-style:italic;color:var(--gold-light);}
-.about-img{position:relative;overflow:hidden;}
-.about-img img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;filter:brightness(0.65) saturate(0.7);transition:filter 0.6s ease;}
-.about-img:hover img{filter:brightness(0.75) saturate(0.85);}
-.about-img::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(8,8,8,0.35) 0%,transparent 55%),linear-gradient(to top,rgba(8,8,8,0.45) 0%,transparent 45%);pointer-events:none;}
-.about-text{font-size:19px;line-height:2.0;color:rgba(244,239,218,0.85);font-weight:300;margin-bottom:28px;}
-.about-text strong{color:var(--white);font-weight:600;}
-.about-list-head{font-size:11px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin:20px 0 6px;}
-.about-list{list-style:none;}
-.about-list li{font-size:16px;line-height:1.85;color:rgba(244,239,218,0.75);padding:13px 0 13px 30px;position:relative;border-bottom:1px solid var(--line);font-weight:300;}
-.about-list li:first-child{border-top:1px solid var(--line);}
-.about-list li::before{content:'—';position:absolute;left:0;color:var(--gold);opacity:0.8;}
-.tech-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:96px;}
-.tstat{background:var(--black);padding:44px 32px;transition:background 0.4s;}
-.tstat:hover{background:#0a0a0a;}
-.tstat-val{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:var(--gold-light);line-height:1;}
-.tstat-val.sm{font-size:32px;padding-top:9px;}
-.tstat-label{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--off);opacity:0.8;margin-top:16px;line-height:1.9;}
-.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);}
-.feature{background:var(--black);padding:0;transition:background 0.4s;position:relative;display:flex;flex-direction:column;overflow:hidden;}
-.feature::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.6s ease;z-index:3;pointer-events:none;}
-.feature:hover{background:#0a0a0a;}
-.feature:hover::before{transform:scaleX(1);}
-.feature-canvas-wrap{position:relative;width:100%;height:180px;overflow:hidden;flex-shrink:0;}
-.feature-canvas-wrap canvas{display:block;width:100%;height:100%;}
-.feature-canvas-wrap::after{content:'';position:absolute;left:0;right:0;bottom:0;height:40px;background:linear-gradient(to bottom,transparent,rgba(8,8,8,0.85));pointer-events:none;}
-.feature-body{padding:32px 40px 48px;flex:1;position:relative;z-index:1;}
-.feature-num{font-size:10px;letter-spacing:0.4em;color:var(--gold);margin-bottom:20px;}
-.feature-title{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;line-height:1.2;margin-bottom:18px;}
-.feature-desc{font-size:17px;line-height:2;color:var(--off);font-weight:300;}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;}
-.step{position:relative;}
-.step::after{content:'';position:absolute;top:16px;right:-20px;width:40px;height:1px;background:var(--line2);}
-.step:last-child::after{display:none;}
-.step-num{font-family:'Cormorant Garamond',serif;font-size:60px;font-weight:600;color:rgba(212,168,67,0.12);line-height:1;margin-bottom:20px;}
-.step-title{font-size:18px;letter-spacing:0.2em;text-transform:uppercase;color:var(--white);margin-bottom:12px;font-weight:600;}
-.step-text{font-size:16px;line-height:1.9;color:var(--off);font-weight:300;}
-.step-meta{display:inline-block;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);opacity:0.8;margin-top:18px;border:1px solid rgba(212,168,67,0.25);padding:7px 12px 5px;}
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);}
-.price-card{background:var(--black);padding:52px 40px;transition:background 0.3s;position:relative;overflow:hidden;}
-.price-card.featured{background:var(--deep);}
-.price-card.featured::before{content:'POPULARNE';position:absolute;top:24px;right:24px;font-size:15px;letter-spacing:0.3em;color:var(--gold);border:1px solid rgba(212,168,67,0.35);padding:4px 10px;}
-.price-card:hover{background:var(--surface);}
-.price-tier{font-size:11px;letter-spacing:0.45em;text-transform:uppercase;color:var(--off);margin-bottom:24px;}
-.price-amount{font-family:'Cormorant Garamond',serif;font-size:54px;font-weight:300;line-height:1;color:var(--white);margin-bottom:6px;}
-.price-amount span{font-size:18px;color:var(--off);margin-left:4px;}
-.price-period{font-size:13px;letter-spacing:0.2em;color:var(--off);margin-bottom:36px;}
-.price-divider{width:40px;height:1px;background:var(--gold);opacity:0.4;margin-bottom:32px;}
-.price-features{list-style:none;margin-bottom:40px;}
-.price-features li{font-size:16px;color:rgba(244,239,218,0.85);padding:10px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;font-weight:400;line-height:1.4;}
-.price-features li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0;opacity:0.4;}
-.price-features li.included::before{opacity:1;}
-.price-features li:not(.included){opacity:0.35;text-decoration:line-through;text-decoration-color:rgba(255,255,255,0.2);}
-.btn-price{display:block;text-align:center;font-family:'Josefin Sans',sans-serif;font-size:12px;font-weight:300;letter-spacing:0.35em;text-transform:uppercase;text-decoration:none;padding:16px 24px;transition:all 0.3s;}
-.btn-price-outline{border:1px solid var(--line2);color:var(--off);}
-.btn-price-outline:hover{border-color:var(--gold);color:var(--gold);}
-.btn-price-filled{background:var(--gold);color:var(--black);border:1px solid var(--gold);}
-.btn-price-filled:hover{background:var(--gold-light);}
-.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:120px;align-items:start;}
-.contact-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,64px);font-weight:300;line-height:1.0;letter-spacing:-0.02em;margin-bottom:32px;}
-.contact-title em{font-style:italic;color:var(--gold-light);}
-.contact-info{font-size:18px;color:var(--off);line-height:2.1;font-weight:300;}
-.contact-info a{color:var(--white);text-decoration:none;border-bottom:1px solid var(--line2);transition:border-color 0.3s,color 0.3s;}
-.contact-info a:hover{border-color:var(--gold);color:var(--gold);}
-.contact-form{display:flex;flex-direction:column;gap:0;}
-.form-field{border-bottom:1px solid var(--line2);padding:20px 0;transition:border-color 0.3s;}
-.form-field:focus-within{border-color:var(--gold);}
-.form-field label{display:block;font-size:14px;letter-spacing:0.4em;text-transform:uppercase;color:var(--off);margin-bottom:8px;}
-.form-field input,.form-field textarea,.form-field select{width:100%;background:none;border:none;outline:none;color:var(--white);font-family:'Josefin Sans',sans-serif;font-size:16px;font-weight:200;letter-spacing:0.05em;resize:none;}
-.form-field textarea{min-height:80px;}
-.form-field select option{background:var(--deep);}
-.form-submit{margin-top:40px;text-align:right;}
-.hero::before{content:'';position:absolute;left:0;right:0;bottom:0;height:180px;background:linear-gradient(to top,var(--black) 0%,transparent 100%);z-index:2;pointer-events:none;}
-.brands-strip{padding:60px 56px 68px;border-top:1px solid var(--line);text-align:center;position:relative;}
-.brands-label{font-size:10px;letter-spacing:0.45em;text-transform:uppercase;color:var(--gold);opacity:0.7;margin-bottom:36px;}
-.brands-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;column-gap:56px;row-gap:22px;}
-.brands-row span{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,237,232,0.38);transition:color 0.4s;cursor:default;}
-.brands-row span:hover{color:rgba(232,196,106,0.85);}
-section[data-ghost]{overflow:hidden;}
-section[data-ghost]::before{content:attr(data-ghost);position:absolute;top:64px;right:48px;font-family:'Cormorant Garamond',serif;font-size:clamp(140px,15vw,220px);font-weight:600;line-height:0.8;color:rgba(212,168,67,0.05);pointer-events:none;user-select:none;}
-#jak-dziala::after{content:'';position:absolute;left:-12%;bottom:-15%;width:560px;height:560px;background:radial-gradient(circle,rgba(212,168,67,0.05) 0%,transparent 70%);pointer-events:none;}
-#oferta::after{content:'';position:absolute;right:-8%;top:-5%;width:640px;height:640px;background:radial-gradient(circle,rgba(212,168,67,0.045) 0%,transparent 70%);pointer-events:none;}
-.offer-guide{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-bottom:72px;}
-.og-item{border-left:1px solid rgba(212,168,67,0.3);padding-left:24px;}
-.og-q{font-family:'Cormorant Garamond',serif;font-size:25px;font-style:italic;font-weight:300;color:var(--gold-light);margin-bottom:12px;line-height:1.3;}
-.og-a{font-size:15px;color:var(--off);line-height:1.9;font-weight:300;}
-.og-a strong{color:var(--white);font-weight:600;letter-spacing:0.08em;}
-.faq-list{max-width:920px;position:relative;z-index:1;}
-.faq-item{border-bottom:1px solid var(--line);}
-.faq-item:first-child{border-top:1px solid var(--line);}
-.faq-item summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:32px;padding:30px 0;font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:400;line-height:1.3;color:var(--white);transition:color 0.3s;}
-.faq-item summary::-webkit-details-marker{display:none;}
-.faq-item summary::after{content:'+';font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--gold);flex-shrink:0;line-height:1;transition:transform 0.35s ease;}
-.faq-item[open] summary::after{transform:rotate(45deg);}
-.faq-item summary:hover{color:var(--gold-light);}
-.faq-a{padding:0 56px 34px 0;font-size:16px;line-height:2;color:rgba(244,239,218,0.78);font-weight:300;max-width:800px;}
-.faq-a strong{color:var(--white);font-weight:600;}
-.statement{padding:150px 56px;border-top:1px solid var(--line);text-align:center;position:relative;overflow:hidden;background:var(--deep);}
-.statement::before{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:900px;height:520px;background:radial-gradient(ellipse,rgba(212,168,67,0.07) 0%,transparent 70%);pointer-events:none;}
-.statement-orn{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:48px;position:relative;}
-.statement-orn::before,.statement-orn::after{content:'';width:60px;height:1px;background:var(--gold);opacity:0.4;}
-.statement-orn span{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);opacity:0.8;}
-.statement-text{position:relative;font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.4vw,46px);font-weight:300;line-height:1.45;max-width:940px;margin:0 auto;color:var(--white);}
-.statement-text em{font-style:italic;color:var(--gold-light);}
-.statement-sub{position:relative;margin-top:44px;font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:var(--off);opacity:0.65;line-height:2.2;}
-footer{border-top:1px solid var(--line);}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:56px;padding:80px 56px 64px;}
-.footer-logo{font-size:13px;letter-spacing:0.3em;color:var(--off);text-transform:uppercase;}
-.footer-logo span{color:var(--gold);}
-.footer-desc{margin-top:20px;font-size:14px;line-height:2;color:#8a8781;max-width:320px;font-weight:300;}
-.footer-head{font-size:10px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;opacity:0.85;}
-.footer-col ul{list-style:none;}
-.footer-col li{margin-bottom:13px;}
-.footer-col a{font-size:14px;letter-spacing:0.05em;color:rgba(240,237,232,0.6);text-decoration:none;transition:color 0.3s;font-weight:300;}
-.footer-col a:hover{color:var(--gold-light);}
-.footer-col p{font-size:14px;color:rgba(240,237,232,0.6);line-height:2.1;font-weight:300;}
-.footer-bottom{border-top:1px solid var(--line);padding:28px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
-.footer-note{font-size:12px;color:#8a8781;letter-spacing:0.05em;line-height:1.8;}
-.footer-links{display:flex;gap:32px;}
-.footer-links a{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#8a8781;text-decoration:none;transition:color 0.3s;}
-.footer-links a:hover{color:var(--off);}
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
-@keyframes scrollPulse{0%,100%{opacity:0.4;transform:scaleX(1);}50%{opacity:1;transform:scaleX(1.3);}}
-.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.9s ease,transform 0.9s ease;}
-.reveal.visible{opacity:1;transform:translateY(0);}
-.toast{position:fixed;bottom:40px;right:40px;background:var(--deep);border:1px solid var(--gold);color:var(--white);font-size:14px;letter-spacing:0.1em;padding:16px 28px;z-index:200;opacity:0;transform:translateY(10px);transition:all 0.4s;pointer-events:none;}
-.toast.show{opacity:1;transform:translateY(0);}
-@media(max-width:900px){nav{padding:24px 28px;}.nav-links{display:none;}.nav-audioplaza{display:none;}.nav-sep{display:none;}.hero{padding:100px 28px 60px;}.hero-logo-right{display:none;}section{padding:80px 28px;}.about-grid,.contact-inner{grid-template-columns:1fr;gap:48px;}.features-grid,.pricing-grid{grid-template-columns:1fr;}.steps{grid-template-columns:1fr 1fr;}.step::after{display:none;}
-.brands-strip{padding:44px 28px 52px;}.brands-row{column-gap:32px;row-gap:16px;}.brands-row span{font-size:17px;}
-section[data-ghost]::before{font-size:110px;top:52px;right:20px;}
-.tech-stats{grid-template-columns:1fr 1fr;margin-top:64px;}.tstat{padding:32px 24px;}.tstat-val{font-size:36px;}.tstat-val.sm{font-size:26px;}
-.offer-guide{grid-template-columns:1fr;gap:32px;margin-bottom:56px;}
-.faq-item summary{font-size:21px;gap:20px;padding:24px 0;}.faq-a{padding:0 12px 28px 0;}
-.statement{padding:100px 28px;}
-.footer-grid{grid-template-columns:1fr;gap:44px;padding:56px 28px 44px;}
-.footer-bottom{padding:24px 28px;flex-direction:column;align-items:flex-start;}
-.nav-toggle{display:flex;flex-direction:column;gap:5px;}
-.nav-toggle span{display:block;width:22px;height:1px;background:var(--gold);}
-.nav-links{position:fixed;inset:0;background:var(--black);flex-direction:column;justify-content:center;align-items:center;gap:36px;z-index:105;}
-.nav-links.open{display:flex;}
-.nav-links.open a{font-size:20px;}
-body.menu-open{overflow:hidden;}
+/* Hallmark · genre: editorial (technical) · macrostructure: Map / Diagram · theme: custom
+ * vibe: "druk riso: ultramaryna, sygnałowy pomarańcz, kremowy papier"
+ * paper oklch(96.5% 0.022 85) · blue oklch(33% 0.16 266) · signal oklch(70% 0.2 42) — duo-tone blocks · Newsreader 300 + IBM Plex Sans 400 · outlier IBM Plex Mono (wordmark + oś wykresu)
+ * axes: light+dark blocks / roman-serif / cool+warm duo · enrichment: Tier B hand-built SVG (wykres charakterystyki) · nav: N9 edge-aligned · footer: Ft1 mast-headed
+ * Hallmark · pre-emit critique: P5 H4 E4 S5 R5 V5
+ */
+:root {
+  color-scheme: light dark;
+
+  /* base: kremowy papier, granatowy tusz */
+  --color-paper:     oklch(96.5% 0.022 85);
+  --color-paper-2:   oklch(93% 0.03 85);
+  --color-rule:      oklch(82% 0.03 80);
+  --color-rule-soft: oklch(89% 0.026 82);
+  --color-neutral:   oklch(47% 0.04 265);
+  --color-ink-2:     oklch(33% 0.07 265);
+  --color-ink:       oklch(22% 0.08 265);
+  --color-accent:    oklch(64% 0.21 40);
+  --color-accent-ink:oklch(54% 0.2 38);
+  --color-on-ink:    oklch(96.5% 0.022 85);
+  --color-trace:     oklch(50% 0.08 265);
+  --color-focus:     oklch(54% 0.2 38);
+  --color-error:     oklch(50% 0.2 25);
+  --color-success:   oklch(46% 0.12 150);
+  --color-step:      oklch(33% 0.16 266);
+  --shadow-menu:     0 14px 36px -16px oklch(20% 0.1 266 / 0.45);
+
+  /* duo-tone: ultramaryna + sygnałowy pomarańcz */
+  --color-blue:           oklch(33% 0.16 266);
+  --color-blue-2:         oklch(37.5% 0.16 266);
+  --color-blue-rule:      oklch(52% 0.13 266);
+  --color-blue-rule-soft: oklch(43% 0.15 266);
+  --color-blue-muted:     oklch(80% 0.06 262);
+  --color-blue-trace:     oklch(86% 0.07 235);
+  --color-blue-error:     oklch(84% 0.12 32);
+  --color-blue-success:   oklch(86% 0.12 150);
+  --color-cream:          oklch(96.5% 0.022 85);
+  --color-cream-2:        oklch(88% 0.035 255);
+  --color-signal:         oklch(70% 0.2 42);
+  --color-signal-rule:    oklch(52% 0.16 38);
+  --color-signal-muted:   oklch(30% 0.1 35);
+  --color-on-signal:      oklch(20% 0.08 266);
+
+  --font-display: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-body:    "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-outlier: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  --space-3xs: 0.25rem; --space-2xs: 0.5rem; --space-xs: 0.75rem;
+  --space-sm: 1rem;     --space-md: 1.5rem;  --space-lg: 2rem;
+  --space-xl: 3rem;     --space-2xl: 4.5rem; --space-3xl: 7rem;
+
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1.0625rem;
+  --text-md: 1.25rem;
+  --text-lg: 1.5rem;
+  --text-h2: clamp(2rem, 2.2vw + 1.2rem, 3.25rem);
+  --text-display: clamp(2.25rem, 4.6vw + 1.1rem, 5.25rem);
+
+  --rule: 1px solid var(--color-rule);
+  --rule-soft: 1px solid var(--color-rule-soft);
+  --radius-input: 2px;
+  --radius-btn: 2px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-short: 180ms;
+  --dur-long: 1600ms;
+
+  --z-header: 10;
+  --z-popover: 20;
+
+  --page-max: 76rem;
+  --gutter: clamp(1rem, 4vw, 3rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-paper:     oklch(17% 0.035 266);
+    --color-paper-2:   oklch(21% 0.045 266);
+    --color-rule:      oklch(34% 0.06 266);
+    --color-rule-soft: oklch(26% 0.05 266);
+    --color-neutral:   oklch(74% 0.04 262);
+    --color-ink-2:     oklch(86% 0.03 85);
+    --color-ink:       oklch(95.5% 0.02 85);
+    --color-accent:    oklch(72% 0.19 42);
+    --color-accent-ink:oklch(76% 0.17 45);
+    --color-on-ink:    oklch(17% 0.035 266);
+    --color-trace:     oklch(76% 0.07 245);
+    --color-focus:     oklch(76% 0.17 45);
+    --color-error:     oklch(76% 0.15 28);
+    --color-success:   oklch(78% 0.12 150);
+    --color-step:      oklch(76% 0.12 262);
+    --color-blue:           oklch(25% 0.13 266);
+    --color-blue-2:         oklch(29.5% 0.14 266);
+    --color-blue-rule:      oklch(45% 0.13 266);
+    --color-blue-rule-soft: oklch(36% 0.14 266);
+    --color-signal:         oklch(68% 0.19 42);
+  }
+  body { font-weight: 400; }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-block-start: var(--space-lg); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  font-size-adjust: from-font;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, p, ol, ul, dl, dd, figure { margin: 0; }
+ol, ul { padding: 0; list-style: none; }
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+::selection { background: var(--color-accent); color: var(--color-on-ink); }
+
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+
+.visually-hidden:where(:not(:focus-within, :active)) {
+  position: absolute !important; clip-path: inset(50%) !important; overflow: hidden !important;
+  width: 1px !important; height: 1px !important; margin: -1px !important; padding: 0 !important;
+  border: 0 !important; white-space: nowrap !important;
+}
+
+.wrap { max-width: var(--page-max); margin-inline: auto; padding-inline: max(var(--gutter), env(safe-area-inset-left)) max(var(--gutter), env(safe-area-inset-right)); }
+
+/* Colour blocks — scoped token overrides, components inherit */
+.on-blue {
+  --color-paper: var(--color-blue);
+  --color-paper-2: var(--color-blue-2);
+  --color-rule: var(--color-blue-rule);
+  --color-rule-soft: var(--color-blue-rule-soft);
+  --color-neutral: var(--color-blue-muted);
+  --color-ink-2: var(--color-cream-2);
+  --color-ink: var(--color-cream);
+  --color-accent: var(--color-signal);
+  --color-accent-ink: var(--color-signal);
+  --color-on-ink: var(--color-blue);
+  --color-trace: var(--color-blue-trace);
+  --color-focus: var(--color-signal);
+  --color-error: var(--color-blue-error);
+  --color-success: var(--color-blue-success);
+  color-scheme: dark;
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+.on-signal {
+  --color-paper: var(--color-signal);
+  --color-ink: var(--color-on-signal);
+  --color-ink-2: var(--color-on-signal);
+  --color-neutral: var(--color-signal-muted);
+  --color-rule: var(--color-signal-rule);
+  --color-rule-soft: var(--color-signal-rule);
+  --color-focus: var(--color-on-signal);
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+.section.on-blue, .section.on-signal { border-block-start: 0; }
+
+.skip {
+  position: absolute; inset-inline-start: var(--space-sm); inset-block-start: -10rem;
+  background: var(--color-ink); color: var(--color-on-ink); padding: var(--space-2xs) var(--space-sm);
+  z-index: var(--z-popover); text-decoration: none;
+}
+.skip:focus { inset-block-start: var(--space-sm); }
+
+/* ── Typography roles ───────────────────────────────── */
+.display, h2 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: normal;
+  font-optical-sizing: auto;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  text-wrap: balance;
+}
+.display { font-size: var(--text-display); line-height: 1.1; }
+h2 { font-size: var(--text-h2); line-height: 1.14; }
+h3 { font-size: var(--text-md); font-weight: 600; line-height: 1.3; letter-spacing: -0.005em; }
+p { text-wrap: pretty; }
+.lede { font-size: var(--text-md); line-height: 1.55; color: var(--color-ink-2); max-width: 36ch; }
+.muted { color: var(--color-neutral); }
+.mark { color: var(--color-accent-ink); }
+
+.link {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--color-rule);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  transition: text-decoration-color var(--dur-short) var(--ease-out);
+}
+.link:hover { text-decoration-color: var(--color-accent); }
+
+/* ── Buttons ─────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: var(--space-2xs);
+  min-height: 3rem; padding: 0 var(--space-md);
+  font: 600 var(--text-sm)/1 var(--font-body);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  text-decoration: none;
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-btn);
+  background: var(--color-ink);
+  color: var(--color-on-ink);
+  cursor: pointer;
+  transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out), transform 100ms var(--ease-out);
+}
+.btn:hover { background: var(--color-accent-ink); border-color: var(--color-accent-ink); color: var(--color-on-ink); }
+.btn:active { transform: translateY(1px); }
+.btn[disabled], .btn[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; }
+.btn[aria-busy="true"] { cursor: progress; }
+.btn--signal { background: var(--color-signal); border-color: var(--color-signal); color: var(--color-on-signal); }
+.btn--signal:hover { background: var(--color-ink); border-color: var(--color-ink); color: var(--color-on-ink); }
+.btn--ghost { background: transparent; color: var(--color-ink); border-color: var(--color-rule); }
+.btn--ghost:hover { background: transparent; color: var(--color-accent-ink); border-color: var(--color-accent-ink); }
+.btn .arrow { transition: translate var(--dur-short) var(--ease-out); }
+.btn:hover .arrow { translate: 3px 0; }
+
+/* ── Header (N9 edge-aligned) ───────────────────────── */
+.site-header { position: relative; z-index: var(--z-header); }
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-sm);
+  padding-block: var(--space-md);
+  border-block-end: var(--rule-soft);
+}
+.header-inner > * { flex-shrink: 0; white-space: nowrap; }
+.wordmark {
+  font-family: var(--font-outlier);
+  font-size: var(--text-sm);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: var(--color-ink);
+  display: inline-flex; align-items: center; gap: var(--space-2xs);
+}
+.wordmark svg { width: 1.6rem; height: 1rem; color: var(--color-accent); }
+.wordmark b { font-weight: 400; color: var(--color-neutral); }
+
+.menu-button {
+  anchor-name: --menu-button;
+  display: inline-flex; align-items: center; gap: var(--space-2xs);
+  min-height: 2.75rem; padding: 0 var(--space-xs);
+  font: 600 var(--text-sm)/1 var(--font-body);
+  color: var(--color-ink); background: transparent;
+  border: 1px solid var(--color-rule); border-radius: var(--radius-btn);
+  cursor: pointer;
+}
+.menu-button:hover { border-color: var(--color-ink); }
+.menu-button svg { width: 1rem; height: 1rem; }
+
+.site-menu {
+  position: fixed;
+  inset: auto;
+  inset-block-start: 4.75rem;
+  inset-block-start: anchor(--menu-button bottom);
+  inset-inline-end: var(--gutter);
+  inline-size: min(80dvw, 20rem);
+  max-inline-size: calc(100dvw - 2rem);
+  block-size: fit-content;
+  max-block-size: calc(100dvh - 6rem);
+  margin: var(--space-2xs) 0 0;
+  overflow: auto;
+  padding: var(--space-2xs) 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  border: var(--rule);
+  border-radius: var(--radius-btn);
+  box-shadow: var(--shadow-menu);
+}
+.site-menu a {
+  display: block; padding: var(--space-xs) var(--space-md);
+  text-decoration: none; font-size: var(--text-base);
+}
+.site-menu a:hover { color: var(--color-accent-ink); }
+.site-menu .menu-cta a { color: var(--color-accent-ink); font-weight: 600; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-menu[popover] {
+    transition: opacity var(--dur-short) var(--ease-out), translate var(--dur-short) var(--ease-out), display var(--dur-short), overlay var(--dur-short);
+    transition-behavior: allow-discrete;
+    opacity: 0; translate: 0 -4px;
+  }
+  .site-menu[popover]:is(:popover-open, .\:popover-open) { opacity: 1; translate: 0 0; }
+  @starting-style {
+    .site-menu[popover]:is(:popover-open, .\:popover-open) { opacity: 0; translate: 0 -4px; }
+  }
+}
+
+.site-header.is-wide .menu-button { display: none; }
+.site-header.is-wide .site-menu {
+  position: static; display: flex; align-items: center; gap: var(--space-lg);
+  inline-size: auto; max-inline-size: none; block-size: auto; max-block-size: none;
+  overflow: visible; margin: 0; padding: 0; border: 0; background: transparent; box-shadow: none;
+  opacity: 1; translate: none;
+}
+.site-header.is-wide .site-menu::backdrop { display: none; }
+.site-header.is-wide .site-menu a { padding: var(--space-2xs) 0; font-size: var(--text-sm); }
+.site-header.is-wide .site-menu .menu-cta a {
+  padding: var(--space-2xs) var(--space-sm);
+  border: 1px solid var(--color-accent-ink); border-radius: var(--radius-btn);
+}
+.site-header.is-wide .site-menu .menu-cta a:hover { background: var(--color-accent-ink); color: var(--color-on-ink); }
+.site-header.is-measuring * { transition: none !important; }
+
+/* ── Hero + diagram ─────────────────────────────────── */
+.hero { padding-block: var(--space-2xl) var(--space-2xl); }
+.hero-head { display: grid; gap: var(--space-lg); align-items: end; }
+.hero-head .display { max-width: 13ch; }
+.hero-side { display: grid; gap: var(--space-md); max-width: 34rem; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-xs); align-items: center; }
+.credential { font-size: var(--text-xs); color: var(--color-neutral); letter-spacing: 0.01em; }
+.credential span + span::before { content: "·"; margin-inline: var(--space-2xs); color: var(--color-rule); }
+
+@media (min-width: 60rem) {
+  .hero-head { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-2xl); }
+  .hero-side { padding-block-end: var(--space-2xs); }
+}
+
+.diagram { margin-block-start: var(--space-2xl); }
+.diagram-bar {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+  gap: var(--space-sm);
+  padding-block: var(--space-xs);
+  border-block-start: 1px solid var(--color-ink);
+}
+.diagram-title { font-size: var(--text-sm); font-weight: 600; }
+.diagram-title span { font-weight: 400; color: var(--color-neutral); }
+.view-switch { display: inline-flex; border: var(--rule); border-radius: var(--radius-btn); }
+.view-switch button {
+  min-height: 2.5rem; padding: 0 var(--space-sm);
+  font: 400 var(--text-xs)/1 var(--font-body);
+  background: transparent; color: var(--color-ink-2);
+  border: 0; cursor: pointer; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 0.45em;
+}
+.view-switch button + button { border-inline-start: var(--rule); }
+.view-switch button:hover { color: var(--color-ink); }
+.view-switch button[aria-pressed="true"] { background: var(--color-paper-2); color: var(--color-ink); font-weight: 600; }
+.swatch { inline-size: 1.1em; block-size: 2px; background: currentColor; display: inline-block; }
+.swatch--before { background: var(--color-trace); }
+.swatch--after { background: var(--color-accent); block-size: 3px; }
+
+.plot {
+  position: relative;
+  margin-inline-start: 2.25rem;
+  margin-block-end: 2rem;
+  aspect-ratio: 16 / 11;
+  background: var(--color-paper-2);
+}
+@media (min-width: 40rem) { .plot { aspect-ratio: 2 / 1; margin-inline-start: 2.75rem; } }
+@media (min-width: 60rem) { .plot { aspect-ratio: 5 / 2; } }
+.plot svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.plot .grid line { stroke: var(--color-rule); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.plot .grid .zero { stroke: var(--color-neutral); stroke-dasharray: 2 4; }
+.plot .trace { fill: none; vector-effect: non-scaling-stroke; stroke-linejoin: round; stroke-linecap: round; transition: opacity 240ms var(--ease-out); }
+.plot .trace--target { stroke: var(--color-ink-2); stroke-width: 1; stroke-dasharray: 6 5; opacity: 0.55; }
+.plot .trace--before { stroke: var(--color-trace); stroke-width: 1.75; }
+.plot .trace--after { stroke: var(--color-accent); stroke-width: 2.75; }
+
+.tick {
+  position: absolute;
+  font: 400 0.6875rem/1 var(--font-outlier);
+  color: var(--color-neutral);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.tick--x { inset-block-start: calc(100% + 0.6rem); translate: -50% 0; }
+.tick--x:first-child { translate: 0 0; }
+.tick--x.end { translate: -100% 0; }
+.tick--y { inset-inline-end: calc(100% + 0.5rem); translate: 0 -50%; }
+.tick.minor { display: none; }
+@media (min-width: 40rem) { .tick.minor { display: block; } }
+
+.pin {
+  position: absolute;
+  translate: -50% -50%;
+  inline-size: 1.75rem; block-size: 1.75rem;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--color-signal);
+  border: 1.5px solid var(--color-signal);
+  color: var(--color-on-signal);
+  font: 600 var(--text-xs)/1 var(--font-body);
+  text-decoration: none;
+  transition: opacity 240ms var(--ease-out), background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out);
+}
+.pin:hover { background: var(--color-ink); border-color: var(--color-ink); color: var(--color-on-ink); }
+.pin--low { translate: -50% -115%; }
+
+.diagram[data-view="after"] .trace--before,
+.diagram[data-view="after"] .pin { opacity: 0; pointer-events: none; }
+.diagram[data-view="before"] .trace--after { opacity: 0; }
+.diagram[data-view="after"] .pin { visibility: hidden; transition: opacity 240ms var(--ease-out), visibility 0s 240ms; }
+
+.diagram figcaption {
+  display: grid; gap: var(--space-2xs);
+  padding-block-start: var(--space-xs);
+  border-block-start: var(--rule-soft);
+  font-size: var(--text-xs); color: var(--color-neutral); max-width: 72ch;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .trace--after { clip-path: inset(-10% 100% -10% 0); animation: draw var(--dur-long) var(--ease-in-out) 300ms forwards; }
+  @keyframes draw { to { clip-path: inset(-10% 0 -10% 0); } }
+}
+
+/* ── Sections ───────────────────────────────────────── */
+.section { padding-block: var(--space-3xl); border-block-start: var(--rule-soft); }
+.section--tight { padding-block: var(--space-2xl); }
+.section-head { display: grid; gap: var(--space-sm); max-width: 44rem; margin-block-end: var(--space-xl); }
+.section-head p { color: var(--color-ink-2); max-width: 58ch; }
+
+/* What the room does — keyed to the pins */
+.findings { display: grid; gap: 0; border-block-start: var(--rule); }
+.finding {
+  display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: var(--space-sm);
+  padding-block: var(--space-lg);
+  border-block-end: var(--rule);
+  scroll-margin-block-start: var(--space-xl);
+}
+.finding:target { background: linear-gradient(var(--color-paper-2), var(--color-paper-2)) no-repeat; }
+.finding .num {
+  inline-size: 1.75rem; block-size: 1.75rem; display: grid; place-items: center;
+  border-radius: 50%; border: 1.5px solid var(--color-signal);
+  background: var(--color-signal); color: var(--color-on-signal);
+  font: 600 var(--text-xs)/1 var(--font-body);
+}
+.finding--off .num { background: transparent; border-style: dashed; border-color: var(--color-neutral); color: var(--color-neutral); }
+.finding .where { font-size: var(--text-xs); color: var(--color-neutral); margin-block-start: var(--space-3xs); font-variant-numeric: tabular-nums; }
+.finding p { color: var(--color-ink-2); margin-block-start: var(--space-2xs); max-width: 52ch; }
+@media (min-width: 48rem) {
+  .findings { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--space-2xl); }
+}
+
+/* Spec sheet — facts + where Dirac lives */
+.spec { display: grid; gap: 0; }
+.spec > div { display: grid; align-content: start; gap: var(--space-3xs); padding-block: var(--space-sm); border-block-end: var(--rule-soft); }
+.spec dt { font-size: var(--text-xs); color: var(--color-neutral); }
+.spec dd { font-size: var(--text-base); font-variant-numeric: tabular-nums; }
+@media (min-width: 48rem) {
+  .spec { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--space-lg); border-block-start: 1px solid var(--color-ink); }
+  .spec > div { border-block-end: 0; padding-block: var(--space-md) 0; }
+  .spec > .wide { grid-column: 1 / -1; padding-block-start: var(--space-lg); }
+}
+
+.brands { display: grid; gap: var(--space-md); margin-block-start: var(--space-xs); }
+.brands li { display: grid; align-content: start; gap: var(--space-3xs); padding-block-start: var(--space-xs); border-block-start: 1px solid var(--color-ink); }
+.brands-cat { font-size: var(--text-xs); color: var(--color-neutral); }
+.brands-names { font-family: var(--font-display); font-weight: 400; font-size: var(--text-lg); line-height: 1.3; letter-spacing: -0.01em; text-wrap: balance; }
+.brands-note { margin-block-start: var(--space-md); font-size: var(--text-sm); max-width: 64ch; }
+@media (min-width: 48rem) {
+  .brands { grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--space-lg); }
+}
+
+/* Process — genuinely ordinal */
+.steps { display: grid; gap: var(--space-xl); counter-reset: step; }
+.step { display: grid; gap: var(--space-2xs); align-content: start; }
+.step-n {
+  font-family: var(--font-display); font-weight: 300; font-size: 4.5rem; line-height: 1;
+  color: var(--color-step); font-variant-numeric: lining-nums;
+  padding-block-end: var(--space-sm); border-block-end: 1px solid var(--color-ink);
+  margin-block-end: var(--space-xs);
+}
+.step p { color: var(--color-ink-2); }
+.step .meta { font-size: var(--text-xs); color: var(--color-neutral); margin-block-start: var(--space-2xs); }
+@media (min-width: 48rem) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-xl); } }
+@media (min-width: 72rem) { .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--space-lg); } }
+
+/* Licences — aligned rows via subgrid */
+.tiers { display: grid; gap: var(--space-xl); }
+.tier { display: grid; align-content: start; gap: 0; }
+.tier-head { padding-block-end: var(--space-md); border-block-end: 1px solid var(--color-ink); }
+.tier-name { font-family: var(--font-display); font-weight: 300; font-size: 2.25rem; line-height: 1.05; letter-spacing: -0.015em; }
+.tier-for { color: var(--color-ink-2); margin-block-start: var(--space-2xs); font-size: var(--text-sm); }
+.tier dl { display: contents; }
+.tier dl > div { display: flex; justify-content: space-between; gap: var(--space-sm); padding-block: var(--space-xs); border-block-end: var(--rule-soft); font-size: var(--text-sm); }
+.tier dt { color: var(--color-neutral); }
+.tier dd { text-align: end; font-variant-numeric: tabular-nums; }
+.tier dd.no { color: var(--color-neutral); }
+.tier dd.yes::before { content: ""; display: inline-block; inline-size: 0.5em; block-size: 0.5em; border-radius: 50%; background: var(--color-accent); margin-inline-end: 0.5em; translate: 0 -0.08em; }
+.tier .btn { margin-block-start: var(--space-md); justify-self: start; }
+.tiers-note { margin-block-start: var(--space-xl); font-size: var(--text-sm); color: var(--color-ink-2); max-width: 64ch; }
+@media (min-width: 60rem) {
+  .tiers { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(9, auto); column-gap: var(--space-xl); row-gap: 0; }
+  .tier { grid-row: span 9; grid-template-rows: subgrid; }
+  .tier dl > div { align-items: center; }
+}
+
+/* FAQ — native details, non-exclusive */
+.faq { border-block-start: 1px solid var(--color-ink); max-width: 52rem; }
+.faq details { border-block-end: var(--rule); }
+.faq summary {
+  list-style: none;
+  display: flex; align-items: baseline; gap: var(--space-sm);
+  padding-block: var(--space-md);
+  font-family: var(--font-display); font-weight: 400; font-size: var(--text-lg); line-height: 1.3;
+  cursor: pointer;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::before {
+  content: ""; flex-shrink: 0; inline-size: 0.6em; block-size: 0.6em;
+  border-inline-end: 1.5px solid var(--color-accent); border-block-end: 1.5px solid var(--color-accent);
+  rotate: -45deg; translate: 0 -0.12em;
+}
+.faq details[open] > summary::before { rotate: 45deg; translate: 0 -0.25em; }
+.faq summary:hover { color: var(--color-accent-ink); }
+.faq .answer { padding: 0 0 var(--space-lg) calc(0.6em + var(--space-sm)); color: var(--color-ink-2); max-width: 64ch; display: grid; gap: var(--space-xs); }
+.faq details::details-content { overflow: clip; contain: layout; }
+@media (prefers-reduced-motion: no-preference) {
+  .faq summary::before { transition: rotate 200ms var(--ease-out), translate 200ms var(--ease-out); }
+  .faq details::details-content { interpolate-size: allow-keywords; transition: block-size 280ms var(--ease-in-out), content-visibility 280ms; transition-behavior: allow-discrete; }
+  .faq details:not([open])::details-content { block-size: 0; }
+}
+
+/* Contact */
+.contact { display: grid; gap: var(--space-2xl); }
+@media (min-width: 60rem) { .contact { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--space-3xl); } }
+.contact-direct { display: grid; gap: var(--space-md); align-content: start; }
+.contact-direct p { color: var(--color-ink-2); max-width: 42ch; }
+.channels { display: grid; gap: 0; border-block-start: var(--rule); margin-block-start: var(--space-sm); }
+.channels a, .channels div { display: flex; justify-content: space-between; gap: var(--space-sm); padding-block: var(--space-sm); border-block-end: var(--rule); text-decoration: none; }
+.channels a:hover .val { color: var(--color-accent-ink); }
+.channels .lbl { color: var(--color-neutral); font-size: var(--text-sm); }
+.channels .val { font-variant-numeric: tabular-nums; }
+
+.form { display: grid; gap: var(--space-md); }
+.form-row { display: grid; gap: var(--space-md); }
+@media (min-width: 40rem) { .form-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.field { display: grid; gap: var(--space-3xs); align-content: start; }
+.field label { font-size: var(--text-sm); font-weight: 600; }
+.field .opt { font-weight: 400; color: var(--color-neutral); }
+.field .hint { font-size: var(--text-xs); color: var(--color-neutral); }
+.field input, .field select, .field textarea {
+  inline-size: 100%;
+  min-height: 3rem;
+  padding: var(--space-xs) var(--space-sm);
+  font: 400 var(--text-base)/1.4 var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-paper);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-input);
+  transition: border-color var(--dur-short) var(--ease-out);
+}
+.field textarea { min-height: 8rem; resize: vertical; field-sizing: content; max-block-size: 20rem; }
+.field input:hover, .field select:hover, .field textarea:hover { border-color: var(--color-neutral); }
+.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 0; border-color: var(--color-ink); }
+.field :is(input, textarea, select):disabled { opacity: 0.6; }
+.field :is(:user-invalid, .user-invalid-fallback) { border-color: var(--color-error); }
+.field .error-msg { display: none; font-size: var(--text-xs); color: var(--color-error); }
+.field :is(:user-invalid, .user-invalid-fallback) ~ .error-msg { display: block; }
+.hp { position: absolute; inset-inline-start: -9999px; }
+.form-foot { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md); }
+.form-foot small { font-size: var(--text-xs); color: var(--color-neutral); max-width: 34ch; }
+.form-status { font-size: var(--text-sm); }
+.form-status:empty { display: none; }
+.form-status[data-state="success"] { color: var(--color-success); }
+.form-status[data-state="error"] { color: var(--color-error); }
+.form-done { display: grid; gap: var(--space-sm); padding-block: var(--space-lg); border-block: 1px solid var(--color-ink); }
+.form-done h3 { font-family: var(--font-display); font-weight: 300; font-size: var(--text-h2); line-height: 1.1; }
+
+/* Footer (Ft1 mast-headed) */
+.site-footer { padding-block: var(--space-xl) var(--space-lg); }
+.foot-main { display: grid; gap: var(--space-md); }
+@media (min-width: 60rem) { .foot-main { grid-template-columns: auto minmax(0, 1fr) auto; align-items: baseline; gap: var(--space-xl); } }
+.foot-main p { color: var(--color-ink-2); font-size: var(--text-sm); max-width: 44ch; }
+.foot-links { display: flex; flex-wrap: wrap; gap: var(--space-2xs) var(--space-md); font-size: var(--text-sm); }
+.foot-links a { white-space: nowrap; }
+.foot-legal { margin-block-start: var(--space-xl); padding-block-start: var(--space-sm); border-block-start: var(--rule-soft); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2xs) var(--space-md); font-size: var(--text-xs); color: var(--color-neutral); }
+
+@media (forced-colors: active) {
+  .pin, .finding .num, .view-switch button[aria-pressed="true"] { border: 1px solid CanvasText; }
+  .plot .trace--after { stroke: Highlight; }
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://kalibracjadirac.pl/#org",
+      "name": "Kalibracja Dirac",
+      "url": "https://kalibracjadirac.pl/",
+      "email": "kbrz77@proton.me",
+      "telephone": "+48 796 579 480",
+      "areaServed": "PL",
+      "description": "Autoryzowany reseller Dirac Live w Polsce: oryginalne licencje Dirac Live i wsparcie przy kalibracji akustyki w języku polskim.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "kbrz77@proton.me",
+        "telephone": "+48 796 579 480",
+        "availableLanguage": "pl",
+        "hoursAvailable": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "09:00",
+          "closes": "18:00"
+        }
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kalibracjadirac.pl/#page",
+      "url": "https://kalibracjadirac.pl/",
+      "name": "Kalibracja Dirac Live — licencje i pomoc przy pomiarze",
+      "inLanguage": "pl-PL",
+      "publisher": { "@id": "https://kalibracjadirac.pl/#org" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://kalibracjadirac.pl/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "Czy mój sprzęt obsługuje Dirac Live?", "acceptedAnswer": { "@type": "Answer", "text": "Dirac Live jest wbudowany m.in. w amplitunery i procesory Denon, Marantz, Arcam, NAD, Onkyo, Pioneer, Integra, StormAudio, Lexicon i miniDSP, a także w kolumny Dynaudio Focus i soundbar Klipsch Flexus. Jeśli Twoje urządzenie go nie ma, korekcję można uruchomić na komputerze (Windows, macOS) albo w zewnętrznym procesorze, np. miniDSP. Napisz, na czym grasz — sprawdzimy kompatybilność bezpłatnie." } },
+        { "@type": "Question", "name": "Czym różnią się licencje Starter, Full i Surround?", "acceptedAnswer": { "@type": "Answer", "text": "Starter koryguje amplitudę w systemie stereo. Full dodaje korekcję fazy i odpowiedzi impulsowej oraz Bass Control. Surround obejmuje systemy kina domowego do 9.x kanałów i zdalną sesję konfiguracji. Dokładny zakres zależy od urządzenia, dlatego potwierdzamy go przed zakupem." } },
+        { "@type": "Question", "name": "Czy potrzebuję mikrofonu pomiarowego?", "acceptedAnswer": { "@type": "Answer", "text": "Tak. Wiele urządzeń z Dirac Live ma odpowiedni mikrofon w zestawie, ale nie wszystkie: mikrofon Audyssey dołączany do Denona i Marantza nie współpracuje z Dirac Live, a np. Monolith HTP-1 nie ma mikrofonu wcale. Wtedy sprawdza się miniDSP UMIK-1 — podpowiemy, gdzie go kupić." } },
+        { "@type": "Question", "name": "Jak przebiega zakup i aktywacja licencji?", "acceptedAnswer": { "@type": "Answer", "text": "Wybierasz licencję i płacisz online. Licencja trafia na Twoje konto Dirac i jest aktywowana bezpośrednio przez Dirac Research, więc masz pewność, że jest oryginalna. Zwykle trwa to krócej niż jeden dzień roboczy." } },
+        { "@type": "Question", "name": "Czy licencja jest dożywotnia?", "acceptedAnswer": { "@type": "Answer", "text": "Tak. Licencję kupujesz raz, bez abonamentu. Jest przypisana do Twojego konta Dirac, więc nie przepada przy zmianie komputera." } },
+        { "@type": "Question", "name": "Czy korekcja zastąpi ustroje akustyczne?", "acceptedAnswer": { "@type": "Answer", "text": "Nie w całości. Dirac Live wyrównuje charakterystykę i odpowiedź impulsową w miejscu odsłuchu, ale nie skróci pogłosu w pustym, twardym pokoju. Często to od korekcji warto zacząć, a ustroje dołożyć później, jeśli pomieszczenie jest bardzo pogłosowe." } },
+        { "@type": "Question", "name": "Co, jeśli utknę przy konfiguracji?", "acceptedAnswer": { "@type": "Answer", "text": "Do każdej licencji dostajesz wsparcie po polsku: e-mail, a w licencjach Full i Surround także telefon i pomoc przy konfiguracji. Odpowiadamy w ciągu 24 godzin w dni robocze, pon–pt 9:00–18:00." } }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
-<nav>
-  <div class="nav-left">
-    <a href="#" class="nav-logo">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 28" style="height:20px;width:auto;display:block;"><text x="0" y="20" fill="white" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="20" font-weight="700" letter-spacing="3">DIRAC</text><text x="1" y="27" fill="white" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="7" font-weight="300" letter-spacing="9" opacity="0.8">LIVE</text></svg>
-      <span>AUTORYZOWANY RESELLER DIRAC</span>
-    </a>
-    <div class="nav-sep"></div>
-    <a href="https://audioplaza.pl/" target="_blank" class="nav-audioplaza"><img id="audioplazaLogo" src="data:image/png;base64,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" alt="audioplaza.pl" style="height:24px;width:auto;display:block;"></a>
-  </div>
-  <button class="nav-toggle" id="navToggle" aria-label="Otwórz menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#technologia">Technologia</a></li>
-    <li><a href="#jak-dziala">Jak działa</a></li>
-    <li><a href="#oferta">Oferta</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#kontakt">Kontakt</a></li>
-  </ul>
-</nav>
-<section class="hero">
-  <canvas id="heroCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;" width="1631" height="812"></canvas>
-  <div class="hero-logo-right">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 100" style="width:clamp(260px,26vw,420px);height:auto;display:block;">
-      <text x="0" y="68" fill="white" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="72" font-weight="800" letter-spacing="6">DIRAC</text>
-      <rect x="2" y="78" width="318" height="2" fill="white" opacity="0.4"></rect>
-      <text x="4" y="96" fill="white" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="22" font-weight="200" letter-spacing="28" opacity="0.85">LIVE</text>
-    </svg>
-  </div>
-  <div class="hero-eyebrow">Autoryzowany reseller — Polska</div>
-  <h1 class="hero-title">Brzmienie<br>bez <em>kompromisów</em></h1>
-  <p class="hero-sub">Dirac Live — cyfrowa korekcja akustyczna<br>dla wymagających audiofilów</p>
-  <div class="hero-cta">
-    <a href="#oferta" class="btn-primary">Zobacz ofertę</a>
-    <a href="#technologia" class="btn-ghost">Dowiedz się więcej</a>
-  </div>
-  <div class="hero-scroll"><div class="scroll-line"></div>Przewiń w dół</div>
-</section>
-<div class="brands-strip reveal">
-  <div class="brands-label">Technologia Dirac obecna m.in. w</div>
-  <div class="brands-row">
-    <span>NAD</span><span>Arcam</span><span>Onkyo</span><span>Pioneer</span><span>Integra</span><span>StormAudio</span><span>miniDSP</span><span>Harman</span><span>Volvo</span><span>Rolls-Royce</span>
-  </div>
-</div>
-<section id="technologia" data-ghost="01">
-  <div class="section-label">01 — Technologia</div>
-  <div class="about-grid reveal visible">
-    <div class="about-left">
-      <div class="about-img">
-        <img src="foo.jpg" alt="Profesjonalny zestaw audio do pomiaru akustycznego">
-      </div>
-    </div>
-    <div class="about-right">
-      <h2 class="about-title">Czym jest <em>Dirac Live</em>?</h2>
-      <p class="about-text">Nawet najdroższe kolumny zagrają źle w nieprzygotowanym akustycznie salonie. Dirac Live to najbardziej zaawansowany na świecie algorytm cyfrowej korekcji akustyki — na podstawie serii pomiarów mikrofonem tworzy precyzyjny model Twojego pomieszczenia, a następnie eliminuje jego wady: wycina dudniący bas, gasi niepożądane rezonanse i wyrównuje pasmo przenoszenia.</p>
-      <p class="about-text">Efekt? Scena stereo nabiera trójwymiarowej głębi, a dźwięk staje się krystalicznie czysty. Technologii Dirac ufają takie potęgi jak <strong>NAD, Arcam i Harman</strong>, a w motoryzacji <strong>Volvo czy Rolls-Royce</strong>. Jako autoryzowany polski reseller oferujemy oryginalne licencje i pełne wsparcie we wdrożeniu.</p>
-      <div class="about-list-head">Co koryguje Dirac Live</div>
-      <ul class="about-list">
-        <li>Dudniący, nierówny bas i rezonanse pomieszczenia</li>
-        <li>Nierówne pasmo przenoszenia i podbarwienia brzmienia</li>
-        <li>Rozmytą scenę stereo i nieprecyzyjną lokalizację źródeł</li>
-        <li>Utratę detali maskowanych przez odbicia od ścian</li>
-      </ul>
+<a class="skip" href="#main">Przejdź do treści</a>
+
+<header class="site-header on-blue">
+  <div class="wrap">
+    <div class="header-inner">
+      <a class="wordmark" href="/" aria-label="Kalibracja Dirac — strona główna">
+        <svg viewBox="0 0 26 16" fill="none" aria-hidden="true"><path d="M1 9 C4 2, 6 2, 8 9 S12 14, 14 8 S18 7, 25 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span>kalibracja<b>/</b>dirac</span>
+      </a>
+      <nav class="site-nav" aria-label="Główna">
+        <button class="menu-button" type="button" popovertarget="site-menu" popovertargetaction="toggle" aria-controls="site-menu">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4.5h12M2 8h12M2 11.5h12" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span>Menu</span>
+        </button>
+        <ul id="site-menu" class="site-menu" popover="auto">
+          <li><a href="#co-robi-pokoj">Problem</a></li>
+          <li><a href="#proces">Jak to działa</a></li>
+          <li><a href="#licencje">Licencje</a></li>
+          <li><a href="#pytania">Pytania</a></li>
+          <li class="menu-cta"><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
     </div>
   </div>
-  <div class="tech-stats reveal">
-    <div class="tstat"><div class="tstat-val">2001</div><div class="tstat-label">Dirac Research, Uppsala — początek badań nad cyfrową korekcją dźwięku</div></div>
-    <div class="tstat"><div class="tstat-val">9–17</div><div class="tstat-label">punktów pomiarowych w pełnej sesji kalibracji pomieszczenia</div></div>
-    <div class="tstat"><div class="tstat-val sm">20 Hz – 20 kHz</div><div class="tstat-label">pełne pasmo korekcji — amplituda i faza w całym zakresie słyszalnym</div></div>
-    <div class="tstat"><div class="tstat-val">24 h</div><div class="tstat-label">maksymalny czas odpowiedzi polskiego wsparcia (pon–pt)</div></div>
-  </div>
-</section>
-<div class="features-grid">
-  <div class="feature reveal visible">
-    <div class="feature-canvas-wrap"><canvas id="fc1" width="543" height="180"></canvas></div>
-    <div class="feature-body">
-      <div class="feature-num">— 01</div>
-      <h3 class="feature-title">Precyzja<br>pomiaru</h3>
-      <p class="feature-desc">Algorytm analizuje impulsową odpowiedź pomieszczenia w wielu punktach, tworząc dokładny obraz akustyki Twojego systemu.</p>
-    </div>
-  </div>
-  <div class="feature reveal visible" style="transition-delay:0.15s">
-    <div class="feature-canvas-wrap"><canvas id="fc2" width="543" height="180"></canvas></div>
-    <div class="feature-body">
-      <div class="feature-num">— 02</div>
-      <h3 class="feature-title">Korekta<br>fazowa</h3>
-      <p class="feature-desc">Jedyna na rynku technologia korygująca zarówno amplitudę, jak i fazę — co przekłada się na głębię sceny dźwiękowej i precyzję obrazowania stereo.</p>
-    </div>
-  </div>
-  <div class="feature reveal visible" style="transition-delay:0.3s">
-    <div class="feature-canvas-wrap"><canvas id="fc3" width="543" height="180"></canvas></div>
-    <div class="feature-body">
-      <div class="feature-num">— 03</div>
-      <h3 class="feature-title">Wsparcie<br>po polsku</h3>
-      <p class="feature-desc">Pełna pomoc techniczna, instrukcje i konfiguracja systemu w języku polskim. Bez bariery językowej, z pełnym zaangażowaniem.</p>
-    </div>
-  </div>
-</div>
-<section id="jak-dziala" data-ghost="02">
-  <div class="section-label">02 — Proces</div>
-  <div class="steps">
-    <div class="step reveal visible"><div class="step-num">01</div><div class="step-title">Zakup licencji</div><p class="step-text">Wybierasz licencję odpowiednią do swojego sprzętu. Płatność online, licencja aktywowana bezpośrednio przez Dirac.</p><div class="step-meta">Online</div></div>
-    <div class="step reveal visible" style="transition-delay:0.1s"><div class="step-num">02</div><div class="step-title">Instalacja</div><p class="step-text">Pobierasz oprogramowanie Dirac Live i instalujesz na komputerze lub urządzeniu zgodnym ze standardem.</p><div class="step-meta">≈ 10 minut</div></div>
-    <div class="step reveal visible" style="transition-delay:0.2s"><div class="step-num">03</div><div class="step-title">Pomiar</div><p class="step-text">Za pomocą mikrofonu pomiarowego mierzysz akustykę pomieszczenia w kilku punktach. Asystujemy zdalnie.</p><div class="step-meta">≈ 30 minut</div></div>
-    <div class="step reveal visible" style="transition-delay:0.3s"><div class="step-num">04</div><div class="step-title">Efekt</div><p class="step-text">Twój system gra na poziomie, który wcześniej wymagał fizycznej przebudowy akustyki pomieszczenia.</p><div class="step-meta">Natychmiast</div></div>
-  </div>
-</section>
-<section id="oferta" data-ghost="03">
-  <div class="section-label">03 — Oferta</div>
-  <div class="offer-guide reveal">
-    <div class="og-item"><div class="og-q">Słuchasz stereo i chcesz zacząć?</div><p class="og-a"><strong>Starter</strong> — korekcja amplitudy dla dwóch kanałów. Największa poprawa brzmienia przy najmniejszym budżecie.</p></div>
-    <div class="og-item"><div class="og-q">Chcesz pełni możliwości w stereo?</div><p class="og-a"><strong>Full</strong> — amplituda, faza i Bass Control. Kompletna korekcja Dirac Live dla wymagającego systemu stereo.</p></div>
-    <div class="og-item"><div class="og-q">Budujesz kino domowe?</div><p class="og-a"><strong>Surround</strong> — korekcja do 9.x kanałów wraz ze zdalną sesją konfiguracji całego systemu.</p></div>
-  </div>
-  <div class="pricing-grid reveal visible">
-    <div class="price-card">
-      <div class="price-tier">Starter</div>
-      <div class="price-period">licencja dożywotnia</div>
-      <div class="price-divider"></div>
-      <ul class="price-features">
-        <li class="included">Dirac Live — 2 kanały stereo</li>
-        <li class="included">Korekta amplitudy</li>
-        <li class="included">Wsparcie e-mail PL</li>
-        <li>Korekta fazy (Bass Control)</li>
-        <li>Pomoc przy konfiguracji</li>
-      </ul>
-      <a href="#kontakt" class="btn-price btn-price-outline">Zapytaj o dostępność</a>
-    </div>
-    <div class="price-card featured">
-      <div class="price-tier">Full</div>
-      <div class="price-period">licencja dożywotnia</div>
-      <div class="price-divider"></div>
-      <ul class="price-features">
-        <li class="included">Dirac Live Full — 2 kanały stereo</li>
-        <li class="included">Korekta amplitudy + fazy</li>
-        <li class="included">Bass Control</li>
-        <li class="included">Wsparcie e-mail + telefon PL</li>
-        <li class="included">Pomoc przy konfiguracji</li>
-      </ul>
-      <a href="#kontakt" class="btn-price btn-price-filled">Kup teraz</a>
-    </div>
-    <div class="price-card">
-      <div class="price-tier">Surround</div>
-      <div class="price-period">licencja dożywotnia</div>
-      <div class="price-divider"></div>
-      <ul class="price-features">
-        <li class="included">Dirac Live do 9.x kanałów</li>
-        <li class="included">Korekta amplitudy + fazy</li>
-        <li class="included">Systemy kina domowego</li>
-        <li class="included">Zdalna sesja konfiguracji</li>
-        <li class="included">Priorytetowe wsparcie PL</li>
-      </ul>
-      <a href="#kontakt" class="btn-price btn-price-outline">Zapytaj o dostępność</a>
-    </div>
-  </div>
-  <p style="font-size:13px;color:var(--off);margin-top:24px;letter-spacing:0.05em;line-height:1.8">Wszystkie licencje są oficjalne i aktywowane bezpośrednio przez Dirac. Napisz do nas, aby sprawdzić dostępność i kompatybilność z Twoim systemem.</p>
-</section>
-<section id="faq" data-ghost="04">
-  <div class="section-label">04 — Pytania</div>
-  <div class="faq-list reveal">
-    <details class="faq-item">
-      <summary>Czy mój sprzęt obsługuje Dirac Live?</summary>
-      <div class="faq-a">Dirac Live jest wbudowany w amplitunery i procesory wielu marek — m.in. <strong>NAD, Arcam, Onkyo, Pioneer, Integra, StormAudio czy miniDSP</strong>. Jeśli Twoje urządzenie nie ma wbudowanego Dirac Live, korekcję można zrealizować na komputerze (Windows / macOS) albo przez zewnętrzny procesor, np. miniDSP. Napisz do nas — bezpłatnie sprawdzimy kompatybilność Twojego systemu.</div>
-    </details>
-    <details class="faq-item">
-      <summary>Czym różnią się licencje Starter, Full i Surround?</summary>
-      <div class="faq-a"><strong>Starter</strong> obejmuje korekcję amplitudy dla systemu stereo — to idealny pierwszy krok. <strong>Full</strong> dodaje korekcję fazy oraz Bass Control, czyli pełnię możliwości Dirac Live w stereo. <strong>Surround</strong> rozszerza korekcję na wielokanałowe systemy kina domowego (do 9.x) i zawiera zdalną sesję konfiguracji z naszym wsparciem.</div>
-    </details>
-    <details class="faq-item">
-      <summary>Czy potrzebuję mikrofonu pomiarowego?</summary>
-      <div class="faq-a">Tak — kalibracja wymaga mikrofonu pomiarowego. Większość amplitunerów z wbudowanym Dirac Live ma odpowiedni mikrofon w zestawie. Do pomiarów z komputera polecamy sprawdzony <strong>miniDSP UMIK-1</strong> — podpowiemy, gdzie kupić go w dobrej cenie.</div>
-    </details>
-    <details class="faq-item">
-      <summary>Jak przebiega zakup i aktywacja licencji?</summary>
-      <div class="faq-a">Wybierasz licencję, płacisz online, a licencja zostaje przypisana do Twojego konta Dirac i aktywowana <strong>bezpośrednio przez Dirac Research</strong> — masz pewność, że jest w pełni oryginalna. Cały proces trwa zwykle mniej niż jeden dzień roboczy.</div>
-    </details>
-    <details class="faq-item">
-      <summary>Czy licencja jest dożywotnia?</summary>
-      <div class="faq-a">Tak. Licencje Dirac Live są jednorazowe i <strong>dożywotnie</strong> — bez abonamentu. Licencja jest przypisana do Twojego konta Dirac, więc nie stracisz jej przy zmianie komputera.</div>
-    </details>
-    <details class="faq-item">
-      <summary>Co, jeśli będę potrzebować pomocy przy konfiguracji?</summary>
-      <div class="faq-a">Do każdej licencji oferujemy wsparcie <strong>w języku polskim</strong> — e-mail, a w wyższych pakietach także telefon i zdalną sesję konfiguracji. Odpowiadamy w ciągu 24 godzin w dni robocze (pon–pt, 9:00–18:00).</div>
-    </details>
-  </div>
-</section>
-<div class="statement reveal">
-  <div class="statement-orn"><span></span></div>
-  <p class="statement-text">Każda licencja jest <em>oryginalna</em> — aktywowana bezpośrednio przez Dirac Research — i objęta pełnym wsparciem technicznym w języku polskim.</p>
-  <div class="statement-sub">Autoryzowany reseller Dirac · we współpracy z audioplaza.pl</div>
-</div>
-<section id="kontakt" data-ghost="05">
-  <div class="section-label">05 — Kontakt</div>
-  <div class="contact-inner">
-    <div class="reveal visible">
-      <h2 class="contact-title">Porozmawiajmy<br>o Twoim<br><em>systemie</em></h2>
-      <div class="contact-info">
-        <p>Masz pytania dotyczące kompatybilności sprzętu, procesu konfiguracji lub chcesz po prostu dowiedzieć się więcej? Napisz do nas.</p>
-        <br>
-        <p>E-mail: <a href="mailto:kbrz77@proton.me">kbrz77@proton.me</a></p>
-        <p>Telefon: <a href="tel:+48796579480">+48 796 579 480</a></p>
-        <br>
-        <p style="font-size:18px;opacity:0.7">Odpowiadamy w ciągu 24 godzin<br>Pon–Pt, 9:00–18:00</p>
-        <div style="margin-top:14px;display:flex;flex-direction:column;gap:10px;">
-          <p style="font-size:15px;opacity:0.75;display:flex;align-items:center;gap:10px;">Powered by: <a href="https://audioplaza.pl/" target="_blank" style="display:inline-flex;align-items:center;opacity:0.85;transition:opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'"><img id="footerAudioplazaLogo" src="" alt="audioplaza.pl" style="height:20px;width:auto;display:block;"></a></p>
-          <p style="font-size:15px;opacity:0.75;display:flex;align-items:center;gap:10px;">Made by: <a href="https://kbrz77.pl" target="_blank" style="display:inline-flex;align-items:center;gap:8px;opacity:0.85;transition:opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'"><img src="https://kbrz77.pl/favicon.svg" alt="kbrz77.pl" style="height:20px;width:20px;border-radius:4px;display:block;">kbrz77.pl</a></p>
+</header>
+
+<main id="main">
+  <section class="hero on-blue" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="hero-head">
+        <h1 class="display" id="hero-title">Kolumny grają dobrze. Pokój&nbsp;— niekoniecznie.</h1>
+        <div class="hero-side">
+          <p class="lede">Ściany, podłoga i meble podbijają jedne częstotliwości, a inne wygaszają. Dirac Live mierzy te zniekształcenia mikrofonem i koryguje je w Twoim amplitunerze lub procesorze. My sprzedajemy oryginalne licencje i pomagamy przy pomiarze — po polsku.</p>
+          <div class="hero-actions">
+            <a class="btn btn--signal" href="#kontakt">Sprawdź swój sprzęt <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="btn btn--ghost" href="#proces">Jak to działa</a>
+          </div>
+          <p class="credential"><span>Autoryzowany reseller Dirac</span><span>Licencje aktywuje Dirac Research</span></p>
         </div>
       </div>
+
+      <figure class="diagram" id="wykres" data-view="both" aria-labelledby="diagram-title">
+        <div class="diagram-bar">
+          <p class="diagram-title" id="diagram-title">Charakterystyka w miejscu odsłuchu <span>— poziom w dB, pasmo 20 Hz–20 kHz</span></p>
+          <div class="view-switch" role="group" aria-label="Pokaż na wykresie">
+            <button type="button" data-view="before" aria-pressed="false"><span class="swatch swatch--before" aria-hidden="true"></span>Przed</button>
+            <button type="button" data-view="after" aria-pressed="false"><span class="swatch swatch--after" aria-hidden="true"></span>Po korekcji</button>
+            <button type="button" data-view="both" aria-pressed="true">Oba</button>
+          </div>
+        </div>
+
+        <div class="plot">
+          <svg viewBox="0 0 1000 400" preserveAspectRatio="none" role="img" aria-label="Wykres: przed korekcją charakterystyka ma szczyt ok. +10 dB przy 45 Hz, głęboki dołek przy 100 Hz i nierówną górę pasma. Po korekcji Dirac Live przebiega gładko wzdłuż krzywej docelowej.">
+            <g class="grid" aria-hidden="true">
+              <line x1="0" y1="40" x2="1000" y2="40"/><line x1="0" y1="120" x2="1000" y2="120"/>
+              <line class="zero" x1="0" y1="200" x2="1000" y2="200"/>
+              <line x1="0" y1="280" x2="1000" y2="280"/><line x1="0" y1="360" x2="1000" y2="360"/>
+              <line x1="132.6" y1="0" x2="132.6" y2="400"/><line x1="233" y1="0" x2="233" y2="400"/>
+              <line x1="333.3" y1="0" x2="333.3" y2="400"/><line x1="466" y1="0" x2="466" y2="400"/>
+              <line x1="566.3" y1="0" x2="566.3" y2="400"/><line x1="666.7" y1="0" x2="666.7" y2="400"/>
+              <line x1="799.3" y1="0" x2="799.3" y2="400"/><line x1="899.7" y1="0" x2="899.7" y2="400"/>
+            </g>
+            <path class="trace trace--target" d="M0.0 146.7L2.4 146.7L4.8 146.7L7.1 146.7L9.5 146.7L11.9 146.7L14.3 146.7L16.7 146.7L19.0 146.7L21.4 146.7L23.8 146.7L26.2 146.7L28.6 146.7L31.0 146.7L33.3 146.7L35.7 146.7L38.1 146.7L40.5 146.8L42.9 146.8L45.2 146.9L47.6 147.0L50.0 147.2L52.4 147.3L54.8 147.4L57.1 147.6L59.5 147.8L61.9 148.0L64.3 148.2L66.7 148.4L69.0 148.7L71.4 148.9L73.8 149.2L76.2 149.5L78.6 149.8L81.0 150.1L83.3 150.4L85.7 150.8L88.1 151.1L90.5 151.5L92.9 151.8L95.2 152.2L97.6 152.6L100.0 153.0L102.4 153.4L104.8 153.8L107.1 154.3L109.5 154.7L111.9 155.2L114.3 155.6L116.7 156.1L119.0 156.6L121.4 157.1L123.8 157.6L126.2 158.1L128.6 158.6L131.0 159.1L133.3 159.6L135.7 160.1L138.1 160.7L140.5 161.2L142.9 161.8L145.2 162.3L147.6 162.9L150.0 163.5L152.4 164.0L154.8 164.6L157.1 165.2L159.5 165.8L161.9 166.3L164.3 166.9L166.7 167.5L169.0 168.1L171.4 168.7L173.8 169.3L176.2 169.9L178.6 170.5L181.0 171.1L183.3 171.7L185.7 172.3L188.1 172.9L190.5 173.5L192.9 174.1L195.2 174.7L197.6 175.3L200.0 175.9L202.4 176.5L204.8 177.1L207.1 177.7L209.5 178.3L211.9 178.9L214.3 179.5L216.7 180.1L219.0 180.7L221.4 181.3L223.8 181.9L226.2 182.4L228.6 183.0L231.0 183.6L233.3 184.1L235.7 184.7L238.1 185.2L240.5 185.8L242.9 186.3L245.2 186.9L247.6 187.4L250.0 187.9L252.4 188.4L254.8 188.9L257.1 189.4L259.5 189.9L261.9 190.4L264.3 190.9L266.7 191.3L269.0 191.8L271.4 192.2L273.8 192.7L276.2 193.1L278.6 193.5L281.0 193.9L283.3 194.3L285.7 194.7L288.1 195.1L290.5 195.4L292.9 195.8L295.2 196.1L297.6 196.5L300.0 196.8L302.4 197.1L304.8 197.4L307.1 197.6L309.5 197.9L311.9 198.1L314.3 198.4L316.7 198.6L319.0 198.8L321.4 199.0L323.8 199.2L326.2 199.3L328.6 199.5L331.0 199.6L333.3 199.7L335.7 199.8L338.1 199.9L340.5 199.9L342.9 200.0L345.2 200.0L347.6 200.0L350.0 200.0L352.4 200.0L354.8 200.0L357.1 200.0L359.5 200.0L361.9 200.1L364.3 200.1L366.7 200.1L369.0 200.1L371.4 200.2L373.8 200.2L376.2 200.2L378.6 200.3L381.0 200.3L383.3 200.4L385.7 200.4L388.1 200.5L390.5 200.5L392.9 200.6L395.2 200.6L397.6 200.7L400.0 200.7L402.4 200.8L404.8 200.9L407.1 201.0L409.5 201.0L411.9 201.1L414.3 201.2L416.7 201.3L419.0 201.3L421.4 201.4L423.8 201.5L426.2 201.6L428.6 201.7L431.0 201.8L433.3 201.9L435.7 202.0L438.1 202.1L440.5 202.2L442.9 202.3L445.2 202.4L447.6 202.6L450.0 202.7L452.4 202.8L454.8 202.9L457.1 203.0L459.5 203.1L461.9 203.3L464.3 203.4L466.7 203.5L469.0 203.7L471.4 203.8L473.8 203.9L476.2 204.1L478.6 204.2L481.0 204.4L483.3 204.5L485.7 204.6L488.1 204.8L490.5 204.9L492.9 205.1L495.2 205.2L497.6 205.4L500.0 205.6L502.4 205.7L504.8 205.9L507.1 206.0L509.5 206.2L511.9 206.4L514.3 206.5L516.7 206.7L519.0 206.9L521.4 207.0L523.8 207.2L526.2 207.4L528.6 207.6L531.0 207.7L533.3 207.9L535.7 208.1L538.1 208.3L540.5 208.4L542.9 208.6L545.2 208.8L547.6 209.0L550.0 209.2L552.4 209.4L554.8 209.6L557.1 209.8L559.5 209.9L561.9 210.1L564.3 210.3L566.7 210.5L569.0 210.7L571.4 210.9L573.8 211.1L576.2 211.3L578.6 211.5L581.0 211.7L583.3 211.9L585.7 212.1L588.1 212.3L590.5 212.5L592.9 212.7L595.2 212.9L597.6 213.1L600.0 213.4L602.4 213.6L604.8 213.8L607.1 214.0L609.5 214.2L611.9 214.4L614.3 214.6L616.7 214.8L619.0 215.0L621.4 215.2L623.8 215.5L626.2 215.7L628.6 215.9L631.0 216.1L633.3 216.3L635.7 216.5L638.1 216.8L640.5 217.0L642.9 217.2L645.2 217.4L647.6 217.6L650.0 217.8L652.4 218.1L654.8 218.3L657.1 218.5L659.5 218.7L661.9 218.9L664.3 219.1L666.7 219.4L669.0 219.6L671.4 219.8L673.8 220.0L676.2 220.2L678.6 220.5L681.0 220.7L683.3 220.9L685.7 221.1L688.1 221.3L690.5 221.6L692.9 221.8L695.2 222.0L697.6 222.2L700.0 222.4L702.4 222.6L704.8 222.9L707.1 223.1L709.5 223.3L711.9 223.5L714.3 223.7L716.7 223.9L719.0 224.2L721.4 224.4L723.8 224.6L726.2 224.8L728.6 225.0L731.0 225.2L733.3 225.4L735.7 225.6L738.1 225.9L740.5 226.1L742.9 226.3L745.2 226.5L747.6 226.7L750.0 226.9L752.4 227.1L754.8 227.3L757.1 227.5L759.5 227.7L761.9 227.9L764.3 228.1L766.7 228.3L769.0 228.5L771.4 228.7L773.8 228.9L776.2 229.1L778.6 229.3L781.0 229.5L783.3 229.7L785.7 229.9L788.1 230.1L790.5 230.3L792.9 230.5L795.2 230.7L797.6 230.9L800.0 231.0L802.4 231.2L804.8 231.4L807.1 231.6L809.5 231.8L811.9 232.0L814.3 232.1L816.7 232.3L819.0 232.5L821.4 232.7L823.8 232.8L826.2 233.0L828.6 233.2L831.0 233.3L833.3 233.5L835.7 233.7L838.1 233.8L840.5 234.0L842.9 234.2L845.2 234.3L847.6 234.5L850.0 234.6L852.4 234.8L854.8 234.9L857.1 235.1L859.5 235.2L861.9 235.4L864.3 235.5L866.7 235.7L869.0 235.8L871.4 236.0L873.8 236.1L876.2 236.2L878.6 236.4L881.0 236.5L883.3 236.6L885.7 236.8L888.1 236.9L890.5 237.0L892.9 237.1L895.2 237.2L897.6 237.4L900.0 237.5L902.4 237.6L904.8 237.7L907.1 237.8L909.5 237.9L911.9 238.0L914.3 238.1L916.7 238.2L919.0 238.3L921.4 238.4L923.8 238.5L926.2 238.6L928.6 238.7L931.0 238.8L933.3 238.8L935.7 238.9L938.1 239.0L940.5 239.1L942.9 239.1L945.2 239.2L947.6 239.3L950.0 239.3L952.4 239.4L954.8 239.5L957.1 239.5L959.5 239.6L961.9 239.6L964.3 239.7L966.7 239.7L969.0 239.7L971.4 239.8L973.8 239.8L976.2 239.8L978.6 239.9L981.0 239.9L983.3 239.9L985.7 239.9L988.1 240.0L990.5 240.0L992.9 240.0L995.2 240.0L997.6 240.0L1000.0 240.0"/>
+            <path class="trace trace--before" d="M0.0 320.0L2.4 319.6L4.8 318.6L7.1 317.0L9.5 314.8L11.9 312.1L14.3 308.9L16.7 305.3L19.0 301.2L21.4 296.8L23.8 292.0L26.2 286.9L28.6 281.6L31.0 276.0L33.3 270.2L35.7 264.2L38.1 258.1L40.5 251.8L42.9 245.4L45.2 239.0L47.6 232.4L50.0 225.8L52.4 219.1L54.8 212.4L57.1 205.7L59.5 198.9L61.9 192.2L64.3 185.5L66.7 178.9L69.0 172.3L71.4 165.9L73.8 159.7L76.2 153.7L78.6 147.9L81.0 141.7L83.3 135.3L85.7 128.6L88.1 121.9L90.5 115.1L92.9 108.4L95.2 101.8L97.6 95.5L100.0 89.6L102.4 84.1L104.8 79.3L107.1 75.1L109.5 71.7L111.9 69.1L114.3 67.5L116.7 66.7L119.0 66.9L121.4 68.0L123.8 70.0L126.2 72.9L128.6 76.6L131.0 81.1L133.3 86.2L135.7 91.8L138.1 97.9L140.5 104.3L142.9 111.0L145.2 117.7L147.6 124.5L150.0 131.2L152.4 137.8L154.8 144.1L157.1 150.2L159.5 155.9L161.9 161.2L164.3 166.1L166.7 170.6L169.0 174.7L171.4 178.4L173.8 181.6L176.2 184.5L178.6 187.1L181.0 189.3L183.3 191.3L185.7 193.0L188.1 194.6L190.5 196.1L192.9 197.7L195.2 199.4L197.6 201.4L200.0 203.9L202.4 207.1L204.8 211.3L207.1 216.7L209.5 223.6L211.9 232.1L214.3 242.3L216.7 254.3L219.0 267.8L221.4 282.5L223.8 297.8L226.2 313.1L228.6 327.4L231.0 340.0L233.3 350.0L235.7 356.7L238.1 359.6L240.5 358.4L242.9 353.3L245.2 344.6L247.6 332.9L250.0 318.9L252.4 303.5L254.8 287.6L257.1 271.9L259.5 256.9L261.9 243.2L264.3 231.0L266.7 220.4L269.0 211.2L271.4 203.4L273.8 196.7L276.2 190.9L278.6 185.7L281.0 181.0L283.3 176.6L285.7 172.4L288.1 168.3L290.5 164.3L292.9 160.4L295.2 156.7L297.6 153.2L300.0 149.9L302.4 147.0L304.8 144.5L307.1 142.5L309.5 141.1L311.9 140.2L314.3 140.0L316.7 140.4L319.0 141.4L321.4 143.0L323.8 145.1L326.2 147.7L328.6 150.6L331.0 153.9L333.3 157.4L335.7 161.1L338.1 164.8L340.5 168.5L342.9 172.1L345.2 175.5L347.6 178.8L350.0 181.8L352.4 184.6L354.8 187.1L357.1 189.4L359.5 191.5L361.9 193.4L364.3 195.2L366.7 196.9L369.0 198.5L371.4 200.2L373.8 202.1L376.2 204.2L378.6 206.5L381.0 209.1L383.3 212.1L385.7 215.4L388.1 219.0L390.5 222.8L392.9 226.9L395.2 231.1L397.6 235.1L400.0 238.7L402.4 241.6L404.8 244.0L407.1 245.7L409.5 246.6L411.9 246.4L414.3 245.4L416.7 243.6L419.0 241.2L421.4 238.1L423.8 234.2L426.2 229.7L428.6 225.2L431.0 221.3L433.3 217.8L435.7 214.4L438.1 211.2L440.5 208.5L442.9 206.5L445.2 204.8L447.6 202.9L450.0 200.9L452.4 199.7L454.8 199.7L457.1 200.6L459.5 201.3L461.9 201.4L464.3 201.3L466.7 201.6L469.0 201.9L471.4 201.6L473.8 200.6L476.2 200.1L478.6 200.8L481.0 202.2L483.3 202.6L485.7 201.3L488.1 199.4L490.5 198.1L492.9 197.6L495.2 197.0L497.6 196.1L500.0 195.8L502.4 197.4L504.8 200.0L507.1 201.4L509.5 200.7L511.9 199.1L514.3 198.9L516.7 200.4L519.0 202.2L521.4 202.8L523.8 203.1L526.2 204.3L528.6 205.9L531.0 205.6L533.3 202.2L535.7 197.6L538.1 195.1L540.5 195.8L542.9 197.2L545.2 197.3L547.6 196.1L550.0 195.9L552.4 197.0L554.8 197.4L557.1 195.4L559.5 193.0L561.9 193.7L564.3 198.5L566.7 204.2L569.0 206.7L571.4 205.8L573.8 204.4L576.2 204.1L578.6 203.4L581.0 200.2L583.3 196.0L585.7 194.3L588.1 196.6L590.5 199.5L592.9 198.2L595.2 192.5L597.6 186.7L600.0 184.5L602.4 185.1L604.8 185.2L607.1 184.7L609.5 186.6L611.9 192.5L614.3 198.7L616.7 200.0L619.0 195.5L621.4 190.4L623.8 189.7L626.2 192.8L628.6 194.7L631.0 193.2L633.3 190.9L635.7 190.7L638.1 190.4L640.5 185.2L642.9 174.8L645.2 165.2L647.6 162.7L650.0 166.8L652.4 171.2L654.8 171.5L657.1 169.8L659.5 170.4L661.9 173.1L664.3 173.2L666.7 169.2L669.0 166.0L671.4 169.6L673.8 179.1L676.2 186.6L678.6 185.8L681.0 178.9L683.3 172.5L685.7 169.3L688.1 165.6L690.5 158.6L692.9 152.0L695.2 151.9L697.6 158.3L700.0 163.2L702.4 160.0L704.8 151.2L707.1 145.7L709.5 148.0L711.9 154.3L714.3 158.8L716.7 161.9L719.0 168.7L721.4 179.7L723.8 187.6L726.2 185.5L728.6 175.7L731.0 168.2L733.3 169.5L735.7 175.4L738.1 177.8L740.5 174.8L742.9 171.9L745.2 172.7L747.6 173.0L750.0 166.6L752.4 155.7L754.8 150.6L757.1 158.1L759.5 173.4L761.9 185.5L764.3 189.8L766.7 191.5L769.0 196.9L771.4 203.8L773.8 206.0L776.2 203.0L778.6 203.2L781.0 212.9L783.3 227.3L785.7 234.5L788.1 228.9L790.5 217.5L792.9 210.1L795.2 208.5L797.6 206.6L800.0 201.5L802.4 199.2L804.8 206.2L807.1 218.8L809.5 225.5L811.9 220.4L814.3 210.4L816.7 207.6L819.0 214.8L821.4 224.1L823.8 228.3L826.2 229.6L828.6 234.2L831.0 241.0L833.3 240.6L835.7 227.3L838.1 208.6L840.5 197.6L842.9 198.9L845.2 204.0L847.6 203.1L850.0 196.4L852.4 191.9L854.8 192.3L857.1 191.6L859.5 183.9L861.9 174.6L864.3 175.5L866.7 190.3L869.0 209.1L871.4 218.9L873.8 217.8L876.2 214.5L878.6 215.4L881.0 216.8L883.3 212.1L885.7 203.5L888.1 200.8L890.5 208.4L892.9 217.7L895.2 216.2L897.6 202.3L900.0 187.1L902.4 181.0L904.8 182.9L907.1 184.8L909.5 184.6L911.9 189.3L914.3 203.1L916.7 219.2L919.0 225.5L921.4 219.8L923.8 212.7L926.2 215.7L928.6 227.9L931.0 239.0L933.3 242.5L935.7 242.9L938.1 246.5L940.5 250.3L942.9 245.5L945.2 230.0L947.6 214.6L950.0 211.5L952.4 220.9L954.8 231.3L957.1 233.8L959.5 231.3L961.9 232.4L964.3 238.2L966.7 241.5L969.0 238.4L971.4 236.3L973.8 245.2L976.2 264.7L978.6 281.9L981.0 285.8L983.3 278.8L985.7 271.8L988.1 269.8L990.5 267.9L992.9 260.6L995.2 252.0L997.6 251.1L1000.0 259.1"/>
+            <path class="trace trace--after" d="M0.0 264.4L2.4 265.0L4.8 265.0L7.1 264.5L9.5 263.3L11.9 261.5L14.3 259.2L16.7 256.2L19.0 252.6L21.4 248.5L23.8 243.9L26.2 238.7L28.6 233.1L31.0 227.2L33.3 220.9L35.7 214.5L38.1 208.0L40.5 201.4L42.9 194.9L45.2 188.6L47.6 182.6L50.0 176.9L52.4 171.6L54.8 166.8L57.1 162.5L59.5 158.9L61.9 155.8L64.3 153.4L66.7 151.6L69.0 150.4L71.4 149.9L73.8 150.1L76.2 150.9L78.6 152.1L81.0 153.2L83.3 154.2L85.7 155.1L88.1 155.7L90.5 156.1L92.9 156.3L95.2 156.3L97.6 156.1L100.0 155.8L102.4 155.3L104.8 154.7L107.1 154.1L109.5 153.6L111.9 153.0L114.3 152.6L116.7 152.4L119.0 152.3L121.4 152.5L123.8 152.9L126.2 153.5L128.6 154.4L131.0 155.4L133.3 156.7L135.7 158.1L138.1 159.6L140.5 161.2L142.9 162.8L145.2 164.3L147.6 165.7L150.0 167.0L152.4 168.2L154.8 169.1L157.1 169.8L159.5 170.3L161.9 170.6L164.3 170.7L166.7 170.6L169.0 170.3L171.4 170.0L173.8 169.5L176.2 169.1L178.6 168.7L181.0 168.4L183.3 168.3L185.7 168.3L188.1 168.5L190.5 168.9L192.9 169.5L195.2 170.4L197.6 171.5L200.0 172.7L202.4 174.2L204.8 175.7L207.1 177.3L209.5 178.9L211.9 180.5L214.3 182.0L216.7 183.4L219.0 184.7L221.4 185.7L223.8 186.5L226.2 187.1L228.6 187.4L231.0 187.6L233.3 187.5L235.7 187.2L238.1 186.9L240.5 186.4L242.9 185.9L245.2 185.4L247.6 185.0L250.0 184.7L252.4 184.6L254.8 184.6L257.1 184.8L259.5 185.3L261.9 185.9L264.3 186.8L266.7 187.8L269.0 189.1L271.4 190.4L273.8 191.8L276.2 193.3L278.6 194.7L281.0 196.1L283.3 197.4L285.7 198.4L288.1 199.3L290.5 200.0L292.9 200.5L295.2 200.7L297.6 200.6L300.0 200.4L302.4 199.9L304.8 199.4L307.1 198.7L309.5 197.9L311.9 197.1L314.3 196.4L316.7 195.7L319.0 195.2L321.4 194.8L323.8 194.6L326.2 194.7L328.6 194.9L331.0 195.3L333.3 196.0L335.7 196.8L338.1 197.7L340.5 198.7L342.9 199.8L345.2 200.8L347.6 201.8L350.0 202.7L352.4 203.5L354.8 204.1L357.1 204.5L359.5 204.7L361.9 204.7L364.3 204.4L366.7 203.9L369.0 203.3L371.4 202.5L373.8 201.6L376.2 200.6L378.6 199.6L381.0 198.7L383.3 197.8L385.7 197.0L388.1 196.5L390.5 196.1L392.9 195.9L395.2 196.0L397.6 196.3L400.0 196.8L402.4 197.6L404.8 198.5L407.1 199.4L409.5 200.5L411.9 201.5L414.3 202.6L416.7 203.6L419.0 204.5L421.4 205.3L423.8 205.9L426.2 206.4L428.6 206.5L431.0 206.4L433.3 206.0L435.7 205.4L438.1 204.6L440.5 203.7L442.9 202.9L445.2 202.1L447.6 201.4L450.0 200.7L452.4 200.0L454.8 199.4L457.1 198.8L459.5 198.4L461.9 198.3L464.3 198.5L466.7 199.1L469.0 200.0L471.4 201.2L473.8 202.4L476.2 203.6L478.6 204.7L481.0 205.5L483.3 206.3L485.7 207.0L488.1 207.8L490.5 208.7L492.9 209.6L495.2 210.3L497.6 210.6L500.0 210.5L502.4 209.9L504.8 208.9L507.1 207.7L509.5 206.6L511.9 205.7L514.3 205.1L516.7 204.8L519.0 204.6L521.4 204.4L523.8 204.0L526.2 203.5L528.6 202.9L531.0 202.5L533.3 202.6L535.7 203.2L538.1 204.5L540.5 206.2L542.9 208.1L545.2 209.7L547.6 210.9L550.0 211.6L552.4 211.9L554.8 212.1L557.1 212.4L559.5 213.1L561.9 214.1L564.3 215.1L566.7 215.9L569.0 216.1L571.4 215.6L573.8 214.3L576.2 212.6L578.6 210.9L581.0 209.5L583.3 208.9L585.7 208.9L588.1 209.4L590.5 209.9L592.9 210.2L595.2 209.9L597.6 209.2L600.0 208.5L602.4 208.1L604.8 208.4L607.1 209.7L609.5 211.8L611.9 214.2L614.3 216.6L616.7 218.3L619.0 219.1L621.4 219.1L623.8 218.6L626.2 218.2L628.6 218.2L631.0 218.9L633.3 220.1L635.7 221.4L638.1 222.3L640.5 222.2L642.9 221.0L645.2 218.9L647.6 216.5L650.0 214.5L652.4 213.4L654.8 213.3L657.1 214.2L659.5 215.6L661.9 216.7L664.3 217.2L666.7 216.8L669.0 215.9L671.4 214.9L673.8 214.6L676.2 215.3L678.6 217.3L681.0 220.2L683.3 223.3L685.7 225.8L688.1 227.2L690.5 227.2L692.9 226.3L695.2 224.9L697.6 224.0L700.0 223.9L702.4 224.8L704.8 226.4L707.1 227.9L709.5 228.6L711.9 228.0L714.3 226.1L716.7 223.3L719.0 220.4L721.4 218.4L723.8 217.8L726.2 218.7L728.6 220.6L731.0 222.7L733.3 224.2L735.7 224.7L738.1 224.0L740.5 222.7L742.9 221.6L745.2 221.4L747.6 222.8L750.0 225.5L752.4 229.0L754.8 232.3L757.1 234.6L759.5 235.2L761.9 234.3L764.3 232.3L766.7 230.3L769.0 229.0L771.4 229.1L773.8 230.4L776.2 232.3L778.6 233.8L781.0 234.2L783.3 232.9L785.7 230.3L788.1 227.0L790.5 224.1L792.9 222.5L795.2 222.7L797.6 224.6L800.0 227.3L802.4 230.0L804.8 231.6L807.1 231.7L809.5 230.6L811.9 229.0L814.3 227.9L816.7 228.1L819.0 230.1L821.4 233.4L823.8 237.2L826.2 240.3L828.6 241.9L831.0 241.5L833.3 239.5L835.7 236.7L838.1 234.3L840.5 233.1L842.9 233.5L845.2 235.1L847.6 237.2L850.0 238.5L852.4 238.3L854.8 236.4L857.1 233.2L859.5 229.8L861.9 227.2L864.3 226.4L866.7 227.6L869.0 230.4L871.4 233.7L873.8 236.5L876.2 237.8L878.6 237.5L881.0 236.0L883.3 234.3L885.7 233.4L888.1 234.1L890.5 236.5L892.9 240.1L895.2 243.6L897.6 246.1L900.0 246.7L902.4 245.2L904.8 242.4L907.1 239.2L909.5 236.7L911.9 235.8L914.3 236.6L916.7 238.4L919.0 240.3L921.4 241.2L923.8 240.4L926.2 238.0L928.6 234.7L931.0 231.6L933.3 229.7L935.7 229.9L938.1 231.9L940.5 235.3L942.9 238.7L945.2 241.2L947.6 242.0L950.0 241.3L952.4 239.5L954.8 237.9L957.1 237.4L959.5 238.5L961.9 241.1L964.3 244.5L966.7 247.5L969.0 249.0L971.4 248.5L973.8 246.1L976.2 242.6L978.6 239.3L981.0 237.0L983.3 236.5L985.7 237.6L988.1 239.5L990.5 241.1L992.9 241.5L995.2 240.3L997.6 237.6L1000.0 234.4"/>
+          </svg>
+
+          <div aria-hidden="true">
+            <span class="tick tick--y" style="top:10%">+12</span>
+            <span class="tick tick--y minor" style="top:30%">+6</span>
+            <span class="tick tick--y" style="top:50%">0</span>
+            <span class="tick tick--y minor" style="top:70%">−6</span>
+            <span class="tick tick--y" style="top:90%">−12</span>
+          </div>
+          <div aria-hidden="true">
+            <span class="tick tick--x" style="left:0%">20</span>
+            <span class="tick tick--x minor" style="left:13.26%">50</span>
+            <span class="tick tick--x" style="left:23.3%">100</span>
+            <span class="tick tick--x minor" style="left:46.6%">500</span>
+            <span class="tick tick--x" style="left:56.63%">1k</span>
+            <span class="tick tick--x minor" style="left:79.93%">5k</span>
+            <span class="tick tick--x end" style="left:100%">20k Hz</span>
+          </div>
+
+          <a class="pin" href="#f1" style="left:11.74%;top:16.7%" aria-label="1: dudniący bas, ok. 45 Hz">1</a>
+          <a class="pin pin--low" href="#f2" style="left:23.87%;top:89.9%" aria-label="2: dziura w basie, ok. 100 Hz">2</a>
+          <a class="pin" href="#f3" style="left:70.46%;top:30%" aria-label="3: ostra góra, 2–3 kHz">3</a>
+        </div>
+
+        <figcaption>
+          <span>Ilustracja poglądowa: typowy przebieg w nieadaptowanym salonie przed korekcją i po niej. Linia przerywana to krzywa docelowa. Twój pomiar będzie wyglądał inaczej — właśnie dlatego się go robi.</span>
+        </figcaption>
+      </figure>
     </div>
-    <div class="contact-form reveal visible" style="transition-delay:0.2s">
-      <div class="form-field"><label for="f-name">Imię i nazwisko</label><input type="text" placeholder="Jan Kowalski" id="f-name"></div>
-      <div class="form-field"><label for="f-email">Adres e-mail</label><input type="email" placeholder="jan@example.com" id="f-email"></div>
-      <div class="form-field">
-        <label for="f-type">Typ systemu</label>
-        <select id="f-type"><option value="">Wybierz...</option><option>Stereo Hi-Fi</option><option>Kino domowe / Surround</option><option>System aktywny / DAC</option><option>Inne</option></select>
+  </section>
+
+  <section class="section" id="co-robi-pokoj" aria-labelledby="h-problem">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="h-problem">Cztery rzeczy, które pokój robi z&nbsp;dźwiękiem.</h2>
+        <p>Trzy widać na wykresie powyżej. Czwartej nie — a często słychać ją najbardziej.</p>
       </div>
-      <div class="form-field"><label for="f-msg">Wiadomość</label><textarea id="f-msg" placeholder="Opisz swój sprzęt i pytanie..."></textarea></div>
-      <div class="form-submit"><button type="button" class="btn-primary" id="submit-btn" onclick="handleSubmit()">Wyślij wiadomość</button></div>
+      <ol class="findings">
+        <li class="finding" id="f1">
+          <span class="num" aria-hidden="true">1</span>
+          <div>
+            <h3>Bas dudni na jednej nucie</h3>
+            <p class="where">ok. 30–80 Hz · mody pomieszczenia</p>
+            <p>Fala stojąca między ścianami podbija wąski zakres basu. Jedne dźwięki buczą, inne giną, a stopa perkusji zlewa się z gitarą basową.</p>
+          </div>
+        </li>
+        <li class="finding" id="f2">
+          <span class="num" aria-hidden="true">2</span>
+          <div>
+            <h3>Bas znika tam, gdzie siedzisz</h3>
+            <p class="where">ok. 80–200 Hz · odbicie od ściany za kolumną</p>
+            <p>Odbita fala wraca w przeciwfazie i wygasza część pasma. Część takich dziur da się wyrównać korekcją, część wymaga przesunięcia kolumn — przy pomiarze powiemy, które są które.</p>
+          </div>
+        </li>
+        <li class="finding" id="f3">
+          <span class="num" aria-hidden="true">3</span>
+          <div>
+            <h3>Góra męczy po godzinie</h3>
+            <p class="where">ok. 2–5 kHz · odbicia od ścian bocznych i szyb</p>
+            <p>Nierówna średnica i wysokie tony podbarwiają brzmienie. Głosy robią się ostre, a dłuższe słuchanie zaczyna męczyć.</p>
+          </div>
+        </li>
+        <li class="finding finding--off" id="f4">
+          <span class="num" aria-hidden="true">4</span>
+          <div>
+            <h3>Scena się rozmywa</h3>
+            <p class="where">poza wykresem · czas i faza</p>
+            <p>Dźwięk z kolumn i odbicia docierają do uszu w różnym czasie. Dirac Live koryguje także odpowiedź impulsową, więc instrumenty wracają na swoje miejsca między kolumnami (licencje Full i&nbsp;Surround).</p>
+          </div>
+        </li>
+      </ol>
     </div>
-  </div>
-</section>
-<footer>
-  <div class="footer-grid">
-    <div>
-      <div class="footer-logo">Dirac Live <span>Polska</span></div>
-      <p class="footer-desc">Autoryzowany reseller Dirac Live w Polsce. Oryginalne licencje cyfrowej korekcji akustyki dla systemów stereo i kina domowego — z pełnym wsparciem w języku polskim.</p>
+  </section>
+
+  <section class="section section--tight on-signal" aria-labelledby="h-spec">
+    <div class="wrap">
+      <h2 class="visually-hidden" id="h-spec">Dirac Live w skrócie</h2>
+      <dl class="spec">
+        <div><dt>Producent</dt><dd>Dirac Research, Uppsala — badania od 2001</dd></div>
+        <div><dt>Pomiar</dt><dd>9–17 punktów mikrofonem</dd></div>
+        <div><dt>Zakres korekcji</dt><dd>20 Hz – 20 kHz, amplituda i faza</dd></div>
+        <div><dt>Wsparcie</dt><dd>po polsku, odpowiedź do 24 h</dd></div>
+        <div class="wide"><dt>Dirac Live znajdziesz m.in. w</dt><dd>
+          <ul class="brands">
+            <li><span class="brands-cat">Amplitunery i procesory AV</span><span class="brands-names">Denon · Marantz · Arcam · NAD · Onkyo · Pioneer · Integra · JBL · Emotiva · Monolith · AudioControl</span></li>
+            <li><span class="brands-cat">Kino domowe high-end</span><span class="brands-names">StormAudio · Lexicon · Datasat · Bryston · Focal</span></li>
+            <li><span class="brands-cat">Kolumny i soundbary</span><span class="brands-names">Dynaudio Focus · Klipsch Flexus</span></li>
+            <li><span class="brands-cat">DSP i komputer</span><span class="brands-names">miniDSP · Windows · macOS</span></li>
+          </ul>
+          <p class="brands-note">W samochodach technologia Dirac trafiła m.in. do Volvo i Rolls-Royce. Zakres funkcji Dirac Live różni się między modelami — sprawdzimy Twój.</p>
+        </dd></div>
+      </dl>
     </div>
-    <div class="footer-col">
-      <div class="footer-head">Nawigacja</div>
-      <ul>
-        <li><a href="#technologia">Technologia</a></li>
-        <li><a href="#jak-dziala">Proces</a></li>
-        <li><a href="#oferta">Oferta</a></li>
-        <li><a href="#faq">Pytania</a></li>
-        <li><a href="#kontakt">Kontakt</a></li>
-      </ul>
+  </section>
+
+  <section class="section" id="proces" aria-labelledby="h-proces">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="h-proces">Od pierwszego maila do odsłuchu.</h2>
+        <p>Nie musisz znać się na akustyce. Wystarczy mikrofon, pół godziny i&nbsp;cisza w&nbsp;pokoju.</p>
+      </div>
+      <ol class="steps">
+        <li class="step">
+          <span class="step-n" aria-hidden="true">1</span>
+          <h3>Sprawdzamy sprzęt</h3>
+          <p>Piszesz, na czym grasz. Potwierdzamy, czy urządzenie obsługuje Dirac Live i która licencja ma sens.</p>
+          <p class="meta">bezpłatnie · odpowiedź do 24 h</p>
+        </li>
+        <li class="step">
+          <span class="step-n" aria-hidden="true">2</span>
+          <h3>Kupujesz licencję</h3>
+          <p>Płacisz online, a Dirac Research przypisuje licencję do Twojego konta. Raz, bez abonamentu.</p>
+          <p class="meta">zwykle do 1 dnia roboczego</p>
+        </li>
+        <li class="step">
+          <span class="step-n" aria-hidden="true">3</span>
+          <h3>Mierzysz pokój</h3>
+          <p>Instalujesz aplikację Dirac Live i przestawiasz mikrofon wokół miejsca odsłuchu. Jeśli chcesz, prowadzimy Cię zdalnie.</p>
+          <p class="meta">ok. 30 minut</p>
+        </li>
+        <li class="step">
+          <span class="step-n" aria-hidden="true">4</span>
+          <h3>Słuchasz różnicy</h3>
+          <p>Filtr trafia do urządzenia. Włączasz i wyłączasz korekcję, i&nbsp;porównujesz to samo nagranie.</p>
+          <p class="meta">od razu</p>
+        </li>
+      </ol>
     </div>
-    <div class="footer-col">
-      <div class="footer-head">Kontakt</div>
-      <p><a href="mailto:kbrz77@proton.me">kbrz77@proton.me</a><br><a href="tel:+48796579480">+48 796 579 480</a><br>pon–pt, 9:00–18:00</p>
+  </section>
+
+  <section class="section" id="licencje" aria-labelledby="h-licencje">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="h-licencje">Trzy licencje. Pomożemy wybrać jedną.</h2>
+        <p>Wszystkie są oryginalne, dożywotnie i aktywowane bezpośrednio przez Dirac Research. Ceny podajemy po sprawdzeniu, czy licencja pasuje do Twojego urządzenia.</p>
+      </div>
+      <div class="tiers">
+        <article class="tier" aria-labelledby="t-starter">
+          <div class="tier-head">
+            <h3 class="tier-name" id="t-starter">Starter</h3>
+            <p class="tier-for">Pierwszy krok w stereo. Największa zmiana za najmniejsze pieniądze.</p>
+          </div>
+          <dl>
+            <div><dt>Kanały</dt><dd>2 (stereo)</dd></div>
+            <div><dt>Korekcja amplitudy</dt><dd class="yes">tak</dd></div>
+            <div><dt>Korekcja fazy i impulsu</dt><dd class="no">—</dd></div>
+            <div><dt>Bass Control</dt><dd class="no">—</dd></div>
+            <div><dt>Wsparcie po polsku</dt><dd>e-mail</dd></div>
+            <div><dt>Pomoc przy konfiguracji</dt><dd class="no">—</dd></div>
+            <div><dt>Licencja</dt><dd>dożywotnia</dd></div>
+          </dl>
+          <a class="btn btn--ghost" href="#kontakt" data-tier="Starter">Zapytaj o Starter</a>
+        </article>
+        <article class="tier" aria-labelledby="t-full">
+          <div class="tier-head">
+            <h3 class="tier-name" id="t-full">Full</h3>
+            <p class="tier-for">Pełna korekcja Dirac Live dla wymagającego systemu stereo.</p>
+          </div>
+          <dl>
+            <div><dt>Kanały</dt><dd>2 (stereo)</dd></div>
+            <div><dt>Korekcja amplitudy</dt><dd class="yes">tak</dd></div>
+            <div><dt>Korekcja fazy i impulsu</dt><dd class="yes">tak</dd></div>
+            <div><dt>Bass Control</dt><dd class="yes">tak</dd></div>
+            <div><dt>Wsparcie po polsku</dt><dd>e-mail i telefon</dd></div>
+            <div><dt>Pomoc przy konfiguracji</dt><dd class="yes">tak</dd></div>
+            <div><dt>Licencja</dt><dd>dożywotnia</dd></div>
+          </dl>
+          <a class="btn btn--signal" href="#kontakt" data-tier="Full">Zapytaj o Full</a>
+        </article>
+        <article class="tier" aria-labelledby="t-surround">
+          <div class="tier-head">
+            <h3 class="tier-name" id="t-surround">Surround</h3>
+            <p class="tier-for">Kino domowe: korekcja wszystkich kanałów, łącznie z subwooferami.</p>
+          </div>
+          <dl>
+            <div><dt>Kanały</dt><dd>do 9.x</dd></div>
+            <div><dt>Korekcja amplitudy</dt><dd class="yes">tak</dd></div>
+            <div><dt>Korekcja fazy i impulsu</dt><dd class="yes">tak</dd></div>
+            <div><dt>Bass Control</dt><dd>zależy od urządzenia</dd></div>
+            <div><dt>Wsparcie po polsku</dt><dd>priorytetowe</dd></div>
+            <div><dt>Pomoc przy konfiguracji</dt><dd>zdalna sesja</dd></div>
+            <div><dt>Licencja</dt><dd>dożywotnia</dd></div>
+          </dl>
+          <a class="btn btn--ghost" href="#kontakt" data-tier="Surround">Zapytaj o Surround</a>
+        </article>
+      </div>
+      <p class="tiers-note">Zakres funkcji zależy od konkretnego amplitunera lub procesora — część producentów sprzedaje licencje w nieco innym podziale. Zanim cokolwiek kupisz, potwierdzimy, co dokładnie dostaniesz.</p>
     </div>
-    <div class="footer-col">
-      <div class="footer-head">Partnerzy</div>
-      <ul>
-        <li><a href="https://audioplaza.pl/" target="_blank" rel="noopener">audioplaza.pl</a></li>
-        <li><a href="https://www.dirac.com/" target="_blank" rel="noopener">dirac.com</a></li>
-        <li><a href="https://kbrz77.pl" target="_blank" rel="noopener">kbrz77.pl</a></li>
-      </ul>
+  </section>
+
+  <section class="section" id="pytania" aria-labelledby="h-pytania">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="h-pytania">Zanim napiszesz.</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Czy mój sprzęt obsługuje Dirac Live?</summary>
+          <div class="answer"><p>Dirac Live jest wbudowany m.in. w amplitunery i procesory Denon, Marantz, Arcam, NAD, Onkyo, Pioneer, Integra, StormAudio, Lexicon i miniDSP, a także w kolumny Dynaudio Focus i soundbar Klipsch Flexus. Jeśli Twoje urządzenie go nie ma, korekcję można uruchomić na komputerze (Windows, macOS) albo w zewnętrznym procesorze, np. miniDSP.</p><p>Napisz, na czym grasz — sprawdzimy kompatybilność bezpłatnie.</p></div>
+        </details>
+        <details>
+          <summary>Czym różnią się licencje Starter, Full i Surround?</summary>
+          <div class="answer"><p><strong>Starter</strong> koryguje amplitudę w systemie stereo. <strong>Full</strong> dodaje korekcję fazy i odpowiedzi impulsowej oraz Bass Control. <strong>Surround</strong> obejmuje systemy kina domowego do 9.x kanałów i zdalną sesję konfiguracji.</p><p>Dokładny zakres zależy od urządzenia, dlatego potwierdzamy go przed zakupem.</p></div>
+        </details>
+        <details>
+          <summary>Czy potrzebuję mikrofonu pomiarowego?</summary>
+          <div class="answer"><p>Tak. Wiele urządzeń z Dirac Live ma odpowiedni mikrofon w zestawie, ale nie wszystkie: mikrofon Audyssey dołączany do Denona i Marantza nie współpracuje z Dirac Live, a np. Monolith HTP-1 nie ma mikrofonu wcale.</p><p>Wtedy sprawdza się miniDSP UMIK-1 — podpowiemy, gdzie go kupić.</p></div>
+        </details>
+        <details>
+          <summary>Jak przebiega zakup i aktywacja licencji?</summary>
+          <div class="answer"><p>Wybierasz licencję i płacisz online. Licencja trafia na Twoje konto Dirac i jest aktywowana bezpośrednio przez Dirac Research, więc masz pewność, że jest oryginalna. Zwykle trwa to krócej niż jeden dzień roboczy.</p></div>
+        </details>
+        <details>
+          <summary>Czy licencja jest dożywotnia?</summary>
+          <div class="answer"><p>Tak. Licencję kupujesz raz, bez abonamentu. Jest przypisana do Twojego konta Dirac, więc nie przepada przy zmianie komputera.</p></div>
+        </details>
+        <details>
+          <summary>Czy korekcja zastąpi ustroje akustyczne?</summary>
+          <div class="answer"><p>Nie w całości. Dirac Live wyrównuje charakterystykę i odpowiedź impulsową w miejscu odsłuchu, ale nie skróci pogłosu w pustym, twardym pokoju. Często to od korekcji warto zacząć, a ustroje dołożyć później, jeśli pomieszczenie jest bardzo pogłosowe.</p></div>
+        </details>
+        <details>
+          <summary>Co, jeśli utknę przy konfiguracji?</summary>
+          <div class="answer"><p>Do każdej licencji dostajesz wsparcie po polsku: e-mail, a w licencjach Full i Surround także telefon i pomoc przy konfiguracji. Odpowiadamy w ciągu 24 godzin w dni robocze, pon–pt 9:00–18:00.</p></div>
+        </details>
+      </div>
     </div>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-note">Dirac Live® jest zastrzeżonym znakiem towarowym Dirac Research AB, Szwecja</div>
-    <div class="footer-links">
-      <a href="#">Polityka prywatności</a>
-      <a href="#">Regulamin</a>
+  </section>
+
+  <section class="section on-blue" id="kontakt" aria-labelledby="h-kontakt">
+    <div class="wrap contact">
+      <div class="contact-direct">
+        <h2 id="h-kontakt">Napisz, na czym grasz.</h2>
+        <p>Model amplitunera lub procesora, kolumny, przybliżona wielkość pokoju — tyle wystarczy, żeby sprawdzić kompatybilność i&nbsp;dobrać licencję.</p>
+        <div class="channels">
+          <a href="mailto:kbrz77@proton.me"><span class="lbl">E-mail</span><span class="val">kbrz77@proton.me</span></a>
+          <a href="tel:+48796579480"><span class="lbl">Telefon</span><span class="val">+48 796 579 480</span></a>
+          <div><span class="lbl">Godziny</span><span class="val">pon–pt, 9:00–18:00</span></div>
+        </div>
+      </div>
+
+      <div id="form-wrap">
+        <form class="form" id="contact-form" action="https://formspree.io/f/mnjgqoej" method="POST">
+          <div class="form-row">
+            <div class="field">
+              <label for="f-name">Imię</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required data-error="e-name">
+              <span class="error-msg" id="e-name">Błąd: wpisz imię, żebyśmy wiedzieli, jak się zwracać.</span>
+            </div>
+            <div class="field">
+              <label for="f-email">E-mail</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required data-error="e-email">
+              <span class="error-msg" id="e-email">Błąd: wpisz adres w formacie ty@przyklad.pl.</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-gear">Twój sprzęt <span class="opt">(opcjonalnie)</span></label>
+            <span class="hint" id="h-gear">np. Arcam AVR11 + kolumny podłogowe, pokój ok. 25 m²</span>
+            <input id="f-gear" name="sprzet" type="text" aria-describedby="h-gear">
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="f-type">System <span class="opt">(opcjonalnie)</span></label>
+              <select id="f-type" name="system">
+                <option value="">Wybierz</option>
+                <option>Stereo hi-fi</option>
+                <option>Kino domowe / surround</option>
+                <option>Kolumny aktywne / DSP</option>
+                <option>Komputer / inne</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-tier">Licencja <span class="opt">(opcjonalnie)</span></label>
+              <select id="f-tier" name="licencja">
+                <option value="">Jeszcze nie wiem</option>
+                <option>Starter</option>
+                <option>Full</option>
+                <option>Surround</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-msg">Wiadomość <span class="opt">(opcjonalnie)</span></label>
+            <textarea id="f-msg" name="message" rows="4"></textarea>
+          </div>
+          <div class="hp" aria-hidden="true"><label for="f-hp">Zostaw puste</label><input id="f-hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+          <div class="form-foot">
+            <button class="btn btn--signal" type="submit" id="submit-btn">Wyślij pytanie</button>
+            <small>Odpowiadamy w ciągu 24 godzin w dni robocze. Dane służą tylko do odpowiedzi.</small>
+          </div>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer on-blue">
+  <div class="wrap">
+    <div class="foot-main">
+      <a class="wordmark" href="/" aria-label="Kalibracja Dirac — strona główna">
+        <svg viewBox="0 0 26 16" fill="none" aria-hidden="true"><path d="M1 9 C4 2, 6 2, 8 9 S12 14, 14 8 S18 7, 25 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span>kalibracja<b>/</b>dirac</span>
+      </a>
+      <p>Oryginalne licencje Dirac Live i wsparcie przy kalibracji akustyki — dla systemów stereo i kina domowego, po polsku.</p>
+      <div class="foot-links">
+        <a class="link" href="mailto:kbrz77@proton.me">kbrz77@proton.me</a>
+        <a class="link" href="tel:+48796579480">+48 796 579 480</a>
+        <a class="link" href="https://www.dirac.com/" rel="noopener">dirac.com</a>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>Dirac Live® jest zastrzeżonym znakiem towarowym Dirac Research AB, Szwecja.</span>
+      <span>Strona: <a class="link" href="https://kbrz77.pl" rel="noopener">kbrz77.pl</a></span>
     </div>
   </div>
 </footer>
-<div class="toast" id="toast">✓ &nbsp;Wiadomość wysłana. Odezwiemy się wkrótce.</div>
+
 <script>
-(function(){var f=document.getElementById('footerAudioplazaLogo'),n=document.getElementById('audioplazaLogo');if(f&&n){f.src=n.src;}})();
-(function(){
-  var navEl=document.querySelector('nav'),toggle=document.getElementById('navToggle'),links=document.getElementById('navLinks');
-  if(toggle&&links){
-    toggle.addEventListener('click',function(){
-      var open=links.classList.toggle('open');
-      document.body.classList.toggle('menu-open',open);
-      toggle.setAttribute('aria-expanded',open?'true':'false');
-    });
-    links.querySelectorAll('a').forEach(function(a){
-      a.addEventListener('click',function(){
-        links.classList.remove('open');
-        document.body.classList.remove('menu-open');
-        toggle.setAttribute('aria-expanded','false');
-      });
-    });
-  }
-  var lastY=window.scrollY,ticking=false;
-  window.addEventListener('scroll',function(){
-    if(ticking)return;ticking=true;
-    requestAnimationFrame(function(){
-      var y=window.scrollY;
-      if(y>lastY&&y>navEl.offsetHeight){navEl.classList.add('nav-hide');}
-      else{navEl.classList.remove('nav-hide');}
-      lastY=y;ticking=false;
-    });
-  },{passive:true});
-})();
-var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}});},{threshold:0.12});
-document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
-function handleSubmit(){
-  var name=document.getElementById('f-name').value.trim();
-  var email=document.getElementById('f-email').value.trim();
-  var type=document.getElementById('f-type').value;
-  var msg=document.getElementById('f-msg').value.trim();
-  var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if(!name||!email||!emailRe.test(email)){alert('Prosz\u0119 poda\u0107 poprawne imi\u0119 i adres e-mail.');return;}
-  var btn=document.getElementById('submit-btn');
-  btn.textContent='Wysy\u0142am...';btn.style.opacity='0.6';btn.disabled=true;
-  fetch('https://formspree.io/f/mnjgqoej',{
-    method:'POST',
-    headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify({name:name,email:email,system:type,message:msg})
-  }).then(function(res){
-    btn.textContent='Wy\u015blij wiadomo\u015b\u0107';btn.style.opacity='1';btn.disabled=false;
-    if(res.ok){
-      document.getElementById('toast').classList.add('show');
-      setTimeout(function(){document.getElementById('toast').classList.remove('show');},5000);
-      ['f-name','f-email','f-msg','f-type'].forEach(function(id){document.getElementById(id).value='';});
-    } else {
-      alert('Wyst\u0105pi\u0142 b\u0142\u0105d. Napisz bezpo\u015brednio na kbrz77@proton.me');
-    }
-  }).catch(function(){
-    btn.textContent='Wy\u015blij wiadomo\u015b\u0107';btn.style.opacity='1';btn.disabled=false;
-    alert('Brak po\u0142\u0105czenia. Napisz bezpo\u015brednio na kbrz77@proton.me');
-  });
+document.documentElement.classList.add('js');
+
+/* Popover polyfill — only where native support is missing */
+if (!Object.hasOwn(HTMLElement.prototype, 'popover')) {
+  var s = document.createElement('script');
+  s.src = 'https://unpkg.com/@oddbird/popover-polyfill@0.5.2/dist/popover.min.js';
+  document.head.append(s);
 }
 
-/* ── FC1 — IMPULSE RESPONSE ── */
-(function(){var cv=document.getElementById('fc1');if(!cv)return;var ctx=cv.getContext('2d'),W,H,t=0;var noise=[];for(var ni=0;ni<512;ni++)noise.push((Math.random()-0.5)*2);function rz(){var r=cv.parentElement.getBoundingClientRect();W=cv.width=r.width;H=cv.height=180;}rz();window.addEventListener('resize',rz);function draw(){ctx.clearRect(0,0,W,H);var cy=H*0.52,pad=W*0.07,plotW=W-pad*2;ctx.strokeStyle='rgba(212,168,67,0.1)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(pad,H*0.08);ctx.lineTo(pad,cy+H*0.3);ctx.stroke();ctx.beginPath();ctx.moveTo(pad,cy);ctx.lineTo(W-pad,cy);ctx.stroke();ctx.fillStyle='rgba(212,168,67,0.22)';ctx.font='7px sans-serif';['0','10','20','30','40','50ms'].forEach(function(l,i){ctx.fillText(l,pad+i*(plotW/5)-4,cy+H*0.3+10);});ctx.fillText('dBFS',pad-2,H*0.07);ctx.beginPath();for(var x=0;x<plotW;x++){var xn=x/plotW;var decY=cy-(H*0.28)*Math.exp(-xn*4.5);if(x===0)ctx.moveTo(pad+x,decY);else ctx.lineTo(pad+x,decY);}ctx.strokeStyle='rgba(212,168,67,0.07)';ctx.lineWidth=1;ctx.setLineDash([2,5]);ctx.stroke();ctx.setLineDash([]);var impulseX=Math.floor(plotW*0.08);ctx.beginPath();for(var x2=0;x2<plotW;x2++){var val=0;if(x2===impulseX){val=-(H*0.36)*(0.88+0.12*Math.sin(t*0.22));}else if(x2>impulseX){var dt=(x2-impulseX)/plotW;var env=Math.exp(-dt*7.5);var ni2=Math.floor(dt*300)%noise.length;val=env*noise[ni2]*H*0.30;if(dt<0.05)val*=1.6;if(dt>0.3)val*=0.4;}if(x2===0)ctx.moveTo(pad+x2,cy+val);else ctx.lineTo(pad+x2,cy+val);}var lg=ctx.createLinearGradient(pad,0,W-pad,0);lg.addColorStop(0,'rgba(212,168,67,0.15)');lg.addColorStop(0.09,'rgba(212,168,67,0.95)');lg.addColorStop(0.25,'rgba(212,168,67,0.6)');lg.addColorStop(0.55,'rgba(212,168,67,0.25)');lg.addColorStop(1,'rgba(212,168,67,0.05)');ctx.strokeStyle=lg;ctx.lineWidth=1.4;ctx.stroke();var spkX=pad+impulseX,spkY=cy-(H*0.36)*(0.88+0.12*Math.sin(t*0.22));ctx.beginPath();ctx.moveTo(spkX,cy);ctx.lineTo(spkX,spkY);ctx.strokeStyle='rgba(212,168,67,0.95)';ctx.lineWidth=2;ctx.stroke();ctx.beginPath();ctx.arc(spkX,spkY,3,0,Math.PI*2);ctx.fillStyle='rgba(212,168,67,1)';ctx.fill();ctx.fillStyle='rgba(212,168,67,0.4)';ctx.font='8px sans-serif';ctx.fillText('Dźwięk bezpośredni',spkX+4,spkY+12);ctx.fillStyle='rgba(212,168,67,0.2)';ctx.fillText('Odbicia w pomieszczeniu',pad+plotW*0.18,cy-(H*0.14));t+=0.016;requestAnimationFrame(draw);}var started=false;new IntersectionObserver(function(e){if(e[0].isIntersecting&&!started){started=true;draw();}},{threshold:0.1}).observe(cv);})();
-
-/* ── FC2 — PHASE CORRECTION ── */
-(function(){var cv=document.getElementById('fc2');if(!cv)return;var ctx=cv.getContext('2d'),W,H,t=0;function rz(){var r=cv.parentElement.getBoundingClientRect();W=cv.width=r.width;H=cv.height=180;}rz();window.addEventListener('resize',rz);function draw(){ctx.clearRect(0,0,W,H);var cy1=H*0.3,cy2=H*0.72,freq=0.018,amp=H*0.18;var syncProgress=(Math.sin(t*0.18)+1)*0.5;var phase=Math.PI*(0.7*(1-syncProgress));ctx.strokeStyle='rgba(212,168,67,0.05)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(0,H*0.5);ctx.lineTo(W,H*0.5);ctx.stroke();[cy1,cy2].forEach(function(cy){ctx.beginPath();ctx.moveTo(0,cy);ctx.lineTo(W,cy);ctx.stroke();});ctx.beginPath();for(var x=0;x<W;x++){var y=cy1+Math.sin(x*freq+t*1.8+phase)*amp*(0.7+0.3*Math.sin(t*0.3+x*0.01));if(x===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);}var r1=Math.round(180-syncProgress*80),g1=Math.round(60+syncProgress*108);ctx.strokeStyle='rgba('+r1+','+g1+',50,'+(0.7-syncProgress*0.2)+')';ctx.lineWidth=1.5;ctx.stroke();ctx.beginPath();for(var x2=0;x2<W;x2++){var y2=cy2+Math.sin(x2*freq+t*1.8)*amp*(0.7+0.3*Math.sin(t*0.3+x2*0.01));if(x2===0)ctx.moveTo(x2,y2);else ctx.lineTo(x2,y2);}ctx.strokeStyle='rgba(212,168,67,'+(0.6+syncProgress*0.3)+')';ctx.lineWidth=1.5+syncProgress*0.5;ctx.stroke();var midX=W*0.5;var y1m=cy1+Math.sin(midX*freq+t*1.8+phase)*amp;var y2m=cy2+Math.sin(midX*freq+t*1.8)*amp;if(syncProgress<0.95){ctx.beginPath();ctx.moveTo(midX,y1m);ctx.lineTo(midX,y2m);ctx.strokeStyle='rgba(212,168,67,'+(0.25*(1-syncProgress))+')';ctx.setLineDash([3,4]);ctx.lineWidth=1;ctx.stroke();ctx.setLineDash([]);}ctx.fillStyle='rgba(180,60,50,'+(0.6-syncProgress*0.4)+')';ctx.font='8px sans-serif';ctx.fillText('przed \u2014 przesuni\u0119cie fazy',8,cy1-amp-6);ctx.fillStyle='rgba(212,168,67,'+(0.5+syncProgress*0.3)+')';ctx.fillText('po korekcji Dirac',8,cy2+amp+13);var bw=W*0.4,bh=3,bx=W*0.3,by=H*0.485;ctx.fillStyle='rgba(212,168,67,0.08)';ctx.fillRect(bx,by,bw,bh);ctx.fillStyle='rgba(212,168,67,0.55)';ctx.fillRect(bx,by,bw*syncProgress,bh);ctx.fillStyle='rgba(212,168,67,0.3)';ctx.font='7px sans-serif';ctx.fillText('korekcja fazy: '+Math.round(syncProgress*100)+'%',bx,by-4);t+=0.016;requestAnimationFrame(draw);}var started=false;new IntersectionObserver(function(e){if(e[0].isIntersecting&&!started){started=true;draw();}},{threshold:0.1}).observe(cv);})();
-
-/* ── FC3 — EQ TARGET CURVE ── */
-(function(){var cv=document.getElementById('fc3');if(!cv)return;var ctx=cv.getContext('2d'),W,H,t=0;function rz(){var r=cv.parentElement.getBoundingClientRect();W=cv.width=r.width;H=cv.height=180;}rz();window.addEventListener('resize',rz);var bands=[{g:0,target:0,speed:0.008},{g:0,target:0,speed:0.007},{g:0,target:0,speed:0.009},{g:0,target:0,speed:0.006},{g:0,target:0,speed:0.008},{g:0,target:0,speed:0.007},{g:0,target:0,speed:0.009},{g:0,target:0,speed:0.006},{g:0,target:0,speed:0.008},{g:0,target:0,speed:0.007},{g:0,target:0,speed:0.009},{g:0,target:0,speed:0.006}];var fLabels=['20','40','80','160','315','630','1k','2k','4k','8k','16k','20k'];var problemG=[3.2,-1.5,-3.8,2.1,-2.6,1.8,-1.2,2.4,-3.1,1.5,-2.0,0.8];var phase=0,phaseT=0,phaseDur=[60,90,120,90];var pLabels=['Pasmo neutralne','Wykryte rezonanse pomieszczenia','Korekcja Dirac aktywna','Zoptymalizowane'];var pColors=['rgba(212,168,67,0.35)','rgba(200,100,70,0.75)','rgba(212,168,67,0.75)','rgba(140,200,110,0.75)'];function draw(){ctx.clearRect(0,0,W,H);var pad=W*0.06,plotW=W-pad*2,plotH=H*0.72,top=H*0.1,cy=top+plotH*0.5,maxG=6;phaseT++;if(phaseT>phaseDur[phase]){phaseT=0;phase=(phase+1)%4;if(phase===1){bands.forEach(function(b,i){b.target=problemG[i];});}else{bands.forEach(function(b){b.target=0;});}}bands.forEach(function(b){b.g+=(b.target-b.g)*b.speed;});ctx.strokeStyle='rgba(212,168,67,0.07)';ctx.lineWidth=1;[-6,-3,0,3,6].forEach(function(db){var y=cy-db*(plotH*0.5/maxG);ctx.beginPath();ctx.moveTo(pad,y);ctx.lineTo(W-pad,y);ctx.stroke();ctx.fillStyle='rgba(212,168,67,0.2)';ctx.font='7px sans-serif';ctx.fillText((db>0?'+':'')+db,2,y+3);});ctx.fillStyle='rgba(212,168,67,0.2)';ctx.font='7px sans-serif';fLabels.forEach(function(f,i){ctx.fillText(f,pad+i*(plotW/(bands.length-1))-5,top+plotH+14);});var pts=bands.map(function(b,i){return{x:pad+i*(plotW/(bands.length-1)),y:cy-b.g*(plotH*0.5/maxG)};});ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);for(var i=1;i<pts.length-1;i++){var mx=(pts[i].x+pts[i+1].x)/2,my=(pts[i].y+pts[i+1].y)/2;ctx.quadraticCurveTo(pts[i].x,pts[i].y,mx,my);}ctx.lineTo(pts[pts.length-1].x,pts[pts.length-1].y);ctx.lineTo(pts[pts.length-1].x,cy);ctx.lineTo(pts[0].x,cy);ctx.closePath();var maxAbs=0;bands.forEach(function(b){if(Math.abs(b.g)>maxAbs)maxAbs=Math.abs(b.g);});var rr=Math.min(1,maxAbs/4);ctx.fillStyle='rgba('+(Math.round(212-rr*90))+','+(Math.round(168-rr*108))+','+(Math.round(67-rr*17))+',0.07)';ctx.fill();ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);for(var j=1;j<pts.length-1;j++){var mx2=(pts[j].x+pts[j+1].x)/2,my2=(pts[j].y+pts[j+1].y)/2;ctx.quadraticCurveTo(pts[j].x,pts[j].y,mx2,my2);}ctx.lineTo(pts[pts.length-1].x,pts[pts.length-1].y);ctx.strokeStyle='rgba('+(Math.round(212-rr*90))+','+(Math.round(168-rr*108))+','+(Math.round(67-rr*17))+',0.85)';ctx.lineWidth=2;ctx.stroke();ctx.beginPath();ctx.moveTo(pad,cy);ctx.lineTo(W-pad,cy);ctx.strokeStyle='rgba(212,168,67,0.2)';ctx.lineWidth=1;ctx.setLineDash([3,5]);ctx.stroke();ctx.setLineDash([]);pts.forEach(function(p,i){var off=Math.abs(bands[i].g);ctx.beginPath();ctx.arc(p.x,p.y,off>0.3?3:2,0,Math.PI*2);ctx.fillStyle='rgba(212,168,67,'+(0.4+Math.min(0.5,off/6))+')';ctx.fill();});ctx.fillStyle=pColors[phase];ctx.font='8px sans-serif';ctx.fillText('\u25cf  '+pLabels[phase],pad,top-2);t+=0.016;requestAnimationFrame(draw);}var started=false;new IntersectionObserver(function(e){if(e[0].isIntersecting&&!started){started=true;draw();}},{threshold:0.1}).observe(cv);})();
-(function(){
-  var cv=document.getElementById('heroCanvas');if(!cv)return;
-  var ctx=cv.getContext('2d');
-  function rz(){cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;}
-  rz();window.addEventListener('resize',rz);
-  var W=[
-    {f:0.0022,a:0.13,s:1.8,p:0.0,o:0.50,w:1.4},{f:0.0018,a:0.10,s:2.2,p:1.1,o:0.40,w:1.0},
-    {f:0.0030,a:0.08,s:2.8,p:2.3,o:0.35,w:0.9},{f:0.0040,a:0.06,s:3.5,p:0.5,o:0.28,w:0.7},
-    {f:0.0014,a:0.15,s:1.4,p:3.1,o:0.22,w:1.6},{f:0.0052,a:0.04,s:4.2,p:1.8,o:0.20,w:0.6},
-    {f:0.0065,a:0.03,s:5.5,p:0.9,o:0.16,w:0.5},{f:0.0078,a:0.025,s:6.0,p:2.7,o:0.13,w:0.4},
-    {f:0.0048,a:0.05,s:4.8,p:4.2,o:0.18,w:0.6},{f:0.0008,a:0.22,s:0.9,p:1.5,o:0.10,w:2.0},
-    {f:0.0011,a:0.18,s:1.1,p:3.6,o:0.08,w:1.8},{f:0.0035,a:0.055,s:3.2,p:5.1,o:0.15,w:0.7}
-  ];
-  var t=0;
-  function draw(){
-    var W2=cv.width,H=cv.height;ctx.clearRect(0,0,W2,H);
-    W.forEach(function(w){
-      ctx.beginPath();var cy=H*0.5;
-      for(var x=0;x<=W2;x+=1.5){
-        var y=cy+Math.sin(x*w.f+t*w.s+w.p)*H*w.a+Math.sin(x*w.f*2.1+t*w.s*0.6+w.p*0.7)*H*w.a*0.35+Math.sin(x*w.f*3.7+t*w.s*1.3+w.p*1.2)*H*w.a*0.12;
-           if(x===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
-      }
-      ctx.strokeStyle='rgba(212,168,67,'+w.o+')';ctx.lineWidth=w.w;ctx.stroke();
-    });
-    t+=0.032;requestAnimationFrame(draw);
+/* Navigation: inline when it fits, popover when it doesn't */
+(function () {
+  var header = document.querySelector('.site-header');
+  var inner = header.querySelector('.header-inner');
+  var menu = document.getElementById('site-menu');
+  var lastWidth = 0;
+  function isOpen() { try { return menu.matches(':popover-open'); } catch (e) { return menu.classList.contains(':popover-open'); } }
+  function layout() {
+    var width = inner.clientWidth;
+    var wide = header.classList.contains('is-wide');
+    if (!wide && width <= lastWidth) { lastWidth = width; return; }
+    lastWidth = width;
+    var wasOpen = menu.hasAttribute('popover') && isOpen();
+    header.classList.add('is-measuring', 'is-wide');
+    var fits = inner.scrollWidth <= inner.clientWidth;
+    if (fits) {
+      if (menu.hasAttribute('popover')) menu.removeAttribute('popover');
+    } else {
+      header.classList.remove('is-wide');
+      if (!menu.hasAttribute('popover')) menu.setAttribute('popover', 'auto');
+      if (wasOpen && menu.showPopover) menu.showPopover();
+    }
+    requestAnimationFrame(function () { header.classList.remove('is-measuring'); });
   }
-  draw();
+  var ro = new ResizeObserver(layout);
+  ro.observe(header); ro.observe(menu);
+  menu.addEventListener('click', function (e) {
+    if (e.target.closest('a') && menu.hasAttribute('popover') && menu.hidePopover) {
+      try { menu.hidePopover(); } catch (err) {}
+    }
+  });
+})();
+
+/* Diagram view switch */
+(function () {
+  var fig = document.getElementById('wykres');
+  var buttons = fig.querySelectorAll('.view-switch button');
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () {
+      fig.dataset.view = b.dataset.view;
+      buttons.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+    });
+  });
+})();
+
+/* Licence links preselect the form */
+document.querySelectorAll('[data-tier]').forEach(function (a) {
+  a.addEventListener('click', function () {
+    var sel = document.getElementById('f-tier');
+    if (sel) sel.value = a.dataset.tier;
+  });
+});
+
+/* Form: errors only after interaction, ARIA in sync with :user-invalid */
+(function () {
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+  var supportsUserInvalid = CSS.supports('selector(:user-invalid)');
+  var touched = new WeakSet();
+
+  function linkError(el, shown) {
+    var id = el.dataset.error; if (!id) return;
+    var ids = (el.getAttribute('aria-describedby') || '').split(/\s+/).filter(function (x) { return x && x !== id; });
+    if (shown) ids.push(id);
+    if (ids.length) el.setAttribute('aria-describedby', ids.join(' ')); else el.removeAttribute('aria-describedby');
+  }
+  function invalidNow(el) {
+    if (supportsUserInvalid) return el.matches(':user-invalid');
+    return touched.has(el) && !el.validity.valid;
+  }
+  function sync(el) {
+    if (!el.matches || !el.matches('input, select, textarea')) return;
+    var bad = invalidNow(el);
+    if (!supportsUserInvalid) el.classList.toggle('user-invalid-fallback', bad);
+    el.setAttribute('aria-invalid', bad ? 'true' : 'false');
+    linkError(el, bad);
+  }
+  form.querySelectorAll('input, select, textarea').forEach(function (el) { el.setAttribute('aria-invalid', 'false'); });
+  form.addEventListener('blur', function (e) { if (e.target.value) touched.add(e.target); sync(e.target); }, true);
+  form.addEventListener('input', function (e) { if (e.target.getAttribute('aria-invalid') === 'true') sync(e.target); });
+  form.addEventListener('change', function (e) { sync(e.target); }, true);
+  form.addEventListener('invalid', function (e) { touched.add(e.target); sync(e.target); }, true);
+
+  var status = document.getElementById('form-status');
+  var btn = document.getElementById('submit-btn');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    var data = Object.fromEntries(new FormData(form));
+    btn.disabled = true; btn.setAttribute('aria-busy', 'true'); btn.textContent = 'Wysyłam…';
+    status.textContent = ''; status.removeAttribute('data-state');
+
+    fetch(form.action, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var wrap = document.getElementById('form-wrap');
+      wrap.innerHTML = '<div class="form-done" tabindex="-1"><h3>Dzięki, mamy Twoje pytanie.</h3><p>Odpiszemy na <strong></strong> w ciągu 24 godzin w dni robocze.</p></div>';
+      wrap.querySelector('strong').textContent = data.email;
+      wrap.firstElementChild.focus();
+    }).catch(function () {
+      btn.disabled = false; btn.removeAttribute('aria-busy'); btn.textContent = 'Wyślij pytanie';
+      status.dataset.state = 'error';
+      status.innerHTML = 'Nie udało się wysłać. Napisz bezpośrednio na <a class="link" href="mailto:kbrz77@proton.me">kbrz77@proton.me</a> albo zadzwoń.';
+    });
+  });
 })();
 </script>
-
-
-</body></html>
+</body>
+</html>
