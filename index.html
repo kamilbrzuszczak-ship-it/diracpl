@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Kalibracja Dirac Live — licencje i pomoc przy pomiarze | kalibracjadirac.pl</title>
-<meta name="description" content="Oryginalne licencje Dirac Live (Starter, Full, Surround) i pomoc przy pomiarze akustyki po polsku. Denon, Marantz, Arcam, NAD, Onkyo, StormAudio i inne — sprawdzimy bezpłatnie, czy Twój sprzęt obsługuje Dirac Live.">
+<title>Kalibracja Dirac Live z dojazdem — od 990 zł | kalibracjadirac.pl</title>
+<meta name="description" content="Profesjonalna kalibracja Dirac Live u Ciebie w domu: pomiar kalibrowanym mikrofonem miniDSP, konfiguracja amplitunera lub procesora i odsłuch porównawczy. Dojazd i kalibracja od 990 zł brutto.">
 <link rel="canonical" href="https://kalibracjadirac.pl/">
 <meta name="robots" content="index, follow">
 <meta name="color-scheme" content="light dark">
@@ -13,8 +13,8 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pl_PL">
 <meta property="og:url" content="https://kalibracjadirac.pl/">
-<meta property="og:title" content="Kalibracja Dirac Live — licencje i pomoc przy pomiarze">
-<meta property="og:description" content="Kolumny grają dobrze. Pokój — niekoniecznie. Oryginalne licencje Dirac Live i wsparcie przy kalibracji po polsku.">
+<meta property="og:title" content="Kalibracja Dirac Live z dojazdem — od 990 zł brutto">
+<meta property="og:description" content="Kolumny grają dobrze. Pokój — niekoniecznie. Przyjeżdżamy z mikrofonem pomiarowym miniDSP i stroimy Dirac Live w Twoim systemie.">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -512,8 +512,8 @@ p { text-wrap: pretty; }
 .tier .btn { margin-block-start: var(--space-md); justify-self: start; }
 .tiers-note { margin-block-start: var(--space-xl); font-size: var(--text-sm); color: var(--color-ink-2); max-width: 64ch; }
 @media (min-width: 60rem) {
-  .tiers { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(9, auto); column-gap: var(--space-xl); row-gap: 0; }
-  .tier { grid-row: span 9; grid-template-rows: subgrid; }
+  .tiers { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(7, auto); column-gap: var(--space-xl); row-gap: 0; }
+  .tier { grid-row: span 7; grid-template-rows: subgrid; }
   .tier dl > div { align-items: center; }
 }
 
@@ -596,7 +596,36 @@ p { text-wrap: pretty; }
 .foot-main p { color: var(--color-ink-2); font-size: var(--text-sm); max-width: 44ch; }
 .foot-links { display: flex; flex-wrap: wrap; gap: var(--space-2xs) var(--space-md); font-size: var(--text-sm); }
 .foot-links a { white-space: nowrap; }
+.credits { display: inline-flex; flex-wrap: wrap; gap: var(--space-2xs) var(--space-md); }
 .foot-legal { margin-block-start: var(--space-xl); padding-block-start: var(--space-sm); border-block-start: var(--rule-soft); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2xs) var(--space-md); font-size: var(--text-xs); color: var(--color-neutral); }
+
+/* Hero offer line */
+.hero-offer { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-3xs) var(--space-xs); padding-block: var(--space-xs); border-block: var(--rule-soft); }
+.hero-price { font-family: var(--font-display); font-weight: 400; font-size: var(--text-lg); line-height: 1.2; color: var(--color-accent); white-space: nowrap; font-variant-numeric: lining-nums; }
+.hero-offer span + span { font-size: var(--text-sm); color: var(--color-ink-2); }
+
+/* Offer — the price is the headline */
+.offer { display: grid; gap: var(--space-2xl); }
+.offer-price { display: grid; gap: var(--space-md); align-content: start; justify-items: start; }
+.price {
+  font-family: var(--font-display); font-weight: 300;
+  font-size: clamp(4.5rem, 9vw + 1rem, 9rem); line-height: 0.95; letter-spacing: -0.035em;
+  font-variant-numeric: lining-nums; white-space: nowrap; color: var(--color-accent);
+}
+.price-from, .price-cur { font-size: 0.32em; letter-spacing: 0; color: var(--color-ink); }
+.price-from { margin-inline-end: 0.15em; }
+.offer-lead { color: var(--color-ink-2); max-width: 38ch; }
+.offer-scope h3 { font-size: var(--text-xs); font-weight: 600; color: var(--color-neutral); padding-block-end: var(--space-xs); border-block-end: 1px solid var(--color-ink); letter-spacing: 0.01em; }
+.included { display: grid; }
+.included li { display: grid; gap: var(--space-3xs); padding-block: var(--space-sm); border-block-end: var(--rule); }
+.included strong { font-weight: 600; }
+.included span { color: var(--color-ink-2); font-size: var(--text-sm); }
+.offer-note { margin-block-start: var(--space-md); font-size: var(--text-sm); color: var(--color-neutral); max-width: 56ch; }
+@media (min-width: 60rem) {
+  .offer { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--space-3xl); }
+  .included li { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); column-gap: var(--space-lg); align-items: baseline; }
+}
+
 
 @media (forced-colors: active) {
   .pin, .finding .num, .view-switch button[aria-pressed="true"] { border: 1px solid CanvasText; }
@@ -608,25 +637,42 @@ p { text-wrap: pretty; }
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
-      "@id": "https://kalibracjadirac.pl/#org",
+      "@type": "ProfessionalService",
+      "@id": "https://kalibracjadirac.pl/#service",
       "name": "Kalibracja Dirac",
       "url": "https://kalibracjadirac.pl/",
       "email": "kbrz77@proton.me",
       "telephone": "+48 796 579 480",
       "areaServed": "PL",
-      "description": "Autoryzowany reseller Dirac Live w Polsce: oryginalne licencje Dirac Live i wsparcie przy kalibracji akustyki w języku polskim.",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "customer support",
-        "email": "kbrz77@proton.me",
-        "telephone": "+48 796 579 480",
-        "availableLanguage": "pl",
-        "hoursAvailable": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-          "opens": "09:00",
-          "closes": "18:00"
+      "priceRange": "od 990 zł",
+      "description": "Kalibracja Dirac Live z dojazdem do klienta: pomiar kalibrowanym mikrofonem miniDSP, konfiguracja amplitunera, procesora lub komputera i odsłuch porównawczy. Oryginalne licencje Dirac Live.",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "makesOffer": {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Kalibracja Dirac Live z dojazdem",
+          "serviceType": "Kalibracja akustyki pomieszczenia (room correction)",
+          "provider": {
+            "@id": "https://kalibracjadirac.pl/#service"
+          }
+        },
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "minPrice": 990,
+          "priceCurrency": "PLN",
+          "valueAddedTaxIncluded": true
         }
       }
     },
@@ -634,21 +680,88 @@ p { text-wrap: pretty; }
       "@type": "WebPage",
       "@id": "https://kalibracjadirac.pl/#page",
       "url": "https://kalibracjadirac.pl/",
-      "name": "Kalibracja Dirac Live — licencje i pomoc przy pomiarze",
+      "name": "Kalibracja Dirac Live z dojazdem — od 990 zł",
       "inLanguage": "pl-PL",
-      "publisher": { "@id": "https://kalibracjadirac.pl/#org" }
+      "about": {
+        "@id": "https://kalibracjadirac.pl/#service"
+      }
     },
     {
       "@type": "FAQPage",
       "@id": "https://kalibracjadirac.pl/#faq",
       "mainEntity": [
-        { "@type": "Question", "name": "Czy mój sprzęt obsługuje Dirac Live?", "acceptedAnswer": { "@type": "Answer", "text": "Dirac Live jest wbudowany m.in. w amplitunery i procesory Denon, Marantz, Arcam, NAD, Onkyo, Pioneer, Integra, StormAudio, Lexicon i miniDSP, a także w kolumny Dynaudio Focus i soundbar Klipsch Flexus. Jeśli Twoje urządzenie go nie ma, korekcję można uruchomić na komputerze (Windows, macOS) albo w zewnętrznym procesorze, np. miniDSP. Napisz, na czym grasz — sprawdzimy kompatybilność bezpłatnie." } },
-        { "@type": "Question", "name": "Czym różnią się licencje Starter, Full i Surround?", "acceptedAnswer": { "@type": "Answer", "text": "Starter koryguje amplitudę w systemie stereo. Full dodaje korekcję fazy i odpowiedzi impulsowej oraz Bass Control. Surround obejmuje systemy kina domowego do 9.x kanałów i zdalną sesję konfiguracji. Dokładny zakres zależy od urządzenia, dlatego potwierdzamy go przed zakupem." } },
-        { "@type": "Question", "name": "Czy potrzebuję mikrofonu pomiarowego?", "acceptedAnswer": { "@type": "Answer", "text": "Tak. Wiele urządzeń z Dirac Live ma odpowiedni mikrofon w zestawie, ale nie wszystkie: mikrofon Audyssey dołączany do Denona i Marantza nie współpracuje z Dirac Live, a np. Monolith HTP-1 nie ma mikrofonu wcale. Wtedy sprawdza się miniDSP UMIK-1 — podpowiemy, gdzie go kupić." } },
-        { "@type": "Question", "name": "Jak przebiega zakup i aktywacja licencji?", "acceptedAnswer": { "@type": "Answer", "text": "Wybierasz licencję i płacisz online. Licencja trafia na Twoje konto Dirac i jest aktywowana bezpośrednio przez Dirac Research, więc masz pewność, że jest oryginalna. Zwykle trwa to krócej niż jeden dzień roboczy." } },
-        { "@type": "Question", "name": "Czy licencja jest dożywotnia?", "acceptedAnswer": { "@type": "Answer", "text": "Tak. Licencję kupujesz raz, bez abonamentu. Jest przypisana do Twojego konta Dirac, więc nie przepada przy zmianie komputera." } },
-        { "@type": "Question", "name": "Czy korekcja zastąpi ustroje akustyczne?", "acceptedAnswer": { "@type": "Answer", "text": "Nie w całości. Dirac Live wyrównuje charakterystykę i odpowiedź impulsową w miejscu odsłuchu, ale nie skróci pogłosu w pustym, twardym pokoju. Często to od korekcji warto zacząć, a ustroje dołożyć później, jeśli pomieszczenie jest bardzo pogłosowe." } },
-        { "@type": "Question", "name": "Co, jeśli utknę przy konfiguracji?", "acceptedAnswer": { "@type": "Answer", "text": "Do każdej licencji dostajesz wsparcie po polsku: e-mail, a w licencjach Full i Surround także telefon i pomoc przy konfiguracji. Odpowiadamy w ciągu 24 godzin w dni robocze, pon–pt 9:00–18:00." } }
+        {
+          "@type": "Question",
+          "name": "Ile kosztuje kalibracja?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kalibracja Dirac Live z dojazdem kosztuje od 990 zł brutto. W tej cenie przyjeżdżamy z mikrofonem pomiarowym, mierzymy pokój, konfigurujemy Dirac Live i robimy z Tobą odsłuch porównawczy. Cenę końcową podajemy przed wizytą — zależy od odległości i złożoności systemu. Na miejscu nie ma niespodzianek."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy muszę mieć mikrofon pomiarowy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nie. Przywozimy własny, kalibrowany mikrofon pomiarowy miniDSP oraz laptop z oprogramowaniem Dirac Live. Nie musisz niczego kupować ani instalować przed wizytą."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy mój sprzęt obsługuje Dirac Live?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dirac Live jest wbudowany m.in. w amplitunery i procesory Denon, Marantz, Arcam, NAD, Onkyo, Pioneer, Integra, StormAudio, Lexicon i miniDSP, a także w kolumny Dynaudio Focus i soundbar Klipsch Flexus. Jeśli Twoje urządzenie go nie ma, korekcję można uruchomić na komputerze (Windows, macOS) albo w zewnętrznym procesorze, np. miniDSP. Kompatybilność potwierdzamy przy wycenie, zanim umówimy termin."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy cena kalibracji obejmuje licencję Dirac Live?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nie. Część urządzeń ma Dirac Live w komplecie, część wymaga dokupienia licencji. Jeśli Twoja jej wymaga, dobierzemy właściwą i podamy jej cenę razem z wyceną wizyty."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czym różnią się licencje Starter, Full i Surround?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Starter koryguje amplitudę w systemie stereo. Full dodaje korekcję fazy i odpowiedzi impulsowej oraz Bass Control. Surround obejmuje systemy kina domowego do 9.x kanałów. Dokładny zakres zależy od urządzenia, dlatego potwierdzamy go przed zakupem."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy licencja jest dożywotnia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tak. Licencję kupujesz raz, bez abonamentu. Jest przypisana do Twojego konta Dirac i aktywowana bezpośrednio przez Dirac Research."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Jak przygotować się do wizyty?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ustaw kolumny i subwoofer tam, gdzie mają stać na co dzień, i zadbaj o ciszę w pokoju na czas pomiaru. Mikrofon, laptop i oprogramowanie przywozimy ze sobą."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy korekcja zastąpi ustroje akustyczne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nie w całości. Dirac Live wyrównuje charakterystykę i odpowiedź impulsową w miejscu odsłuchu, ale nie skróci pogłosu w pustym, twardym pokoju. Często to od korekcji warto zacząć, a ustroje dołożyć później, jeśli pomieszczenie jest bardzo pogłosowe."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Co, jeśli przestawię kolumny albo zmienię sprzęt?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Korekcja jest dopasowana do konkretnego pomieszczenia i ustawienia kolumn. Po większej zmianie warto zrobić nowy pomiar — wystarczy napisać, a umówimy kolejną wizytę."
+          }
+        }
       ]
     }
   ]
@@ -671,11 +784,11 @@ p { text-wrap: pretty; }
           <span>Menu</span>
         </button>
         <ul id="site-menu" class="site-menu" popover="auto">
-          <li><a href="#co-robi-pokoj">Problem</a></li>
-          <li><a href="#proces">Jak to działa</a></li>
+          <li><a href="#proces">Przebieg</a></li>
+          <li><a href="#cennik">Cennik</a></li>
           <li><a href="#licencje">Licencje</a></li>
           <li><a href="#pytania">Pytania</a></li>
-          <li class="menu-cta"><a href="#kontakt">Kontakt</a></li>
+          <li class="menu-cta"><a href="#kontakt">Umów kalibrację</a></li>
         </ul>
       </nav>
     </div>
@@ -688,12 +801,13 @@ p { text-wrap: pretty; }
       <div class="hero-head">
         <h1 class="display" id="hero-title">Kolumny grają dobrze. Pokój&nbsp;— niekoniecznie.</h1>
         <div class="hero-side">
-          <p class="lede">Ściany, podłoga i meble podbijają jedne częstotliwości, a inne wygaszają. Dirac Live mierzy te zniekształcenia mikrofonem i koryguje je w Twoim amplitunerze lub procesorze. My sprzedajemy oryginalne licencje i pomagamy przy pomiarze — po polsku.</p>
+          <p class="lede">Ściany, podłoga i meble podbijają jedne częstotliwości, a inne wygaszają. Przyjeżdżamy z mikrofonem pomiarowym miniDSP, mierzymy pokój i stroimy Dirac Live w Twoim amplitunerze lub procesorze. Ty po prostu słuchasz.</p>
+          <p class="hero-offer"><span class="hero-price">od 990 zł brutto</span><span>kalibracja z dojazdem, sprzęt pomiarowy po naszej stronie</span></p>
           <div class="hero-actions">
-            <a class="btn btn--signal" href="#kontakt">Sprawdź swój sprzęt <span class="arrow" aria-hidden="true">→</span></a>
-            <a class="btn btn--ghost" href="#proces">Jak to działa</a>
+            <a class="btn btn--signal" href="#kontakt">Umów kalibrację <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="btn btn--ghost" href="#cennik">Co jest w cenie</a>
           </div>
-          <p class="credential"><span>Autoryzowany reseller Dirac</span><span>Licencje aktywuje Dirac Research</span></p>
+          <p class="credential"><span>Autoryzowany reseller Dirac</span><span>Pomiar u klienta</span></p>
         </div>
       </div>
 
@@ -772,7 +886,7 @@ p { text-wrap: pretty; }
           <div>
             <h3>Bas znika tam, gdzie siedzisz</h3>
             <p class="where">ok. 80–200 Hz · odbicie od ściany za kolumną</p>
-            <p>Odbita fala wraca w przeciwfazie i wygasza część pasma. Część takich dziur da się wyrównać korekcją, część wymaga przesunięcia kolumn — przy pomiarze powiemy, które są które.</p>
+            <p>Odbita fala wraca w przeciwfazie i wygasza część pasma. Część takich dziur da się wyrównać korekcją, część wymaga przesunięcia kolumn — przy pomiarze pokażemy, które są które.</p>
           </div>
         </li>
         <li class="finding" id="f3">
@@ -800,9 +914,9 @@ p { text-wrap: pretty; }
       <h2 class="visually-hidden" id="h-spec">Dirac Live w skrócie</h2>
       <dl class="spec">
         <div><dt>Producent</dt><dd>Dirac Research, Uppsala — badania od 2001</dd></div>
-        <div><dt>Pomiar</dt><dd>9–17 punktów mikrofonem</dd></div>
+        <div><dt>Pomiar</dt><dd>mikrofon miniDSP, 9–17 punktów</dd></div>
         <div><dt>Zakres korekcji</dt><dd>20 Hz – 20 kHz, amplituda i faza</dd></div>
-        <div><dt>Wsparcie</dt><dd>po polsku, odpowiedź do 24 h</dd></div>
+        <div><dt>Realizacja</dt><dd>u Ciebie, z dojazdem</dd></div>
         <div class="wide"><dt>Dirac Live znajdziesz m.in. w</dt><dd>
           <ul class="brands">
             <li><span class="brands-cat">Amplitunery i procesory AV</span><span class="brands-names">Denon · Marantz · Arcam · NAD · Onkyo · Pioneer · Integra · JBL · Emotiva · Monolith · AudioControl</span></li>
@@ -819,57 +933,79 @@ p { text-wrap: pretty; }
   <section class="section" id="proces" aria-labelledby="h-proces">
     <div class="wrap">
       <div class="section-head">
-        <h2 id="h-proces">Od pierwszego maila do odsłuchu.</h2>
-        <p>Nie musisz znać się na akustyce. Wystarczy mikrofon, pół godziny i&nbsp;cisza w&nbsp;pokoju.</p>
+        <h2 id="h-proces">Od pierwszej wiadomości do odsłuchu.</h2>
+        <p>Nie musisz niczego kupować ani znać się na akustyce. Mikrofon pomiarowy, laptop i oprogramowanie przywozimy ze sobą — Ty zapewniasz pokój i muzykę, której słuchasz na co dzień.</p>
       </div>
       <ol class="steps">
         <li class="step">
           <span class="step-n" aria-hidden="true">1</span>
-          <h3>Sprawdzamy sprzęt</h3>
-          <p>Piszesz, na czym grasz. Potwierdzamy, czy urządzenie obsługuje Dirac Live i która licencja ma sens.</p>
-          <p class="meta">bezpłatnie · odpowiedź do 24 h</p>
+          <h3>Wycena</h3>
+          <p>Piszesz, na czym grasz i gdzie stoi system. Potwierdzamy kompatybilność, dobieramy licencję, jeśli jest potrzebna, i podajemy cenę całości przed wizytą.</p>
+          <p class="meta">odpowiedź do 24 h w dni robocze</p>
         </li>
         <li class="step">
           <span class="step-n" aria-hidden="true">2</span>
-          <h3>Kupujesz licencję</h3>
-          <p>Płacisz online, a Dirac Research przypisuje licencję do Twojego konta. Raz, bez abonamentu.</p>
-          <p class="meta">zwykle do 1 dnia roboczego</p>
+          <h3>Pomiar u Ciebie</h3>
+          <p>Przyjeżdżamy z kalibrowanym mikrofonem pomiarowym miniDSP. Mierzymy od 9 do 17 punktów wokół miejsca odsłuchu, tak żeby korekcja działała nie tylko w jednym fotelu.</p>
+          <p class="meta">sprzęt pomiarowy po naszej stronie</p>
         </li>
         <li class="step">
           <span class="step-n" aria-hidden="true">3</span>
-          <h3>Mierzysz pokój</h3>
-          <p>Instalujesz aplikację Dirac Live i przestawiasz mikrofon wokół miejsca odsłuchu. Jeśli chcesz, prowadzimy Cię zdalnie.</p>
-          <p class="meta">ok. 30 minut</p>
+          <h3>Strojenie</h3>
+          <p>Dopasowujemy krzywą docelową do pomieszczenia i Twoich preferencji, a gotowe filtry wgrywamy do amplitunera, procesora lub komputera.</p>
+          <p class="meta">amplituda i faza, 20 Hz – 20 kHz</p>
         </li>
         <li class="step">
           <span class="step-n" aria-hidden="true">4</span>
-          <h3>Słuchasz różnicy</h3>
-          <p>Filtr trafia do urządzenia. Włączasz i wyłączasz korekcję, i&nbsp;porównujesz to samo nagranie.</p>
-          <p class="meta">od razu</p>
+          <h3>Odsłuch i przekazanie</h3>
+          <p>Porównujemy to samo nagranie z korekcją i bez niej. Pokazujemy, jak przełączać ustawienia, żebyś po naszym wyjściu wiedział, z czego korzystasz.</p>
+          <p class="meta">na koniec wizyty</p>
         </li>
       </ol>
+    </div>
+  </section>
+
+  <section class="section on-blue" id="cennik" aria-labelledby="h-cennik">
+    <div class="wrap">
+      <div class="offer">
+        <div class="offer-price">
+          <h2 id="h-cennik">Kalibracja Dirac Live z dojazdem.</h2>
+          <p class="price"><span class="price-from">od</span> 990 <span class="price-cur">zł</span></p>
+          <p class="offer-lead">Cena brutto za jedną wizytę i cały system zestrojony. Kwotę końcową podajemy przed przyjazdem — zależy od odległości i złożoności systemu.</p>
+          <a class="btn btn--signal" href="#kontakt">Poproś o wycenę <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+        <div class="offer-scope">
+          <h3>W cenie</h3>
+          <ul class="included">
+            <li><strong>Dojazd do Ciebie</strong><span>Kalibrujemy tam, gdzie słuchasz — w Twoim pokoju, na Twoim sprzęcie.</span></li>
+            <li><strong>Pomiar mikrofonem miniDSP</strong><span>Kalibrowany mikrofon pomiarowy i laptop przywozimy my. Nic nie kupujesz.</span></li>
+            <li><strong>Konfiguracja Dirac Live</strong><span>W amplitunerze, procesorze AV, procesorze miniDSP lub na komputerze.</span></li>
+            <li><strong>Strojenie krzywej docelowej</strong><span>Pod pomieszczenie i pod to, jak lubisz słuchać — nie według jednego szablonu.</span></li>
+            <li><strong>Odsłuch porównawczy</strong><span>To samo nagranie z korekcją i bez niej. Oceniasz efekt na miejscu.</span></li>
+          </ul>
+          <p class="offer-note">Licencja Dirac Live nie jest wliczona w cenę kalibracji. Jeśli Twoje urządzenie jej wymaga, dobierzemy ją i wycenimy razem z wizytą.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="section" id="licencje" aria-labelledby="h-licencje">
     <div class="wrap">
       <div class="section-head">
-        <h2 id="h-licencje">Trzy licencje. Pomożemy wybrać jedną.</h2>
-        <p>Wszystkie są oryginalne, dożywotnie i aktywowane bezpośrednio przez Dirac Research. Ceny podajemy po sprawdzeniu, czy licencja pasuje do Twojego urządzenia.</p>
+        <h2 id="h-licencje">Licencja Dirac Live — jeśli jej potrzebujesz.</h2>
+        <p>Część urządzeń ma Dirac Live w komplecie, część wymaga dokupienia licencji. Dobierzemy właściwą przed wizytą. Każda jest oryginalna, dożywotnia i aktywowana bezpośrednio przez Dirac Research.</p>
       </div>
       <div class="tiers">
         <article class="tier" aria-labelledby="t-starter">
           <div class="tier-head">
             <h3 class="tier-name" id="t-starter">Starter</h3>
-            <p class="tier-for">Pierwszy krok w stereo. Największa zmiana za najmniejsze pieniądze.</p>
+            <p class="tier-for">Stereo: korekcja charakterystyki, czyli największa słyszalna zmiana.</p>
           </div>
           <dl>
             <div><dt>Kanały</dt><dd>2 (stereo)</dd></div>
             <div><dt>Korekcja amplitudy</dt><dd class="yes">tak</dd></div>
             <div><dt>Korekcja fazy i impulsu</dt><dd class="no">—</dd></div>
             <div><dt>Bass Control</dt><dd class="no">—</dd></div>
-            <div><dt>Wsparcie po polsku</dt><dd>e-mail</dd></div>
-            <div><dt>Pomoc przy konfiguracji</dt><dd class="no">—</dd></div>
             <div><dt>Licencja</dt><dd>dożywotnia</dd></div>
           </dl>
           <a class="btn btn--ghost" href="#kontakt" data-tier="Starter">Zapytaj o Starter</a>
@@ -884,8 +1020,6 @@ p { text-wrap: pretty; }
             <div><dt>Korekcja amplitudy</dt><dd class="yes">tak</dd></div>
             <div><dt>Korekcja fazy i impulsu</dt><dd class="yes">tak</dd></div>
             <div><dt>Bass Control</dt><dd class="yes">tak</dd></div>
-            <div><dt>Wsparcie po polsku</dt><dd>e-mail i telefon</dd></div>
-            <div><dt>Pomoc przy konfiguracji</dt><dd class="yes">tak</dd></div>
             <div><dt>Licencja</dt><dd>dożywotnia</dd></div>
           </dl>
           <a class="btn btn--signal" href="#kontakt" data-tier="Full">Zapytaj o Full</a>
@@ -900,50 +1034,57 @@ p { text-wrap: pretty; }
             <div><dt>Korekcja amplitudy</dt><dd class="yes">tak</dd></div>
             <div><dt>Korekcja fazy i impulsu</dt><dd class="yes">tak</dd></div>
             <div><dt>Bass Control</dt><dd>zależy od urządzenia</dd></div>
-            <div><dt>Wsparcie po polsku</dt><dd>priorytetowe</dd></div>
-            <div><dt>Pomoc przy konfiguracji</dt><dd>zdalna sesja</dd></div>
             <div><dt>Licencja</dt><dd>dożywotnia</dd></div>
           </dl>
           <a class="btn btn--ghost" href="#kontakt" data-tier="Surround">Zapytaj o Surround</a>
         </article>
       </div>
-      <p class="tiers-note">Zakres funkcji zależy od konkretnego amplitunera lub procesora — część producentów sprzedaje licencje w nieco innym podziale. Zanim cokolwiek kupisz, potwierdzimy, co dokładnie dostaniesz.</p>
+      <p class="tiers-note">Zakres funkcji zależy od konkretnego amplitunera lub procesora — część producentów sprzedaje licencje w nieco innym podziale. Zanim cokolwiek kupisz, potwierdzimy, co dokładnie dostaniesz.</p>
     </div>
   </section>
+
 
   <section class="section" id="pytania" aria-labelledby="h-pytania">
     <div class="wrap">
       <div class="section-head">
-        <h2 id="h-pytania">Zanim napiszesz.</h2>
+        <h2 id="h-pytania">Najczęstsze pytania.</h2>
       </div>
       <div class="faq">
         <details>
+          <summary>Ile kosztuje kalibracja?</summary>
+          <div class="answer"><p>Kalibracja Dirac Live z dojazdem kosztuje <strong>od 990 zł brutto</strong>. W tej cenie przyjeżdżamy z mikrofonem pomiarowym, mierzymy pokój, konfigurujemy Dirac Live i robimy z Tobą odsłuch porównawczy.</p><p>Cenę końcową podajemy przed wizytą — zależy od odległości i złożoności systemu. Na miejscu nie ma niespodzianek.</p></div>
+        </details>
+        <details>
+          <summary>Czy muszę mieć mikrofon pomiarowy?</summary>
+          <div class="answer"><p>Nie. Przywozimy własny, kalibrowany mikrofon pomiarowy miniDSP oraz laptop z oprogramowaniem Dirac Live. Nie musisz niczego kupować ani instalować przed wizytą.</p></div>
+        </details>
+        <details>
           <summary>Czy mój sprzęt obsługuje Dirac Live?</summary>
-          <div class="answer"><p>Dirac Live jest wbudowany m.in. w amplitunery i procesory Denon, Marantz, Arcam, NAD, Onkyo, Pioneer, Integra, StormAudio, Lexicon i miniDSP, a także w kolumny Dynaudio Focus i soundbar Klipsch Flexus. Jeśli Twoje urządzenie go nie ma, korekcję można uruchomić na komputerze (Windows, macOS) albo w zewnętrznym procesorze, np. miniDSP.</p><p>Napisz, na czym grasz — sprawdzimy kompatybilność bezpłatnie.</p></div>
+          <div class="answer"><p>Dirac Live jest wbudowany m.in. w amplitunery i procesory Denon, Marantz, Arcam, NAD, Onkyo, Pioneer, Integra, StormAudio, Lexicon i miniDSP, a także w kolumny Dynaudio Focus i soundbar Klipsch Flexus. Jeśli Twoje urządzenie go nie ma, korekcję można uruchomić na komputerze (Windows, macOS) albo w zewnętrznym procesorze, np. miniDSP.</p><p>Kompatybilność potwierdzamy przy wycenie, zanim umówimy termin.</p></div>
+        </details>
+        <details>
+          <summary>Czy cena kalibracji obejmuje licencję Dirac Live?</summary>
+          <div class="answer"><p>Nie. Część urządzeń ma Dirac Live w komplecie, część wymaga dokupienia licencji. Jeśli Twoja jej wymaga, dobierzemy właściwą i podamy jej cenę razem z wyceną wizyty.</p></div>
         </details>
         <details>
           <summary>Czym różnią się licencje Starter, Full i Surround?</summary>
-          <div class="answer"><p><strong>Starter</strong> koryguje amplitudę w systemie stereo. <strong>Full</strong> dodaje korekcję fazy i odpowiedzi impulsowej oraz Bass Control. <strong>Surround</strong> obejmuje systemy kina domowego do 9.x kanałów i zdalną sesję konfiguracji.</p><p>Dokładny zakres zależy od urządzenia, dlatego potwierdzamy go przed zakupem.</p></div>
-        </details>
-        <details>
-          <summary>Czy potrzebuję mikrofonu pomiarowego?</summary>
-          <div class="answer"><p>Tak. Wiele urządzeń z Dirac Live ma odpowiedni mikrofon w zestawie, ale nie wszystkie: mikrofon Audyssey dołączany do Denona i Marantza nie współpracuje z Dirac Live, a np. Monolith HTP-1 nie ma mikrofonu wcale.</p><p>Wtedy sprawdza się miniDSP UMIK-1 — podpowiemy, gdzie go kupić.</p></div>
-        </details>
-        <details>
-          <summary>Jak przebiega zakup i aktywacja licencji?</summary>
-          <div class="answer"><p>Wybierasz licencję i płacisz online. Licencja trafia na Twoje konto Dirac i jest aktywowana bezpośrednio przez Dirac Research, więc masz pewność, że jest oryginalna. Zwykle trwa to krócej niż jeden dzień roboczy.</p></div>
+          <div class="answer"><p><strong>Starter</strong> koryguje amplitudę w systemie stereo. <strong>Full</strong> dodaje korekcję fazy i odpowiedzi impulsowej oraz Bass Control. <strong>Surround</strong> obejmuje systemy kina domowego do 9.x kanałów.</p><p>Dokładny zakres zależy od urządzenia, dlatego potwierdzamy go przed zakupem.</p></div>
         </details>
         <details>
           <summary>Czy licencja jest dożywotnia?</summary>
-          <div class="answer"><p>Tak. Licencję kupujesz raz, bez abonamentu. Jest przypisana do Twojego konta Dirac, więc nie przepada przy zmianie komputera.</p></div>
+          <div class="answer"><p>Tak. Licencję kupujesz raz, bez abonamentu. Jest przypisana do Twojego konta Dirac i aktywowana bezpośrednio przez Dirac Research.</p></div>
+        </details>
+        <details>
+          <summary>Jak przygotować się do wizyty?</summary>
+          <div class="answer"><p>Ustaw kolumny i subwoofer tam, gdzie mają stać na co dzień, i zadbaj o ciszę w pokoju na czas pomiaru. Mikrofon, laptop i oprogramowanie przywozimy ze sobą.</p></div>
         </details>
         <details>
           <summary>Czy korekcja zastąpi ustroje akustyczne?</summary>
           <div class="answer"><p>Nie w całości. Dirac Live wyrównuje charakterystykę i odpowiedź impulsową w miejscu odsłuchu, ale nie skróci pogłosu w pustym, twardym pokoju. Często to od korekcji warto zacząć, a ustroje dołożyć później, jeśli pomieszczenie jest bardzo pogłosowe.</p></div>
         </details>
         <details>
-          <summary>Co, jeśli utknę przy konfiguracji?</summary>
-          <div class="answer"><p>Do każdej licencji dostajesz wsparcie po polsku: e-mail, a w licencjach Full i Surround także telefon i pomoc przy konfiguracji. Odpowiadamy w ciągu 24 godzin w dni robocze, pon–pt 9:00–18:00.</p></div>
+          <summary>Co, jeśli przestawię kolumny albo zmienię sprzęt?</summary>
+          <div class="answer"><p>Korekcja jest dopasowana do konkretnego pomieszczenia i ustawienia kolumn. Po większej zmianie warto zrobić nowy pomiar — wystarczy napisać, a umówimy kolejną wizytę.</p></div>
         </details>
       </div>
     </div>
@@ -952,8 +1093,8 @@ p { text-wrap: pretty; }
   <section class="section on-blue" id="kontakt" aria-labelledby="h-kontakt">
     <div class="wrap contact">
       <div class="contact-direct">
-        <h2 id="h-kontakt">Napisz, na czym grasz.</h2>
-        <p>Model amplitunera lub procesora, kolumny, przybliżona wielkość pokoju — tyle wystarczy, żeby sprawdzić kompatybilność i&nbsp;dobrać licencję.</p>
+        <h2 id="h-kontakt">Umów kalibrację.</h2>
+        <p>Napisz, jaki masz amplituner lub procesor, jakie kolumny i gdzie stoi system. Odpowiemy z wyceną i propozycją terminu.</p>
         <div class="channels">
           <a href="mailto:kbrz77@proton.me"><span class="lbl">E-mail</span><span class="val">kbrz77@proton.me</span></a>
           <a href="tel:+48796579480"><span class="lbl">Telefon</span><span class="val">+48 796 579 480</span></a>
@@ -963,6 +1104,7 @@ p { text-wrap: pretty; }
 
       <div id="form-wrap">
         <form class="form" id="contact-form" action="https://formspree.io/f/mnjgqoej" method="POST">
+          <input type="hidden" name="_subject" value="kalibracjadirac.pl — prośba o wycenę">
           <div class="form-row">
             <div class="field">
               <label for="f-name">Imię</label>
@@ -975,10 +1117,23 @@ p { text-wrap: pretty; }
               <span class="error-msg" id="e-email">Błąd: wpisz adres w formacie ty@przyklad.pl.</span>
             </div>
           </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="f-city">Miejscowość</label>
+              <span class="hint" id="h-city">potrzebna do wyceny dojazdu</span>
+              <input id="f-city" name="miejscowosc" type="text" autocomplete="address-level2" required data-error="e-city" aria-describedby="h-city">
+              <span class="error-msg" id="e-city">Błąd: wpisz miejscowość, żebyśmy mogli wycenić dojazd.</span>
+            </div>
+            <div class="field">
+              <label for="f-tel">Telefon <span class="opt">(opcjonalnie)</span></label>
+              <input id="f-tel" name="telefon" type="tel" autocomplete="tel" inputmode="tel">
+            </div>
+          </div>
           <div class="field">
-            <label for="f-gear">Twój sprzęt <span class="opt">(opcjonalnie)</span></label>
-            <span class="hint" id="h-gear">np. Arcam AVR11 + kolumny podłogowe, pokój ok. 25 m²</span>
-            <input id="f-gear" name="sprzet" type="text" aria-describedby="h-gear">
+            <label for="f-gear">Twój sprzęt</label>
+            <span class="hint" id="h-gear">np. Arcam AVR11 + kolumny podłogowe, pokój ok. 25 m²</span>
+            <input id="f-gear" name="sprzet" type="text" required data-error="e-gear" aria-describedby="h-gear">
+            <span class="error-msg" id="e-gear">Błąd: wpisz choćby model amplitunera lub procesora — bez tego nie wycenimy wizyty.</span>
           </div>
           <div class="form-row">
             <div class="field">
@@ -992,9 +1147,10 @@ p { text-wrap: pretty; }
               </select>
             </div>
             <div class="field">
-              <label for="f-tier">Licencja <span class="opt">(opcjonalnie)</span></label>
+              <label for="f-tier">Licencja Dirac Live <span class="opt">(opcjonalnie)</span></label>
               <select id="f-tier" name="licencja">
                 <option value="">Jeszcze nie wiem</option>
+                <option>Mam już licencję / jest w komplecie</option>
                 <option>Starter</option>
                 <option>Full</option>
                 <option>Surround</option>
@@ -1003,12 +1159,13 @@ p { text-wrap: pretty; }
           </div>
           <div class="field">
             <label for="f-msg">Wiadomość <span class="opt">(opcjonalnie)</span></label>
-            <textarea id="f-msg" name="message" rows="4"></textarea>
+            <span class="hint" id="h-msg">np. preferowane terminy, problem, który słychać najbardziej</span>
+            <textarea id="f-msg" name="message" rows="4" aria-describedby="h-msg"></textarea>
           </div>
           <div class="hp" aria-hidden="true"><label for="f-hp">Zostaw puste</label><input id="f-hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
           <div class="form-foot">
-            <button class="btn btn--signal" type="submit" id="submit-btn">Wyślij pytanie</button>
-            <small>Odpowiadamy w ciągu 24 godzin w dni robocze. Dane służą tylko do odpowiedzi.</small>
+            <button class="btn btn--signal" type="submit" id="submit-btn">Poproś o wycenę</button>
+            <small>Odpowiadamy w ciągu 24 godzin w dni robocze. Dane wykorzystujemy wyłącznie do przygotowania wyceny i umówienia wizyty.</small>
           </div>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
@@ -1024,7 +1181,7 @@ p { text-wrap: pretty; }
         <svg viewBox="0 0 26 16" fill="none" aria-hidden="true"><path d="M1 9 C4 2, 6 2, 8 9 S12 14, 14 8 S18 7, 25 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         <span>kalibracja<b>/</b>dirac</span>
       </a>
-      <p>Oryginalne licencje Dirac Live i wsparcie przy kalibracji akustyki — dla systemów stereo i kina domowego, po polsku.</p>
+      <p>Kalibracja Dirac Live z dojazdem do klienta i oryginalne licencje Dirac Live — dla systemów stereo i kina domowego.</p>
       <div class="foot-links">
         <a class="link" href="mailto:kbrz77@proton.me">kbrz77@proton.me</a>
         <a class="link" href="tel:+48796579480">+48 796 579 480</a>
@@ -1033,7 +1190,7 @@ p { text-wrap: pretty; }
     </div>
     <div class="foot-legal">
       <span>Dirac Live® jest zastrzeżonym znakiem towarowym Dirac Research AB, Szwecja.</span>
-      <span>Strona: <a class="link" href="https://kbrz77.pl" rel="noopener">kbrz77.pl</a></span>
+      <span class="credits"><span>Współpraca: <a class="link" href="https://audioplaza.pl" rel="noopener">audioplaza.pl</a></span><span>Wykonanie: <a class="link" href="https://kbrz77.pl" rel="noopener">kbrz77.pl</a></span></span>
     </div>
   </div>
 </footer>
@@ -1148,11 +1305,11 @@ document.querySelectorAll('[data-tier]').forEach(function (a) {
     }).then(function (res) {
       if (!res.ok) throw new Error('HTTP ' + res.status);
       var wrap = document.getElementById('form-wrap');
-      wrap.innerHTML = '<div class="form-done" tabindex="-1"><h3>Dzięki, mamy Twoje pytanie.</h3><p>Odpiszemy na <strong></strong> w ciągu 24 godzin w dni robocze.</p></div>';
+      wrap.innerHTML = '<div class="form-done" tabindex="-1"><h3>Dziękujemy, mamy Twoje zgłoszenie.</h3><p>Wycenę i propozycję terminu wyślemy na <strong></strong> w ciągu 24 godzin w dni robocze.</p></div>';
       wrap.querySelector('strong').textContent = data.email;
       wrap.firstElementChild.focus();
     }).catch(function () {
-      btn.disabled = false; btn.removeAttribute('aria-busy'); btn.textContent = 'Wyślij pytanie';
+      btn.disabled = false; btn.removeAttribute('aria-busy'); btn.textContent = 'Poproś o wycenę';
       status.dataset.state = 'error';
       status.innerHTML = 'Nie udało się wysłać. Napisz bezpośrednio na <a class="link" href="mailto:kbrz77@proton.me">kbrz77@proton.me</a> albo zadzwoń.';
     });

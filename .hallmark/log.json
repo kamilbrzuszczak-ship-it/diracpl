@@ -20,5 +20,11 @@
     "nav": "N9",
     "footer": "Ft1",
     "brief": "kalibracjadirac.pl · licencje Dirac Live + wsparcie przy pomiarze"
+  },
+  {
+    "date": "2026-11-15",
+    "verb": "redesign (copy)",
+    "target": "index.html",
+    "note": "Repozycjonowanie: usługa kalibracji z dojazdem od 790 zł, mikrofon miniDSP po stronie usługodawcy, sekcja cennika (on-blue, cena jako nagłówek), sekcja o specjaliście (on-signal), FAQ przepisane, ProfessionalService + Person w JSON-LD, usunięte wzmianki o bezpłatnym sprawdzeniu."
   }
 ]
